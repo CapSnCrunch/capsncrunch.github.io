@@ -1,5 +1,6 @@
 body {
-    background-color: #e8e7f7a4;
+    /*background-color: #e8e7f7a4;*/
+    background-color: #CEF3D3;
     align-items: center;
 }
 
@@ -25,7 +26,7 @@ h3 {
 a {
     font-size: 100%;
     font-family: 'Ubuntu', sans-serif;
-    color: #D5590B;
+    color: #5A5735;
 }
 
 #topbar a {
@@ -52,7 +53,8 @@ a {
 }
 
 #topbar a:hover {
-    background-color: #c8c6eca4;
+    /*background-color: #c8c6eca4;*/
+    background-color: #ADEBB5a4;
     border-radius: 10%;
     cursor: pointer;
 }
@@ -63,8 +65,7 @@ a {
 
 #content {
     margin: 1rem auto;
-    width: 60%;
-    max-width: 950px;
+    max-width: 850px;
 }
 
 .box {
@@ -75,10 +76,17 @@ a {
 }
 
 .left {
-    width: 25%;
+    width: 30%;
 }
 
 .right {
-    width: 75%;
+    width: 70%;
     padding: 1rem 1rem;
+}
+
+.center {
+    padding: 10px;
+    width: 50%;
+    margin: auto;
+    text-align: center;
 }
