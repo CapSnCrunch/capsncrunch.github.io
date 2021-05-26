@@ -21,12 +21,26 @@ h3 {
     font-family: 'Ubuntu', sans-serif;
     font-weight: normal;
     color: #1C1C1C;
+    line-height: 1.5;
 }
 
 a {
     font-size: 100%;
     font-family: 'Ubuntu', sans-serif;
     color: #5A5735;
+}
+
+#header {
+    margin: 1.5rem auto;
+}
+
+#topbar {
+    margin: auto;
+    width: 50%;
+    max-width: 950px;
+    padding: 0.5rem 0rem;
+    display: flex;
+    justify-content: center;
 }
 
 #topbar a {
@@ -40,18 +54,6 @@ a {
     border-radius: 5%;*/
 }
 
-#header {
-    margin: 1.5rem auto;
-}
-
-#topbar {
-    margin: auto;
-    width: 50%;
-    max-width: 950px;
-    display: flex;
-    justify-content: center;
-}
-
 #topbar a:hover {
     /*background-color: #c8c6eca4;*/
     background-color: #ADEBB5a4;
@@ -63,7 +65,11 @@ a {
     border-radius: 5%;
 }
 
-#content {
+#footer {
+    padding: 1rem 0.5rem;
+}
+
+.content {
     margin: 1rem auto;
     max-width: 850px;
 }
@@ -75,18 +81,9 @@ a {
     vertical-align: top;
 }
 
-.left {
-    width: 30%;
-}
-
-.right {
-    width: 70%;
-    padding: 1rem 1rem;
-}
-
 .center {
-    padding: 10px;
-    width: 50%;
+    padding: 5px 10px;
+    /*width: 50%;*/
     margin: auto;
     text-align: center;
 }

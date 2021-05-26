@@ -17,10 +17,63 @@
       <a href = '../research.html'>Research</a>
       <a href = '../contact.html'>Contact</a>
     </div>
-    <div id = 'content'>
+    <div class = 'content'>
         <div class = 'center'>
             <h2>The Ping Pong Lemma</h2>
+            <h3><strong>5 / 25 / 21</strong></h3>
         </div>
-    </div>
+        <div style = 'text-align: left;''>
+          <h3>Today I'm going to talk about an interesting lemma in abstract algebra and how I used it in my research at the Texas Experimental Geometry Lab. Before we talk about the
+            lemma, let's first establish some of the mathematical background we'll need to know.</h3>
+          <h3>Abstract algebra / algebraic structures is all about the study of groups, rings, fields, and the properties of these objects. A group <em>G</em>&nbsp; is a set along with 
+            a binary operation &nbsp;&#8901;&nbsp; such that the following properties are satisfied:
+          </h3>
+          <ul>
+            <li><h3><strong>Closure:</strong> For a, b in <em>G</em>, we have that a &#8901; b is in <em>G</em></h3></li>
+            <li><h3><strong>Associativity:</strong> For a, b, c in <em>G</em>, we have a &#8901; (b &#8901; c) = (a &#8901; b) &#8901; c</h3></li>
+            <li><h3><strong>Identity:</strong> There exists an e in <em>G</em> such that for any a in <em>G</em>, e &#8901; a = a &#8901; e = a </h3></li>
+            <li><h3><strong>Inverses:</strong> For a in <em>G</em>, there is <var>a<sup>-1</sup></var> in <em>G</em> such that a &#8901; <var>a<sup>-1</sup></var> = e</h3></li>
+          </ul>
+          <h3>A group presentation is a collection of generators and relations such that G = < generators | relations >. Perhaps this is best understood with a few examples:</h3>
+          <ul>
+            <li><h3>< a, b > is the set of all multiples of a and b (such as <var>a<sup>k</sup></var> for any integer k or aba<var>b<sup>-2</sup></var> etc.)</h3></li>
+            <li><h3>The integers with the addition operation can be written as Z = < 1 > since <var>1<sup>k</sup></var> (which is to say 1 added to itself k times since the operation is addition)
+              will generate all of the integers.</h3></li>
+            <li><h3> < a | <var>a<sup>3</sup></var> = 1 > is a group with the set of elements {e, a, <var>a<sup>2</sup></var>} since we have the relation which dictates that a cubed must be the identity.</h3></li>
+          </ul>
+          <h3>The group we will consider today is SL(2,R) which is the set of 2x2 real matrices with determinant 1 along with the operation of standard matrix multiplication. Once we 
+            have the concept of a group, we need to understand what a group action is. Essentially, a group action is a map which takes <em>G</em>&nbsp; × <em>X</em>&nbsp; to <em>X</em> for some space <em>X</em>.
+            and preserves the group operation (ie. g(hx) = (gh)x ). The space we will primarily consider is the real projective line RP1 which is the set of equivalence classes of lines (often represented by a circle).</h3>
+          <h3>Now that we have some of the terminology we need, lets talk about the problem we want to solve. We call a group action faithful if each element of the group other than the identity acts nontrivially on the space
+            <em>X</em>, that is, there is no g in <em>G</em> such that gx = x for all x in <em>X</em>. In general, it is very hard to show that a given group has a faithful action on a space. However, we do know that a
+            certain type of group called a free group will always have a faithful action. Free groups are groups with no relations (ie. there are no elements formed by the generators which give us the identity). So, if
+            we want an approach to the problem of determining if a group will have a faithful action on a space, we can attempt to show that the group is isomorphic (equivalent) to a free group.</h3>
+          <h3>This is where the ping pong lemma comes into play. Below we will state the lemma and see immediately how it will be useful in solving our problem.</h3>
+          <h3><strong>Ping Pong Lemma:</strong> Suppose a and b are generators for a group <em>G</em> which acts on a space <em>X</em>. If:
+            <ul>
+              <li>X has disjoint nonempty subsets <var>X<sub>a</sub></var> and <var>X<sub>b</sub></var></li>
+              <li><var>a<sup>k</sup></var>(<var>X<sub>a</sub></var>) is contained in <var>X<sub>a</sub></var> and <var>b<sup>k</sup></var>(<var>X<sub>b</sub></var>) is contained in <var>X<sub>b</sub></var> for all nonzero k</li>
+            </ul>
+            &emsp;then G is isomorphic to a free group of rank 2.
+          </h3>
+          <h3>Without the ping pong lemma, we would need to check an infinite number of conditions to see if a groups action is faithful (we would need to see that gx &#8800; x for all g and for all x). But here, we have a
+            finite number of conditions to check to see that the group is free and therefore faithful. The research done in TXGL consisted of extending this lemma to n generators in SL(2,R) and coming up with an algorithm to
+            search for intervals which will satisfy these properties.</h3>
+          <h3>Here is an example of intervals in RP1 which satisfy the necessary containment properties to show that the respective group action is faithful:</h3>
+        </div>
+        <div style = 'display: flex; justify-content: center;'>
+          <img src = 'imgs/intervals.png''>
+        </div>
+        <div style = 'text-align: left;'>
+          <h3>There are a lot of details left out in this discussion so if you want to learn more of the math or more about the algorithm, check out these other resources:
+            <ul>
+              <li><a href = 'https://search.lib.utexas.edu/discovery/fulldisplay?docid=alma991057930394206011&context=L&vid=01UTAU_INST:SEARCH&lang=en&search_scope=MyInst_and_CI&adaptor=Local%20Search%20Engine&tab=Everything&query=any,contains,office%20hours%20with%20a%20geometric%20group%20theorist&offset=0'>Office Hours with a Geometric Group Theorist</a></li>
+              <li><a href = 'https://sites.cns.utexas.edu/geometry_lab/project-2'>TXGL Project Writeup</a></li>
+              <li><a href = 'https://github.com/CapSnCrunch/TXGL'>Repository for TXGL Ping Pong</a></li>
+            </ul>
+          </h3>
+        </div>
+     </div>
+    <div id = 'footer'></div>
   </body>
 </html>
