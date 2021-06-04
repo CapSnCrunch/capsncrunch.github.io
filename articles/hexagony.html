@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang = 'en'>
+  <head>
+    <meta charset = 'utf-8'>
+    <title>Samuel Perales | Articles</title>
+    <link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+    <link href = 'https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap' rel = 'stylesheet'>
+    <link rel = 'stylesheet' href = '../styles.css'>
+  </head>
+  <body>
+    <div id = 'header'>
+      <h1 style = 'text-align: center;'> Samuel Perales </h1>
+    </div>
+    <div id = 'topbar'>
+      <a href = '../index.html'>Home</a>
+      <a href = '../articles.html'><strong>Articles</strong></a>
+      <a href = '../research.html'>Research</a>
+      <a href = '../contact.html'>Contact</a>
+    </div>
+    <div class = 'content'>
+        <div class = 'center'>
+            <h2>Esolangs: Hexagony</h2>
+            <h3><strong>6 / 4 / 21</strong></h3>
+        </div>
+        <div style = 'text-align: left;'>
+            <h3>This is the first article of a series on cool <a href = 'https://en.wikipedia.org/wiki/Esoteric_programming_language'>esoteric programming languages</a>. In brief, these are
+            languages constructed with the sole purpose of being absurd and unique and are often not actually very useful for coding. For our first look at esolangs, lets explore the 2-dimensional
+            language <em>Hexagony</em>.</h3>
+            <h3>Designed in 2015 by Martin Büttner, Hexagony works by placing commands on a hexagonal grid which can be traversed in any direction. The memory for the language is also hexagonal,
+            with each edge of an infinite hexagonal tiling of the plane holding a single integer value.</h3>
+            <h3>The language includes a total of 93 commands but we will discuss only a few of the more important ones to get started. For a full breakdown of each of the commands, the control flow,
+            and the memory model, refer to the original interpreter page <a href = 'https://github.com/m-ender/hexagony'>here</a>.</h3>
+            <h3>An interesting feature of Hexagony is that there are 6 instruction pointers (IPs) which start in the six corners of the hexagonal grid. The program always starts with the top left
+            pointer moving along the top edge to the right, but we can switch to the different pointers later in the program if we so desire. To angle our pointer and move it around in our 2-dimensional
+            work space, we have a number of 'mirror' commands which reflect the flow of the pointer in the obvious direction. These mirrors include /, \, |, and _.
+            </h3>
+        </div>
+        <div style = 'display: flex; justify-content: center;'>
+            <img src = 'imgs/hexagony_mirrors.gif''>
+        </div>
+        <div style = 'text-align: left;'>
+            <h3>A key thing to notice in the example above are that when the pointer leaves the hexagon, it wraps around to the other side. In particular, if the rows are numbered 0 through n, leaving
+            on row k < n/2 brings the pointer to row n/2 + k. Leaving along a bisector of a vertex will bring the pointer to either the top or bottom row depending on if the current memory cell is ≤ 0 or
+            > 0 repsectively. The other thing to notice from this example is that the pointer will pass through mirrors it is parallel to.</h3>
+        </div>
+    </div>
+  </body>
+</html>
