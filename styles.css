@@ -25,6 +25,13 @@ h3 {
     line-height: 1.5;
 }
 
+h4 {
+    font-size: 75%;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: normal;
+    color: #1C1C1C;
+}
+
 a {
     font-size: 100%;
     font-family: 'Ubuntu', sans-serif;
