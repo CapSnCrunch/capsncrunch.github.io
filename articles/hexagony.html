@@ -31,6 +31,8 @@
             with each edge of an infinite hexagonal tiling of the plane holding a single integer value.</h3>
             <h3>The language includes a total of 93 commands but we will focus only on the more important ones to get started. For a full breakdown of each of the commands, the control flow,
             and the memory model, refer to the original interpreter page <a href = 'https://github.com/m-ender/hexagony'>here</a>.</h3>
+            <h3>I did not find terribly many resources out there for newcomers to this language so I hope that this article will be useful in that I will provide several visual examples of the
+            commands and include a few basic programs with detailed explanations. I will also link all the other tools and forum posts I found helpful at the end of this article.</h3>
             <h3>&nbsp</h3>
             <h3><strong>Instruction Pointers and Pointer Manipulation</strong></h3>
             <h3>An interesting feature of Hexagony is that there are 6 instruction pointers (IPs) which start in the six corners of the hexagonal grid. The program always starts with the top left
@@ -63,20 +65,33 @@
         <div style = 'text-align: left;'>
             <h3>&nbsp</h3>
             <h3><strong>Memory Manipulation</strong></h3>
-            <h3>The memory is initialized as an infinite hexagonal grid with the value 0 assigned to each edge. There is a single memory pointer oriented along one of these edges. The 52 letter characters
+            <h3>The memory is initialized as an infinite hexagonal grid with the value 0 assigned to each edge. There is a single memory pointer (MP) oriented along one of these edges. The 52 letter characters
             will set the current memory edge to the letters ASCII value. The digits 0-9 will multiply the current edge by 10 and then add the digit (this is useful because it lets us process decimal numbers
             in our code despite memory edges holding only integer values).
             </h3>
-            <div style = 'display: flex; justify-content: center; text-align: center;'>
-              <img src = 'imgs/memory_1a.gif'>
-              <img src = 'imgs/memory_1b.gif'>
-            </div>
-            <div style = 'text-align: center;'>
-              <h4>Concatenating digits to the inital memory edge in a loop</h4>
-              <h4>(gifs may not be synced, my apologies)</h4>
-            </div>
+        </div>
+        <div style = 'display: flex; justify-content: center; text-align: center;'>
+            <img src = 'imgs/memory_1a.gif'>
+            <img src = 'imgs/memory_1b.gif'>
+        </div>
+        <div style = 'text-align: center;'>
+          <h4>Concatenating digits to the inital memory edge in a loop</h4>
+          <h4>(gifs may not be synced, my apologies)</h4>
+        </div>
+        <div style = 'text-align: left;'>
+            <h3>Aside from these commands which let us manually set the values of memory edges, we also have the typical operations of any computer language, +, -, *, : (division), and % (modulus). These
+            operations are always performed as (left &#9702; right) where left and right are the edges relative to the orientation of the memory pointer and the output of the operation overwrites the 
+            current memory edge.</h3>
+            <h3>The other basic operations include ~ which multiplies the current edge by -1 and ), ( which increment and decrement the current edge by 1 respectively.</h3>
+            <h3>However, none of these memory commands would be useful if we couldn't change the position and orientation of the memory pointer to access other edges. The movement commands for the memory
+            pointer across the grid include { and } which move the pointer forward and to the left or right respectively. " and ' do the same but backwards and to the left or right. The last movement command
+            is = which swaps the orientation of the memory pointer.</h3>
+        </div>
+        <div style = 'text-align: left;'>
             <h3>&nbsp</h3>
             <h3><strong>Input / Output</strong></h3>
+            <h3>At this point <em>Hexagony</em> can already do just about anything we need (with a lot of work). The last thing we could ask for is input from the user and output to the terminal. There are
+            two options for each of these.</h3>
         </div>
     </div>
   </body>
