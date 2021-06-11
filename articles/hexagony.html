@@ -29,7 +29,7 @@
             language <em>Hexagony</em>.</h3>
             <h3>Designed in 2015 by Martin Büttner, Hexagony works by placing commands on a hexagonal grid which can be traversed in any direction. The memory for the language is also hexagonal,
             with each edge of an infinite hexagonal tiling of the plane holding a single integer value.</h3>
-            <h3>The language includes a total of 93 commands but half of these are a-Z which are very simple. I will cover most of the commadns here but you can also visit the <a href = 'https://github.com/m-ender/hexagony'>original
+            <h3>The language includes a total of 93 commands but half of these are a-Z which are very simple. I will cover most of the commands here but you can also visit the <a href = 'https://github.com/m-ender/hexagony'>original
             interpreter page</a> for a full breakdown of each of the commands, the control flow, and the memory model.</h3>
             <h3>I did not find terribly many resources out there for newcomers to this language so I hope that this article will be useful in that I will provide several visual examples of the
             commands and include a few basic programs with detailed explanations. I will also link all the other tools and forum posts I found helpful at the end of this article.</h3>
@@ -39,7 +39,7 @@
             pointer moving along the top edge to the right, but we can switch to the different pointers later in the program if we so desire. To angle our pointer and move it around in our 2-dimensional
             work space, we have a number of 'mirror' commands which reflect the flow of the pointer in the obvious direction. These mirrors include <strong>/</strong>, <strong>\</strong>, <strong>|</strong>, and <strong>_</strong>.</h3>
         </div>
-        <div style = 'display: flex; justify-content: center; text-align: center;'>
+        <div style = 'display: flex; justify-content: center;'>
             <img src = 'imgs/ip_movement.gif'>
         </div>
         <div style = 'text-align: center;'>
@@ -54,7 +54,7 @@
             <h3>Other movement commands include <strong>$</strong> which acts as a 'jump' skipping the next command and <strong>]</strong>, <strong>[</strong> which increment and decrement the current pointer respectively. When we switch pointers, the old
             pointer stops moving but its position and orientation are remembered. We resume movement on the new pointer from its previous position and orientation.</h3>
         </div>
-        <div style = 'display: flex; justify-content: center; text-align: center;'>
+        <div style = 'display: flex; justify-content: center;'>
           <img src = 'imgs/ip_swapping.gif'>
         </div>
         <div style = 'text-align: center;'>
@@ -68,7 +68,7 @@
             in our code despite memory edges holding only integer values).
             </h3>
         </div>
-        <div style = 'display: flex; justify-content: center; text-align: center;'>
+        <div style = 'display: flex; justify-content: center;'>
             <img src = 'imgs/mp_values.gif'>
         </div>
         <div style = 'text-align: center;'>
@@ -78,30 +78,60 @@
             <h3>Aside from these commands which let us manually set the values of memory edges, we also have the typical operations of any computer language, <strong>+</strong>, <strong>-</strong>, <strong>*</strong>, <strong>:</strong>
             (division), and <strong>%</strong> (modulus). These operations are always performed as (left &#9702; right) where left and right are the edges relative to the orientation of the memory pointer and 
             the output of the operation overwrites the current memory edge.</h3>
-            <h3>The other basic operations include ~ which multiplies the current edge by -1 and <strong>)</strong>, <strong>(</strong> which increment and decrement the current edge by 1 respectively.</h3>
+            <h3>The other basic operations include ~ which multiplies the current edge by -1 and <strong>)</strong>, <strong>(</strong> which increment and decrement the current edge by 1 respectively. We also
+            have <strong>&</strong> which will copy a value to the left or right of the pointer to the current memory edge. It copies the left value if the current edge is ≤ 0 and the right value otherwise.</h3>
             <h3>However, none of these memory commands would be useful if we couldn't change the position and orientation of the memory pointer to access other edges. The movement commands for the memory
             pointer across the grid include <strong>{</strong> and <strong>}</strong> which move the pointer forward and to the left or right respectively. The commands <strong>"</strong> and <strong>'</strong> do the same but 
             backwards and to the left or right. The last movement command is <strong>=</strong> which swaps the orientation of the memory pointer.</h3>
         </div>
-        <div style = 'display: flex; justify-content: center; text-align: center;'>
+        <div style = 'display: flex; justify-content: center;'>
           <img src = 'imgs/mp_move_commands.jpg' style = 'width: 200px'>
         </div>
         <div style = 'text-align: center;'>
           <h4>Movement commands relative to the memory pointer</h4>
+          <h3>&nbsp</h3>
         </div>
-        <div style = 'display: flex; justify-content: center; text-align: center;'>
+        <div style = 'display: flex; justify-content: center;'>
           <img src = 'imgs/mp_movement.gif'>
         </div>
         <div style = 'text-align: center;'>
           <h4>Moving the pointer around the memory grid</h4>
+          <h3>&nbsp</h3>
+        </div>
+        <div style = 'display: flex; justify-content: center;'>
+          <img src = 'imgs/multiplication.gif'>
+        </div>
+        <div style = 'text-align: center;'>
+          <h4>Example of operation on two memory edges</h4>
         </div>
         <div style = 'text-align: left;'>
-            <h3>&nbsp</h3>
-            <h3><strong>Input / Output</strong></h3>
-            <h3>At this point <em>Hexagony</em> can already do just about anything we need (with a lot of work). The last thing we could ask for is input from the user and output to the terminal. There are
-            two options for each of these.</h3>
+          <h3>&nbsp</h3>
+          <h3><strong>Input / Output</strong></h3>
+          <h3>At this point <em>Hexagony</em> can already do just about anything we need (with a lot of work). The last thing we could ask for is input from the user and output to the terminal. There are
+          two options for each of these.</h3>
+          <h3>For input, we have the commands <stong>'</stong> and <strong>?</strong>. The first reads a byte from stdin and sets the current memory edge to its value. The second will read from stdin
+          until it comes across a +, -, or a digit and will continue to read digits until there are none left. This allwos us to read individual signed integers and set the current memory edge to their value.</h3>
+          <h3>For output, we have <strong>;</strong> and <strong>!</strong>. The first will simply write the current memory mod 256 as a byte to stdout and the second will output the raw integer value of the current edge.</h3>
           <h3>&nbsp</h3>
           <h3><strong>Examples</strong></h3>
+          <h3>Time to see this language in action! I've put together a few examples of programs which try to use a diverse set of commands. There are a lot more coding challenges I want to try with this language, but
+          the most difficult I've been able to pull off so far is my Fibonacci program (in 37 bytes!)
+          </h3>
+          <div style = 'display: flex; justify-content: center;'>
+            <img src = 'imgs/squaring.gif'>
+          </div>
+          <div style = 'text-align: center;'>
+            <h4>Program which takes a single integer input and outputs its square. <br>Note the use of @ which wasn't covered above. This command simply terminates the program.</h4>
+            <h3>&nbsp</h3>
+          </div>
+          <div style = 'display: flex; justify-content: center;'>
+            <img src = 'imgs/fibonacci.gif'>
+          </div>
+          <div style = 'text-align: center;'>
+            <h4>Fibonacci-like sequence program which takes two integers as input as outputs the Fibonacci-like sequence starting with those two values. Notice that in the loop IP1 enters
+              there is the sequence of commands <em>1 0 ;</em> . These will appear often in <em>Hexagony</em> programs since 10 is the ASCII value for newline.
+            </h4>
+          </div>
         </div>
         <div style = 'text-align: left;'>
           <h3>&nbsp</h3>
@@ -109,7 +139,7 @@
           <ul>
             <li><a href = 'https://hexagony.net/'>Online Visual Interpreter</a> (Used this for all my visualizations)</li>
             <li><a href = 'https://codegolf.stackexchange.com/questions/66708/unfolding-the-hexagony-source-code'>Forum on Hexagony Self-Interpreter</a></li>
-            <li><a href = 'https://codegolf.stackexchange.com/questions/85/fibonacci-function-or-sequence'>Explanation of Fibonacci Sequence Program</a></li>
+            <li><a href = 'https://codegolf.stackexchange.com/questions/85/fibonacci-function-or-sequence'>A Better Fibonacci Sequence Program</a></li>
           </ul>
         </div>
     </div>
