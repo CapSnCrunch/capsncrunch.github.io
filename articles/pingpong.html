@@ -58,8 +58,12 @@
             &emsp;then G is isomorphic to a free group of rank 2.
           </h3>
           <h3>Without the ping pong lemma, we would need to check an infinite number of conditions to see if a groups action is faithful (we would need to see that gx &#8800; x for all g and for all x). But here, we have a
-            finite number of conditions to check to see that the group is free and therefore faithful. The research done in TXGL consisted of extending this lemma to n generators in SL(2,R) and coming up with an algorithm to
-            search for intervals which will satisfy these properties.</h3>
+          finite number of conditions to check to see that the group is free and therefore faithful. The research done in TXGL consisted of extending this lemma to n generators in SL(2,R) and coming up with an algorithm to
+          search for intervals which will satisfy these properties.</h3>
+          <h3>Avoiding diving too far into the details of the algorithm, I will talk about the basic procedure. The idea is that the since the eigenvectors of our generators are fixed points under the action of the generator in RP1,
+          we know that the intervals must include them. By creating epsilon intervals around these, we have initial intervals to start the search with. From here, we expand endpoints of the intervals, checking if they satisfy the
+          necessary containment properties until we find them. There are different method for interval expansion we tried which are discussed on the TXGL project writeup.
+          </h3>
           <h3>Here is an example of intervals in RP1 which satisfy the necessary containment properties to show that the respective group action is faithful:</h3>
         </div>
         <div style = 'display: flex; justify-content: center;'>
