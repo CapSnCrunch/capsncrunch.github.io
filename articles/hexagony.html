@@ -29,16 +29,15 @@
             language <em>Hexagony</em>.</h3>
             <h3>Designed in 2015 by Martin Büttner, Hexagony works by placing commands on a hexagonal grid which can be traversed in any direction. The memory for the language is also hexagonal,
             with each edge of an infinite hexagonal tiling of the plane holding a single integer value.</h3>
-            <h3>The language includes a total of 93 commands but we will focus only on the more important ones to get started. For a full breakdown of each of the commands, the control flow,
-            and the memory model, refer to the original interpreter page <a href = 'https://github.com/m-ender/hexagony'>here</a>.</h3>
+            <h3>The language includes a total of 93 commands but half of these are a-Z which are very simple. I will cover most of the commadns here but you can also visit the <a href = 'https://github.com/m-ender/hexagony'>original
+            interpreter page</a> for a full breakdown of each of the commands, the control flow, and the memory model.</h3>
             <h3>I did not find terribly many resources out there for newcomers to this language so I hope that this article will be useful in that I will provide several visual examples of the
             commands and include a few basic programs with detailed explanations. I will also link all the other tools and forum posts I found helpful at the end of this article.</h3>
             <h3>&nbsp</h3>
-            <h3><strong>Instruction Pointers and Pointer Manipulation</strong></h3>
+            <h3><strong>Instruction Pointers</strong></h3>
             <h3>An interesting feature of Hexagony is that there are 6 instruction pointers (IPs) which start in the six corners of the hexagonal grid. The program always starts with the top left
             pointer moving along the top edge to the right, but we can switch to the different pointers later in the program if we so desire. To angle our pointer and move it around in our 2-dimensional
-            work space, we have a number of 'mirror' commands which reflect the flow of the pointer in the obvious direction. These mirrors include /, \, |, and _.
-            </h3>
+            work space, we have a number of 'mirror' commands which reflect the flow of the pointer in the obvious direction. These mirrors include <strong>/</strong>, <strong>\</strong>, <strong>|</strong>, and <strong>_</strong>.</h3>
         </div>
         <div style = 'display: flex; justify-content: center; text-align: center;'>
             <img src = 'imgs/ip_movement.gif'>
@@ -50,14 +49,13 @@
             <h3>A key thing to notice in the example above are that when the pointer leaves the hexagon, it wraps around to the other side. In particular, if the rows are numbered 0 through n, leaving
             on row k < n/2 brings the pointer to row n/2 + k. Leaving along a bisector of a vertex will bring the pointer to either the top or bottom row depending on if the current memory cell is ≤ 0 or
             > 0 repsectively. The other thing to notice from this example is that the pointer will pass through mirrors it is parallel to.</h3>
-            <h3>We also have the < and > commands which act like mirrors along the expected directions, flow-redirectors in the direction they point, and branches when the pointer enters from the vertex.
+            <h3>We also have the <strong><</strong> and <strong>></strong> commands which act like mirrors along the expected directions, flow-redirectors in the direction they point, and branches when the pointer enters from the vertex.
             Determining which branch the pointer takes is the same as for when the pointer leaves along the vertex of the grid.</h3>
-            <h3>Other movement commands include $ which acts as a 'jump' skipping the next command and ], [ which increment and decrement the current pointer respectively. When we switch pointers, the old
-            pointer stops moving but its position and orientation are remembered. We resume movement on the new pointer from its previous position and orientation.
-            </h3>
+            <h3>Other movement commands include <strong>$</strong> which acts as a 'jump' skipping the next command and <strong>]</strong>, <strong>[</strong> which increment and decrement the current pointer respectively. When we switch pointers, the old
+            pointer stops moving but its position and orientation are remembered. We resume movement on the new pointer from its previous position and orientation.</h3>
         </div>
         <div style = 'display: flex; justify-content: center; text-align: center;'>
-          <img src = 'imgs/ip_movement_2.gif'>
+          <img src = 'imgs/ip_swapping.gif'>
         </div>
         <div style = 'text-align: center;'>
           <h4>Example of jump command and incrementing through all 6 pointers</h4>
@@ -65,33 +63,54 @@
         <div style = 'text-align: left;'>
             <h3>&nbsp</h3>
             <h3><strong>Memory Manipulation</strong></h3>
-            <h3>The memory is initialized as an infinite hexagonal grid with the value 0 assigned to each edge. There is a single memory pointer (MP) oriented along one of these edges. The 52 letter characters
-            will set the current memory edge to the letters ASCII value. The digits 0-9 will multiply the current edge by 10 and then add the digit (this is useful because it lets us process decimal numbers
+            <h3>The memory is initialized as an infinite hexagonal grid with the value 0 assigned to each edge. There is a single memory pointer (MP) oriented along one of these edges. The <strong>52 letter characters</strong>
+            will set the current memory edge to the letters ASCII value. The <strong>digits 0-9</strong> will multiply the current edge by 10 and then add the digit (this is useful because it lets us process decimal numbers
             in our code despite memory edges holding only integer values).
             </h3>
         </div>
         <div style = 'display: flex; justify-content: center; text-align: center;'>
-            <img src = 'imgs/memory_1a.gif'>
-            <img src = 'imgs/memory_1b.gif'>
+            <img src = 'imgs/mp_values.gif'>
         </div>
         <div style = 'text-align: center;'>
           <h4>Concatenating digits to the inital memory edge in a loop</h4>
-          <h4>(gifs may not be synced, my apologies)</h4>
         </div>
         <div style = 'text-align: left;'>
-            <h3>Aside from these commands which let us manually set the values of memory edges, we also have the typical operations of any computer language, +, -, *, : (division), and % (modulus). These
-            operations are always performed as (left &#9702; right) where left and right are the edges relative to the orientation of the memory pointer and the output of the operation overwrites the 
-            current memory edge.</h3>
-            <h3>The other basic operations include ~ which multiplies the current edge by -1 and ), ( which increment and decrement the current edge by 1 respectively.</h3>
+            <h3>Aside from these commands which let us manually set the values of memory edges, we also have the typical operations of any computer language, <strong>+</strong>, <strong>-</strong>, <strong>*</strong>, <strong>:</strong>
+            (division), and <strong>%</strong> (modulus). These operations are always performed as (left &#9702; right) where left and right are the edges relative to the orientation of the memory pointer and 
+            the output of the operation overwrites the current memory edge.</h3>
+            <h3>The other basic operations include ~ which multiplies the current edge by -1 and <strong>)</strong>, <strong>(</strong> which increment and decrement the current edge by 1 respectively.</h3>
             <h3>However, none of these memory commands would be useful if we couldn't change the position and orientation of the memory pointer to access other edges. The movement commands for the memory
-            pointer across the grid include { and } which move the pointer forward and to the left or right respectively. " and ' do the same but backwards and to the left or right. The last movement command
-            is = which swaps the orientation of the memory pointer.</h3>
+            pointer across the grid include <strong>{</strong> and <strong>}</strong> which move the pointer forward and to the left or right respectively. The commands <strong>"</strong> and <strong>'</strong> do the same but 
+            backwards and to the left or right. The last movement command is <strong>=</strong> which swaps the orientation of the memory pointer.</h3>
+        </div>
+        <div style = 'display: flex; justify-content: center; text-align: center;'>
+          <img src = 'imgs/mp_move_commands.jpg' style = 'width: 200px'>
+        </div>
+        <div style = 'text-align: center;'>
+          <h4>Movement commands relative to the memory pointer</h4>
+        </div>
+        <div style = 'display: flex; justify-content: center; text-align: center;'>
+          <img src = 'imgs/mp_movement.gif'>
+        </div>
+        <div style = 'text-align: center;'>
+          <h4>Moving the pointer around the memory grid</h4>
         </div>
         <div style = 'text-align: left;'>
             <h3>&nbsp</h3>
             <h3><strong>Input / Output</strong></h3>
             <h3>At this point <em>Hexagony</em> can already do just about anything we need (with a lot of work). The last thing we could ask for is input from the user and output to the terminal. There are
             two options for each of these.</h3>
+          <h3>&nbsp</h3>
+          <h3><strong>Examples</strong></h3>
+        </div>
+        <div style = 'text-align: left;'>
+          <h3>&nbsp</h3>
+          <h3><strong>Resources</strong></h3>
+          <ul>
+            <li><a href = 'https://hexagony.net/'>Online Visual Interpreter</a> (Used this for all my visualizations)</li>
+            <li><a href = 'https://codegolf.stackexchange.com/questions/66708/unfolding-the-hexagony-source-code'>Forum on Hexagony Self-Interpreter</a></li>
+            <li><a href = 'https://codegolf.stackexchange.com/questions/85/fibonacci-function-or-sequence'>Explanation of Fibonacci Sequence Program</a></li>
+          </ul>
         </div>
     </div>
   </body>
