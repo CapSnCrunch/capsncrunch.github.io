@@ -33,7 +33,7 @@
             interpreter page</a> for a full breakdown of each of the commands, the control flow, and the memory model.</h3>
             <h3>I did not find terribly many resources out there for newcomers to this language so I hope that this article will be useful in that I will provide several visual examples of the
             commands and include a few basic programs with detailed explanations. I will also link all the other tools and forum posts I found helpful at the end of this article.</h3>
-            <h3>&nbsp</h3>
+            <br>
             <h3><strong>Instruction Pointers</strong></h3>
             <h3>An interesting feature of Hexagony is that there are 6 instruction pointers (IPs) which start in the six corners of the hexagonal grid. The program always starts with the top left
             pointer moving along the top edge to the right, but we can switch to the different pointers later in the program if we so desire. To angle our pointer and move it around in our 2-dimensional
@@ -61,7 +61,7 @@
           <h4>Example of jump command and incrementing through all 6 pointers</h4>
         </div>
         <div style = 'text-align: left;'>
-            <h3>&nbsp</h3>
+          <br>
             <h3><strong>Memory Manipulation</strong></h3>
             <h3>The memory is initialized as an infinite hexagonal grid with the value 0 assigned to each edge. There is a single memory pointer (MP) oriented along one of these edges. The <strong>52 letter characters</strong>
             will set the current memory edge to the letters ASCII value. The <strong>digits 0-9</strong> will multiply the current edge by 10 and then add the digit (this is useful because it lets us process decimal numbers
@@ -89,14 +89,14 @@
         </div>
         <div style = 'text-align: center;'>
           <h4>Movement commands relative to the memory pointer</h4>
-          <h3>&nbsp</h3>
+          <br>
         </div>
         <div style = 'display: flex; justify-content: center;'>
           <img src = 'imgs/mp_movement.gif'>
         </div>
         <div style = 'text-align: center;'>
           <h4>Moving the pointer around the memory grid</h4>
-          <h3>&nbsp</h3>
+          <br>
         </div>
         <div style = 'display: flex; justify-content: center;'>
           <img src = 'imgs/multiplication.gif'>
@@ -105,14 +105,14 @@
           <h4>Example of operation on two memory edges</h4>
         </div>
         <div style = 'text-align: left;'>
-          <h3>&nbsp</h3>
+          <br>
           <h3><strong>Input / Output</strong></h3>
           <h3>At this point <em>Hexagony</em> can already do just about anything we need (with a lot of work). The last thing we could ask for is input from the user and output to the terminal. There are
           two options for each of these.</h3>
           <h3>For input, we have the commands <stong>'</stong> and <strong>?</strong>. The first reads a byte from stdin and sets the current memory edge to its value. The second will read from stdin
           until it comes across a +, -, or a digit and will continue to read digits until there are none left. This allwos us to read individual signed integers and set the current memory edge to their value.</h3>
           <h3>For output, we have <strong>;</strong> and <strong>!</strong>. The first will simply write the current memory mod 256 as a byte to stdout and the second will output the raw integer value of the current edge.</h3>
-          <h3>&nbsp</h3>
+          <br>
           <h3><strong>Examples</strong></h3>
           <h3>Time to see this language in action! I've put together a few examples of programs which try to use a diverse set of commands. There are a lot more coding challenges I want to try with this language, but
           the most difficult I've been able to pull off so far is my Fibonacci program (in 37 bytes!)
@@ -122,7 +122,7 @@
           </div>
           <div style = 'text-align: center;'>
             <h4>Program which takes a single integer input and outputs its square. <br>Note the use of @ which wasn't covered above. This command simply terminates the program.</h4>
-            <h3>&nbsp</h3>
+            <br>
           </div>
           <div style = 'display: flex; justify-content: center;'>
             <img src = 'imgs/fibonacci.gif'>
@@ -134,7 +134,7 @@
           </div>
         </div>
         <div style = 'text-align: left;'>
-          <h3>&nbsp</h3>
+          <br>
           <h3><strong>Resources</strong></h3>
           <ul>
             <li><a href = 'https://hexagony.net/'>Online Visual Interpreter</a> (Used this for all my visualizations)</li>
