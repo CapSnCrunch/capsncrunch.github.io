@@ -6,6 +6,8 @@
     <link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
     <link href = 'https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap' rel = 'stylesheet'>
     <link rel = 'stylesheet' href = '../styles.css'>
+    <script src = 'https://polyfill.io/v3/polyfill.min.js?features=es6'></script>
+    <script id = 'MathJax-script' async src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'></script>
   </head>
   <body>
     <div id = 'header'>
@@ -18,7 +20,7 @@
       <a href = '../other.html'>Other</a>
       <a href = '../contact.html'>Contact</a>
     </div>
-    <div class = 'content'>
+    <div class = 'content'> 
         <div class = 'center'>
             <h2>The Ping Pong Lemma</h2>
             <h3><strong>5 / 25 / 21</strong></h3>
@@ -26,45 +28,46 @@
         <div style = 'text-align: left;'>
           <h3>Today I'm going to talk about an interesting lemma in abstract algebra and how I used it in my research at the Texas Experimental Geometry Lab. Before we talk about the
             lemma, let's first establish some of the mathematical background we'll need to know.</h3>
-          <h3>Abstract algebra / algebraic structures is all about the study of groups, rings, fields, and the properties of these objects. A group <em>G</em>&nbsp; is a set along with 
-            a binary operation &nbsp;&#8901;&nbsp; such that the following properties are satisfied:
+          <h3>Abstract algebra / algebraic structures is all about the study of groups, rings, fields, and the properties of these objects. A group &nbsp;<math><mi>G</mi></math>&nbsp; is a set along with 
+            a binary operation &nbsp;<math><mi>&#8901;</mi></math>&nbsp; such that the following properties are satisfied:
           </h3>
           <ul>
-            <li><h3><strong>Closure:</strong> For a, b in <em>G</em>, we have that a &#8901; b is in <em>G</em></h3></li>
-            <li><h3><strong>Associativity:</strong> For a, b, c in <em>G</em>, we have a &#8901; (b &#8901; c) = (a &#8901; b) &#8901; c</h3></li>
-            <li><h3><strong>Identity:</strong> There exists an e in <em>G</em> such that for any a in <em>G</em>, e &#8901; a = a &#8901; e = a </h3></li>
-            <li><h3><strong>Inverses:</strong> For a in <em>G</em>, there is <var>a<sup>-1</sup></var> in <em>G</em> such that a &#8901; <var>a<sup>-1</sup></var> = e</h3></li>
+            <li><h3><strong>Closure:</strong> For <math><mi>a</mi><mo>,</mo><mi>b</mi><mo>&#x2208;</mo><mi>G</mi></math>, we have that <math><mi>a</mi><mo>&#8901;</mo><mi>b</mi></math> is in <math><mi>G</mi></math></h3></li>
+            <li><h3><strong>Associativity:</strong> For <math><mi>a</mi><mo>,</mo><mi>b</mi><mo>,</mo><mi>c</mi><mo>&#x2208;</mo><mi>G</mi></math>, we have a <math><mi>a</mi><mo>&#8901;</mo><mo>(</mo><mi>b</mi><mo>&#8901;</mo><mi>c</mi><mo>)</mo><mo>=</mo><mo>(</mo><mi>a</mi><mo>&#8901;</mo><mi>b</mi><mo>)</mo><mo>&#8901;</mo><mi>c</mi></math></h3></li>
+            <li><h3><strong>Identity:</strong> There exists an <math><mi>e</mi><mo>&#x2208;</mo><mi>G</mi></math> such that for any <math><mi>a</mi><mo>&#x2208;</mo><mi>G</mi></math>,&nbsp; <math><mi>e</mi><mo>&#8901;</mo><mi>a</mi><mo>=</mo><mi>a</mi><mo>&#8901;</mo><mi>e</mi><mo>=</mo><mi>a</mi></math> </h3></li>
+            <li><h3><strong>Inverses:</strong> For <math><mi>a</mi><mo>&#x2208;</mo><mi>G</mi></math>, there is <math><msup><mi>a</mi><mrow><mo>&#x2212;</mo><mn>1</mn></mrow></msup><mo>&#x2208;</mo><mi>G</mi></math> such that <math><mi>a</mi><mo>&#8901;</mo><msup><mi>a</mi><mrow><mo>&#x2212;</mo><mn>1</mn></mrow></msup><mo>=</mo><mi>e</mi></h3></li>
           </ul>
-          <h3>A group presentation is a collection of generators and relations such that G = < generators | relations >. Perhaps this is best understood with a few examples:</h3>
+          <h3>A group presentation is a collection of generators and relations such that <math><mi>G</mi><mo>=</mo><mo>&#x3008;</mo><mi>generators</mi><mo>|</mo><mi>relations</mi><mo>&#x27E9;</mo></math>. Perhaps this is best understood with a few examples:</h3>
           <ul>
-            <li><h3>< a, b > is the set of all multiples of a and b (such as <var>a<sup>k</sup></var> for any integer k or aba<var>b<sup>-2</sup></var> etc.)</h3></li>
-            <li><h3>The integers with the addition operation can be written as Z = < 1 > since <var>1<sup>k</sup></var> (which is to say 1 added to itself k times since the operation is addition)
+            <li><h3> <math><mo>&#x3008;</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo>&#x27E9;</mo></math> is the set of all multiples of <math><mi>a</mi></math> and <math><mi>b</mi></math> (such as <math><msup><mi>a</mi><mrow><mi>k</mi></mrow></msup></math> for any integer <math><mi>k</mi></math> or <math><mi>a</mi><mi>b</mi><mi>a</mi><msup><mi>b</mi><mrow><mo>&#x2212;</mo><mo>2</mo></mrow></msup></math> etc.)</h3></li>
+            <li><h3>The integers with the addition operation can be written as <math><mi>&#x2124;</mi><mo>=</mo><mo>&#x3008;</mo><mn>1</mn><mo>&#x27E9;</mo></math> since <math><msup><mn>1</mn><mi>k</mi></msup></math> (which is to say <math><mn>1</mn></math> added to itself <math><mi>k</mi></math> times since the operation is addition)
               will generate all of the integers.</h3></li>
-            <li><h3> < a | <var>a<sup>3</sup></var> = 1 > is a group with the set of elements {e, a, <var>a<sup>2</sup></var>} since we have the relation which dictates that a cubed must be the identity.</h3></li>
+            <li><h3> <math><mo>&#x3008;</mo><mi>a</mi><mo>|</mo><msup><mi>a</mi><mn>3</mn></msup><mo>=</mo><mn>1</mn><mo>&#x27E9;</mo></math> is a group with the set of elements <math><mo>{</mo><mi>e</mi><mo>,</mo><mi>a</mi><mo>,</mo><msup><mi>a</mi><mn>2</mn></msup><mo>}</mo></math> since we have the relation which dictates that <math><msup><mi>a</mi><mn>3</mn></msup></math> must be the identity.</h3></li>
           </ul>
-          <h3>The group we will consider today is SL(2,R) which is the set of 2x2 real matrices with determinant 1 along with the operation of standard matrix multiplication. Once we 
-            have the concept of a group, we need to understand what a group action is. Essentially, a group action is a map which takes <em>G</em>&nbsp; × <em>X</em>&nbsp; to <em>X</em> for some space <em>X</em>.
-            and preserves the group operation (ie. g(hx) = (gh)x ). The space we will primarily consider is the real projective line RP1 which is the set of equivalence classes of lines (often represented by a circle).</h3>
+          <h3>The group we will consider today is <math><mi>S</mi><msub><mi>L</mi><mn>2</mn></msub><mo>(</mo><mi>&#x211D;</mi><mo>)</mo></math> which is the set of 2x2 real matrices with determinant 1 along with the operation of standard matrix multiplication. Once we 
+            have the concept of a group, we need to understand what a group action is. Essentially, a group action is a map which takes <math><mi>G</mi><mo>&#x00D7;</mo><mi>X</mi></math> to <math><mi>X</mi></math> for some space <math><mi>X</mi></math>
+            and preserves the group operation (ie. <math><mi>g</mi><mo>(</mo><mi>h</mi><mi>x</mi><mo>)</mo><mo>=</mo><mo>(</mo><mi>g</mi><mi>h</mi><mo>)</mo><mi>x</mi></math> ). The space we will primarily consider is the real projective line <math><mi>&#x211D;</mi><msup><mi>P</mi><mn>1</mn></msup></math> which is the set of equivalence classes of lines (often represented by a circle).</h3>
           <h3>Now that we have some of the terminology we need, lets talk about the problem we want to solve. We call a group action faithful if each element of the group other than the identity acts nontrivially on the space
-            <em>X</em>, that is, there is no g in <em>G</em> such that gx = x for all x in <em>X</em>. In general, it is very hard to show that a given group has a faithful action on a space. However, we do know that a
+            <math><mi>X</mi></math>, that is, there is no <math><mi>g</mi><mo>&#x2208;</mo><mi>G</mi></math> such that <math><mi>g</mi><mi>x</mi><mo>=</mo><mi>x</mi></math> for all <math><mi>x</mi><mo>&#x2208;</mo><mi>X</mi></math>. In general, it is very hard to show that a given group has a faithful action on a space. However, we do know that a
             certain type of group called a free group will always have a faithful action. Free groups are groups with no relations (ie. there are no elements formed by the generators which give us the identity). So, if
             we want an approach to the problem of determining if a group will have a faithful action on a space, we can attempt to show that the group is isomorphic (equivalent) to a free group.</h3>
           <h3>This is where the ping pong lemma comes into play. Below we will state the lemma and see immediately how it will be useful in solving our problem.</h3>
           <h3><strong>Ping Pong Lemma:</strong> Suppose a and b are generators for a group <em>G</em> which acts on a space <em>X</em>. If:
             <ul>
-              <li>X has disjoint nonempty subsets <var>X<sub>a</sub></var> and <var>X<sub>b</sub></var></li>
-              <li><var>a<sup>k</sup></var>(<var>X<sub>a</sub></var>) is contained in <var>X<sub>a</sub></var> and <var>b<sup>k</sup></var>(<var>X<sub>b</sub></var>) is contained in <var>X<sub>b</sub></var> for all nonzero k</li>
+              <li><math><mi>X</mi></math> has disjoint nonempty subsets <math><msub><mi>X</mi><mi>a</mi></msub></math> and <math><msub><mi>X</mi><mi>b</mi></msub></math></li>
+              <li><math><msup><mi>a</mi><mi>k</mi></msup><mo>(</mo><msub><mi>X</mi><mi>a</mi></msub><mo>)</mo></math> is contained in <math><msub><mi>X</mi><mi>a</mi></msub></math> and 
+                <math><msup><mi>b</mi><mi>k</mi></msup><mo>(</mo><msub><mi>X</mi><mi>b</mi></msub><mo>)</mo></math> is contained in <math><msub><mi>X</mi><mi>b</mi></msub></math> for all nonzero <math><mi>k</mi></math></li>
             </ul>
-            &emsp;then G is isomorphic to a free group of rank 2.
+            &emsp;then <math><mi>G</mi></math> is isomorphic to a free group of rank 2.
           </h3>
-          <h3>Without the ping pong lemma, we would need to check an infinite number of conditions to see if a groups action is faithful (we would need to see that gx &#8800; x for all g and for all x). But here, we have a
-          finite number of conditions to check to see that the group is free and therefore faithful. The research done in TXGL consisted of extending this lemma to n generators in SL(2,R) and coming up with an algorithm to
+          <h3>Without the ping pong lemma, we would need to check an infinite number of conditions to see if a groups action is faithful (we would need to see that <math><mi>g</mi><mi>x</mi><mo>&#x2260;</mo><mi>x</mi></math> for all <math><mi>g</mi></math> and for all <math><mi>x</mi></math>). But here, we have a
+          finite number of conditions to check to see that the group is free and therefore faithful. The research done in TXGL consisted of extending this lemma to <math><mi>n</mi></math> generators in <math><mi>S</mi><msub><mi>L</mi><mn>2</mn></msub><mo>(</mo><mi>&#x211D;</mi><mo>)</mo></math> and coming up with an algorithm to
           search for intervals which will satisfy these properties.</h3>
-          <h3>Avoiding diving too far into the details of the algorithm, I will talk about the basic procedure. The idea is that the since the eigenvectors of our generators are fixed points under the action of the generator in RP1,
+          <h3>Avoiding diving too far into the details of the algorithm, I will talk about the basic procedure. The idea is that the since the eigenvectors of our generators are fixed points under the action of the generator in <math><mi>&#x211D;</mi><msup><mi>P</mi><mn>1</mn></msup></math>,
           we know that the intervals must include them. By creating epsilon intervals around these, we have initial intervals to start the search with. From here, we expand endpoints of the intervals, checking if they satisfy the
           necessary containment properties until we find them. There are different method for interval expansion we tried which are discussed on the TXGL project writeup.
           </h3>
-          <h3>Here is an example of intervals in RP1 which satisfy the necessary containment properties to show that the respective group action is faithful:</h3>
+          <h3>Here is an example of intervals in <math><mi>&#x211D;</mi><msup><mi>P</mi><mn>1</mn></msup></math> which satisfy the necessary containment properties to show that the respective group action is faithful:</h3>
         </div>
         <div style = 'display: flex; justify-content: center;'>
           <img src = 'resources/intervals.png''>
