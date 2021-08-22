@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang = 'en'>
+  <head>
+    <meta charset = 'utf-8'>
+    <title>Samuel Perales | Articles</title>
+    <link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+    <link href = 'https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap' rel = 'stylesheet'>
+    <link rel = 'stylesheet' href = '../styles.css'>
+    <script src = 'https://polyfill.io/v3/polyfill.min.js?features=es6'></script>
+    <script id = 'MathJax-script' async src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'></script>
+  </head>
+  <body>
+    <div id = 'header'>
+      <h1 style = 'text-align: center;'> Samuel Perales </h1>
+    </div>
+    <div id = 'topbar'>
+      <a href = '../index.html'>Home</a>
+      <a href = '../articles.html'><strong>Articles</strong></a>
+      <a href = '../research.html'>Research</a>
+      <a href = '../other.html'>Other</a>
+      <a href = '../contact.html'>Contact</a>
+    </div>
+    <div class = 'content'>
+        <div class = 'center'>
+            <h2>Oscilloscopes and Surfaces</h2>
+            <h3><strong>8 / 17 / 21</strong></h3>
+        </div>
+        <div style = 'text-align: left;'>
+            <h3>Hello again! It's been about a month since I wrote my last article since I've been spending a lot of time finishing up my summer REU and leaving for vacation. Hopefully I can make up for the
+                missed week with an extra cool topic today! There are really two distinct topics I'd like to talk about: <u>oscilloscopes</u> and how they work and <u>surfaces</u> and a useful way to describe them mathematically.
+            </h3>
+            <h3>Let's start with surfaces:</h3>
+            <h3><strong>Surfaces</strong></h3>
+            <h3>As defined by Pressley in <em>Elementary Differential Geometry</em>, a surface is a subset <math><mi>S</mi></math> of <math><msup><mi>&#x211D;</mi><mn>3</mn></msup></math> such that each point <math><mi>p</mi><mo>&#x2208;</mo><mi>S</mi></math>
+            has an open <math><mi>U</mi><mo>&sub;</mo><msup><mi>&#x211D;</mi><mn>2</mn></msup></math> and open <math><mi>W</mi><mo>&sub;</mo><msup><mi>&#x211D;</mi><mn>3</mn></msup></math> for which <math><mi>p</mi><mo>&#x2208;</mo><mi>W</mi></math> and 
+            <math><mi>S</mi><mo>&cap;</mo><mi>W</mi></math> is homeomorphic to <math><mi>U</mi></math>. This homeomorphism is called a <em>surface patch</em> of <math><mi>S</mi></math> and is usually denoted <math><mi>&sigma;</mi></math>. A collection of 
+            surface patches whose images collectively cover <math><mi>S</mi></math> is called an <em>atlas</em>.</h3>
+            <h3>Essentially, we can think of surface patches as taking some flat piece of paper and continuously bending it onto a part of our surface. Several of these pieces of these can be combined to sort of 'paper mache' our surface. If you ever have an evening
+            to spare, it was a lot of fun looking through all of <a href = 'https://en.wikipedia.org/wiki/List_of_surfaces'>these</a> surfaces for my favorites. A few I particularly liked were the gyroid and saddle tower.</h3>
+            <h3>Many of these surfaces were describable with only a single surface patch, which is pretty useful when trying to write a simple program to visualize them. Since each surface has only a single piece of <math><msup><mi>&#x211D;</mi><mn>2</mn></msup></math>
+            to worry about, we can sample this domain and create a finite set of curves to approximate the shape of our surface. <a href = 'https://en.wikipedia.org/wiki/3D_projection'>Orthographically projecting</a> these sampled points onto a viewing plane and drawing
+            lines between them gives us a nice visual of what the curve looks like.</h3>
+            <h3>Here's an example:</h3>
+            <div style = 'display: flex; justify-content: center;'>
+                <img src = 'resources/torus.png' width = 300px>
+            </div>
+            <div style = 'text-align: center;'>
+                <h4>The torus can be described by <math><mi>&sigma;</mi><mo>(</mo><mi>u</mi><mo>,</mo><mi>v</mi><mo>)</mo><mo>=</mo><mo>(</mo><mi>a</mi><mi>b</mi><mi>cos</mi><mo>(</mo><mi>u</mi><mo>)</mo><mi>cos</mi><mo>(</mo><mi>v</mi><mo>)</mo><mo>,</mo>
+                <mo>(</mo><mi>a</mi><mo>+</mo><mi>b</mi><mi>cos</mi><mo>(</mo><mi>u</mi><mo>)</mo><mo>)</mo><mi>sin</mi><mo>(</mo><mi>v</mi><mo>)</mo><mo>,</mo><mi>b</mi><mi>sin</mi><mo>(</mo><mi>u</mi><mo>)</mo><mo>)</mo></math> on the domain 
+                <math><mo>[</mo><mn>0</mn><mo>,</mo><mn>2</mn><mi>&pi;</mi><mo>]</mo><mo>&#xD7;</mo><mo>[</mo><mn>0</mn><mo>,</mo><mn>2</mn><mi>&pi;</mi><mo>]</mo></math>. <br>In this example, we are sampling 30 curves with different <math><mi>u</mi></math>,
+                each with 30 different <math><mi>v</mi></math> values.</h4>
+                <br>
+            </div>
+            <div style = 'text-align: left;'>
+                <h3>Although this is nice, it would be even better to get different viewing angles of our surface. This is easy to add, since we can simply multiply each of our sampled points by the 3x3 rotation matrix <math><msub><mi>R</mi><mi>x</mi></msub></math>, 
+                <math><msub><mi>R</mi><mi>x</mi></msub></math>, or <math><msub><mi>R</mi><mi>x</mi></msub></math> for some small <math><mi>&theta;</mi></math>. By binding these rotations to the arrow keys, we get some nice control over our viewing angle. Another quick
+                improvement is to sample both curves which vary in <math><mi>u</mi></math> and curves which vary in <math><mi>v</mi></math> to give a more 3-dimensional feel to the figure.</h3>
+            </div>
+            <br>
+            <div style = 'display: flex; justify-content: center;'>
+                <img src = 'resources/torus.gif' width = 300px>
+            </div>
+            <div style = 'text-align: center;'>
+                <h4>The same torus as before but with perpendicular curves included and arrow keys to control rotation.
+                <br><br>
+            </div>
+            <div style = 'text-align: left;'>
+                <h3>From here, we can nicely visualize any surface we'd like under the condition that the surface can is covered by only one surface patch. These isn't particularly limiting to our interest though since there are tons of unique
+                    surfaces which meet this requirement.
+                </h3>
+            </div>
+        </div>
+     </div>
+    <div id = 'footer'></div>
+  </body>
+</html>
+ 
