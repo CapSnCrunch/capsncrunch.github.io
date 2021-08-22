@@ -41,34 +41,68 @@
             to worry about, we can sample this domain and create a finite set of curves to approximate the shape of our surface. <a href = 'https://en.wikipedia.org/wiki/3D_projection'>Orthographically projecting</a> these sampled points onto a viewing plane and drawing
             lines between them gives us a nice visual of what the curve looks like.</h3>
             <h3>Here's an example:</h3>
-            <div style = 'display: flex; justify-content: center;'>
-                <img src = 'resources/torus.png' width = 300px>
-            </div>
-            <div style = 'text-align: center;'>
-                <h4>The torus can be described by <math><mi>&sigma;</mi><mo>(</mo><mi>u</mi><mo>,</mo><mi>v</mi><mo>)</mo><mo>=</mo><mo>(</mo><mi>a</mi><mi>b</mi><mi>cos</mi><mo>(</mo><mi>u</mi><mo>)</mo><mi>cos</mi><mo>(</mo><mi>v</mi><mo>)</mo><mo>,</mo>
-                <mo>(</mo><mi>a</mi><mo>+</mo><mi>b</mi><mi>cos</mi><mo>(</mo><mi>u</mi><mo>)</mo><mo>)</mo><mi>sin</mi><mo>(</mo><mi>v</mi><mo>)</mo><mo>,</mo><mi>b</mi><mi>sin</mi><mo>(</mo><mi>u</mi><mo>)</mo><mo>)</mo></math> on the domain 
-                <math><mo>[</mo><mn>0</mn><mo>,</mo><mn>2</mn><mi>&pi;</mi><mo>]</mo><mo>&#xD7;</mo><mo>[</mo><mn>0</mn><mo>,</mo><mn>2</mn><mi>&pi;</mi><mo>]</mo></math>. <br>In this example, we are sampling 30 curves with different <math><mi>u</mi></math>,
-                each with 30 different <math><mi>v</mi></math> values.</h4>
-                <br>
-            </div>
-            <div style = 'text-align: left;'>
-                <h3>Although this is nice, it would be even better to get different viewing angles of our surface. This is easy to add, since we can simply multiply each of our sampled points by the 3x3 rotation matrix <math><msub><mi>R</mi><mi>x</mi></msub></math>, 
-                <math><msub><mi>R</mi><mi>x</mi></msub></math>, or <math><msub><mi>R</mi><mi>x</mi></msub></math> for some small <math><mi>&theta;</mi></math>. By binding these rotations to the arrow keys, we get some nice control over our viewing angle. Another quick
-                improvement is to sample both curves which vary in <math><mi>u</mi></math> and curves which vary in <math><mi>v</mi></math> to give a more 3-dimensional feel to the figure.</h3>
-            </div>
+        </div>
+        <div style = 'display: flex; justify-content: center;'>
+            <img src = 'resources/torus.png' width = 300px>
+        </div>
+        <div style = 'text-align: center;'>
+            <h4>The torus can be described by <math><mi>&sigma;</mi><mo>(</mo><mi>u</mi><mo>,</mo><mi>v</mi><mo>)</mo><mo>=</mo><mo>(</mo><mi>a</mi><mi>b</mi><mi>cos</mi><mo>(</mo><mi>u</mi><mo>)</mo><mi>cos</mi><mo>(</mo><mi>v</mi><mo>)</mo><mo>,</mo>
+            <mo>(</mo><mi>a</mi><mo>+</mo><mi>b</mi><mi>cos</mi><mo>(</mo><mi>u</mi><mo>)</mo><mo>)</mo><mi>sin</mi><mo>(</mo><mi>v</mi><mo>)</mo><mo>,</mo><mi>b</mi><mi>sin</mi><mo>(</mo><mi>u</mi><mo>)</mo><mo>)</mo></math> on the domain 
+            <math><mo>[</mo><mn>0</mn><mo>,</mo><mn>2</mn><mi>&pi;</mi><mo>]</mo><mo>&#xD7;</mo><mo>[</mo><mn>0</mn><mo>,</mo><mn>2</mn><mi>&pi;</mi><mo>]</mo></math>. <br>In this example, we are sampling 30 curves with different <math><mi>u</mi></math>,
+            each with 30 different <math><mi>v</mi></math> values.</h4>
             <br>
-            <div style = 'display: flex; justify-content: center;'>
-                <img src = 'resources/torus.gif' width = 300px>
+        </div>
+        <div style = 'text-align: left;'>
+            <h3>Although this is nice, it would be even better to get different viewing angles of our surface. This is easy to add, since we can simply multiply each of our sampled points by the 3x3 rotation matrix <math><msub><mi>R</mi><mi>x</mi></msub></math>, 
+            <math><msub><mi>R</mi><mi>x</mi></msub></math>, or <math><msub><mi>R</mi><mi>x</mi></msub></math> for some small <math><mi>&theta;</mi></math>. By binding these rotations to the arrow keys, we get some nice control over our viewing angle. Another quick
+            improvement is to sample both curves which vary in <math><mi>u</mi></math> and curves which vary in <math><mi>v</mi></math> to give a more 3-dimensional feel to the figure.</h3>
+        </div>
+        <br>
+        <div style = 'display: flex; justify-content: center;'>
+            <img src = 'resources/torus.gif' width = 300px>
+        </div>
+        <div style = 'text-align: center;'>
+            <h4>The same torus as before but with perpendicular curves included and arrow keys to control rotation.
+            <br><br>
+        </div>
+        <div style = 'text-align: left;'>
+            <h3>From here, we can nicely visualize any surface we'd like under the condition that the surface can is covered by only one surface patch. These isn't particularly limiting to our interest though since there are tons of unique
+                surfaces which meet this requirement.</h3>
+        </div>
+        <div style = 'display: flex; justify-content: center;'>
+            <div style = 'float: left; width: 33%;'>
+                <div style = 'display: flex; justify-content: center;'>
+                    <img src = 'resources/cyclide.gif' width = 300px>
+                </div>
+                <div style = 'text-align: center;'>
+                    <h4><strong>Dupin Cyclide</strong>
+                        <!--<math><mi>&sigma;</mi><mo>(</mo><mi>u</mi><mo>,</mo><mi>v</mi><mo>)</mo><mo>=</mo><mo>(</mo><mo>(</mo><mi>d</mi><mo>(</mo><mi>c</mi><mo>-</mo><mi>a</mi><mi>cos</mi><mo>(</mo><mi>u</mi><mo>)</mo>
+                        <mi>cos</mi><mo>(</mo><mi>v</mi><mo>)</mo><mo>)</mo><mo>+</mo><msup><mi>b</mi><mn>2</mn></msup><mi>cos</mi><mo>(</mo><mi>u</mi><mo>)</mo></msup></mo><mo>)</mo><mo>/</mo><mo>(</mo><mi>c</mi><mo>-</mo><mi>a</mi><mi>cos</mi><mo>(</mo>
+                        <mi>u</mi><mo>)</mo><mi>cos</mi><mo>(</mo><mi>v</mi><mo>)</mo><mo>)</mo></math> on the domain 
+                        <math><mo>[</mo><mn>0</mn><mo>,</mo><mn>2</mn><mi>&pi;</mi><mo>]</mo><mo>&#xD7;</mo><mo>[</mo><mn>0</mn><mo>,</mo><mn>2</mn><mi>&pi;</mi><mo>]</mo></math>-->
+                    </h4>
+                </div>
             </div>
-            <div style = 'text-align: center;'>
-                <h4>The same torus as before but with perpendicular curves included and arrow keys to control rotation.
-                <br><br>
+            <div style = 'float: left; width: 33%;'>
+                <div style = 'display: flex; justify-content: center;'>
+                    <img src = 'resources/trefoil.gif' width = 300px>
+                </div>
+                <div style = 'text-align: center;'>
+                    <h4><strong>Trefoil Knot</strong> </h4>
+                </div>
             </div>
-            <div style = 'text-align: left;'>
-                <h3>From here, we can nicely visualize any surface we'd like under the condition that the surface can is covered by only one surface patch. These isn't particularly limiting to our interest though since there are tons of unique
-                    surfaces which meet this requirement.
-                </h3>
+            <div style = 'float: left; width: 33%;'>
+                <div style = 'display: flex; justify-content: center;'>
+                    <img src = 'resources/dinis.gif' width = 300px>
+                </div>
+                <div style = 'text-align: center;'>
+                    <h4><strong>Dini's Surface</strong> </h4>
+                </div>
             </div>
+        </div>
+
+        <div style = 'text-align: left;'>
+            <h3><strong>Oscilloscopes</strong></h3>
         </div>
      </div>
     <div id = 'footer'></div>
