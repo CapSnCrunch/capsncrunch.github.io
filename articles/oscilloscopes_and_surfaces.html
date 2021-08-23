@@ -35,7 +35,7 @@
             has an open <math><mi>U</mi><mo>&sub;</mo><msup><mi>&#x211D;</mi><mn>2</mn></msup></math> and open <math><mi>W</mi><mo>&sub;</mo><msup><mi>&#x211D;</mi><mn>3</mn></msup></math> for which <math><mi>p</mi><mo>&#x2208;</mo><mi>W</mi></math> and 
             <math><mi>S</mi><mo>&cap;</mo><mi>W</mi></math> is homeomorphic to <math><mi>U</mi></math>. This homeomorphism is called a <em>surface patch</em> of <math><mi>S</mi></math> and is usually denoted <math><mi>&sigma;</mi></math>. A collection of 
             surface patches whose images collectively cover <math><mi>S</mi></math> is called an <em>atlas</em>.</h3>
-            <h3>Essentially, we can think of surface patches as taking some flat piece of paper and continuously bending it onto a part of our surface. Several of these pieces of these can be combined to sort of 'paper mache' our surface. If you ever have an evening
+            <h3>In some sense, we can think of surface patches as taking some flat piece of paper and continuously bending it onto a part of our surface. Several of these pieces of these can be combined to sort of 'paper mache' our surface. If you ever have an evening
             to spare, it was a lot of fun looking through all of <a href = 'https://en.wikipedia.org/wiki/List_of_surfaces'>these</a> surfaces for my favorites. A few I particularly liked were the gyroid and saddle tower.</h3>
             <h3>Many of these surfaces were describable with only a single surface patch, which is pretty useful when trying to write a simple program to visualize them. Since each surface has only a single piece of <math><msup><mi>&#x211D;</mi><mn>2</mn></msup></math>
             to worry about, we can sample this domain and create a finite set of curves to approximate the shape of our surface. <a href = 'https://en.wikipedia.org/wiki/3D_projection'>Orthographically projecting</a> these sampled points onto a viewing plane and drawing
@@ -103,6 +103,37 @@
 
         <div style = 'text-align: left;'>
             <h3><strong>Oscilloscopes</strong></h3>
+            <h3>An oscilloscope is a piece of equippment, often used by electrical engineers, to graphically display variable voltages. Most oscilloscopes either modes to display
+                either a single signal over time or two signals each controlling a separate coordinate (XY mode). Analog oscilloscopes work by firing a beam of electrons at a fluorescent
+                screen and controlling this beam with a pair of metal plates connected to the desired input signal. The presence of a signal induces an electric field between the plates
+                which deflects the beam either up and down or left to right.
+            </h3>
+        </div>
+        <br>
+        <div style = 'display: flex; justify-content: center;'>
+            <img src = 'resources/oscilloscope.png' width = 500px>
+        </div>
+        <div style = 'text-align: center;'>
+            <h4>My BK Precision 2190B Analog Oscilloscope</h4>
+        </div>
+        <br>
+        <div style = 'text-align: left;'>
+            <h3>One interesting use of oscilloscopes is there use in producing visual music. That is, a song is produced to intentionally display an image in an oscilloscope by using
+                left and right stereo as the two signals in XY mode. Check out <a href = 'https://www.youtube.com/channel/UCSb9_amN9Oh2WJhDTwnG3NA'>Chris Allen's YouTube</a> for some amazing examples of this.
+            </h3>
+            <h3>A program exists for converting .obj files into sounds for use in these songs, but I wanted to write my own version of this which can take surface patches as a direct input. Since
+                I already described a program which projects and plots sampled points from a surface, we only need to generate the correct sound to display this set of points on the oscilloscope. This
+                isn't terribly difficult; we just need to separate the x and y values of the points into separate arrays, upsample the arrays to match the sampling frequency of 48000 (common for audio
+                files), and play back the arrays as a sound through the left and right stereo channels respectively.
+            </h3>
+        </div>
+        <div style = 'text-align: left;'>
+            <h3><strong>Resources</strong></h3>
+            <ul>
+                <li><a href = 'https://www.youtube.com/watch?v=dxOUHkKN6oI'>How to Setup Oscilloscope</a></li>
+                <li><a href = ''>My Code for Generating Sounds</a></li>
+                <li><a href = 'https://www.youtube.com/watch?v=_6a_nz4uRd0'>My Favorite Oscilloscope Song</a></li>
+            </ul>
         </div>
      </div>
     <div id = 'footer'></div>
