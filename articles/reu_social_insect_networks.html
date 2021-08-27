@@ -26,6 +26,45 @@
             <h3><strong>In Progress</strong></h3>
         </div>
         <div style = 'text-align: left;'>
+          <h3>This summer, I attended the QRLSSP REU at Arizona State University online. We spent the first few weeks learning various mathematical tools for modeling topics in the life Sciences
+          such as pandemic simulations, population growth, immunology, etc. Many of these are well worth spending a whole article on so look forward to those in the coming months! After This
+          curriculum, we spent another four weeks in smaller groups working on projects we came up with. My group of two undergrads, one graduate student mentor, and one faculty mentor decided to
+          focus on social insects.</h3>
+          <h3>I had seen a few interesting <a href = 'https://www.youtube.com/watch?v=7_e0CA_nhaE&t'>videos</a> on ants by Kurzgesagt (a wonderful informative channel on YouTube) and thought they would
+          be fun to learn more about. On forming our group, we had no idea what sorts of problems there were to study about ants, so we spent a week reading dozens of articles from the past few decades
+          on social insects and how they pass information between one another.</h3>
+          <h3>We learned that there are three main ways social insects pass information; antennation, trophallaxis, and pheromonally. They are each used to pass different types of information with antennation
+            being used for general purpose communication, tropallaxis for direct transfer of food, and pheromones for nest construction and paths from and between nests.</h3>
+        </div>
+        <div>
+          <br>
+          <div style = 'float: left; width: 50%;'>
+              <div style = 'display: flex; justify-content: center;'>
+                  <img src = 'resources/antennation.jpg' width = 400>
+              </div>
+          </div>
+          <div style = 'float: left; width: 50%;'>
+            <div style = 'display: flex; justify-content: center;'>
+              <img src = 'resources/trophallaxis.jpg' width = 400>
+            </div>
+              <br><br>
+          </div>
+          <div style = 'text-align: center;'>
+            <h4>On the left is an example of antennation and on the right, trophallaxis</h4>
+            <br>
+          </div>
+        </div>
+        <div style = 'text-align: left;'>
+          <h3>Previous work had been done studying how ants pass information around by making models with simple boundaries and comparing them to experimental data. We can often tell when an
+            ant has recieved a message when their speed increases and movement becomes more erratic. This is called the ants alarm response. What our group was interested in was how information
+            flows through a colony when interactions are occuring within more complex nest structures. Interconnected tunnels and chambers of various sizes are expected to have some effect on the
+            efficiency of this process so we wanted to understand via simulation what the potential benefits of various nest structures might be.</h3>
+            <h3>The way we did this was by adapting a model from an earlier work by <a href = 'http://www.public.asu.edu/~ykang3/'>Yun Kang</a>, who we met with several times to get recommendations
+            on what changes could be made.</h3>
+          <h3><strong>Our Model</strong></h3>
+          <h3>We went with a discrete-time agent-based model in which ants have a number of attributes including location, task, walking style, and information status. Ants randomly populate a nest
+            structure stored as a matrix and are updated according to the following update step:
+          </h3>
         </div>
      </div>
     <div id = 'footer'></div>
