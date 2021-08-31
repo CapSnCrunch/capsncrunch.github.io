@@ -23,7 +23,7 @@
     <div class = 'content'>
         <div class = 'center'>
             <h2>REU: Social Insect Networks</h2>
-            <h3><strong>In Progress</strong></h3>
+            <h3><strong>8 / 24 / 21</strong></h3>
         </div>
         <div style = 'text-align: left;'>
           <h3>This summer, I attended the QRLSSP REU at Arizona State University online. We spent the first few weeks learning various mathematical tools for modeling topics in the life Sciences
@@ -62,9 +62,32 @@
             <h3>The way we did this was by adapting a model from an earlier work by <a href = 'http://www.public.asu.edu/~ykang3/'>Yun Kang</a>, who we met with several times to get recommendations
             on what changes could be made.</h3>
           <h3><strong>Our Model</strong></h3>
-          <h3>We went with a discrete-time agent-based model in which ants have a number of attributes including location, task, walking style, and information status. Ants randomly populate a nest
-            structure stored as a matrix and are updated according to the following update step:
+          <h3>We went with a discrete-time agent-based model in which ants have a number of attributes including location, task, walking style, and information status. The nest is represented by
+            some connected subset <math><mi>X</mi><mo>&#x2282;</mo><msup><mi>&#8484;</mi><mn>2</mn></msup></math>. The location of ant <math><mi>A</mi></math> at time <math><mi>t</mi></math> is a unique 
+            <math><mi>l</mi><mo>(</mo><mi>A</mi><mo>,</mo><mi>t</mi><mo>)</mo><mo>&#x2208;</mo><mi>X</mi></math>, the task <math><mi>p</mi><mo>(</mo><mi>A</mi><mo>)</mo></math> is an natural number less than
+            <math><mi>P</mi></math> (the number of task zones such as food processing area, brood care, etc.), walking style is either drifted (<math><mi>D</mi></math>) or random (<math><mi>R</mi></math>),
+            and information status is a boolean value. The task zones <math><mi>S</mi><mo>(</mo><mi>p</mi><mo>)</mo></math> are subsets of <math><mo>X</mo></math> which represent areas of isolation seen in real ant colonies. Our model assumes that ants will
+            tend to segregate themselves into their task zones and that ants which have drifted walking style will do this by walking directly towards their task zone when separated from it.</h3>
+          <h3>Initializing the simulation, <math><mi>N</mi></math> ants randomly populate the nest structure stored as a matrix and are updated according to the following update step:</h3>
+        </div>
+        <div style = 'display: flex; justify-content: center;'>
+          <img src = 'resources/update-step.png' width = 700>
+        </div>
+        <div style = 'text-align: center;'>
+          <h4>Each time step, this update step is run for all ants in a random order</h4>
+          <br>
+        </div>
+        <div style = 'text-align: left;'>
+          <h3>Here is an example of a simulation over a couple hundred time steps.</h3>
+        </div>
+        <div style = 'text-align: left;'>
+          <h3><strong>Our Metrics</strong></h3>
+          <h3>In our readings of previous papers, we found a number of ways to analyze interactions networks. These included Spatial Heterogeneity Degree (essentially the amount of variance in ant location over time),
+            total informed population over time, contact rates between and within task groups, and the number of <a href = 'https://en.wikipedia.org/wiki/Network_motif'>motifs</a> seen in the time-aggregated network. We
+            decided to track each of these while varying density of ants in the nest, spatial fidelity (proportion of ants which have directed walking style), and the shape of the nest itself in order to cast a wide net
+            searching for interesting results.
           </h3>
+          <h3><strong>Our Results</strong></h3>
         </div>
      </div>
     <div id = 'footer'></div>
