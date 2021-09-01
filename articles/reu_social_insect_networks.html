@@ -26,7 +26,7 @@
             <h3><strong>8 / 24 / 21</strong></h3>
         </div>
         <div style = 'text-align: left;'>
-          <h3>This summer, I attended the QRLSSP REU at Arizona State University online. We spent the first few weeks learning various mathematical tools for modeling topics in the life Sciences
+          <h3>This summer, I attended the <a href = 'https://qrlssp.asu.edu/summerprogram'>QRLSSP</a> REU at Arizona State University online. We spent the first few weeks learning various mathematical tools for modeling topics in the life Sciences
           such as pandemic simulations, population growth, immunology, etc. Many of these are well worth spending a whole article on so look forward to those in the coming months! After This
           curriculum, we spent another four weeks in smaller groups working on projects we came up with. My group of two undergrads, one graduate student mentor, and one faculty mentor decided to
           focus on social insects.</h3>
@@ -78,9 +78,25 @@
           <br>
         </div>
         <div style = 'text-align: left;'>
-          <h3>Here is an example of a simulation over a couple hundred time steps.</h3>
+          <h3>Below is an example of a simulation over a couple hundred time steps. The red tiles represent ants which have recieved an alarm signal and the blue represents unalarmed ants. When 
+            ants interact, there is a chance that information transfers between the two which we track as a successful contact. The primary differences between this simulation and a simulation based
+            on the previous work by Dr. Kang is that the nest structure <math><mi>X</mi></math> isn't square. By allowing for other types of connecting domains like this one, we can really begin to explore
+            more realistic nest shapes and how they might affect interactions.
+          </h3>
+        </div>
+        <div style = 'display: flex; justify-content: center;'>
+          <img src = 'resources/astar-nest.gif' width = 400>
+        </div>
+        <div style = 'text-align: center;'>
+          <h4>Notice that some ants (those with drifted walking style) will navigate around corners to find their task zone</h4>
+          <br>
         </div>
         <div style = 'text-align: left;'>
+          <h3>Something we needed to drastically change after allowing this wider range of possibilities for <math><mi>X</mi></math> was the walking style for the ants. Previously, ants would
+          move to the open square nearest to the center of their respective task zone. This causes problems in these more complex nests when the nearest tile to the task zone is in a wall. The ant would
+          repeatedly run into the wall never reaching its goal (quite an unrealistic behaviour). To fix this, we assume that over short timescales and in small nests, the ants are aware of a path which will
+          bring them to their task zone. With this assumption, we can allow ants to follow an optimal path found using <a href = 'https://en.wikipedia.org/wiki/A*_search_algorithm'>A* search</a> until they run into
+          another ant. Once this happens, they move out of the way and recalculate their path.</h3>
           <h3><strong>Our Metrics</strong></h3>
           <h3>In our readings of previous papers, we found a number of ways to analyze interactions networks. These included Spatial Heterogeneity Degree (essentially the amount of variance in ant location over time),
             total informed population over time, contact rates between and within task groups, and the number of <a href = 'https://en.wikipedia.org/wiki/Network_motif'>motifs</a> seen in the time-aggregated network. We
@@ -88,6 +104,43 @@
             searching for interesting results.
           </h3>
           <h3><strong>Our Results</strong></h3>
+          <h3>To capture a variety of nest structures without simulating entire nests, we decided to simulate on basic nest components such as chambers, loops, tunnels, and chains. What we determined is that each
+            of these components had different optimal conditions for information flow (where 'optimal' means a low time to a fully informed colony). In some cases, these conditions were the complete opposite from other
+            components.
+          </h3>
+        </div>
+        <div style = 'display: flex; justify-content: center;'>
+          <img src = 'resources/square-results.png' width = 800>
+        </div>
+        <div style = 'text-align: center;'>
+          <h4>Efficiency of information flow <strong>increases</strong> as density increases for squares</h4>
+          <br>
+        </div>
+        <div style = 'display: flex; justify-content: center;'>
+          <img src = 'resources/chain-results.png' width = 800>
+        </div>
+        <div style = 'text-align: center;'>
+          <h4>Efficiency of information flow <strong>decreases</strong> as density increases for chains</h4>
+          <br>
+        </div>
+        <div style = 'text-align: left;'>
+          <h3>In the examples above, we see that the density of ants seems to positively effect information flow in square shaped nests but negatively effect information flow in chains (squares connected by narrow tunnels). 
+            This makes sense because in squares, an increased density means more interactions per second which leads to a fully informed population faster. In chains however, a high density makes it difficult for ants to navigate
+            quickly through the tunnels between chambers. This slows travel drastically and increases the time it takes to inform all of the ants.
+          </h3>
+          <h3>Why would ants want this? Wouldn't it be great if all nest structures were refined to inform the population of threats and food sources as quickly as possible?</h3>
+          <h3>We thought about this for a while and realized that it may have to do with ant diseases. Ants can get poisoned by foods they retrieve or get sick by other means and because of the ways in which they communicate
+            (specifically trophallaxis), contact between ants can make it highly likely to transfer these illnesses. In a nest where information flow is highly optimized, so is the spread of pathogens. Perhaps structures are in place
+            to balance out these two things. Of course, investigation of real ant colonies is necessary to confirm or deny this, but our model provides some insight into what we might expect to see.
+          </h3>
+          <h3>There are a few other results we talk about in our actual tech report so I encourage you to look over that in the resources if you're interested! Thanks for reading!</h3>
+          <h3><strong>Resources</strong></h3>
+          <ul>
+            <li><a href = 'resources/social_insect_paper.pdf'>Article on Original Model</a></li>
+            <li><a href = 'resources/in_nest_information_flow.pdf'>Final Tech Report</a></li>
+            <li><a href = 'resources/social_insect_presentation.pdf'>Final Presentation</a></li>
+            <li><a href = 'https://www.antwiki.org/wiki/Phragmosis'>Phragmosis</a> (one of my favorite features in certain ant species)</li>
+          </ul>
         </div>
      </div>
     <div id = 'footer'></div>
