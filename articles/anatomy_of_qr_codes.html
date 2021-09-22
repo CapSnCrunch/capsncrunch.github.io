@@ -56,16 +56,33 @@
         <div style = 'display: flex; justify-content: center;'>
           <img src = 'resources/masks.png' width = 500px>
         </div>
-        <div style = 'text-align: left;'>
-          <br><br>
-          <a href = 'https://en.wikipedia.org/wiki/Reed%E2%80%93Solomon_error_correction'>Reed-Solomon Error Correction</a>
-          <h3><strong>Data</strong></h3>
-          <h3><strong>Version and Allignment Patterns</strong></h3>
-          <h3><strong>Resources</strong></h3>
-        </div>
         <div style = 'text-align: center;'>
-            <h4>The eight unique masks used to XOR with QR codes</h4>
+          <h4>The eight unique masks used to XOR with QR codes</h4>
         </div>
+        <div style = 'text-align: left;'>
+          <br>
+          <h3>Masks work by taking the given pattern and duplicating it across the entire code and XORing it with the data. They are used to break up patterns which may be difficult to distinguish
+            from finder patterns or other important features of the code. The error correction level and appropriate mask pattern are selected after looking at how the data is laid out across the code.
+          </h3>
+          <h3>Lastly, the ten bits following this information are the <a href = 'https://en.wikipedia.org/wiki/Reed%E2%80%93Solomon_error_correction'>Reed-Solomon Error Correction</a> bits. These deserve
+          an entire article of their own since they require quite a lot of math, but they enable the ability to have error correction at all. Once the full format string is determined, it is XORed with the
+          final mask string 101010000010010 and written into the two locations shown on the code.</h3>
+          <h3><strong>Data</strong></h3>
+          <h3>The data written into the QR code can be formatted in a few ways including numeric mode, alphanumeric, byte, and kanji. The bytes used to represent the string being encoded are snaked through
+            the code in the purple pattern shown above. Once these are laid out skipping over allignment and timing patterns, the mask is applied and we are basically done.
+          </h3>
+          <h3><strong>Version and Allignment Patterns</strong></h3>
+          <h3>QR Codes have version numbers ranging from 1 to 40. Version 1 codes are 21x21 and the size will increase by 4 in each direction with each subsequent version. This means that version 40 codes are
+          177x177! As the size of these codes increase, it can be more and more difficult for a scanner to locate the finder patterns. To solve this, starting with version 2 codes, allignment patterns are added
+          to make the code more manageable.</h3>
+          <h3><strong>Resources</strong></h3>
+          <h3>Apologies for the relatively short article this week! School has just started meaning all of my extracurriculars have as well. Hopefully you still learned a bit from this. Stay tuned
+            for the cool article I have planned for next time though!</h3>
+        </div>
+        <ul>
+          <li><a href = 'https://www.thonky.com/qr-code-tutorial/introduction'>QR Code Tutorial</a></li>
+          <li><a href = 'https://en.wikipedia.org/wiki/Reed%E2%80%93Solomon_error_correction'>Reed-Solomon Error Correction</a></li>
+        </ul>
      </div>
     <div id = 'footer'></div>
   </body>
