@@ -23,9 +23,48 @@
     <div class = 'content'>
         <div class = 'center'>
             <h2>Anatomy of QR Codes</h2>
-            <h3><strong>In Progress</strong></h3>
+            <h3><strong>9 / 7 / 21</strong></h3>
         </div>
         <div style = 'text-align: left;'>
+          <h3>We are surrounded by barcodes of all sorts that people usually don't stop and think about. There's quite a bit of complexity behind matrix barcodes like the 
+          QR (Quick Response) code that I'd like to spend a bit of time breaking down to some degree. There is a lot of math behind the error correction we'll leave out here 
+          (I want the main takeaway to be the basic structure of these codes) but I found <a href = 'https://www.thonky.com/qr-code-tutorial/introduction'>this</a> amazing website that covers
+          everything in extreme detail.</h3>
+          <h3>To start, here is an image of a QR code with the main regions highlighted:</h3>
+        </div>
+        <br>
+        <div style = 'display: flex; justify-content: center;'>
+          <img src = 'resources/qr.png' width = 350px>
+        </div>
+        <div style = 'text-align: center;'>
+            <h4><strong>Gray:</strong> Quiet Zone, <strong>Yellow:</strong> Finder Patterns, <strong>Green:</strong> Allignment Pattern,<br>
+              <strong>Blue:</strong> Timing Patterns, <strong>Red:</strong> Format Information, <strong>Purple:</strong> Data</h4>
+        </div>
+        <div style = 'text-align: left;'>
+          <h3><strong>Finder and Timing Patterns</strong></h3>
+          <h3>Both the large finder patterns in the corners of the code and the horizontal and vertical timing patterns serve to make the code more readable by computer vision. These
+            are relatively easy to consistently find in an image and can then be used to evaluate the rest of the grid. Another thing to notice is the lonely pixel by the bottom left
+            finder pattern. This is called the <strong>dark module</strong> and is a square which is always black on all QR codes.
+          </h3>
+          <h3><strong>Format Information</strong></h3>
+          <h3>The format information is written twice near the top left finder pattern and broken in two along the other two finder patterns. The format string is always 15 bits long.
+            The first two bits describe the error correction level 00 (M), 01 (L), 10 (H), and 11 (Q). The various error correction levels have different data restoration capabilites. L can restore
+            approximately 7% of the data, M - 15%, Q - 25%, and H - 30%. These enable us to intentionally cover relatively large portions of QR codes to make artistic renditions of them that will
+            still scan properly. The next three bits describe the mask pattern, the options of which are listed below:
+          </h3>
+        </div>
+        <div style = 'display: flex; justify-content: center;'>
+          <img src = 'resources/masks.png' width = 500px>
+        </div>
+        <div style = 'text-align: left;'>
+          <br><br>
+          <a href = 'https://en.wikipedia.org/wiki/Reed%E2%80%93Solomon_error_correction'>Reed-Solomon Error Correction</a>
+          <h3><strong>Data</strong></h3>
+          <h3><strong>Version and Allignment Patterns</strong></h3>
+          <h3><strong>Resources</strong></h3>
+        </div>
+        <div style = 'text-align: center;'>
+            <h4>The eight unique masks used to XOR with QR codes</h4>
         </div>
      </div>
     <div id = 'footer'></div>
