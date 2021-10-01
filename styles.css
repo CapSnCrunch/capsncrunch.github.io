@@ -87,6 +87,33 @@ li {
     cursor: pointer;
 }
 
+#apps a {
+    display:inline-block;
+    width: 100%;
+    height: 100%;
+    font-size: 100%;
+    font-family: 'Ubuntu', sans-serif;
+    text-decoration: none;
+    color: #1C1C1C;
+}
+
+#apps th {
+    width: 50%;
+    font-size: 100%;
+    font-family: 'Ubuntu', sans-serif;
+    margin: 0rem 1rem;
+    padding: 1rem 1rem;
+    outline-width: 1px;
+    outline-style: dashed;
+    outline-color: #15795B;
+}
+
+#apps th:hover {
+    background-color: #C6E59E;
+    /*border-radius: 5%;*/
+    cursor: pointer;
+}
+
 #sam {
     border-radius: 5%;
 }
