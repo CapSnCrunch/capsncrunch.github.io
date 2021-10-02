@@ -1,8 +1,9 @@
 let nodes = [];
 let graph;
 
-let X = 11;
-let Y = 11;
+// only works with squares rn
+let X = 20;
+let Y = 20;
 
 function setup() {
   var cnv = createCanvas(400, 400);
@@ -13,7 +14,7 @@ function setup() {
   for(let i = 0; i < Y; i++){
     for(let j = 0; j < X; j++){
       //nodes[3*i+j] = new Node(50+30*j, 50+30*i)
-      append(nodes, new Node(50+30*j, 50+30*i))
+      append(nodes, new Node(50+(width-100)/(X-1)*j, 50+(width-100)/(X-1)*i))
     }
   }
   graph = new Graph(nodes);
@@ -22,7 +23,7 @@ function setup() {
 function draw() {
   background(237, 251, 219);
   fill(50);
-  //ellipse(mouseX, mouseY, 5, 5);
+  ellipse(mouseX, mouseY, 3, 3);
   graph.display();
 }
 
@@ -68,12 +69,13 @@ class Graph {
 
   display(){
     for(let i = 0; i < this.nodes.length; i++){
-      this.nodes[i].display();
+      //this.nodes[i].display();
     }
     for(let i = 0; i < nodes.length; i++){
       for(let j = 0; j < i; j++){
         if(this.array[i][j] == 1){
-          line(this.nodes[i].x, this.nodes[i].y, this.nodes[j].x, this.nodes[j].y)
+          strokeWeight(0.5);
+          line(this.nodes[i].x, this.nodes[i].y, this.nodes[j].x, this.nodes[j].y);
         }
       }
     }
