@@ -26,6 +26,45 @@
             <h3><strong>11 / 5 / 21</strong></h3>
         </div>
         <div style = 'text-align: left;'>
+          <h3>Unfortunately, no.</h3>
+          <h3>You may have heard this question before though. It was first posed by mathematician Mark Kac in 1966 and took until 1992 to find an answer for the two-dimensional case.
+            The question formatted in mathematical terms is asking whether the spectrum of the laplacian uniquely determines a boundary in <math><msup><mi>&#x211D;</mi><mn>2</mn></msup></math>
+            for the Dirichlet problem:</h3>
+        </div>
+        <div style = 'text-align: center;'>
+          <h3><math><mi>Δ</mi><mi>u</mi><mo>+</mo><mi>λ</mi><mi>u</mi><mo>=</mo><mn>0</mn></math></h3>
+          <h3><math><mi>u</mi><msub><mi>|</mi><mi><mi>&part;</mi><mi>u</mi></mi></msub><mo>=</mo><mn>0</mn></math></h3>
+        </div>
+        <div style = 'text-align: left;'>
+          <h3>In 1992, Gordon, Webb, and Wolpert constructed the following isospectral regions, answering Kac's question:</h3>
+        </div>
+        <div style = 'display: flex; justify-content: center;'>
+          <img src = 'resources/isospectral.png' width = 550px>
+        </div>
+        <div style = 'text-align: center;'>
+          <h4>Since the sound a drum produces is entirely dependent on its eigenvalues, these two isospectral regions would produce the same noise.</h4>
+        </div>
+        <div style = 'text-align: left;'>
+          <h3>It seems there isn't a whole lot left to work on with this problem then; an infinite family of counterexamples has been found. There is a great opportunity here though
+            to get some practice with numerical methods and come up with some nice visualizations for the drum problem.</h3>
+          <h3>In general, finding the explicit spectrum of a region is pretty difficult. This is part of the reason it took nearly 30 years to find this counterexample. In an afternoon
+            we could find nice eigenvalues and eigenfunctions for squares, rectangles, and circles, but if given a non-regular, piece-wise defined mess, it might take us a few decades
+            to work that out too.</h3>
+          <h3>Enter numerical approximation. Today, we're going to talk about how we can use the <u>finite difference laplacian</u> to come up with a numerical estimate for the spectrum of a
+            region. Once we've put together all of our code for this, we can test it out on the two regions above to see if we estimate about the same values.
+          </h3>
+          <h3><strong>Discretizing our Region</strong></h3>
+          <h3>Before worrying about how to discretly approximate the laplacian operator, we need to break our region into a discrete set of points and somehow define the 2D functions
+              <math><mi>u</mi></math> as vectors. To do this, we can just choose any density of a grid that we want and find the points of the grid which lie inside the region using some
+              sort of <code>in_polygon()</code> function. I used <a href = 'https://stackoverflow.com/questions/31542843/inpolygon-for-python-examples-of-matplotlib-path-path-contains-points-method'>
+              matplotlib.path</a> to get something like this:
+          </h3>
+        </div>
+        <div style = 'display: flex; justify-content: center;'>
+          <img src = 'resources/discretegrid.png' width = 400px>
+        </div>
+        <div style = 'text-align: center;'>
+          <h4>We can later increase the resolution of this grid to get better approximations of our spectrum.</h4>
         </div>
      </div>
     <div id = 'footer'></div>
