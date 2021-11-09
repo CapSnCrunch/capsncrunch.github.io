@@ -56,15 +56,32 @@
           <h3><strong>Discretizing our Region</strong></h3>
           <h3>Before worrying about how to discretly approximate the laplacian operator, we need to break our region into a discrete set of points and somehow define the 2D functions
               <math><mi>u</mi></math> as vectors. To do this, we can just choose any density of a grid that we want and find the points of the grid which lie inside the region using some
-              sort of <code>in_polygon()</code> function. I used <a href = 'https://stackoverflow.com/questions/31542843/inpolygon-for-python-examples-of-matplotlib-path-path-contains-points-method'>
+              sort of <code>in_polygon</code> function. I used <a href = 'https://stackoverflow.com/questions/31542843/inpolygon-for-python-examples-of-matplotlib-path-path-contains-points-method'>
               matplotlib.path</a> to get something like this:
           </h3>
         </div>
         <div style = 'display: flex; justify-content: center;'>
-          <img src = 'resources/discretegrid.png' width = 400px>
+          <img src = 'resources/discrete-grid.png' width = 400px>
         </div>
         <div style = 'text-align: center;'>
           <h4>We can later increase the resolution of this grid to get better approximations of our spectrum.</h4>
+        </div>
+        <div style = 'text-align: left;'>
+          <h3>The idea from here is to index this grid and use it as a way to vectorize functions defined on the region. Then we can define the discrete Laplacian as a matrix acting on these
+            vectorized functions and find the eigenvalues of that matrix. There is no correct way to label the points in our region but its easiest to just name them left to right, up to down.
+            I wrote a function <code>index_array</code> which takes binary numpy arrays and gives all of the ones in the array a unique index. Using the function on a discrete grid, we get
+            an array that looks like this:</h3>
+        </div>
+        <div style = 'display: flex; justify-content: center;'>
+          <img src = 'resources/indexed_grid.png' width = 300px>
+        </div>
+        <div style = 'text-align: center;'>
+          <h4>Note that this example is for a discrete grid with lower resolution than the one above.</h4>
+        </div>
+        <div style = 'text-align: left;'>
+          <h3>Now all functions in <math><msub><mi>C</mi><mn>0</mn></msub><mo>(</mo><mi>Ω</mi><mo>)</mo></math> can be described by a unique vector in
+          <math><msup><mi>&#x211D;</mi><mn>N</mn></msup></math> where <math><mn>N</mn></math> is the number of indecies in our grid.</h3>
+          <h3><strong>Constructing the Discrete Laplacian</strong></h3>
         </div>
      </div>
     <div id = 'footer'></div>
