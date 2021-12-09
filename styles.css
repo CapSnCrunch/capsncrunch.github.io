@@ -45,8 +45,12 @@ a {
     font-size: 100%;
     font-family: 'Ubuntu', sans-serif;
     /*color: #15795B;*/
-    color: #2d9c7b;
+    color: #0e9e73;
     text-decoration: none;
+}
+
+.article {
+    color: #15795B;
 }
 
 li {
