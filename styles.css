@@ -44,7 +44,9 @@ summary {
 a {
     font-size: 100%;
     font-family: 'Ubuntu', sans-serif;
-    color: #15795B;
+    /*color: #15795B;*/
+    color: #2d9c7b;
+    text-decoration: none;
 }
 
 li {
