@@ -53,6 +53,7 @@
           <h3>Enter numerical approximation. Today, we're going to talk about how we can use the <u>finite difference laplacian</u> to come up with a numerical estimate for the spectrum of a
             region. Once we've put together all of our code for this, we can test it out on the two regions above to see if we estimate about the same values.
           </h3>
+          <br>
           <h3><strong>Discretizing our Region</strong></h3>
           <h3>Before worrying about how to discretly approximate the laplacian operator, we need to break our region into a discrete set of points and somehow define the 2D functions
               <math><mi>u</mi></math> as vectors. To do this, we can just choose any density of a grid that we want and find the points of the grid which lie inside the region using some
@@ -73,15 +74,87 @@
             an array that looks like this:</h3>
         </div>
         <div style = 'display: flex; justify-content: center;'>
-          <img src = 'resources/indexed_grid.png' width = 300px>
+          <img src = 'resources/indexed-grid.png' width = 400px>
         </div>
         <div style = 'text-align: center;'>
-          <h4>Note that this example is for a discrete grid with lower resolution than the one above.</h4>
+          <h4>The indexing can go in any order we want. I chose left to right top to bottom for simplicity.</h4>
         </div>
         <div style = 'text-align: left;'>
           <h3>Now all functions in <math><msub><mi>C</mi><mn>0</mn></msub><mo>(</mo><mi>Ω</mi><mo>)</mo></math> can be described by a unique vector in
           <math><msup><mi>&#x211D;</mi><mn>N</mn></msup></math> where <math><mn>N</mn></math> is the number of indicies in our grid.</h3>
+          <br>
           <h3><strong>Constructing the Discrete Laplacian</strong></h3>
+          <h3>To define an estimate for the Laplacian on this region, we use a finite difference method. In this case, we use the following 5-point scheme:</h3>
+        </div>
+        <div style = 'display: flex; justify-content: center;'>
+          <img src = 'resources/five-points.png' width = 400px>
+        </div>
+        <div style = 'text-align: center;'>
+          <h4></h4>
+        </div>
+        <div style = 'text-align: left;'>
+          <h3>If we want the value of <math><mi>&#x394;</mi><mi>u</mi><mo>(</mo><msub><mi>x</mi><mi>i</mi></msub><mo>,</mo><msub><mi>y</mi><mi>i</mi></msub><mo>)</mo></math>,
+          we can approximate the second derivatives in both variables by getting two estimates of the slope with adjacent points and using those to get an estimate of the second derivative.
+          This works out to be <math><mi>&#x394;</mi><mi>u</mi><mo>(</mo><msub><mi>x</mi><mi>i</mi></msub><mo>,</mo><msub><mi>y</mi><mi>i</mi></msub><mo>)</mo><mi> 	
+            &#8776; </mi>
+            <mo>(</mo><mi>u</mi><mo>(</mo><msub><mi>x</mi><mi>i+1</mi></msub><mo>,</mo><msub><mi>y</mi><mi>i</mi></msub><mo>)</mo><mo>+</mo>
+            <mi>u</mi><mo>(</mo><msub><mi>x</mi><mi>i-1</mi></msub><mo>,</mo><msub><mi>y</mi><mi>i</mi></msub><mo>)</mo><mo>+</mo>
+            <mi>u</mi><mo>(</mo><msub><mi>x</mi><mi>i</mi></msub><mo>,</mo><msub><mi>y</mi><mi>i+1</mi></msub><mo>)</mo><mo>+</mo>
+            <mi>u</mi><mo>(</mo><msub><mi>x</mi><mi>i</mi></msub><mo>,</mo><msub><mi>y</mi><mi>i-1</mi></msub><mo>)</mo><mo>-</mo>
+            <mn>4</mn><mi>u</mi><mo>(</mo><msub><mi>x</mi><mi>i</mi></msub><mo>,</mo><msub><mi>y</mi><mi>i</mi></msub><mo>)</mo><mo></mo><mo>)</mo><mo>/</mo><msup><mi>h</mi><mn>2</mn></msup></math>
+          where <math><mi>h</mi></math> is the distance between adjacent points. Since our function is described by some vector, we can describe this transformation as a matrix
+          with the diagonal consisting of -4's and minor diagonals with 1's depending on how we indexed the region. These matrices are sparse, so we can use <code>eigsh</code> from
+          <code>scipy.sparse.linalg</code> to quickly get the eigenvalues and eigenvectors.</h3>
+        </div>
+        <div style = 'display: flex; justify-content: center;'>
+          <img src = 'resources/spy.png' width = 300px>
+        </div>
+        <div style = 'text-align: center;'>
+          <h4>An example of a finite difference laplacian</h4>
+        </div>
+        <div style = 'text-align: left;'>
+          <h3>At this point, we are able to approximately compute the spectra of the two regions that were claimed to be isospectral and see that they are nearly identical when we use
+            a high number of points! I encourage you to get the code from the resources and try this yourself.
+          </h3>
+          <br>
+          <h3><strong>Initial Conditions and Animations</strong></h3>
+          <h3>There is a bit more we can do now too though. Since we also get the eigenvectors of the matrix (really vectorized eigenfunctions) and we know that they form a basis for the
+            space our solutions lie in, we are able to construct explicit solutions when given some initial conditions. To best simulate reality, I assumed 
+            <math><mi>u</mi><mo>(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>,</mo><mi>0</mi><mo>)</mo><mo>=</mo><mn>0</mn></math> and 
+            <math><msub><mi>u</mi><mi>t</mi></msub><mo>(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>,</mo><mi>0</mi><mo>)</mo><mo>=</mo><mi>f</mi></math> where <math><mi>f</mi></math> is some
+            gaussian which represents hitting the drum with some initial velocity at a particular point.
+          </h3>
+          <br>
+          <div style = 'display: flex; justify-content: center;'>
+            <img src = 'resources/eigenfuncs.JPG' width = 600px>
+          </div>
+          <div style = 'text-align: center;'>
+            <h4>The first few eigenfunctions of a star-shaped drum.</h4>
+          </div>
+          <br>
+          <h3>With an explicit solution in time, we can start to make some pretty simulations for any region we want!</h3>
+          <br>
+          <div style = 'display: flex; justify-content: center;'>
+            <img src = 'resources/star-drum.gif' width = 400px>
+          </div>
+          <div style = 'text-align: center;'>
+            <h4>A simulation of a star-shaped drum being hit in one of the corners.</h4>
+          </div>
+          <br>
+          <h3>To wrap up, I will mention a few things that could use improvement. This finite difference method may have some issues with certain drum shapes. If you imagine
+            a drum which has some long tentacles or other boundary types, the grid may not be fine enough to capture and simulate those details. Other than this though, I think it may
+            be interesting to try and expand this simulation to include the sound the drum might produce. I tried this a bit but couldn't quite get it to sound realistic. 
+          </h3>
+          <h3>Feel free to try this yourself! I made a little interface that allows you to draw any shape you would like. The spacebar with add points, the mouse will drag them around, 
+            pressing '/' will calculate the eigenfunctions, and pressing '0' will make the animation! Thanks for reading!
+          </h3>
+          <br>
+          <h3><strong>Resources</strong></h3>
+          <ul>
+            <li><a href = 'https://github.com/CapSnCrunch/drums'>GitHub Repository</a></li>
+            <li><a href = 'resources/drum-presentation.pdf'>My Presentation on This</a></li>
+            <li><a href = 'https://blogs.mathworks.com/cleve/2012/08/06/can-one-hear-the-shape-of-a-drum-part-1-eigenvalues/'>MATLAB Version of Discretization</a></li>
+          </ul>
         </div>
      </div>
     <div id = 'footer'></div>
