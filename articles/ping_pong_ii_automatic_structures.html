@@ -26,13 +26,85 @@
             <h3><strong>(12 / 14 / 21)</strong></h3>
         </div>
         <div style = 'text-align: left;'>
-          <h3>You may have ready my article <a href='the_ping_pong_lemma.html'>The Ping Pong Lemma</a> from a few months ago. This article is an update on what my group has done with
-          the project over the past fall semester along with some more cool visuals of what we've been working on.</h3>
+          <h3>You may have ready my article <a href='the_ping_pong_lemma.html'>The Ping Pong Lemma</a> from a few months ago. This article is an update on what my group in
+            the <a href='https://sites.cns.utexas.edu/geometry_lab/research'>Texas Experimental Geometry Lab</a> has done with the project over the past fall semester along with some more cool 
+            visuals of what we've been working on.</h3>
           <h3>To summarize: our group is trying to determine whether a representation of a group in <math><mi>S</mi><msub><mi>L</mi><mn>2</mn></msub><mo>(</mo><mi>&#x211D;</mi><mo>)</mo></math>
           is faithful by using a method called ping pong. By finding intervals of <math><mi>&#x211D;</mi><msup><mi>P</mi><mn>1</mn></msup></math> which meet certain containment conditions, we can
           confidently state that the representation is faithful.</h3>
-          <h3>Our previous project focused on Free Groups exclusively, since that is the only type of group the Ping Pong Lemma would really work for. This past semester, we attempted to generalize
-            the notion of ping pong to the set of groups with an automatic structure and design a new algorithm that works for them.
+          <h3>Our previous project focused on free groups exclusively, since that is the only type of group the Ping Pong Lemma would really work for. This past semester, we attempted to generalize
+            the notion of ping pong to the set of groups with an automatic structure and design a new algorithm that works for them.</h3>
+          <h3><strong>Automatic Structures</strong></h3>
+          <h3>An automatic structure is a finite state automata whose paths describe exactly all of the reduced words in a particular group. For example, the following automata represents the
+          free group <math><mo>&#x3008;</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo>&#x27E9;</mo></math>:</h3>
+        </div>
+        <div style = 'display: flex; justify-content: center;'>
+          <img src = 'resources/free-group-structure.png' width = 400px>
+        </div>
+        <div style = 'text-align: center;'>
+            <h4>By tracing paths along this graph, we get exactly the words in the free group on two generators. No path exists that will trace out a word which can be reduced
+              in the group (ie. we will never have a generator next to its inverse resulting in cancellation).
+            </h4>
+        </div>
+        <h3>Some groups may have multiple automatic structures such as <math><mo>&#x3008;</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo>|</mo><msup><mi>a</mi><mn>2</mn></msup><mo>=</mo><msup>
+          <mi>b</mi><mn>3</mn></msup><mo>=</mo><mn>1</mn><mo>&#x27E9;</mo></math>:</h3>
+        <div style = 'display: flex; justify-content: center;'>
+          <img src = 'resources/free-product-structure.png' width = 650px>
+        </div>
+        <div style = 'text-align: center;'>
+            <h4>Three possible automatic structures for a free product of cyclic groups with order 2 and 3.
+            </h4>
+        </div>
+        <div style = 'text-align: left;'>
+          <h3>In general, it is a difficult problem to find the automatic structure of a group given just its representation, so we worked with groups for which these structures were relatively
+            easy to find.
+          </h3>
+          <h3><strong>Generalized Ping Pong</strong></h3>
+          <h3>Avoiding the details of <em>Uniformly Hyperbolic Finite-Valued SL(2,R)-Cocycles</em> chapter 2, I will state the idea of generalized ping pong:</h3>
+          <h3>&emsp; For a group with automatic structure <math><mi>G</mi></math> and representation <math><mi>&rho;</mi></math>, if intervals <math><msub><mi>I</mi><mi>i</mi></msub></math> of 
+            <math><mi>&#x211D;</mi><msup><mi>P</mi><mn>1</mn></msup></math> exist for each vertex of <math><mi>G</mi></math> such that for all transitions 
+            <math><msub><mi>I</mi><mi>i</mi></msub><mi> &#x27F6; </mi><msub><mi>I</mi><mi>j</mi></msub></math> by letter <math><mi>&rho;</mi><mo>(</mo><mi>&alpha;</mi><mo>)</mo></math> the containment
+            <math> <mi>&rho;</mi><mo>(</mo><mi>&alpha;</mi><mo>)</mo> <msub><mi>I</mi><mi>j</mi></msub><mi> &sub; </mi><msub><mi>I</mi><mi>i</mi></msub></math> holds, then <math><mi>&rho;</mi></math>
+            has a kernel bounded by some finite <math><mi>M</mi></math></math>.
+          </h3>
+          <h3>This theorem is nice in the sense that we can say something about the faithfulness of representations for non-free groups but gives a slightly weaker result than the ping pong lemma itself
+            (which says the representation has kernel 0). This forces us to add another step to the algorithm after finding valid intervals which computes this <math><mi>M</mi></math></math> value and then
+            checks a finite list of words to verify that the kernel is in fact 0.
+          </h3>
+          <h3><strong>Interval Searching</strong></h3>
+          <h3>With generalized ping pong, we also lose the requirement of intervals needing to be connected and disjoint. This makes the searching process a bit easier to set up since we don't need to worry
+            about intervals intersecting. Instead, we can just linearly expand intervals which do not contain the images required by the automatic structure and check containments at each step.
+          </h3>
+        </div>
+        <div style = 'display: flex; justify-content: center;'>
+          <img src = 'resources/linear-search.gif' width = 400px>
+        </div>
+        <div style = 'text-align: center;'>
+            <h4>Linear search for (3,4,4)-triangle group intervals
+            </h4>
+        </div>
+        <div style = 'text-align: left;'>
+          <h3>Since it is possible that linear expansion by some flat epsilon value may accidentally overshoot where a valid interval needs to be, we are also working on a new image patching search technique
+            which extends intervals by taking a union of the the interval and the images it needs to contain. This works because the intervals don't need to be connected so we don't need to linear expand into these
+            images when we can just add a new component of the interval around them. The method is much slower however and requires a bit of debugging.
+          </h3>
+        </div>
+        <div style = 'display: flex; justify-content: center;'>
+          <img src = 'resources/image-search.png' width = 400px>
+        </div>
+        <div style = 'text-align: center;'>
+            <h4>Image patch search for (3,4,4)-triangle group intervals
+            </h4>
+        </div>
+        <div style = 'text-align: left;'>
+          <h3>Hopefully by next semester we can fully debug this final interval search method and start on a new project! Please find the full project writeup with more details on the generalized ping pong
+            theorem and calculating the kernel bound in the resources below. Thanks for reading!</h3>
+          <h3><strong>Resources</strong></h3>
+            <ul>
+              <li><a href = 'https://sites.cns.utexas.edu/geometry_lab/Automatic-ping-pong'>TXGL Project Writeup</a></li>
+              <li><a href = 'https://arxiv.org/pdf/0808.0133.pdf'>Uniformly Hyperbolic Finite-Valued SL(2,R)-Cocycles</a></li>
+              <li><a href = 'https://github.com/CapSnCrunch/TXGL'>Repository for TXGL Ping Pong</a></li>
+            </ul>
           </h3>
         </div>
      </div>
