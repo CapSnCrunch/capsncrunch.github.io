@@ -27,11 +27,11 @@
             </div>
             <script>
                 function randomimage() {
-                    var imageArray = ['resources/aven-lockdatcher.png','resources/dakeor-componer.png','resources/endeath.png'];
+                    var imageArray = ['resources/aven-lockdatcher.png','resources/dakeor-componer.png','resources/endeath.png','resources/vigor.png','resources/oblivion.png'];
                     var randomImage = Math.floor(Math.random() * imageArray.length);
                     var img = document.createElement('img');
                     img.src = imageArray[randomImage]
-                    img.style = 'width: 250px; border-radius: 3%; padding: 2rem;'
+                    img.style = 'width: 250px; border-radius: 12%; padding: 2rem;'
                     document.getElementById('image').appendChild(img);
                 }
                 randomimage();
