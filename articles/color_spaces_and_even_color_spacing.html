@@ -32,15 +32,64 @@
             <a href='https://www.youtube.com/watch?v=mZBwsm6B280'>Bertrand's Paradox</a> in that depending on which <a href='https://en.wikipedia.org/wiki/Color_model'>color model</a>
             we use to represent our colors, the amount of randomness in the results could vary widely.
           </h3>
-          <h3><strong>Color Models</strong></h3>
-          <h3>If you've done some sort of art or work with colors on a computer before, you are likely already familiar with the idea of a color model. A <strong>color model</strong>
-            is a mathematical description of colors by some subset of <math><msup><mi>&#x211D;</mi><mn>n</mn></msup></math>. Some examples of these are RGB, HSV, and CMYK.
+          <h3><strong>Introduction to Color Science</strong></h3>
+          <h3>Color science is the study of human perception of colors. In displaying colors on machines such as computer monitors, tv screens, and our phones, it can
+            be very useful to have a mathematical description of colors. Color science gives us the idea of a <strong>color space</strong>, which is exactly the sort of
+            mathematical model we want for this. Some common models you may be familiar with are RGB, HSV, and CMYK which describe colors as points in three or four dimensional
+            space.
           </h3>
-          <h3><strong>Color Spaces</strong></h3>
+        </div>
+        <div style = 'display: flex; justify-content: center;'>
+          <img src = 'resources/rgb-cube.png', width = '300px'>
+          <img src = 'resources/hsv-cylinder.png', width = '300px'>
+        </div>
+        <div style = 'text-align: center;'>
+          <h4>Visualizations of the RGB and HSV color models respectively</h4>
+        </div>
+        <div style = 'text-align: left;'>
+          <h3><strong>Generating Colors</strong></h3>
+          <h3>Say we want a set of random colors to distinctively label some objects. Our first approach might just be choosing to use the standard HSV color model for artists
+            and uniformly picking values for each of hue, saturation, and value. Doing this gives us the following:
+          </h3>
         </div>
         <div style = 'display: flex; justify-content: center;'>
           <img src = 'resources/random-hsl.JPG', width = '300px'>
         </div>
+        <div style = 'text-align: center;'>
+          <h4>Random colors created by uniformly sampling each of the hue, saturation, and value coordinates</h4>
+        </div>
+        <div style = 'text-align: left;'>
+          <h3>This wasn't so great, a lot of the colors end up looking fairly similar which is exactly what we don't want to happen. The reason for this is that
+            certain regions of the HSV color space have a lot of similarities. For example, if the value (brightness) is low, all of the colors will end up looking black, or if
+            the saturation is low, all of the colors will look gray despite them having uniformly random hues.
+          </h3>
+          <h3>Maybe if we use the RGB color model, we can get some better results:</h3>
+        </div>
+        <div style = 'display: flex; justify-content: center;'>
+          <img src = 'resources/random-rgb.JPG', width = '300px'>
+        </div>
+        <div style = 'text-align: center;'>
+          <h4>Random colors created by uniformly sampling each of the red, green, and blue coordinates</h4>
+        </div>
+        <div style = 'text-align: left;'>
+          <h3>This gave us significantly better results! This is where we can see the resemblance of our problem to Bertrand's Paradox. The randomness of our colors depends on the
+            coordinate system to select them. The RGB colors are good, but there are still quite a few of them that are too close to one another. This begs the questions: what is the best
+            space to use when generating colors?
+          </h3>
+          <h3><strong>The CIE L*a*b Color Space</strong></h3>
+          <h3>One of the issues with the RGB and HSV models is that they are not <strong>perceptually uniform</strong>. That is, the euclidean distance between color differences in these
+          spaces isn't necessarily proportional with our perceived distance between the colors. </h3>
+        </div>
+
+        <div style = 'text-align: left;'>
+          <br>
+          <h3><strong>Resources</strong></h3>
+          <ul>
+            <li><a href = 'https://medialab.github.io/iwanthue/theory/'>I Want Hue</a> (A project I found that does something very similar to this)</li>
+            <li><a href = 'https://www.youtube.com/watch?v=cGyLHxn16pE'>A Great Video on the CIE Color Spaces</a></li>
+          </ul>
+        </div>
+        
      </div>
     <div id = 'footer'></div>
   </body>
