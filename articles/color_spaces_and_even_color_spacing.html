@@ -53,7 +53,7 @@
           </h3>
         </div>
         <div style = 'display: flex; justify-content: center;'>
-          <img src = 'resources/random-hsl.JPG', width = '300px'>
+          <img src = 'resources/random-hsl.png', width = '300px'>
         </div>
         <div style = 'text-align: center;'>
           <h4>Random colors created by uniformly sampling each of the hue, saturation, and value coordinates</h4>
@@ -66,7 +66,7 @@
           <h3>Maybe if we use the RGB color model, we can get some better results:</h3>
         </div>
         <div style = 'display: flex; justify-content: center;'>
-          <img src = 'resources/random-rgb.JPG', width = '300px'>
+          <img src = 'resources/random-rgb.png', width = '300px'>
         </div>
         <div style = 'text-align: center;'>
           <h4>Random colors created by uniformly sampling each of the red, green, and blue coordinates</h4>
@@ -76,17 +76,66 @@
             coordinate system to select them. The RGB colors are good, but there are still quite a few of them that are too close to one another. This begs the questions: what is the best
             space to use when generating colors?
           </h3>
-          <h3><strong>The CIE L*a*b Color Space</strong></h3>
-          <h3>One of the issues with the RGB and HSV models is that they are not <strong>perceptually uniform</strong>. That is, the euclidean distance between color differences in these
-          spaces isn't necessarily proportional with our perceived distance between the colors. </h3>
+          <h3><strong>The CIE LAB Color Space</strong></h3>
+          <h3>One of the issues with the RGB and HSV models is that they are not <strong>perceptually uniform</strong>. That is, the euclidean distance between colors in these
+            spaces isn't necessarily proportional with our perceived distance between the colors. This problem was addressed with the creation of <strong>CIE LAB</strong> by
+            the International Commission on Illumination in 1976. Although its not particularly important for how we will be using the color space, I'd like to talk a bit about how
+            it was created since I found it pretty interesting.
+          </h3>
+          <h3>In 1931, the <strong>CIE RGB</strong> color space was created with the intention of getting a basis of colors which could be used to represent the entirety of the human
+            percievable color space. This was done through great effort by having many test participants use varying levels of brightness of red, green, and blue light sources to match
+            colors that were presented to them. The idea was that the three types of <a href = 'https://en.wikipedia.org/wiki/Cone_cell'>cone cells</a> in our eyes roughly corresponding to 
+            red, green, and blue could be used to additively construct all colors we humans were able to see. The experiments ended with the following chart:
+          </h3>
         </div>
-
+        <div style = 'display: flex; justify-content: center;'>
+          <img src = 'resources/cie-rgb.png', width = '400px'>
+        </div>
+        <div style = 'text-align: center;'>
+          <h4>CIE RGB color component color functions</h4>
+        </div>
+        <div style = 'text-align: left;'>
+          <h3>Notice that for some wavelengths, participants needed a 'negative' intensity of red light to reconstruct the color shown to them. This means that in order to match the 
+            target color, red had to be added to the target color to be able to get a percieved match. This tells us is that red, green, and blue alone are not able to constructively
+            add to all of the possible colors in the visible spectrum.
+          </h3>
+          <h3>
+            Enter the <strong>CIE XYZ</strong> color space created in the same year as CIE RGB. X, Y, and Z represent three theoretical colors from which nonnegative values alone could
+            be used to construct all possible wavelengths. Although shown in red, green, and blue below, X, Y, and Z are 'imaginary' colors constructed mathematically to give us this
+            desired nonnegative property.
+          </h3>
+        </div>
+        <div style = 'display: flex; justify-content: center;'>
+          <img src = 'resources/cie-xyz.png', width = '400px'>
+        </div>
+        <div style = 'text-align: center;'>
+          <h4>CIE XYZ color component color functions</h4>
+        </div>
+        <div style = 'text-align: left;'>
+          <h3>From CIE XYZ, the CIE LAB color space was created in 1976 some <a href = 'https://en.wikipedia.org/wiki/CIELAB_color_space#Converting_between_CIELAB_and_CIEXYZ_coordinates'>these</a>
+            conversions between the coordinates. The idea for getting the space to be perceptually uniform was to look at a set of <strong>MacAdam Ellipses</strong> across the space. These ellipses are
+            regions of a chromaticity diagram (a 2D slice of a color space with constant luminance) which consist of perceptually indistinguishable colors.
+          </h3>
+        </div>
+        <div style = 'display: flex; justify-content: center;'>
+          <img src = 'resources/macadams-ellipse.png', width = '600px'>
+        </div>
+        <div style = 'text-align: center;'>
+          <h4>Conversion from CIE XYZ to the more perceptually uniform CIE LAB</h4>
+        </div>
+        <div style = 'text-align: left;'>
+          <h3>Nice! Now we have a space where the euclidean distance between coordinate values representing the colors actually corresponds to our perceptual difference!</h3>
+          <h3><strong>Generating Colors Using CIE LAB</strong></h3>
+          <h3>There are a few different methods we can try to get well spaced colors</h3>
+        </div>
         <div style = 'text-align: left;'>
           <br>
           <h3><strong>Resources</strong></h3>
           <ul>
             <li><a href = 'https://medialab.github.io/iwanthue/theory/'>I Want Hue</a> (A project I found that does something very similar to this)</li>
             <li><a href = 'https://www.youtube.com/watch?v=cGyLHxn16pE'>A Great Video on the CIE Color Spaces</a></li>
+            <li><a href = 'https://www.youtube.com/watch?v=x0-qoXOCOow'>A Short Visualization of CIE XYZ in 3D</a></li>
+            <li><a href = 'https://python-colorspace.readthedocs.io/en/latest/sec_gettingstarted.html'>Python colorlib for Querying CIE LAB</a></li>
           </ul>
         </div>
         
