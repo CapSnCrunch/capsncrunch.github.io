@@ -146,3 +146,45 @@ li {
     margin: auto;
     text-align: center;
 }
+
+.arrow {
+    width: 20px;
+    height: 20px;
+    padding: 10px;
+}
+
+.arrow:hover {
+    background-color: #C6E59E;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+/* .left-arrow-text {
+    display: none;
+}
+
+.left-arrow:hover + .left-arrow-text {
+    display: block;
+} */
+
+/* width */
+::-webkit-scrollbar {
+    width: 12px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #b3da82;
+    /* border-radius: 3px; */
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #87ab5a;
+    /* border-radius: 3px; */
+  }s
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #607c3c;
+  }
