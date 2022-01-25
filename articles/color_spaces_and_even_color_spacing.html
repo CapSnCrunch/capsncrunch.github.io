@@ -125,9 +125,24 @@
           <h4>Conversion from CIE XYZ to the more perceptually uniform CIE LAB</h4>
         </div>
         <div style = 'text-align: left;'>
-          <h3>Nice! Now we have a space where the euclidean distance between coordinate values representing the colors actually corresponds to our perceptual difference!</h3>
+          <h3>Nice! Now we have a space where the euclidean distance between coordinate values representing the colors actually corresponds to our perceptual difference!
+            (As a note, CIELAB is not perfectly perceptually uniform. Adjustments have been made to create slightly different colorspaces which do a better job of this, but
+            CIELAB is still pretty good.)
+          </h3>
           <h3><strong>Generating Colors Using CIE LAB</strong></h3>
-          <h3>There are a few different methods we can try to get well spaced colors</h3>
+          <h3>There are a few different methods we can try to get well spaced colors. If the goal is to maximize the minimum of the pairwise distances between colors
+            we generate, the two best methods we could use are likely the ones covered in <a href = 'https://medialab.github.io/iwanthue/theory/'>this</a> article. Here, they
+            use a method of repulsion in which each of the points in CIELAB representing a color push each other away with some force vector resulting in n maximally spaced colors.
+            The other option they use in k-means clustering which also gives some nice results. Since both of these are already talked about there, I'd like to try something different.
+          </h3>
+          <h3>In particular, instead of trying to maximize the distance between each of the colors, I want to see what a color pallete would look like with n evenly spaced colors.
+            My idea for this is to select points on some lattice in CIELAB to get an array of colors which are perceptually the same distance apart from their adjacent colors in the pallete.
+            Once this is done, we can have some fun by applying transformations to the pallete to see how the colors change.
+          </h3>
+        </div>
+        <div class = 'center'>
+          <h3>In Progress ...</h3>
+          <h4>Sorry! School just started.</h4>
         </div>
         <div style = 'text-align: left;'>
           <br>
