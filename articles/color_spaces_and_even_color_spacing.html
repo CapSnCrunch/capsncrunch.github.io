@@ -137,24 +137,41 @@
           </h3>
           <h3>In particular, instead of trying to maximize the distance between each of the colors, I want to see what a color pallete would look like with n evenly spaced colors.
             My idea for this is to select points on some lattice in CIELAB to get an array of colors which are perceptually the same distance apart from their adjacent colors in the pallete.
-            Once this is done, we can have some fun by applying transformations to the pallete to see how the colors change.
           </h3>
         </div>
         <div style = 'display: flex; justify-content: center;'>
-          <img src = 'resources/cielab.gif', width = '350px'>
+          <img src = 'resources/cielab-grid.gif', width = '350px'>
         </div>
         <div style = 'text-align: center;'>
-          <h4>Visualization of the full CIELAB colorspace</h4>
+          <h4>Lattice in the CIELAB colorspace</h4>
         </div>
-        <div class = 'center'>
-          <h3>In Progress ...</h3>
-          <h4>Sorry! School just started.</h4>
+        <div style = 'text-align: left;'>
+          <h3>The gif above shows what we get when we look at the simple cubic lattice intersected with CIELAB. We can snake through the points in our lattice and lay out the colors
+            associated with those points to see what our evenly spaced color pallete looks like:
+          </h3>
+        </div>
+        <div style = 'display: flex; justify-content: center;'>
+          <img src = 'resources/even-colors.png', width = '300px'>
+        </div>
+        <div style = 'text-align: center;'>
+          <h4>Colors along a lattice in CIELAB</h4>
+        </div>
+        <div style = 'text-align: left;'>
+          <h3>The resulting colors have a nice distinction to them. There are a few that feel a little close here because we generated so many, but because we are using CIELAB, we have
+            a minimum guaranteed perceptual difference between any pair of colors.
+          </h3>
+          <h3>I'm pretty satisfied with these results! The colors the generator is making are distinct enough for what I wanted to do with my other project and have a nice cohesiveness to
+            them. I'd like to come back to this project in a future article though and see what happens when we intersect CIELAB with different lattices and surfaces and how the color palletes
+            change when we apply transformations to these regions.
+          </h3>
+          <h3>Thanks for reading!</h3>
         </div>
         <div style = 'text-align: left;'>
           <br>
           <h3><strong>Resources</strong></h3>
           <ul>
-            <li><a href = 'https://medialab.github.io/iwanthue/theory/'>I Want Hue</a> (A project I found that does something very similar to this)</li>
+            <li><a href = 'https://medialab.github.io/iwanthue/theory/'>I Want Hue</a> (A project I found that does something similar)</li>
+            <li><a href = 'https://github.com/CapSnCrunch/random-colors'>Repository for Color Code</a></li>
             <li><a href = 'https://www.youtube.com/watch?v=cGyLHxn16pE'>A Great Video on the CIE Color Spaces</a></li>
             <li><a href = 'https://www.youtube.com/watch?v=x0-qoXOCOow'>A Short Visualization of CIE XYZ in 3D</a></li>
             <li><a href = 'https://python-colorspace.readthedocs.io/en/latest/sec_gettingstarted.html'>Python colorlib for Querying CIE LAB</a></li>
