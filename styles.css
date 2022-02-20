@@ -49,6 +49,26 @@ a {
     text-decoration: none;
 }
 
+button {
+    font-size: 100%;
+    font-family: 'Ubuntu', sans-serif;
+    /*color: #15795B;*/
+    color: #1C1C1C;
+    background-color: #D6F5AE;
+    text-decoration: none;
+    border: none;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+button:hover {
+    background-color: #C6E59E;
+    border-radius: 10%;
+    cursor: pointer;
+}
+
 .article {
     color: #15795B;
 }

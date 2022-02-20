@@ -8,6 +8,22 @@
     <link rel = 'stylesheet' href = '../styles.css'>   
     <script src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.js"></script>
   </head>
+  <script type = 'text/javascript'>
+    window.onload = function(){
+      var flipped = false;
+      var flipButton = document.getElementById('flip');
+      flipButton.onclick = function() {
+        flipped = !flipped;
+        console.log(flipped)
+        document.getElementById('image').style.WebkitTransitionDuration='1s';
+        if (!flipped) {
+          document.getElementById('image').style.webkitTransform = 'rotate(0deg)';
+        } else {
+          document.getElementById('image').style.webkitTransform = 'rotate(180deg)';
+        }
+      }
+    }
+  </script>
   <body>
     <div id = 'header'>
       <h1 style = 'text-align: center;'> Samuel Perales </h1>
@@ -29,7 +45,14 @@
           <h3>You've likely experience <a href = 'https://en.wikipedia.org/wiki/Pareidolia'>Pareidolia</a>; perceiving patterns in random data. I've recently started
           making art embracing this false pattern recognition by making 'found doodle' art in paintings on cardboard. My process has been to mix paints, spread them
           around a piece of cardboard in little blobs, and sketch in all of the weird faces and animals I notice after it's dried. Adding a little bit of organization
-          by laying out the paints following some sort of color gradient gives a great overall look at the end and an experience I would highly encourage trying!</h3>
+          by laying out the paints following some sort of color gradient gives a great overall look at the end and an experience I would highly encourage trying!
+          </h3>
+      </div>
+      <div style = 'display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 1rem;'>
+        <button id = 'flip' style = 'margin-bottom: 2rem;'>
+          <strong>FLIP</strong>
+        </button>
+        <img id = 'image' src = 'resources/painting.png' width = 700px>
       </div>
      </div>
     <div id = 'footer'></div>
