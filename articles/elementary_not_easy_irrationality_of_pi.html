@@ -2,7 +2,7 @@
 <html lang = 'en'>
   <head>
     <meta charset = 'utf-8'>
-    <title>Samuel Perales | Articles</title>
+    <title>Samuel Perales | Elementary not Easy: The Irrationality of Pi</title>
     <link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
     <link href = 'https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap' rel = 'stylesheet'>
     <link rel = 'stylesheet' href = '../styles.css'>   
@@ -35,21 +35,50 @@
     <div class = 'content'>
         <div class = 'center'>
             <h2>Elementary not Easy: The Irrationality of Pi</h2>
-            <h3><strong><a href='color_spaces_and_even_color_spacing.html'><</a> &emsp; In Progress ...</strong></h3>
+            <h3><strong><a href='color_spaces_and_even_color_spacing.html'><</a> &emsp; 3 / 14 / 22 &emsp; </strong></h3>
         </div>
         <div style = 'text-align: left;'>
-          <h3>My last semester in undergrad (hopefully) has just started! I'm excited to use this time to explore some fun projects and 
-            problems I've been keeping in the notes app on my phone and add my experiences here for others to build on. This past week,
-            UT Math Club just had its first meeting of the semester starting with one of my favorite speakers; 
+          <h3>Happy Pi day everyone! Just recently UT Math Club just had its first meeting of the semester starting with one of my favorite speakers; 
             <a href='https://web.ma.utexas.edu/users/gannonth/'>Tom Gannon</a>. Tom is currently a 6th year grad student that I volunteered
             under for Sunday Morning Math Group a few years ago. He's a very engaging math speaker and does a great job of finding topics
             that are accessible to the entire audience.
           </h3>
           <h3>
-            His talk this past week was on the Irrationality of Pi, a concept any math student is familiar with, but may not know the proof for.
+            His Math Club talk was on the Irrationality of Pi, a concept any math student is familiar with, but may not know the proof for.
             There are several interesting ways to prove this, so in this article, I want to show a few of a them that I enjoy, all of which use
             only basic calculus, but none of which are particularly easy to understand conceptually.
           </h3>
+          <h3><strong>Niven's Proof</strong></h3>
+          <h3>
+            Ivan Niven wrote his proof on the Irrationality of Pi in 1947. He takes the definition of pi to be the smallest positive number for which
+            <math><mi>sin</mi><mo>(</mo><mi>x</mi><mo>)</mo><mo>=</mo><mn>0</mn></math> and assumes this solution is rational.
+            He also defines the polynomials 
+          </h3>
+          <h3>
+            &emsp; <math><mi>f</mi><mo>(</mo><mi>x</mi><mo>)</mo><mo>=</mo><mo>(</mo><msup>
+            <mi>x</mi><mi>n</mi></msup><mo>(</mo><mi>x</mi><mo>-</mo><mi>b</mi><mi>x</mi><msup><mo>)</mo><mi>n</mi></msup><mo>)</mo><mo>/</mo>
+            <mi>n</mi><mo>!</mo></math>
+          </h3>
+          <h3>
+            &emsp; <math><mi>F</mi><mo>(</mo><mi>x</mi><mo>)</mo><mo>=</mo><mi>f</mi><mo>(</mo><mi>x</mi><mo>)</mo><mo>-</mo>
+            <msup><mi>f</mi><mo>''</mo></msup><mo>(</mo><mi>x</mi><mo>)</mo><mo>+</mo><msup><mi>f</mi><mo>(4)</mo></msup><mo>(</mo><mi>x</mi><mo>)</mo>
+            <mo>+ ... +</mo><mo>(</mo><mn>-1</mn><msup><mo>)</mo><mi>n</mi></msup><msup><mi>f</mi><mi>(2n)</mi></msup><mo>(</mo><mi>x</mi><mo>)</mo></math>
+          </h3>
+          <h3>
+            for any positive integer <math><mi>n</mi></math> seemingly out of nowhere.
+          </h3>
+          <h3>
+            The idea is to prove the following two claims, which will in turn give us a contradiction due to the Fundamental Theorem of Calculus.
+          </h3>
+          <h3>
+            <u>Claim 1</u>: <math><mi>F</mi><mo>(</mo><mn>0</mn><mo>)</mo><mo>+</mo><mi>F</mi><mo>(</mo><mn>&pi;</mn><mo>)</mo></math> is an integer.
+          </h3>
+          <h3>
+            <u>Claim 2</u>: <math><msubsup><mo>&int;</mo><mn>0</mn><mn>&pi;</mn></msubsup></math><math><mi>f</mi><mo>(</mo><mi>x</mi><mo>)</mo>
+            <mi>sin</mi><mo>(</mo><mi>x</mi><mo>)</mo><mi>d</mi><mi>x</mi><mo>=</mo><mi>F</mi><mo>(</mo><mn>0</mn><mo>)</mo><mo>+</mo><mi>F</mi><mo>(</mo><mn>&pi;</mn><mo>)</mo></math>.
+          </h3>
+          <h3><strong>Hermite's Proof</strong></h3>
+          <h3><strong>Cartwright's Proof</strong></h3>
         </div>
      </div>
     <div id = 'footer'></div>
