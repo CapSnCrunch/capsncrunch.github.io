@@ -14,12 +14,24 @@
       var flipButton = document.getElementById('flip');
       flipButton.onclick = function() {
         flipped = !flipped;
-        console.log(flipped)
         document.getElementById('image').style.WebkitTransitionDuration='1s';
         if (!flipped) {
           document.getElementById('image').style.webkitTransform = 'rotate(0deg)';
         } else {
           document.getElementById('image').style.webkitTransform = 'rotate(180deg)';
+        }
+      }
+
+      var flipped2 = false;
+      var flipButton2 = document.getElementById('flip2');
+      flipButton2.onclick = function() {
+        console.log('flipping 2')
+        flipped2 = !flipped2;
+        document.getElementById('image2').style.WebkitTransitionDuration='1s';
+        if (!flipped2) {
+          document.getElementById('image2').style.webkitTransform = 'rotate(0deg)';
+        } else {
+          document.getElementById('image2').style.webkitTransform = 'rotate(180deg)';
         }
       }
     }
@@ -52,7 +64,15 @@
         <button id = 'flip' style = 'margin-bottom: 2rem;'>
           <strong>FLIP</strong>
         </button>
-        <img id = 'image' src = 'resources/painting.png' width = 700px>
+        <img id = 'image' src = 'resources/painting.png' width = 850px>
+        <h4 style = 'margin-top: 2rem;'>Added on 2 / 19 / 22</h4>
+      </div>
+      <div style = 'display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 1rem;'>
+        <button id = 'flip2' style = 'margin-bottom: 2rem;'>
+          <strong>FLIP</strong>
+        </button>
+        <img id = 'image2' src = 'resources/painting-2.png' width = 850px>
+        <h4 style = 'margin-top: 2rem;'>Added on 3 / 18 / 22</h4>
       </div>
      </div>
     <div id = 'footer'></div>
