@@ -61,9 +61,14 @@
             polynomials 
           </h3>
           <h3>
-            &emsp; <math><mi>f</mi><mo>(</mo><mi>x</mi><mo>)</mo><mo>=</mo><mo>(</mo><msup>
-            <mi>x</mi><mi>n</mi></msup><mo>(</mo><mi>a</mi><mo>-</mo><mi>b</mi><mi>x</mi><msup><mo>)</mo><mi>n</mi></msup><mo>)</mo><mo>/</mo>
-            <mi>n</mi><mo>!</mo></math>
+            &emsp; <math><mrow><mi>f</mi><mo>(</mo><mi>x</mi><mo>)</mo></mrow><mo>=</mo>
+              <mstyle displaystyle="true" scriptlevel="0">
+                <mfrac>
+                  <mrow><mo>(</mo><msup><mi>x</mi><mi>n</mi></msup><mo>(</mo><mi>a</mi><mo>-</mo><mi>b</mi><mi>x</mi><msup><mo>)</mo><mi>n</mi></msup><mo>)</mo></mrow>
+                  <mrow><mi>n</mi><mo>!</mo></mrow>
+                </mfrac>
+              </mstyle>
+            </math>
           </h3>
           <h3>
             &emsp; <math><mi>F</mi><mo>(</mo><mi>x</mi><mo>)</mo><mo>=</mo><mi>f</mi><mo>(</mo><mi>x</mi><mo>)</mo><mo>-</mo>
@@ -167,29 +172,106 @@
             <math><msup><mi>x</mi><mn>2</mn></msup><msub><mi>f</mi><mi>k+2</mi></msub><mo>(</mo><mi>x</mi><mo>)</mo><mo>/</mo><mi>k</mi><mo>(</mo><mi>k</mi><mo>+</mo><mn>1</mn><mo>)</mo>
             <mo>=</mo><msub><mi>f</mi><mi>k+1</mi></msub><mo>(</mo><mi>x</mi><mo>)</mo><mo>-</mo><msub><mi>f</mi><mi>k</mi></msub><mo>(</mo><mi>x</mi><mo>)</mo></math>
           </h3>
-          <h3>
+          <h3 style = "margin-left: 1rem;">
             <u>Proof of Claim 1</u>: If we compare the coefficients of powers of <math><mi>x</mi></math>, we will see that they are the same on both sides.
           </h3>
           <h3>
             <u>Claim 2</u>: For all real values of <math><mi>x</mi></math>, <math><munder><mo>lim</mo><mi>k &#8594; &#8734;</mi></munder></math>
             <math><msub><mi>f</mi><mi>k</mi></msub><mo>(</mo><mi>x</mi><mo>)</mo><mo>=</mo><mn>1</mn></math>.
           </h3>
-          <h3>
+          <h3 style = "margin-left: 1rem;">
             <u>Proof of Claim 2</u>: <math><msup><mi>x</mi><mi>2n</mi></msup><mo>/</mo><mi>n</mi><mo>!</math> is bounded above by some <math><mi>C</mi></math>
             since it converges to <math><mn>0</mn></math> so
           </h3>
-          <h3 style = "margin-left: 1rem;">
+          <h3 style = "margin-left: 2rem;">
             <math><mo>|</mo><msub><mi>f</mi><mi>k</mi></msub><mo>(</mo><mi>x</mi><mo>)</mo><mo>-</mo><mn>1</mn><mo>|</mo><mo>&leq;</mo>
             <munderover><mo>&sum;</mo><mrow><mi>n</mi><mo>=</mo><mn>1</mn></mrow><mn>&infin;</mn></munderover><mi>C</mi><mo>/</mo><msup><mi>k</mi><mi>n</mi></msup>
             <mo>=</mo><mi>C</mi><mo>/</mo><mo>(</mo><mi>k</mi><mo>-</mo><mn>1</mn><mo>)</mo></math>  
           </h3>
-          <h3>
+          <h3 style = "margin-left: 1rem;">
             so as <math><mi>k</mi></math> tends to infinity, we can add <math><mn>1</mn></math> to both sides to see the result.
           </h3>
           <h3>
             <u>Claim 3</u>: If <math><mi>x</mi><mo>≠</mo><mn>0</mn></math> and <math><msup><mi>x</mi><mn>2</mn></msup><mi>&isin;</mi><mi>ℚ</mi></math>,
           </h3>
-
+          <h3 style = "margin-left: 1rem;">
+            <math><msub><mi>f</mi><mi>k</mi></msub><mo>(</mo><mi>x</mi><mo>)</mo><mo>&NotEqual;</mo><mn>0</mn></math> and
+            <math><msub><mi>f</mi><mrow><mi>k</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>(</mo><mi>x</mi><mo>)</mo><mo>/</mo><msub><mi>f</mi><mi>k</mi></msub>
+            <mo>(</mo><mi>x</mi><mo>)</mo><mo>&notin;</mo><mi>ℚ</mi></math>
+            &emsp;&emsp;<math><mo>&forall;</mo><mi>k</mi><mo>&isin;</mo><mi>ℚ</mi><mo>\</mo><mo>{</mo><mn>0</mn><mo>,</mo><mn>-1</mn><mo>,</mo><mn>-2</mn><mo>,</mo><mo>...</mo><mo>}</mo></math>
+          </h3>
+          <h3 style = "margin-left: 1rem;">
+            <u>Proof of Claim 3</u>: First, we will prove the following lemma:
+          </h3>
+          <h3 style = "margin-left: 1rem;">
+            <u>Lemma</u>: Assume otherwise (that is, either <math><msub><mi>f</mi><mi>k</mi></msub><mo>(</mo><mi>x</mi><mo>)</mo><mo>=</mo><mn>0</mn></math>, or 
+            <math><msub><mi>f</mi><mrow><mi>k</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>(</mo><mi>x</mi><mo>)</mo><mo>/</mo><msub><mi>f</mi><mi>k</mi></msub>
+            <mo>(</mo><mi>x</mi><mo>)</mo><mo>&isin;</mo><mi>ℚ</mi></math>, or both). Then there must be some <math><mi>y</mi><mo>&NotEqual;</mo><mn>0</mn></math> and <math><mi>a</mi><mo>,</mo><mi>b</mi><mo>&isin;</mo><mi>ℤ</mi></math>
+            such that <math><msub><mi>f</mi><mi>k</mi></msub><mo>(</mo><mi>x</mi><mo>)</mo><mo>=</mo><mi>a</mi><mi>y</mi></math> and <math><msub><mi>f</mi><mrow><mi>k</mi><mo>+</mo><mn>1</mn></mrow>
+            </msub><mo>(</mo><mi>x</mi><mo>)</mo><mo>=</mo><mi>b</mi><mi>y</mi></math>
+          </h3>
+          <h3 style = "margin-left: 1rem;">
+            <u>Proof of Lemma</u>: There are two cases we can split this into:
+          </h3>
+          <h3 style = "margin-left: 2rem;">
+            <u>Case 1</u>: <math><msub><mi>f</mi><mi>k</mi></msub><mo>(</mo><mi>x</mi><mo>)</mo><mo>=</mo><mn>0</mn></math>
+          </h3>
+          <h3 style = "margin-left: 2rem;">
+            In this case, choose <math><mi>y</mi><mo>=</mo><msub><mi>f</mi><mrow><mi>k</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>(</mo><mi>x</mi><mo>)</mo><mo>,</mo><mi>a</mi><mo>=</mo><mn>0</mn><mo>,</mo></math>
+            and <math><mi>b</mi><mo>=</mo><mn>1</mn></math>. Then we satisfy the lemma's conclusion and <math><mi>y</mi><mo>&NotEqual;</mo><mn>0</mn></math> since otherwise we would contradict claim 2.
+          </h3>
+          <h3 style = "margin-left: 2rem;">
+            <u>Case 2</u>: <math><msub><mi>f</mi><mi>k</mi></msub><mo>(</mo><mi>x</mi><mo>)</mo><mo>&NotEqual;</mo><mn>0</mn></math>
+          </h3>
+          <h3 style = "margin-left: 2rem;">
+            In this case, since <math><msub><mi>f</mi><mrow><mi>k</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>(</mo><mi>x</mi><mo>)</mo><mo>/</mo><msub><mi>f</mi><mi>k</mi></msub>
+            <mo>(</mo><mi>x</mi><mo>)</mo><mo>&isin;</mo><mi>ℚ</mi></math>, we can choose <math><mi>a</mi><mo>,</mo><mi>b</mi><mo>&isin;</mo><mi>ℤ</mi></math> such that
+            <math><msub><mi>f</mi><mrow><mi>k</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>(</mo><mi>x</mi><mo>)</mo><mo>/</mo><msub><mi>f</mi><mi>k</mi></msub>
+            <mo>(</mo><mi>x</mi><mo>)</mo><mo>=</mo><mi>b</mi><mo>/</mo><mi>a</mi></math> and <math><mi>y</mi><mo>=</mo><msub><mi>f</mi><mi>k</mi></msub><mo>(</mo><mi>x</mi><mo>)</mo>
+            <mo>/</mo><mi>a</mi><mo>=</mo><msub><mi>f</mi><mrow><mi>k</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>(</mo><mi>x</mi><mo>)</mo><mo>/</mo><mi>b</mi></math>.
+            Again we satisfy the lemma's conclusion and <math><mi>y</mi><mo>&NotEqual;</mo><mn>0</mn></math> since otherwise we would contradict claim 2.
+            </math>
+          </h3>
+          <h3 style = "margin-left: 1rem;">
+            Now we choose <math><mi>c</mi><mo>&isin;</mo><mi>&#8469;</mi></math> such that <math><mi>b</mi><mi>c</mi><mo>/</mo><mi>k</mi><mo>,</mo><mi>c</mi><mi>k</mi><mo>/</mo><msup><mi>x</mi><mn>2</mn></msup><mo>,</mo>
+            <mi>c</mi><mo>/</mo><msup><mi>x</mi><mn>2</mn></msup><mo>&isin;</mo><mi>ℤ</mi></math>. Consider the following sequence of functions:
+          </h3>
+          <h3 style = "margin-left: 2rem;">
+            <math><msub><mi>g</mi><mi>n</mi></msub><mo>=</mo><mrow><mo>{</mo><mtable columnalign="left left" rowspacing=".2em" columnspacing="1em" displaystyle="false"><mtr>
+            <mtd><msub><mi>f</mi><mi>k</mi></msub><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mtd><mtd><mtext>if&#xA0;</mtext><mi>n</mi><mo>=</mo>
+            <mn>0</mn></mtd></mtr><mtr><mtd><mstyle displaystyle="true" scriptlevel="0"><mfrac><msup><mi>c</mi><mi>n</mi></msup><mrow><mi>k</mi><mo stretchy="false">(</mo>
+            <mi>k</mi><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo><mo>&#x22EF;</mo><mo stretchy="false">(</mo><mi>k</mi><mo>+</mo><mi>n</mi><mo>&#x2212;</mo><mn>1</mn>
+            <mo stretchy="false">)</mo></mrow></mfrac></mstyle><msub><mi>f</mi><mrow><mi>k</mi><mo>+</mo><mi>n</mi></mrow></msub><mo stretchy="false">(</mo><mi>x</mi>
+            <mo stretchy="false">)</mo></mtd><mtd><mtext>otherwise</mtext></mtd></mtr></mtable><mo fence="true" stretchy="true" symmetric="true"></mo></mrow></math>
+          </h3>
+          <h3 style = "margin-left: 1rem;">
+            We have that <math><msub><mi>g</mi><mn>0</mn></msub><mo>=</mo><msub><mi>f</mi><mi>k</mi></msub><mo>(</mo><mi>x</mi><mo>)</mo><mo>=</mo><mi>a</mi><mi>y</mi><mo>&isin;</mo><mi>ℤ</mi><mi>y</mi></math>
+            and <math><msub><mi>g</mi><mn>1</mn></msub><mo>=</mo><mi>c</mi><msub><mi>f</mi><mrow><mi>k</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>(</mo><mi>x</mi><mo>)</mo><mo>/</mo><mi>k</mi><mo>=</mo>
+            <mi>b</mi><mi>c</mi><mi>y</mi><mo>/</mo><mi>k</mi><mo>&isin;</mo><mi>ℤ</mi><mi>y</mi></math>. Then by claim 1:
+          </h3>
+          <h3 style = "margin-left: 1rem;">
+            &emsp; <math><mrow><msub><mi>g</mi><mrow><mi>n</mi><mo>+</mo><mn>2</mn></mrow></msub></mrow><mo>=</mo><mstyle displaystyle="true" scriptlevel="0"><mfrac>
+            <msup><mi>c</mi><mi>n</mi></msup><mrow><mi>k</mi><mo stretchy="false">(</mo><mi>k</mi><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo><mo>&#x22EF;</mo><mo stretchy="false">(</mo><mi>k</mi><mo>+</mo><mi>n</mi><mo>&#x2212;</mo><mn>1</mn>
+            <mo stretchy="false">)</mo></mrow></mfrac></mstyle><mstyle displaystyle="true" scriptlevel="0"><mfrac><msup><mi>x</mi><mi>2</mi></msup><mrow><mo stretchy="false">(</mo><mi>k</mi><mo>+</mo><mi>n</mi><mo stretchy="false">)</mo>
+            <mo stretchy="false">(</mo><mi>k</mi><mo>+</mo><mi>n</mi><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></mfrac></mstyle><msub><mi>f</mi><mrow><mi>k</mi><mo>+</mo><mi>n</mi><mo>+</mo><mn>2</mn></mrow></msub><mo stretchy="false">(</mo>
+            <mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mo>...</mo><mo>=</mo><mo>(</mo><mstyle displaystyle="true" scriptlevel="0"><mfrac><mrow><mi>c</mi><mi>k</mi></mrow><msup><mi>x</mi><mn>2</mn></msup></mfrac><mo>+</mo>
+            <mfrac><mrow><mi>c</mi><mi>n</mi></mrow><msup><mi>x</mi><mn>2</mn></msup></mfrac></mstyle><mo>)</mo><msub><mi>g</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>-</mo><mstyle displaystyle="true" scriptlevel="0"><mfrac>
+            <msup><mi>c</mi><mn>2</mn></msup><msup><mi>x</mi><mn>2</mn></msup></mfrac></mstyle><msub><mi>g</mi><mi>n</mi></msub></math>
+          </h3>
+          <h3 style = "margin-left: 1rem;">
+            So <math><mrow><msub><mi>g</mi><mrow><mi>n</mi><mo>+</mo><mn>2</mn></mrow></msub></mrow></math> is a sum of multiples of <math><msub><mi>g</mi><mi>n</mi></msub></math> and
+            <math><mrow><msub><mi>g</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub></mrow></math> and in turn is also a multiple of <math><mi>y</mi></math>. Claim 2 gives us that
+            each <math><msub><mi>g</mi><mi>n</mi></msub><mo>></mo><mn>0</mn></math> and since it is a multiple of <math><mi>y</mi></math>, it follows that <math><msub><mi>g</mi><mi>n</mi></msub><mo>></mo><mo>|</mo><mi>y</mi><mo>|</mo></math>.
+            But this is a contradiction of claim 1 since a sequence bounded below by some positive number cannot converge to <math><mn>0</mn></math>. So we have proven claim 3.
+          </h3>
+          <h3>
+            Finally, notice that <math><msub><mi>f</mi><mrow><mn>1</mn><mo>/</mo><mn>2</mn></mrow></msub><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>cos</mi><mo>(</mo><mn>2</mn><mi>x</mi><mo>)</mo></math>
+            and <math><msub><mi>f</mi><mrow><mn>3</mn><mo>/</mo><mn>2</mn></mrow></msub><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>sin</mi><mo>(</mo><mn>2</mn><mi>x</mi><mo>)</mo><mo>/</mo><mn>2</mn><mi>x</mi></math>.
+          </h3>
+          <h3>
+            Since <math><msub><mi>f</mi><mrow><mn>1</mn><mo>/</mo><mn>2</mn></mrow></msub><mo stretchy="false">(</mo><mi>&pi;</mi><mo>/</mo><mn>4</mn><mo stretchy="false">)</mo><mo>=</mo><mn>0</mn></math>, claim 3 tells us that 
+            <math><msup><mi>&pi;</mi><mn>2</mn></msup><mo>/</mo><mn>16</mn></math> is irrational and therefore, <math><mi>&pi;</mi></math> is irrational.
+          </h3>
           <h3 style = "margin-top: 2rem;"><strong>A Fun Approximation: Buffon's Needle</strong></h3>
           <h3><strong>Resources</strong></h3>
           <ul>
