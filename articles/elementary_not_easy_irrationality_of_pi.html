@@ -84,7 +84,7 @@
               <u>Proof of Claim 1</u>:
             </h3>
             <h3>
-              We could imagine expanding <math><mi>f</mi><mo>(</mo><mn>x</mn><mo>)</mo></math> and realize that all of the terms would be
+              We could imagine expanding <math><mi>f</mi><mo>(</mo><mi>x</mi><mo>)</mo></math> and realize that all of the terms would be
               of the form <math><msub><mi>c</mi><mi>k</mi></msub><msup><mi>x</mi><mi>k</mi></msup><mo>/</mo><mi>n</mi><mo>!</mo></math> where the coefficient 
               <math><msub><mi>c</mi><mi>k</mi></msub></math> has to be an integer since its coming from a product of integers. This means that if we take
               <math><mi>k</mi></math>-many derivatives of <math><mi>f</mi></math>, we will end up with an integer term plus other terms including an <math><mi>x</mi></math>.
@@ -114,36 +114,75 @@
           <div style = "margin-left: 1rem;">
             <h3><u>Proof of Claim 2</u>:</h3>
             <h3>
-              Notice that taking two derivatives of <math><mi>F</mi><mo>(</mo><mn>x</mn><mo>)</mo></math> will simply shift all of the terms down by two and change the sign.
-              This means that <math><mi>F</mi><mo>(</mo><mn>x</mn><mo>)</mo><mo>+</mo><msup><mi>F</mi><mo>''</mo></msup><mo>(</mo><mn>x</mn><mo>)</mo><mo>=</mo><mi>f</mi><mo>(</mo>
-              <mn>x</mn><mo>)</mo></math>. Also notice by product rule that <math><mi>f</mi><mo>(</mo><mn>x</mn><mo>)</mo><mi>sin</mi><mo>(</mo><mn>x</mn><mo>)</mo><mo>=</mo>
-              <mo>(</mo><msup><mi>F</mi><mo>'</mo></msup><mo>(</mo><mn>x</mn><mo>)</mo><mi>sin</mi><mo>(</mo><mn>x</mn><mo>)</mo><mo>-</mo><mi>F</mi><mo>(</mo><mn>x</mn><mo>)</mo>
-              <mi>cos</mi><mo>(</mo><mn>x</mn><mo>)</mo><msup><mo>)</mo><mo>'</mo></msup></math>.
+              Notice that taking two derivatives of <math><mi>F</mi><mo>(</mo><mi>x</mi><mo>)</mo></math> will simply shift all of the terms down by two and change the sign.
+              This means that <math><mi>F</mi><mo>(</mo><mi>x</mi><mo>)</mo><mo>+</mo><msup><mi>F</mi><mo>''</mo></msup><mo>(</mo><mi>x</mi><mo>)</mo><mo>=</mo><mi>f</mi><mo>(</mo>
+              <mi>x</mi><mo>)</mo></math>. Also notice by product rule that <math><mi>f</mi><mo>(</mo><mi>x</mi><mo>)</mo><mi>sin</mi><mo>(</mo><mi>x</mi><mo>)</mo><mo>=</mo>
+              <mo>(</mo><msup><mi>F</mi><mo>'</mo></msup><mo>(</mo><mi>x</mi><mo>)</mo><mi>sin</mi><mo>(</mo><mi>x</mi><mo>)</mo><mo>-</mo><mi>F</mi><mo>(</mo><mi>x</mi><mo>)</mo>
+              <mi>cos</mi><mo>(</mo><mi>x</mi><mo>)</mo><msup><mo>)</mo><mo>'</mo></msup></math>.
             </h3>
             <h3>
               The Fundamental Theorem of Calculus will then allow us to rewrite our integral as:
             </h3>
             <h3 style = "margin-left: 1rem;">
-              <math><msubsup><mo>&int;</mo><mn>0</mn><mi>&pi;</mi></msubsup></math><math><mi>f</mi><mo>(</mo><mn>x</mn><mo>)</mo><mi>sin</mi>
-              <mo>(</mo><mn>x</mn><mo>)</mo><mo>=</mo><msup><mi>F</mi><mo>'</mo></msup><mo>(</mo><mn>x</mn><mo>)</mo><mi>sin</mi><mo>(</mo><mn>x</mn><mo>)</mo><mo>-</mo><mi>F</mi>
-              <mo>(</mo><mn>x</mn><mo>)</mo><mi>cos</mi><mo>(</mo><mn>x</mn><mo>)</mo></math><math><msubsup><mi>|</mi><mn>0</mn><mi>&pi;</mi></msubsup></math> <math><mo>=</mo>
+              <math><msubsup><mo>&int;</mo><mn>0</mn><mi>&pi;</mi></msubsup></math><math><mi>f</mi><mo>(</mo><mi>x</mi><mo>)</mo><mi>sin</mi>
+              <mo>(</mo><mi>x</mi><mo>)</mo><mo>=</mo><msup><mi>F</mi><mo>'</mo></msup><mo>(</mo><mi>x</mi><mo>)</mo><mi>sin</mi><mo>(</mo><mi>x</mi><mo>)</mo><mo>-</mo><mi>F</mi>
+              <mo>(</mo><mi>x</mi><mo>)</mo><mi>cos</mi><mo>(</mo><mi>x</mi><mo>)</mo></math><math><msubsup><mi>|</mi><mn>0</mn><mi>&pi;</mi></msubsup></math> <math><mo>=</mo>
               <mi>F</mi><mo>(</mo><mn>0</mn><mo>)</mo><mo>+</mo><mi>F</mi><mo>(</mo><mi>&pi;</mi><mo>)</mo></math>
             </h3>
           </div>
           <h3>
             Having proved our two claims, we are essentially done.
-            Since <math><mi>f</mi><mo>(</mo><mn>x</mn><mo>)</mo></math> and <math><mi>sin</mi><mo>(</mo><mn>x</mn><mo>)</mo></math> are both positive for
+            Since <math><mi>f</mi><mo>(</mo><mi>x</mi><mo>)</mo></math> and <math><mi>sin</mi><mo>(</mo><mi>x</mi><mo>)</mo></math> are both positive for
             <math><mn>0</mn><mo><</mo><mi>x</mi><mo><</mo><mi>&pi;</mi></math>, our integral is positive and so is the integer 
             <math></mo><mi>F</mi><mo>(</mo><mn>0</mn><mo>)</mo><mo>+</mo><mi>F</mi><mo>(</mo><mi>&pi;</mi><mo>)</mo></math>.
           </h3>
           <h3>
-            From the bounds <math><mi>f</mi><mo>(</mo><mn>x</mn><mo>)</mo><mo><</mo><mo>(</mo><mi>&pi;</mi><mi>a</mi><msup><mo>)</mo><mi>n</mi></msup><mo>/</mo><mi>n</mi>
-            <mo>!</mo></math> and <math><mi>sin</mi><mo>(</mo><mn>x</mn><mo>)</mo><mo><</mo><mn>1</mn></math>, we see that we can bound the size of our integral by any amount
+            From the bounds <math><mi>f</mi><mo>(</mo><mi>x</mi><mo>)</mo><mo><</mo><mo>(</mo><mi>&pi;</mi><mi>a</mi><msup><mo>)</mo><mi>n</mi></msup><mo>/</mo><mi>n</mi>
+            <mo>!</mo></math> and <math><mi>sin</mi><mo>(</mo><mi>x</mi><mo>)</mo><mo><</mo><mn>1</mn></math>, we see that we can bound the size of our integral by any amount
             with large enough <math><mi>n</mi></math>. By choosing <math><mi>n</mi></math> to be large enough such that the integral is bounded above by <math><mn>1</mn></math>,
             we see that <math><mn>0</mn><mo><</mo><mi>F</mi><mo>(</mo><mn>0</mn><mo>)</mo><mo>+</mo><mi>F</mi><mo>(</mo><mi>&pi;</mi><mo>)</mo><mo><</mo><mn>1</mn></math> which is
             our contradiction since there is no such integer between these values.
           </h3>
-          <h3 style = "margin-top: 2rem;"><strong>Bourbaki's Proof</strong></h3>
+          <h3 style = "margin-top: 2rem;"><strong>Laczkovich's Proof</strong></h3>
+          <h3>
+            Johann Lambert was the first to prove that pi is irrational in 1761. Since then, some simplificiations have been made to his proof. Here we'll look at
+            Miklos Laczkovich's version of Lambert's proof.
+          </h3>
+          <h3>
+            First, we define the functions
+          </h3>
+          <h3 style = "margin-left: 1rem;">
+            <math><msub><mi>f</mi><mi>k</mi></msub><mo>(</mo><mi>x</mi><mo>)</mo><mo>=</mo><mn>1</mn><mo>-</mo><msup><mi>x</mi><mn>2</mn></msup><mo>/</mo><mi>k</mi><mo>+</mo>
+            <msup><mi>x</mi><mn>4</mn></msup><mo>/</mo><mn>2</mn><mo>!</mo><mi>k</mi><mo>(</mo><mi>k</mi><mo>+</mo><mn>1</mn><mo>)</mo><mo>+</mo><msup><mi>x</mi><mn>6</mn></msup>
+            <mo>/</mo><mn>3</mn><mo>!</mo><mi>k</mi><mo>(</mo><mi>k</mi><mo>+</mo><mn>1</mn><mo>)</mo><mo>(</mo><mi>k</mi><mo>+</mo><mn>2</mn><mo>)</mo><mo>+</mo><mo>...</mo></math>
+            &emsp;&emsp;<math><mi>k</mi><mo>&notin;</mo><mo>{</mo><mn>0</mn><mo>,</mo><mn>-1</mn><mo>,</mo><mn>-2</mn><mo>,</mo><mo>...</mo><mo>}</mo></math>
+          </h3>
+          <h3>
+            Just as with Niven's Proof, we'll prove a few claims first and get a contradiction from there.
+          </h3>
+          <h3>
+            <u>Claim 1</u>: For all real values of <math><mi>x</mi></math>
+          </h3>
+          <h3 style = "margin-left: 1rem;">
+            <math><msup><mi>x</mi><mn>2</mn></msup><msub><mi>f</mi><mi>k+2</mi></msub><mo>(</mo><mi>x</mi><mo>)</mo><mo>/</mo><mi>k</mi><mo>(</mo><mi>k</mi><mo>+</mo><mn>1</mn><mo>)</mo>
+            <mo>=</mo><msub><mi>f</mi><mi>k+1</mi></msub><mo>(</mo><mi>x</mi><mo>)</mo><mo>-</mo><msub><mi>f</mi><mi>k</mi></msub><mo>(</mo><mi>x</mi><mo>)</mo></math>
+          </h3>
+          <h3>
+            <u>Proof of Claim 1</u>: If we compare the coefficients of powers of <math><mi>x</mi></math>, we will see that they are the same on both sides.
+          </h3>
+          <h3>
+            <u>Claim 2</u>: For all real values of <math><mi>x</mi></math>, <math><munder><mo>lim</mo><mi>k &#8594; &#8734;</mi></munder></math>
+            <math><msub><mi>f</mi><mi>k</mi></msub><mo>(</mo><mi>x</mi><mo>)</mo><mo>=</mo><mn>1</mn></math>.
+          </h3>
+          <h3>
+            <u>Proof of Claim 2</u>: If we compare the coefficients of powers of <math><mi>x</mi></math>, we will see that they are the same on both sides.
+          </h3>
+
+          <h3 style = "margin-top: 2rem;"><strong>A Fun Approximation: Buffon's Needle</strong></h3>
+          <h3><strong>Resources</strong></h3>
+          <ul>
+            <li><a href = 'https://medium.com/mathadam/nivens-proof-%CF%80-is-irrational-cea11f383bb7'>Another Nice Explanation of Niven's Proof</li>
+          </ul>
         </div>
      </div>
     <div id = 'footer'></div>
