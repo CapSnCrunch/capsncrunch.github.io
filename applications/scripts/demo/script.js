@@ -1,6 +1,5 @@
 let fontLight;
 function preload(){
-    console.log(getURLPath())
     fontLight = loadFont('Nunito-Regular.ttf')
 }
 
@@ -32,6 +31,7 @@ function drawEdge(theta1, theta2, color = 200){
     let centerX = width/4 + R * cos(theta)
     let centerY = width/4 + R * sin(theta)
     let phi = asin(cos(dtheta))
+    let gamma;
     
     strokeWeight(1)
     stroke(200)
@@ -43,11 +43,21 @@ function drawEdge(theta1, theta2, color = 200){
 
     noFill()
     if (phi > 0){
-        let gamma = PI - PI/2 + max(theta1, theta2)
+        gamma = PI/2 + max(theta1, theta2)
         arc(centerX, centerY, 2*r, 2*r, gamma, gamma + 2*phi)
     } else {
-        let gamma = PI - PI/2 + min(theta1, theta2)
+        gamma = PI/2 + min(theta1, theta2)
         arc(centerX, centerY, 2*r, 2*r, gamma, gamma - 2*phi)
+    }
+
+    if (color != 200){
+        if (phi > 0){
+            ellipse(centerX + r * cos(gamma + phi), centerY + r * sin(gamma + phi), 5, 5)
+            //ellipse(centerX, centerY, 5, 5)
+        } else {
+            ellipse(centerX - r * cos(gamma - phi), centerY - r * sin(gamma - phi), 5, 5)
+            ellipse(centerX, centerY, 2, 2)
+        }
     }
 }
 
