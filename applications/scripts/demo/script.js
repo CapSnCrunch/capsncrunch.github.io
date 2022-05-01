@@ -50,13 +50,35 @@ function drawEdge(theta1, theta2, color = 200){
         arc(centerX, centerY, 2*r, 2*r, gamma, gamma - 2*phi)
     }
 
+    // Draw an arrow to indicate edge direction
     if (color != 200){
+        // Get the clockwise angle between theta1 and theta2
+        //  This will be used to determine which direction to draw the arrow
+        //  (They should all point outward from whatever point is highlighted)
+        dot = cos(theta1) * cos(theta2) + sin(theta1) * sin(theta2)
+        det = cos(theta1) * sin(theta2) - sin(theta1) * cos(theta2)
+        angle = Math.atan2(det, dot)
+
         if (phi > 0){
-            ellipse(centerX + r * cos(gamma + phi), centerY + r * sin(gamma + phi), 5, 5)
-            //ellipse(centerX, centerY, 5, 5)
+            let arrowX = centerX + r * cos(gamma + phi)
+            let arrowY = centerY + r * sin(gamma + phi)
+            if (angle > 0){
+                line(arrowX, arrowY, arrowX + 10 * cos(gamma + phi + PI/2 - PI/4), arrowY + 10 * sin(gamma + phi + PI/2 - PI/4))
+                line(arrowX, arrowY, arrowX + 10 * cos(gamma + phi + PI/2 + PI/4), arrowY + 10 * sin(gamma + phi + PI/2 + PI/4))
+            } else {
+                line(arrowX, arrowY, arrowX + 10 * cos(gamma + phi + PI/2 - 3*PI/4), arrowY + 10 * sin(gamma + phi + PI/2 - 3*PI/4))
+                line(arrowX, arrowY, arrowX + 10 * cos(gamma + phi + PI/2 + 3*PI/4), arrowY + 10 * sin(gamma + phi + PI/2 + 3*PI/4))
+            }
         } else {
-            ellipse(centerX - r * cos(gamma - phi), centerY - r * sin(gamma - phi), 5, 5)
-            ellipse(centerX, centerY, 2, 2)
+            let arrowX = centerX - r * cos(gamma - phi)
+            let arrowY = centerY - r * sin(gamma - phi)
+            if (angle > 0){
+                line(arrowX, arrowY, arrowX + 10 * cos(gamma - phi + PI/2 - PI/4), arrowY + 10 * sin(gamma - phi + PI/2 - PI/4))
+                line(arrowX, arrowY, arrowX + 10 * cos(gamma - phi + PI/2 + PI/4), arrowY + 10 * sin(gamma - phi + PI/2 + PI/4))    
+            } else {
+                line(arrowX, arrowY, arrowX + 10 * cos(gamma - phi + PI/2 - 3*PI/4), arrowY + 10 * sin(gamma - phi + PI/2 - 3*PI/4))
+                line(arrowX, arrowY, arrowX + 10 * cos(gamma - phi + PI/2 + 3*PI/4), arrowY + 10 * sin(gamma - phi + PI/2 + 3*PI/4))    
+            }
         }
     }
 }
@@ -88,7 +110,6 @@ function draw(){
         for(let j = 0; j < Object.keys(graph[selected]).length; j++){
             let theta1 = TWO_PI * selected / intervals.length;
             let theta2 = TWO_PI * Object.keys(graph[selected])[j] / intervals.length;
-
             drawEdge(theta1, theta2, intervals[selected].color)
         }
     }

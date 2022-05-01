@@ -40,7 +40,7 @@ class Interval {
     drawLine(intervalHeight, color, bold = false){
         // Draw the line version of the interval to the canvas at a specified height
         stroke(color[0], color[1], color[2])
-        strokeWeight(7 + 5 * bold)
+        strokeWeight(7 + 4 * bold)
         let x1 = (width/2 - 100) * this.a / PI + width/2 + 50
         let x2 = (width/2 - 100) * this.b / PI + width/2 + 50
         if (x1 > x2){
