@@ -73,7 +73,6 @@ function setup(){
   
   //cnv.position(x, y);
   //cnv.parent('canvas');
-  
 
   for(let i = 0; i < N; i++){
     append(row_buttons, new Button(0, i, random(1) > 0.5));
