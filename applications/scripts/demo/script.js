@@ -113,17 +113,6 @@ function draw(){
             let theta2 = TWO_PI * Object.keys(graph[selected])[j] / intervals.length;
             drawEdge(theta1, theta2, intervals[selected].color)
         }
-        // Draw the images that the selected node contains
-        // for(let i = 0; i < Object.keys(graph).length; i++){
-        //     if (Object.keys(graph[i]).includes(selected.toString())){
-        //         let intervalHeight = height * 0.091 + selected * (height - height * 0.272) / (intervals.length - 1);
-        //         intervals[i].drawImage(graph[i][selected], intervalHeight)
-        //     }
-        // }
-        for(let j = 0; j < Object.keys(graph[selected]).length; j++){
-            let intervalHeight = height * 0.091 + selected * (height - height * 0.272) / (intervals.length - 1);
-            intervals[j].drawImage(graph[selected][j], intervalHeight)
-        }
     }
 
     // Draw the nodes of the graph
@@ -149,6 +138,20 @@ function draw(){
         for(let i = 0; i < intervals.length; i++){
             let intervalHeight = height * 0.091 + i * (height - height * 0.272) / (intervals.length - 1);
             intervals[i].drawLine(intervalHeight, selected == i)
+        }
+        if (selected != -1){
+            // Draw the images that the selected node contains
+            // for(let i = 0; i < Object.keys(graph).length; i++){
+            //     if (Object.keys(graph[i]).includes(selected.toString())){
+            //         let intervalHeight = height * 0.091 + selected * (height - height * 0.272) / (intervals.length - 1);
+            //         intervals[i].drawImage(graph[i][selected], intervalHeight)
+            //     }
+            // }
+            console.log('DRAWING IMAGES FOR INTERVAL', selected)
+            for(let j = 0; j < Object.keys(graph[selected]).length; j++){
+                let intervalHeight = height * 0.091 + selected * (height - height * 0.272) / (intervals.length - 1);
+                intervals[Object.keys(graph[selected])[j]].drawImage(graph[selected][Object.keys(graph[selected])[j]], intervalHeight)
+            }
         }
     } else {
         // Draw intervals (arc version)

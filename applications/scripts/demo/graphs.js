@@ -60,15 +60,23 @@ for(let i = 0; i < triangleIntervals.length; i++){
     triangleIntervals[i].color = colors[i]
 }
 
-let sa = 0;
-let sb = 0;
-let sc = 0;
-let sd = 0;
+let sa = nj.array([[4.61158179, 0],
+                   [0, 0.21684534]]);
+let sb = nj.array([[ 3.96798754, -1.55377397],
+                   [-1.55377397, 0.86043959]]);
+let sc = nj.array([[ 2.41421356, -2.19736823],
+                   [-2.19736823, 2.41421356]]);
+let sd = nj.array([[ 0.86043959, -1.55377397],
+                   [-1.55377397, 3.96798754]]);
 
-let sA = 0;
-let sB = 0;
-let sC = 0;
-let sD = 0;
+let sA = nj.array([[0.21684534, 0],
+                   [0, 4.61158179]]);
+let sB = nj.array([[0.86043959, 1.55377397],
+                   [1.55377397, 3.96798754]]);
+let sC = nj.array([[2.41421356, 2.19736823],
+                   [2.19736823, 2.41421356]]);
+let sD = nj.array([[3.96798754, 1.55377397],
+                   [1.55377397, 0.86043959]]);
 
 var surfaceGraph = {
     0: {0: sd, 2: sc, 3: sC, 4: sb, 5: sB, 6: sa, 7: sA},

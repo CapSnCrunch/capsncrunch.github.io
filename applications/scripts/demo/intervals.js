@@ -39,8 +39,13 @@ class Interval {
 
     drawLine(intervalHeight, color, bold = false){
         // Draw the line version of the interval to the canvas at a specified height
-        stroke(color[0], color[1], color[2])
-        strokeWeight(7 + 4 * bold)
+        if (color == 255){
+            stroke(255)
+            strokeWeight(5)
+        } else {
+            stroke(color[0], color[1], color[2])
+            strokeWeight(7 + 4 * bold)
+        }
         let x1 = (width/2 - 100) * this.a / PI + width/2 + 50
         let x2 = (width/2 - 100) * this.b / PI + width/2 + 50
         if (x1 > x2){
@@ -61,15 +66,17 @@ class Interval {
     getImage(matrix){
         // Get the image of the interval under an action in SL(2,R)
         //  Return the image as an Interval object
+        // console.log('matrix', matrix)
+        console.log(this.a % PI, this.b % PI)
+        console.log('rp1Interval', rp1Interval(this.a % PI, this.b % PI))
         let temp = matrix.dot(rp1Interval(this.a % PI, this.b % PI))
         console.log('temp', temp)
-        console.log('matrix', matrix)
-        console.log('interval', rp1Interval(this.a % PI, this.b % PI))
-
         let x1 = temp.get(0,0);
-        let y1 = temp.get(0,1);
-        let x2 = temp.get(1,0);
+        let y1 = temp.get(1,0);
+        let x2 = temp.get(0,1);
         let y2 = temp.get(1,1);
+
+        console.log('x1', x1, 'y1', y1, 'x2', x2, 'y2', y2)
 
         let a, b;
 
@@ -113,14 +120,16 @@ class DisconnectedInterval {
         }
     }
 
-    drawImage(matri, intervalHeight, bold = false){
+    drawImage(matrix, intervalHeight, bold = false){
         // Draw the image of the disconnected interval under a matrix
+        console.log('matrix', matrix)
         let images = []
         for(let i = 0; i < this.components.length; i++){
-            images.push(this.components[i].getImage(graph[0][1]))
+            images.push(this.components[i].getImage(matrix))
         }
+        // console.log('images', images)
         for(let i = 0; i < images.length; i++){
-            images[i].drawLine(intervalHeight, bold)
+            images[i].drawLine(intervalHeight, 255, bold = false)
         }
     }
 }
