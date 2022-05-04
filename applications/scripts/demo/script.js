@@ -141,16 +141,44 @@ function draw(){
         }
         if (selected != -1){
             // Draw the images that the selected node contains
-            // for(let i = 0; i < Object.keys(graph).length; i++){
-            //     if (Object.keys(graph[i]).includes(selected.toString())){
-            //         let intervalHeight = height * 0.091 + selected * (height - height * 0.272) / (intervals.length - 1);
-            //         intervals[i].drawImage(graph[i][selected], intervalHeight)
-            //     }
-            // }
-            console.log('DRAWING IMAGES FOR INTERVAL', selected)
             for(let j = 0; j < Object.keys(graph[selected]).length; j++){
-                let intervalHeight = height * 0.091 + selected * (height - height * 0.272) / (intervals.length - 1);
-                intervals[Object.keys(graph[selected])[j]].drawImage(graph[selected][Object.keys(graph[selected])[j]], intervalHeight)
+                let imageHeight = height * 0.091 + selected * (height - height * 0.272) / (intervals.length - 1);
+                intervals[Object.keys(graph[selected])[j]].drawLineImage(graph[selected][Object.keys(graph[selected])[j]], imageHeight)
+            }
+
+            // Draw arrows from intervals to their images in the selected interval
+            for(let j = 0; j < Object.keys(graph[selected]).length; j++){
+                let intervalHeight = height * 0.091 + Object.keys(graph[selected])[j] * (height - height * 0.272) / (intervals.length - 1);
+                let interval = intervals[Object.keys(graph[selected])[j]]
+                let intervalX1, intervalX2;
+                if (interval.components[0].a < interval.components[0].b){
+                    intervalX1 = (width/2 - 100) * interval.components[0].a / PI + width/2 + 50
+                    intervalX2 = (width/2 - 100) * interval.components[0].b / PI + width/2 + 50
+                } else {
+                    intervalX1 = width/2 + 50
+                    intervalX2 = (width/2 - 100) * interval.components[0].b / PI + width/2 + 50
+                }
+
+                let intervalCenter = (intervalX1 + intervalX2)/2
+
+                let imageHeight = height * 0.091 + selected * (height - height * 0.272) / (intervals.length - 1);
+                let image = intervals[Object.keys(graph[selected])[j]].components[0].getImage(graph[selected][Object.keys(graph[selected])[j]])
+                
+                let imageX1, imageX2;
+                if (image.a < image.b){
+                    imageX1 = (width/2 - 100) * image.a / PI + width/2 + 50
+                    imageX2 = (width/2 - 100) * image.b / PI + width/2 + 50
+                } else {
+                    imageX1 = width/2 + 50
+                    imageX2 = (width/2 - 100) * image.b / PI + width/2 + 50
+                }
+                let imageCenter = (imageX1 + imageX2)/2
+                
+                stroke(0)
+                strokeWeight(2)
+                line(intervalCenter, intervalHeight, imageCenter, imageHeight)
+                ellipse(imageCenter, imageHeight, 3, 3)
+                // console.log(intervalCenter, intervalHeight, imageCenter, imageHeight)
             }
         }
     } else {

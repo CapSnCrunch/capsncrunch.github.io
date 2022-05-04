@@ -11,9 +11,9 @@ var cyclicGraph = {
 var cyclicIntervals = [
     new DisconnectedInterval([new Interval(0.15244, 0.65176), 
                               new Interval(2.84228, 2.94228)]),
-    new DisconnectedInterval([new Interval(1.48256, 1.63955), 
+    new DisconnectedInterval([new Interval(1.48256, 1.71955), 
                               new Interval(2.84228, 2.94228)]),
-    new DisconnectedInterval([new Interval(1.48256, 1.63955)]),
+    new DisconnectedInterval([new Interval(1.48256, 1.71955)]),
 ]
 
 for(let i = 0; i < cyclicIntervals.length; i++){
