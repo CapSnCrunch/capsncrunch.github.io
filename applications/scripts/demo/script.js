@@ -5,7 +5,7 @@ function preload(){
 
 let scale = 0.9
 function setup(){
-    var cnv = createCanvas(1000 * scale, 550 * scale);
+    var cnv = createCanvas(1000 * scale, 600 * scale);
     cnv.parent('canvas');
     radius = width / 5; 
 }
@@ -24,6 +24,38 @@ let intervals = cyclicIntervals
 function drawEdge(theta1, theta2, color = 200){
     // Link for calculating the hyperbolic arc between two angles
     // https://mathworld.wolfram.com/PoincareHyperbolicDisk.html
+
+    noFill()
+    if (color != 200){
+        strokeWeight(3)
+        stroke(color[0], color[1], color[2])
+    } else {        
+        strokeWeight(1)
+        stroke(200)
+    }
+
+    // Check if a node connects to itself
+    if (theta1 == theta2 || (theta1 == 0 && theta2 == 0)){
+        ellipse(width/4 + (radius + 15) * cos(theta1), width/4 + (radius + 15) * sin(theta1), 25, 25)
+        return
+    }
+
+    // Check if a node is exactly halfway across the circle
+    //  (In this case the hyperbolic drawing will fail so we need to do it manually)
+    let eps = 0.001
+    if (PI - eps < abs(theta2 - theta1) && abs(theta2 - theta1) < PI + eps){
+        let x1 = width/4 + radius * cos(theta1)
+        let y1 = width/4 + radius * sin(theta1)
+        let x2 = width/4 + radius * cos(theta2)
+        let y2 = width/4 + radius * sin(theta2)
+        line(x1, y1, x2, y2)
+        if (color != 200){
+            line(width/4, width/4, width/4 + 10 * cos(theta1 - PI/4), width/4 + 10 * sin(theta1 - PI/4))
+            line(width/4, width/4, width/4 + 10 * cos(theta1 + PI/4), width/4 + 10 * sin(theta1 + PI/4))
+        }
+        return
+    }
+
     let theta = (theta1 + theta2) / 2
     let dtheta = abs(theta1 - theta2) / 2
     let r = radius * tan(dtheta)
@@ -32,16 +64,7 @@ function drawEdge(theta1, theta2, color = 200){
     let centerY = width/4 + R * sin(theta)
     let phi = asin(cos(dtheta))
     let gamma;
-    
-    strokeWeight(1)
-    stroke(200)
-    
-    if (color != 200){
-        strokeWeight(3)
-        stroke(color[0], color[1], color[2])
-    }
 
-    noFill()
     if (phi > 0){
         gamma = PI/2 + max(theta1, theta2)
         arc(centerX, centerY, 2*r, 2*r, gamma, gamma + 2*phi)
@@ -112,6 +135,45 @@ function draw(){
             let theta1 = TWO_PI * selected / intervals.length;
             let theta2 = TWO_PI * Object.keys(graph[selected])[j] / intervals.length;
             drawEdge(theta1, theta2, intervals[selected].color)
+            
+            // Write the letter next to highlighted edges
+            fill(intervals[selected].color)
+            strokeWeight(1)
+            textSize(20 - (1 - scale) * 15)
+            textFont(fontLight)
+            if (graph == cyclicGraph){
+                if (graph[selected][Object.keys(graph[selected])[j]] === cA){
+                    text('a', width/4 + (radius + 20 + 10*(PI/2 < theta2 && theta2 < 3*PI/2)) * cos(theta2), width/4 + (radius + 20 + 10*(PI/2 < theta2 && theta2 < 3*PI/2)) * sin(theta2))
+                } else if (graph[selected][Object.keys(graph[selected])[j]] === cB){
+                    text('b', width/4 + (radius + 20 + 10*(PI/2 < theta2 && theta2 < 3*PI/2)) * cos(theta2), width/4 + (radius + 20 + 10*(PI/2 < theta2 && theta2 < 3*PI/2)) * sin(theta2))
+                }
+            } else if (graph == triangleGraph){
+                if (graph[selected][Object.keys(graph[selected])[j]] == tA){
+                    text('a', width/4 + (radius + 20 + 10*(PI/2 < theta2 && theta2 < 3*PI/2)) * cos(theta2), width/4 + (radius + 20 + 10*(PI/2 < theta2 && theta2 < 3*PI/2)) * sin(theta2))
+                } else if (graph[selected][Object.keys(graph[selected])[j]] == tB){
+                    text('b', width/4 + (radius + 20 + 10*(PI/2 < theta2 && theta2 < 3*PI/2)) * cos(theta2), width/4 + (radius + 20 + 10*(PI/2 < theta2 && theta2 < 3*PI/2)) * sin(theta2))
+                } else if (graph[selected][Object.keys(graph[selected])[j]] == tC){
+                    text('c', width/4 + (radius + 20 + 10*(PI/2 < theta2 && theta2 < 3*PI/2)) * cos(theta2), width/4 + (radius + 20 + 10*(PI/2 < theta2 && theta2 < 3*PI/2)) * sin(theta2))
+                }
+            } else if (graph == surfaceGraph){
+                if (graph[selected][Object.keys(graph[selected])[j]] == sa){
+                    text('a', width/4 + (radius + 20 + 10*(PI/3 < theta2 && theta2 < 3*PI/2) + 20*(theta2 < TWO_PI * 8 / intervals.length)) * cos(theta2), width/4 + (radius + 20 + 10*(PI/3 < theta2 && theta2 < 3*PI/2) + 20*(theta2 < TWO_PI * 8 / intervals.length)) * sin(theta2))
+                } else if (graph[selected][Object.keys(graph[selected])[j]] == sb){
+                    text('b', width/4 + (radius + 20 + 10*(PI/3 < theta2 && theta2 < 3*PI/2) + 20*(theta2 < TWO_PI * 8 / intervals.length)) * cos(theta2), width/4 + (radius + 20 + 10*(PI/3 < theta2 && theta2 < 3*PI/2) + 20*(theta2 < TWO_PI * 8 / intervals.length)) * sin(theta2))
+                } else if (graph[selected][Object.keys(graph[selected])[j]] == sc){
+                    text('c', width/4 + (radius + 20 + 10*(PI/3 < theta2 && theta2 < 3*PI/2) + 20*(theta2 < TWO_PI * 8 / intervals.length)) * cos(theta2), width/4 + (radius + 20 + 10*(PI/3 < theta2 && theta2 < 3*PI/2) + 20*(theta2 < TWO_PI * 8 / intervals.length)) * sin(theta2))
+                } else if (graph[selected][Object.keys(graph[selected])[j]] == sd){
+                    text('d', width/4 + (radius + 20 + 10*(PI/3 < theta2 && theta2 < 3*PI/2) + 20*(theta2 < TWO_PI * 8 / intervals.length)) * cos(theta2), width/4 + (radius + 20 + 10*(PI/3 < theta2 && theta2 < 3*PI/2) + 20*(theta2 < TWO_PI * 8 / intervals.length)) * sin(theta2))
+                } else if (graph[selected][Object.keys(graph[selected])[j]] == sA){
+                    text('A', width/4 + (radius + 20 + 10*(PI/3 < theta2 && theta2 < 3*PI/2) + 20*(theta2 < TWO_PI * 8 / intervals.length)) * cos(theta2), width/4 + (radius + 20 + 10*(PI/3 < theta2 && theta2 < 3*PI/2) + 20*(theta2 < TWO_PI * 8 / intervals.length)) * sin(theta2))
+                } else if (graph[selected][Object.keys(graph[selected])[j]] == sB){
+                    text('B', width/4 + (radius + 20 + 10*(PI/3 < theta2 && theta2 < 3*PI/2) + 20*(theta2 < TWO_PI * 8 / intervals.length)) * cos(theta2), width/4 + (radius + 20 + 10*(PI/3 < theta2 && theta2 < 3*PI/2) + 20*(theta2 < TWO_PI * 8 / intervals.length)) * sin(theta2))
+                } else if (graph[selected][Object.keys(graph[selected])[j]] == sC){
+                    text('C', width/4 + (radius + 20 + 10*(PI/3 < theta2 && theta2 < 3*PI/2) + 20*(theta2 < TWO_PI * 8 / intervals.length)) * cos(theta2), width/4 + (radius + 20 + 10*(PI/3 < theta2 && theta2 < 3*PI/2) + 20*(theta2 < TWO_PI * 8 / intervals.length)) * sin(theta2))
+                } else if (graph[selected][Object.keys(graph[selected])[j]] == sD){
+                    text('D', width/4 + (radius + 20 + 10*(PI/3 < theta2 && theta2 < 3*PI/2) + 20*(theta2 < TWO_PI * 8 / intervals.length)) * cos(theta2), width/4 + (radius + 20 + 10*(PI/3 < theta2 && theta2 < 3*PI/2) + 20*(theta2 < TWO_PI * 8 / intervals.length)) * sin(theta2))
+                }
+            }
         }
     }
 
@@ -136,19 +198,19 @@ function draw(){
     if (intervalView == 'line'){
         // Draw intervals (line version)
         for(let i = 0; i < intervals.length; i++){
-            let intervalHeight = height * 0.091 + i * (height - height * 0.272) / (intervals.length - 1);
+            let intervalHeight = height * 0.091 + i * (height - height * 0.35) / (intervals.length - 1);
             intervals[i].drawLine(intervalHeight, selected == i)
         }
         if (selected != -1){
             // Draw the images that the selected node contains
             for(let j = 0; j < Object.keys(graph[selected]).length; j++){
-                let imageHeight = height * 0.091 + selected * (height - height * 0.272) / (intervals.length - 1);
+                let imageHeight = height * 0.091 + selected * (height - height * 0.35) / (intervals.length - 1);
                 intervals[Object.keys(graph[selected])[j]].drawLineImage(graph[selected][Object.keys(graph[selected])[j]], imageHeight)
             }
 
             // Draw arrows from intervals to their images in the selected interval
             for(let j = 0; j < Object.keys(graph[selected]).length; j++){
-                let intervalHeight = height * 0.091 + Object.keys(graph[selected])[j] * (height - height * 0.272) / (intervals.length - 1);
+                let intervalHeight = height * 0.091 + Object.keys(graph[selected])[j] * (height - height * 0.35) / (intervals.length - 1);
                 let interval = intervals[Object.keys(graph[selected])[j]]
                 let intervalX1, intervalX2;
                 if (interval.components[0].a < interval.components[0].b){
@@ -161,7 +223,7 @@ function draw(){
 
                 let intervalCenter = (intervalX1 + intervalX2)/2
 
-                let imageHeight = height * 0.091 + selected * (height - height * 0.272) / (intervals.length - 1);
+                let imageHeight = height * 0.091 + selected * (height - height * 0.35) / (intervals.length - 1);
                 let image = intervals[Object.keys(graph[selected])[j]].components[0].getImage(graph[selected][Object.keys(graph[selected])[j]])
                 
                 let imageX1, imageX2;
@@ -177,7 +239,15 @@ function draw(){
                 stroke(0)
                 strokeWeight(2)
                 line(intervalCenter, intervalHeight, imageCenter, imageHeight)
-                ellipse(imageCenter, imageHeight, 3, 3)
+
+                let x = (imageCenter - intervalCenter)
+                let y = (imageHeight - intervalHeight)
+                let angle = Math.atan2(y, x)
+
+                line(imageCenter, imageHeight, imageCenter + 5 * cos(angle + 3*PI/4), imageHeight + 5 * sin(angle + 3*PI/4))
+                line(imageCenter, imageHeight, imageCenter + 5 * cos(angle - 3*PI/4), imageHeight + 5 * sin(angle - 3*PI/4))
+
+                // ellipse(imageCenter, imageHeight, 3, 3)
                 // console.log(intervalCenter, intervalHeight, imageCenter, imageHeight)
             }
         }
