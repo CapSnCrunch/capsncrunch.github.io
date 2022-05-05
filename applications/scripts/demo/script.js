@@ -258,10 +258,14 @@ function draw(){
         strokeWeight(1)
         ellipse(width - width/4, width/4, 2 * radius, 2 * radius)
         for(let i = 0; i < intervals.length; i++){
-            stroke(200)
-            strokeWeight(1)
             if (selected == - 1 || selected == i){
                 intervals[i].drawArc([width - width/4, width/4], radius, selected == i)
+            }
+        }
+        if (selected != -1){
+            // Draw the images that the selected node contains
+            for(let j = 0; j < Object.keys(graph[selected]).length; j++){
+                intervals[Object.keys(graph[selected])[j]].drawArcImage(graph[selected][Object.keys(graph[selected])[j]], [width - width/4, width/4], radius)
             }
         }
     }

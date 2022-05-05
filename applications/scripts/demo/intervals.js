@@ -70,11 +70,17 @@ class Interval {
         }
     }
 
-    drawArc(center, radius, color, bold = false){
+    drawArc(center, radius, color, bold = false, image = false){
         // Draw the arc version of the interval to the canvas with a specified center and radius
-        stroke(color[0], color[1], color[2])
-        strokeWeight(7 + 5 * bold)
-        arc(center[0], center[1], 2 * radius, 2 * radius, this.a * 2, this.b * 2)
+        if (image == true){
+            stroke(255)
+            strokeWeight(7)
+            arc(center[0], center[1], 2 * radius, 2 * radius, this.a * 2, this.b * 2)
+        } else {
+            stroke(color[0], color[1], color[2])
+            strokeWeight(7 + 5 * bold)
+            arc(center[0], center[1], 2 * radius, 2 * radius, this.a * 2, this.b * 2)
+        }
     }
 
     getImage(matrix){
@@ -146,7 +152,7 @@ class DisconnectedInterval {
             images.push(this.components[i].getImage(matrix))
         }
         for(let i = 0; i < images.length; i++){
-            images[i].drawLine(intervalHeight, this.color, bold = false, image = true)
+            images[i].drawArc(center, radius, this.color, bold = false, image = true)
         }
     }
 }
