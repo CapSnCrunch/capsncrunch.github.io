@@ -1,1 +1,1 @@
-capsncrunch.github.io is my personal website. Look there for my current research, projects, and occassional articles!
+capsncrunch.github.io is my academic blog. Look there for my current research, projects, and occassional articles!
