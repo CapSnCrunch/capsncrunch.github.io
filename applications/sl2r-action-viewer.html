@@ -8,6 +8,17 @@
     <link rel = 'stylesheet' href = '../styles.css'>   
     <script src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/nicolaspanel/numjs@0.15.1/dist/numjs.min.js"></script>
+    <script id = 'MathJax-script' async src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-K4LP8WXGLP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-K4LP8WXGLP');
+    </script>
   </head>
   <body>
     <div id = 'header'>
@@ -22,22 +33,26 @@
       <a href = '../contact.html'>Contact</a>
     </div>
     <div class = '' style='margin: 1rem auto; max-width: 1000px;'>
-        <div class = 'center'>
-            <h2>SL(2,R) Action Viewer</h2>
-            <h3><strong><a href='ping-pong-patches.html'><</a>&emsp; 5 / 5 / 22 &emsp;</strong></h3>
-            <div id = 'canvas' style = 'padding: 0; margin: auto; margin-top: 2rem; display: block; width: 1000;'>
-              <script src = 'scripts/demo/colors.js'></script>
-              <script src = 'scripts/demo/intervals.js'></script>
-              <script src = 'scripts/demo/graphs.js'></script>
-              <script src = 'scripts/demo/action.js'></script>
-            </div>
-            <div style = 'text-align: left;'>
-              <h3>
-              </h3>
-          </div>
+      <div class = 'center'>
+        <h2>SL(2,R) Action Viewer</h2>
+        <h3><strong><a href='ping-pong-patches.html'><</a>&emsp; 5 / 5 / 22 &emsp;</strong></h3>
+        <div id = 'canvas' style = 'padding: 0; margin: auto; margin-top: 2rem; display: block; width: 1000;'>
+          <script src = 'scripts/demo/colors.js'></script>
+          <script src = 'scripts/demo/intervals.js'></script>
+          <script src = 'scripts/demo/graphs.js'></script>
+          <script src = 'scripts/demo/action.js'></script>
         </div>
-        <br>
-
+        <br/>
+        <div style = 'text-align: left;'>
+          <h3>The letters in the demo above label the <math><mi>S</mi><msub><mi>L</mi><mn>2</mn></msub><mo>(</mo><mi>&#x211D;</mi><mo>)</mo></math> matrices representing a few different
+          groups mentioned in another demo I have <a href='/applications/ping-pong-patches.html'>here</a>. The circle on the left represents <math><mi>&#x211D;</mi><msup><mi>P</mi><mn>1</mn></msup></math>
+          and the circle on the right is the image of <math><mi>&#x211D;</mi><msup><mi>P</mi><mn>1</mn></msup></math> under the selected matrix.</h3>
+          <h3>Some interesting things to notice are that the matrices representing the surface group heavily compress <math><mi>&#x211D;</mi><msup><mi>P</mi><mn>1</mn></msup></math>
+          and the matrices representing the triangle group are orientation reversing.</h3>
+          <h3>If you want to learn all the details behind this demo and its use in my work at the Texas Experimental Geometry Lab, read my groups detailed report 
+          <a href='https://sites.cns.utexas.edu/geometry_lab/background-2'>here</a>!</h3>
+        </div>
+      </div>
      </div>
     <div id = 'footer'></div>
   </body>

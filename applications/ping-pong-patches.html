@@ -33,22 +33,46 @@
       <a href = '../contact.html'>Contact</a>
     </div>
     <div class = '' style='margin: 1rem auto; max-width: 1000px;'>
-        <div class = 'center'>
-            <h2>Ping Pong Patches</h2>
-            <h3><strong><a href='pareidolic-painting.html'><</a>&emsp; 4 / 26 / 22 &emsp;<a href='sl2r-action-viewer.html'>></a></strong></h3>
-            <div id = 'canvas' style = 'padding: 0; margin: auto; margin-top: 2rem; display: block; width: 1000;'>
-              <script src = 'scripts/demo/colors.js'></script>
-              <script src = 'scripts/demo/intervals.js'></script>
-              <script src = 'scripts/demo/graphs.js'></script>
-              <script src = 'scripts/demo/main.js'></script>
-            </div>
-            <div style = 'text-align: left;'>
-              <h3>
-              </h3>
-          </div>
+      <div class = 'center'>
+        <h2>Ping Pong Patches</h2>
+        <h3><strong><a href='pareidolic-painting.html'><</a>&emsp; 4 / 26 / 22 &emsp;<a href='sl2r-action-viewer.html'>></a></strong></h3>
+        <div id = 'canvas' style = 'padding: 0; margin: auto; margin-top: 2rem; display: block; width: 1000;'>
+          <script src = 'scripts/demo/colors.js'></script>
+          <script src = 'scripts/demo/intervals.js'></script>
+          <script src = 'scripts/demo/graphs.js'></script>
+          <script src = 'scripts/demo/main.js'></script>
         </div>
-        <br>
-
+        <br/>
+        <div style = 'text-align: left;'>
+          <h3> The demo above is a sample of my work in the <a href='https://sites.cns.utexas.edu/geometry_lab/home'>Texas Experimental Geometry Lab</a>. The goal of our work in this lab is to algorithmically find
+            'computational proofs' to certain problems in <a href='https://en.wikipedia.org/wiki/Representation_theory'>Representation Theory</a>. In particular, for a given group presentation and its representation in
+            <math><mi>S</mi><msub><mi>L</mi><mn>2</mn></msub><mo>(</mo><mi>&#x211D;</mi><mo>)</mo></math>, we want to find a set of 'valid intervals' in <math><mi>&#x211D;</mi><msup><mi>P</mi><mn>1</mn></msup></math>
+            such that the <a href='https://en.wikipedia.org/wiki/Ping-pong_lemma'>Ping Pong Lemma</a> guarantees the representation is faithful.
+          </h3>
+          <h3>Unfortunately, a detailed explanation will require quite a bit of background if you're unfamiliar with representation theory. If this is you, feel free to skim through this section, but it may not make a ton of sense. If you'd like to 
+            catch up, you can try reading some of my other articles on <a href='../articles/the_ping_pong_lemma.html'>The Ping Pong Lemma</a>, <a href='../articles/ping_pong_ii_automatic_structures.html'>Automatic Structures</a>,
+            and <a href='https://sites.cns.utexas.edu/geometry_lab/background-2'>The Project as a Whole</a>.
+          </h3>
+          <h3><strong>Understanding the Demo</strong></h3>
+          <h3><u>On the left</u> you'll find the geodesic automata which represent each of three different groups which are listed below:</h3>
+          <h3>&ensp; Free Product of Cyclic Groups of Orders 2 and 3: <math><mo>&#x3008;</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo>|</mo><msup><mi>a</mi><mn>2</mn></msup><mo>=</mo><msup><mi>b</mi><mn>3</mn></msup><mo>=</mo><mn>1</mn><mo>&#x27E9;</mo></math></h3>
+          <h3>&ensp; (3,3,4) Triangle Group <math><mo>&#x3008;</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo>,</mo><mi>c</mi><mo>|</mo><msup><mi>a</mi><mn>2</mn></msup><mo>=</mo><msup><mi>b</mi><mn>2</mn></msup><mo>=</mo><msup><mi>c</mi><mn>2</mn></msup><mo>=</mo><mn>1</mn>
+            <mo>,</mo><msup><mrow><mo>(</mo><mi>a</mi><mi>b</mi><mo>)</mo></mrow><mn>3</mn></msup><mo>=</mo><msup><mrow><mo>(</mo><mi>a</mi><mi>c</mi><mo>)</mo></mrow><mn>3</mn></msup><mo>=</mo><msup><mrow><mo>(</mo><mi>c</mi><mi>b</mi><mo>)</mo></mrow><mn>3</mn></msup><mo>=</mo><mn>1</mn><mo>&#x27E9;</mo></math></h3>
+          <h3>&ensp; Surface Group: <math><mo>&#x3008;</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo>,</mo><mi>c</mi><mo>,</mo><mi>d</mi><mo>|</mo><mrow><mi>a</mi><mi>d</mi><msup><mi>c</mi><mn>-1</mn></msup><mi>b</mi><msup><mi>a</mi><mn>-1</mn></msup></mrow><msup><mi>d</mi><mn>-1</mn></msup><mi>c</mi><msup><mi>b</mi><mn>-1</mn></msup>
+            <mo>=</mo><mn>1</mn><mo>&#x27E9;</mo></math></h3>
+          <h3>You can hover over nodes of this graph to see the outgoing directed edges and their labels. (For the surface group, capital labels represent the inverse of a generator).</h3>
+          <h3><u>On the right</u> you'll find the valid intervals of <math><mi>&#x211D;</mi><msup><mi>P</mi><mn>1</mn></msup></math> that our algorithm was sucessfully able to find. The main condition of the theorem we use here requires that
+          when we have an edge exiting from a node, the interval associated to that node must contain the image of the node which the edge enters under the <math><mi>S</mi><msub><mi>L</mi><mn>2</mn></msub><mo>(</mo><mi>&#x211D;</mi><mo>)</mo></math>
+          which corresponds to the label of the edge. A mouthful, I know. To get a feel for what is happening, hover over the nodes on the left to see which images they need to contain.</h3>
+          <h3>There are two ways to view the intervals on the right; the line version, and the circle version of <math><mi>&#x211D;</mi><msup><mi>P</mi><mn>1</mn></msup></math>. They both display the same information, but when there are many intervals we need to display
+          (like for the surface group), its useful to display each of these on separate copies of <math><mi>&#x211D;</mi><msup><mi>P</mi><mn>1</mn></msup></math> which we cut and layout in rows.</h3>
+          <h3>To get a better idea of how the actions of the <math><mi>S</mi><msub><mi>L</mi><mn>2</mn></msub><mo>(</mo><mi>&#x211D;</mi><mo>)</mo></math> we're using on <math><mi>&#x211D;</mi><msup><mi>P</mi><mn>1</mn></msup></math> are working, checkout my other demo <a href='../applications/sl2r-action-viewer.html'>SL(2,R) Action Viewer.</a></h3>
+        </div>
+        <br/>
+        <div style = 'text-align: center;'>
+          <h3>Have fun exploring!</h3>
+        </div>
+      </div>
      </div>
     <div id = 'footer'></div>
   </body>
