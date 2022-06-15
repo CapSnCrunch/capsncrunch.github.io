@@ -35,7 +35,7 @@
     <div class = 'content'>
         <div class = 'center'>
             <h2>Web Dev Snapshot: Building an Ecommerce Site</h2>
-            <h3><strong><a href='elementary_not_easy_irrationality_of_pi.html'><</a> &emsp; Still writing ... &emsp; </strong></h3>
+            <h3><strong><a href='elementary_not_easy_irrationality_of_pi.html'><</a> &emsp; 6 / 14 / 22 &emsp; </strong></h3>
         </div>
         <div style = 'text-align: left;'>
           <h3>It's been a few months since I've had the chance to write an article. I did several things this past semester including operating math club, diving deeper into the Russian
@@ -109,15 +109,41 @@
           styles which probably could have been avoided if we planned out what would work best on paper first.
           </h3>
 
-          <h3><u>React for the Frontend</u>:</h3>
+          <h3><u>React for the Frontend</u>: React was great throughout the project. Components were fairly reusable during the project which made the process much faster so we could get to a phase where we could test things out with real users.
+          The only realy downside we experienced with using React itself was the amount of bloat that came with using a big framework. Those who have used it before know that node modules are a huge mess, and we ended up installing tons of libraries for
+          styling that were tough to keep track of.</h3>
 
-          <h3><u>Firebase for the "Backend"</u>:</h3>
+          <h3>The best styling tool for creating the site quickly in my opinion was <u><a href = 'https://tailwindcss.com/'>Tailwind</a></u>, which let us work our styling into the JSX itself. I ended up using this for a few more projects since then as its
+          great for fast prototyping, but I think for larger, more professional projects in the future, I'll want to have a better way of organizing my CSS than inline class names.</h3>
 
-          <h3><u>Netlify for Deployment</u>:</h3>
+          <h3>Lastly, as I mentioned in the organization section, our components ended up being highly coupled and honestly pretty gross to deal with. Looking back, this definitely could have been solved with a lot more up-front planning.</h3>
 
-          <h3><strong>My upcoming goals</strong>:</h3>
+          <h3><u>Firebase for the "Backend"</u>: I say "backend" here in quotes because Firebase really doesn't give you all the functionality you would want in a backend. Well at least not for free. My primary complaint is that there is no method for 
+          disabling functionality once your budget has been surpassed. This could easily be built into the system but wasn't - it's pretty clear they must make some money off of people this way.</h3>
 
-          <h3></h3>
+          <h3>Additionaly, there just wasn't a lot of functionality for certain queries we were wanting to use. You can't use <a href = 'https://firebase.google.com/docs/firestore/query-data/queries'>compound queries</a> for documents with multiple 'where' filters, 'array-contains' only supports up to 10 results,
+          and any sort of text search needed some expensive external libraries. Perhaps some of these issues could also have been adressed in a more detailed system design, but overall, using Firebase wasn't a great experience other than that it 
+          was quick to set up.</h3>
+
+          <h3>I may use it again in the future, but only for small projects and prototypes.</h3>
+
+          <h3><u>Netlify for Deployment</u>: Netlify is a great service for free website deployment. It's not hard to replace the auto-generated domain name with a custom one and you can just point the service to an existing GitHub repo. No bad experiences here,
+          but I think I'd like to try testing it out along with a test suite or some other options like Heroku and Vercel.</h3>
+
+          <h3><strong>My upcoming goals</strong></h3>
+            
+          <h3>Reflecting on some of my experiences with Layolay, I've decided to try and focus on the following topics and technologies in the next few months:</h3>
+
+          <h3><u>Custom Backends</u>: I'm already looking into some options for making my own backends. I considered Express as its fairly popular, but I think I will focus on learning <u><a href = 'https://www.djangoproject.com/'>Django</a></u> since my primary coding experience is with Python.</h3>
+
+          <h3><u>System Design</u>: The largest issue with Layolay has been organization of our components and database. I plan on learning some techniques for planning out these architectures and putting them to practice.</h3>
+
+          <h3><u>Testing</u>: We neglected any sort of official testing almost entirely during our project. Learning either <u><a href = 'https://jestjs.io/'>Jest</a></u> or the testing built into Django is an imporant next step for me.</h3>
+
+          <h3><u>Better Styling</u>: This is a pretty general topic, but my goal is to learn things like <u><a href = 'https://sass-lang.com/'>Sass</a></u> and start researching some general design advice.</h3>
+
+          <h3>With these in mind, some books on hand (I'm already almost done with <a href = 'https://pragprog.com/titles/tpp20/the-pragmatic-programmer-20th-anniversary-edition/'>The Pragmatic Programmer</a>), and a strong motivation to make more projects, I'm looking forward to continuing learning 
+            through the rest of the year, and can't wait to report back with what I've accomplished. Look forward to soom articles on more fun topics than this later in summer!</h3>
         </div>
      </div>
     <div id = 'footer'></div>
