@@ -3,23 +3,23 @@ body {
     /*background-color: #F2F2F2;*/
     background-color: #cdf5b0;
     align-items: center;
-    height: 100%;
+    height: 16px;
 }
 
 h1 {
-    font-size: 200%;
+    font-size: 32px;
     font-family: 'Ubuntu', sans-serif;
     color: #1C1C1C;
 }
 
 h2 {
-    font-size: 130%;
+    font-size: 22px;
     font-family: 'Ubuntu', sans-serif;
     color: #1C1C1C;
 }
 
 h3 {
-    font-size: 100%;
+    font-size: 16px;
     font-family: 'Ubuntu', sans-serif;
     font-weight: normal;
     color: #1C1C1C;
@@ -27,14 +27,14 @@ h3 {
 }
 
 h4 {
-    font-size: 75%;
+    font-size: 12px;
     font-family: 'Ubuntu', sans-serif;
     font-weight: normal;
     color: #1C1C1C;
 }
 
 summary {
-    font-size: 100%;
+    font-size: 16px;
     font-family: 'Ubuntu', sans-serif;
     font-weight: normal;
     color: #1C1C1C;
@@ -43,7 +43,7 @@ summary {
 }
 
 a {
-    font-size: 100%;
+    font-size: 16px;
     font-family: 'Ubuntu', sans-serif;
     /*color: #15795B;*/
     color: #0e9e73;
@@ -51,17 +51,17 @@ a {
 }
 
 button {
-    font-size: 100%;
+    font-size: 16px;
     font-family: 'Ubuntu', sans-serif;
     /*color: #15795B;*/
     color: #1C1C1C;
     background-color: #D6F5AE;
     text-decoration: none;
     border: none;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 button:hover {
@@ -75,7 +75,7 @@ button:hover {
 }
 
 li {
-    font-size: 100%;
+    font-size: 16px;
     font-family: 'Ubuntu', sans-serif;
     font-weight: normal;
     color: #1C1C1C;
@@ -83,23 +83,22 @@ li {
 }
 
 #header {
-    margin: 1.5rem auto;
+    margin: 20px auto;
 }
 
 #topbar {
     margin: auto;
     width: 50%;
-    max-width: 950px;
-    padding: 0.5rem 0rem;
+    padding: 5px 0;
     display: flex;
     justify-content: center;
 }
 
 #topbar a {
-    font-size: 110%;
+    font-size: 18px;
     font-family: 'Ubuntu', sans-serif;
-    margin: 0rem 1rem;
-    padding: 0.5rem 0.5rem;
+    margin: 0 20px;
+    padding: 5px 10px;
     text-decoration: none;
     color: #1C1C1C;
     /*box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
@@ -115,27 +114,27 @@ li {
 }
 
 #apps a {
-    display:inline-block;
+    display: inline-block;
     width: 100%;
     height: 100%;
-    font-size: 100%;
+    font-size: 16px;
     font-family: 'Ubuntu', sans-serif;
     text-decoration: none;
     color: #1C1C1C;
 }
 
-#apps th {
-    width: 33%;
-    font-size: 100%;
+#apps div {
+    flex: 1 0 25%;
+    font-size: 16px;
     font-family: 'Ubuntu', sans-serif;
-    margin: 0rem 1rem;
-    padding: 1rem 1rem;
+    padding: 10px 10px;
     outline-width: 1px;
     outline-style: dashed;
     outline-color: #15795B;
+    text-align: center;
 }
 
-#apps th:hover {
+#apps div:hover {
     background-color: #C6E59E;
     /*border-radius: 5%;*/
     cursor: pointer;
@@ -146,11 +145,11 @@ li {
 }
 
 #footer {
-    padding: 1rem 0.5rem;
+    padding: 10px 5px;
 }
 
 .content {
-    margin: 1rem auto;
+    margin: 10px auto;
     max-width: 850px;
 }
 

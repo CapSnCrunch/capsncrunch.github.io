@@ -35,50 +35,65 @@
       <div style = 'text-align: center;'>
         <h3>This is where I house all of my web apps, artwork, smaller projects, and whatever else seems reasonable to put here.</h3>
       </div>
-      <table id = 'apps' style = 'width: 100%;'>
-        <tr>
-          <th onclick = "location.href = 'applications/hitomezashi-stitching.html';">
-            <h3><strong>Hitomezashi Stitches</strong></h3>
-            <h4>Japanese stitching technique and an online tool I made for pattern making.</h4>
-            <h4><strong>(12 / 9 / 21)</strong></h4>
-          </th>
-          <th onclick = "location.href = 'applications/robo-rosewater.html';">
-            <h3><strong>Robo Rosewater</strong></h3>
-            <h4>Online database I made for AI generated Magic the Gathering cards.</h4>
-            <h4><strong>(12 / 26 / 21)</strong></h4>
-          </th>
-          <th onclick = "location.href = 'applications/pareidolic-painting.html'">
-            <h3><strong>Pareidolic Painting</strong></h3>
-            <h4>A fun form of mix media artwork I like to mess around with.</h4>
-            <h4><strong>(2 / 19 / 22)</strong></h4>
-          </th>
-        </tr>
-        <tr>
-          <th onclick = "location.href = 'applications/ping-pong-patches.html'">
-            <h3><strong>Ping Pong Patches</strong></h3>
-            <h4>Examples of 'computational proofs' found by an algorithm I wrote for a research group.</h4>
-            <h4><strong>(4 / 26 / 22)</strong></h4>
-          </th>
-          <th onclick = "location.href = 'applications/sl2r-action-viewer.html'">
-            <h3><strong>SL(2,R) Action Viewer</strong></h3>
-            <h4>Visualization tool for actions of special linear matrices on real projective space.</h4>
-            <h4><strong>(5 / 5 / 22)</strong></h4>
-          </th>
-          <th onclick = "location.href = 'applications/json2yaml.html'">
-            <h3><strong>json2yaml</strong></h3>
-            <h4>Tool for converting between the JSON and YAML data formats.</h4>
-            <h4><strong>(5 / 30 / 22)</strong></h4>
-          </th>
-        </tr>
-        <tr>
-          <th onclick = "location.href = 'applications/book-list.html'">
-            <h3><strong>My Book List</strong></h3>
-            <h4>Examples of 'computational proofs' found by an algorithm I wrote for a research group.</h4>
-            <h4><strong>(6 / 15 / 22)</strong></h4>
-          </th>
-        </tr>
-      </table>
+      <div id = 'apps' style="display: grid; width: 100%;">
+        <div onclick = "location.href = 'applications/hitomezashi-stitching.html';">
+          <h3><strong>Hitomezashi Stitches</strong></h3>
+          <h4>Japanese stitching technique and an online tool I made for pattern making.</h4>
+          <h4><strong>(12 / 9 / 21)</strong></h4>
+        </div>
+        <div onclick = "location.href = 'applications/robo-rosewater.html';">
+          <h3><strong>Robo Rosewater</strong></h3>
+          <h4>Online database I made for AI generated Magic the Gathering cards.</h4>
+          <h4><strong>(12 / 26 / 21)</strong></h4>
+        </div>
+        <div onclick = "location.href = 'applications/pareidolic-painting.html'">
+          <h3><strong>Pareidolic Painting</strong></h3>
+          <h4>A fun form of mix media artwork I like to mess around with.</h4>
+          <h4><strong>(2 / 19 / 22)</strong></h4>
+        </div>
+        <div onclick = "location.href = 'applications/ping-pong-patches.html'">
+          <h3><strong>Ping Pong Patches</strong></h3>
+          <h4>Examples of 'computational proofs' found by an algoridivm I wrote for a research group.</h4>
+          <h4><strong>(4 / 26 / 22)</strong></h4>
+        </div>
+        <div onclick = "location.href = 'applications/sl2r-action-viewer.html'">
+          <h3><strong>SL(2,R) Action Viewer</strong></h3>
+          <h4>Visualization tool for actions of special linear matrices on real projective space.</h4>
+          <h4><strong>(5 / 5 / 22)</strong></h4>
+        </div>
+        <div onclick = "location.href = 'applications/json2yaml.html'">
+          <h3><strong>json2yaml</strong></h3>
+          <h4>Tool for converting between the JSON and YAML data formats.</h4>
+          <h4><strong>(5 / 30 / 22)</strong></h4>
+        </div>
+        <div onclick = "location.href = 'applications/book-list.html'">
+          <h3><strong>My Book List</strong></h3>
+          <h4>A running list of books I'm reading.</h4>
+          <h4><strong>(6 / 15 / 22)</strong></h4>
+        </div>
+      </div>
     </div>
     <div id = 'footer'></div>
   </body>
 </html>
+
+<style>
+  @media only screen and (max-width: 600px) {
+    #apps {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media only screen and (min-width: 601px) and (max-width: 960px) {
+    #apps {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media only screen and (min-width: 961px) {
+    #apps {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
+
+</style>
