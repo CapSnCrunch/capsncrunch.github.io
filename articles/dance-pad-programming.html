@@ -35,25 +35,129 @@
     <div class = 'content'>
         <div class = 'center'>
             <h2>Dance Pad Programming</h2>
-            <h3><strong><a href='building-an-ecommerce-website.html'><</a>&emsp; 11 / 14 / 22 &emsp;</strong></h3>
+            <h3 style="margin-top: -5px;"><strong><a href='building-an-ecommerce-website.html'><</a>&emsp; 11 / 14 / 22 &emsp;</strong></h3>
+            <h4 style="font-size: 14px; margin-top: -5px;">0 min read</h4>
         </div>
         <div style = 'text-align: left;'>
           <h3>I looked back at my page recently and realized that my last few articles have been following a fibonacci pattern in how many months apart I've written them. 
-            I just started a job at <a href = 'https://www.charterup.com/'>CharterUP</a> a few months ago and have been a bit too busy to work on all my personal projects,
+            I just started a job at <a href = 'https://www.charterup.com/' target="_blank">CharterUP</a> a few months ago and have been a bit too busy to work on all my personal projects,
             but I figured I have to at least preserve this pattern if I can.</h3>
             <h3>For today's article, I'm going back to a project I started back in July: creating a custom 'keyboard' for my computer using a 
-              <a href = 'https://www.amazon.com/gp/product/B00FJ2KTXC/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1'>dancepad</a> I ordered on Amazon.
+              <a href = 'https://www.amazon.com/gp/product/B00FJ2KTXC/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1' target="_blank">dancepad</a> I ordered on Amazon.
               To make the article a bit more interesting, I'm going to generalize it away from dancepads specifically and talk about how you can turn any
               USB device in general into a custom peripheral for your computer!</h3>
           <h3><strong>A Quick Note on USB Safety</strong></h3>
+          <h3>Before I get into an article on how to read USB data and program your own input devices, its important to understand the potential dangers of trying this with any old USB device you find. 
+            You may already be aware that there a number of ways plugging in a USB device can ruin your computer, or even worse, install malware that hides inside it. Google's cybersecurity 
+            <a href="https://www.youtube.com/watch?v=TusQWn2TQxQ" target="_blank">Red Team</a> was able to 'steal' a significant amount of information about Google Glass in a test of their systems vulnerabilities 
+            all starting with a malicious USB plasma ball.</h3>
+          <h3>So before you decide on a device to follow along with, be sure its one you can trust. Nothing is going to be 100% safe, but its always a good idea to make sure the vendor you purchased your
+            device is trustworthy and even possibly plugging it in to an old laptop before using it on your main computer to check its behavior.</h3>
+          <h3>With that out of the way, lets get started!</h3>
+
           <h3><strong>USB Background</strong></h3>
+          <h3>The Universal Serial Bus (USB) is an industry standard for cable, connection, and communication protocol between peripherals and computers. All USBs plugged into your computer are identified 
+            by a <em>VID / PID</em> combination assigned by the <a href="https://www.usb.org/" target="_blank">USB-IF</a>.</h3>
+          <ul>
+            <li><strong>VID:</strong> Vendor IDs are 16-bit numbers unique to companies / manufacturers (typically of the form 0x####)</li>
+            <li><strong>PID:</strong> Product IDs are 16-bit numbers assigned by the company which are unique to each device they produce (typically of the form 0x####)</li>
+            <li><strong>USB-IF:</strong> The USB Implementers Forum is a non-profit corporation which maintains the USB standard by overseeing the development of USB devices</li>
+          </ul>
+          <h3>These IDs will be important in both telling our program which device to listen for input from and also telling our computer to allow interfacing with this device manually. To find the VID and PID for your USB peripheral, 
+          look through the Device Manager on Windows or System Information on Mac. If you get stuck you can look 
+          <a href="https://kb.synology.com/en-ph/DSM/tutorial/How_do_I_check_the_PID_VID_of_my_USB_device#:~:text=To%20find%20PID%20%26%20VID%20on%20Mac%3A,view%20its%20PID%20and%20VID." target="_blank">here</a>.</h3>
+          <h3>USBs are laid out as a collection of <em>configurations</em> each of which may have any number of <em>interfaces</em> which are made up of any number of <em>endpoints</em>. On a basic level each layer is responsible for the following:</h3>
+          <ul>
+            <li><strong>Configurations:</strong> Define the main functionality of the device (specific config is selected by the device driver)</li>
+            <li><strong>Interfaces:</strong> Typically one-to-one with device functions and describe data transfer requirements for the function it is associated with</li>
+            <li><strong>Endpoints:</strong> Buffer on the hardware itself which can send or recieve data
+              <ul>
+                <li><strong>Control Endpoints:</strong> Bidirectional data transfer used to obtain device info and handle configuration (at least one is required and is always set at address 0)</li>
+                <li><strong>Data Endpoints:</strong> Set to either IN or OUT relative to the host</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <br />
+        <div style = 'display: flex; justify-content: center;'>
+          <img src = 'resources/usb-layout.png' width = 500px>
+        </div>
+        <div style = 'text-align: center;'>
+          <h4>USB Device Layout diagram from Windows</h4>
+          <br>
+        </div>
+        <div>
           <h3><strong>Reading USB Data with Python</strong></h3>
+          <h3>For reading the stream of USB data from our device, we can use the python usb library <a href = 'https://github.com/walac/pyusb/blob/master/docs/tutorial.rst' target="_blank">libusb</a>. It's possible that the drivers on your
+          device are not compatible with this library. In this case, you can use <a href="https://zadig.akeo.ie/" target="_blank">Zadig</a> to install the drivers necessary for libusb-based applications.</h3>
+          <h3>Once you've pip-installed libusb and are setup to work with your device, we can start our file as follows:</h3>
+            <h3 class="code"><code>
+              import usb.core <br/>
+              import usb.util <br/>
+              import pygame <em># optional</em><br/>
+              <br/>
+              
+              VID = 0x0079 <em># replace this with your device's vendor id </em><br/>
+              PID = 0x0011 <em># replace this with your device's product id </em><br/>
+              <br/>
+
+              dev = usb.core.find(idVendor = VID, idProduct = PID) <br/>
+              if dev is None: <br/>
+              &emsp;&emsp;raise ValueError('Device not found') <br/>
+                  <br/>
+
+              <em># set the active configuration. With no arguments, the first </em><br/>
+              <em># configuration will be the active one </em><br/>
+              device.set_configuration() <br/>
+              <br/>
+
+              <em># get an endpoint instance </em><br/>
+              config = device.get_active_configuration() <br/>
+              interface = config[(0,0)] <br/>
+              <br/>
+
+              endpoint = usb.util.find_descriptor(<br/>
+                <span style="margin-left: 15px;">interface,</span><br/>
+                <span style="margin-left: 15px;"><em># match the first IN endpoint</em></span><br/>
+                <span style="margin-left: 15px;">custom_match = \</span><br/>
+                <span style="margin-left: 15px;">lambda e: \</span><br/>
+                  <span style="margin-left: 30px;">usb.util.endpoint_direction(e.bEndpointAddress) == \</span><br/>
+                  <span style="margin-left: 30px;">usb.util.ENDPOINT_IN)</span><br/>
+              <br/>
+
+              assert endpoint is not None
+            </code></h3>
+            <h3>This code finds the unique device we are targeting by its IDs, gets the first configuration, interface, and input data endpoint for us to read through.
+              I would encourage printing out some of these entities to get an idea of what sort of properties they contain. A few of them we will use and a few others 
+              may just be interesting to look at.</h3>
+            <h3>From here, we can read the data as follows:</h3>
+            <h3 class="code"><code>
+              endpoint_address = endpoint.bEndpointAddress <br/>
+              packet_size = endpoint.wMaxPacketSize <br/>
+              <br/>
+              while True:<br/>
+                <span style="margin-left: 15px;">for event in pygame.event.get():</span><br/>
+                  <span style="margin-left: 30px;">if event.type == pygame.QUIT:</span><br/>
+                    <span style="margin-left: 45px;">pygame.quit()</span><br/>
+              <br/>
+                <span style="margin-left: 15px;">data = device.read(endpoint_address, packet_size)</span>
+            </code></h3>
+            <h3>You'll notice that I used <a href="https://www.pygame.org/docs/" target="_blank">pygame</a> for my loop since I'll be using it anyways to display my inputs as I test things out.
+            Feel free to set up your loop however you'd like in order to read the data from your device continuously (be sure to add a stop condition!)</h3>
+            <h3>From here, interpreting the input is a matter of testing device functions and looking at the response. Unfortunately, the dance pad I got for $26.99 didn't come with a ton of documentation
+              for this use case, so I had to spend a bit of time messing around with it and figuring out what my stream of data meant in terms of input. </h3>
+            <h3>But alas, once you've decoded your input stream, a world of possibilities is opened to you!</h3>
+
+          <h3><strong>Building out your Custom Peripheral</strong></h3>
+          <h3>My first plan was to build an interface to see what buttons I was pressing and adding a bit of 
+            <a href="https://levelup.gitconnected.com/debounce-in-javascript-improve-your-applications-performance-5b01855e086" target="_blank">debounce</a> to make my inputs a bit cleaner. </h3>
         </div>
         <div style = 'text-align: left;'>
           <h3><strong>Resources</strong></h3>
             <ul>
               <li><a href = 'https://www.cisa.gov/uscert/ncas/tips/ST08-001'>CISA Advice on USB Security</a></li>
-              <li><a href = 'https://libusb.readthedocs.io/en/latest/'>libusb</a> (Python library for interfacing with USB devices)</li>
+              <li><a href = 'https://learn.microsoft.com/en-us/windows-hardware/drivers/usbcon/usb-device-layout'>USB Device Layout</a></li>
+              <li><a href = 'https://github.com/walac/pyusb/blob/master/docs/tutorial.rst'>libusb</a> (Python library for interfacing with USB devices)</li>
             </ul>
           </h3>
         </div>

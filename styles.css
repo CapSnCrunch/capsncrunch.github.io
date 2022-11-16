@@ -1,7 +1,8 @@
 body {
-    /*background-color: #e8e7f7a4;*/
-    /*background-color: #F2F2F2;*/
-    background-color: #cdf5b0;
+    /* background-color: #e8e7f7a4; */
+    /* background-color: #F2F2F2; */
+    /* background-color: #cdf5b0; */
+    background-color: #d6f5af;
     align-items: center;
     height: 16px;
 }
@@ -68,6 +69,11 @@ button:hover {
     background-color: #C6E59E;
     border-radius: 10%;
     cursor: pointer;
+}
+
+.code {
+    padding: 10px;
+    background-color: #bfe591;
 }
 
 .article {
