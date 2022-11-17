@@ -36,7 +36,7 @@
         <div class = 'center'>
             <h2>Dance Pad Programming</h2>
             <h3 style="margin-top: -5px;"><strong><a href='building-an-ecommerce-website.html'><</a>&emsp; 11 / 14 / 22 &emsp;</strong></h3>
-            <h4 style="font-size: 14px; margin-top: -5px;">0 min read</h4>
+            <h4 style="font-size: 14px; margin-top: -5px;">7 min read</h4>
         </div>
         <div style = 'text-align: left;'>
           <h3>I looked back at my page recently and realized that my last few articles have been following a fibonacci pattern in how many months apart I've written them. 
@@ -149,15 +149,49 @@
             <h3>But alas, once you've decoded your input stream, a world of possibilities is opened to you!</h3>
 
           <h3><strong>Building out your Custom Peripheral</strong></h3>
-          <h3>My first plan was to build an interface to see what buttons I was pressing and adding a bit of 
-            <a href="https://levelup.gitconnected.com/debounce-in-javascript-improve-your-applications-performance-5b01855e086" target="_blank">debounce</a> to make my inputs a bit cleaner. </h3>
+          <h3>My plan was to build an interface to see what inputs were being recieved and then adding a bit of 
+            <a href="https://levelup.gitconnected.com/debounce-in-javascript-improve-your-applications-performance-5b01855e086" target="_blank">debounce</a> to make my inputs a bit cleaner. 
+            There was a bit of work to be done to get this window to show on top of the others when I clicked away from it, but you can find my Python solution to that in the resources at the endpoint
+            of the article.</h3>
+          <br/>
+          <br/>
+        </div>
+        <div style = 'display: flex; justify-content: center;'>
+          <iframe width="650" height="365" 
+            frameborder="0"
+            title="Custom PC Peripheral - Dance Pad" frameborder="0"
+            src="https://www.youtube.com/embed/Y5Q5HogJ8bo"
+          >
+          </iframe>
+        </div>
+        <div style = 'text-align: center;'>
+          <h4>Using my under-the-desk dancepad to read a PDF and control a YouTube video</h4>
+          <h4>If you can't see the video, you can watch it <a href="https://www.youtube.com/watch?v=Y5Q5HogJ8bo" target="_blank" style="font-size: 12px;">here</a></h4>
+          <br>
         </div>
         <div style = 'text-align: left;'>
+          <h3>I'd say this first iteration came out quite well. You'll have to excuse the low-quality of the recording, I didn't have a particularly good setup to show you both my window and the buttons
+            I was pressing. For this setup, I used the <a href="https://pypi.org/project/keyboard/" target="_blank">keyboard</a> library to press the arrow keys and space bar in response to the arrow and center
+            tiles of the dancepad. It was useful that this library specifically worked regardless of window focus by default, which wasn't the case with a few of the others I had looked at.</h3>
+          <h3>A few of the other ideas for this that you can try include:</h3>
+          <ul>
+            <li>Generalizing the interface to accomodate different command settings. Some combination of inputs would allow you switch through and lock the device into a different control setting.</li>
+            <li>Using the inputs to control the mouse by lateral movements and clicking.</li>
+            <li>Program inputs to commonly used sequences of characters in a given type setting.</li>
+            <li>Window control (tabbing through screens, opening windows and tabs, etc.)</li>
+            <li>Adding even more peripherals to completely abstract away for the keyboard and mouse (a wheel, gear stick, and dashboard buttons).</li>
+          </ul>
+          <h3>Whatever device you have, there are a million cool ways to personalize it for the use case you have in mind. Now that I've gone through the process of making this one, I'm excited to start collecting
+            some more interesting USB peripherals and completely futurizing my setup! If you have an idea for one or end up building something of your own, please reach out, I'd love to hear about it!
+          </h3>
+          <h3>Until next time!</h3>
           <h3><strong>Resources</strong></h3>
             <ul>
-              <li><a href = 'https://www.cisa.gov/uscert/ncas/tips/ST08-001'>CISA Advice on USB Security</a></li>
-              <li><a href = 'https://learn.microsoft.com/en-us/windows-hardware/drivers/usbcon/usb-device-layout'>USB Device Layout</a></li>
-              <li><a href = 'https://github.com/walac/pyusb/blob/master/docs/tutorial.rst'>libusb</a> (Python library for interfacing with USB devices)</li>
+              <li><a href = 'https://www.cisa.gov/uscert/ncas/tips/ST08-001' target="_blank">CISA Advice on USB Security</a></li>
+              <li><a href = 'https://learn.microsoft.com/en-us/windows-hardware/drivers/usbcon/usb-device-layout' target="_blank">USB Device Layout</a></li>
+              <li><a href = 'https://github.com/walac/pyusb/blob/master/docs/tutorial.rst' target="_blank">libusb</a> (Python library for interfacing with USB devices)</li>
+              <li><a href="https://pypi.org/project/keyboard/" target="_blank">keyboard</a> (Python library for interfacing with keyboards)</li>
+              <li><a href = 'https://github.com/CapSnCrunch/dance-pad' target="_blank">Repository for Dancepad Code</a></li>
             </ul>
           </h3>
         </div>
