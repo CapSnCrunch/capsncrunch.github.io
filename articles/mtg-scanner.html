@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang = 'en'>
+  <head>
+	<meta charset = 'utf-8'>
+	<title>Samuel Perales | Articles</title>
+	<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+	<link href = 'https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap' rel = 'stylesheet'>
+	<link rel = 'stylesheet' href = '../styles.css'>   
+	<script src = 'https://polyfill.io/v3/polyfill.min.js?features=es6'></script>
+	<script id = 'MathJax-script' async src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'></script>
+
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-K4LP8WXGLP"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'G-K4LP8WXGLP');
+	</script>
+
+  </head>
+  <body>
+	<div id = 'header'>
+	  <h1 style = 'text-align: center; margin-bottom: 10px;'> Samuel Perales </h1>
+	  <h2 style = 'text-align: center; margin-top: 0;'> Personal Blog </h2>
+	</div>
+	<div id = 'topbar'>
+	  <a href = '../index.html'>Home</a>
+	  <a href = '../articles.html'><strong>Articles</strong></a>
+	  <a href = '../research.html'>Research</a>
+	  <a href = '../other.html'>Other</a>
+	  <a href = '../contact.html'>Contact</a>
+	</div>
+	<div class = 'content'>
+	  <div class = 'center'>
+			<h2>MTG Scanner</h2>
+			<h3 style="margin-top: -5px;"><strong><a href='dance-pad-programming.html'><</a>&emsp; 12 / 24 / 22 &emsp;</strong></h3>
+			<h4 style="font-size: 14px; margin-top: -5px;">7 min read</h4> 
+			<!-- https://niram.org/read/ -->
+			</div>
+			<div style = 'text-align: left;'>
+			<h3>I recently started looking through my Magic the Gathering cards again while I was unpacking some boxes and realized 
+				just how many I had accumulated over my past 8 years of playing. I thought it would be cool to have some way of sorting it all, and after some research,
+				I did find quite a few impressive options! A couple that stood out included:</h3>
+			<ul>
+				<li><a href='https://www.youtube.com/watch?v=MwwvK4JPdxk' target='_blank'>PhyzBatch-9000</a></li>
+				<li><a href='https://cardcastle.co/cardbot' target='_blank'>CardBot</a></li>
+				<li><a href='https://www.youtube.com/watch?v=8BZzt5UmrsY' target='_blank'>Magic Sorter</a></li>
+			</ul>
+			<h3>All of these were great for some reason or another with some of their main characteristics being speed, capacity, ability to sort foils, etc. However,
+				none of them had one of the main features I would have wanted in a card sorting machine for myself. All of these machines are limited by the fact that they
+				cannot sort on an individual card level. What I mean by this is that they can only sort cards into a preset number of bins which would not allow for things like
+				sorting a stack by value and sorting a stack alphabetically.
+			</h3>
+			<h3>Of course, you can get rough estimates of these by sorting into bins of say $0.00-$0.99, $1.00-$3.00, etc. but I thought it would be interesting to try and make
+				a machine that would be able to do the <em>true</em> type of sortring I'm talking about.
+			</h3>
+			<h3>Researching into some of the mechanics behind this, I understand its a difficult task (the actual sorting will require some pretty smart variation of a
+				<a href='https://en.wikipedia.org/wiki/Pancake_sorting' target='_blank'>pancake sort</a>) but I'd like to start simple by starting on the scanner component itself.
+			</h3>
+
+			<h3><strong>Detecting a Magic Card</strong></h3>
+			<h3>The first step in building such a sorting machine would be a scanner which could detect a magic card and then extract enough information from it to query for 
+				the remaining details. I decided to try my hand at using <a href='https://opencv.org/' target='_blank'>OpenCV</a> through <a href='https://pypi.org/project/opencv-python/'>CV2</a>,
+				a computer vision library in Python.</h3>
+			<h3>To find the card from an image, we use the <a href='https://en.wikipedia.org/wiki/Canny_edge_detector' target='_blank'>Canny Edge Detection</a> algorithm to determine where the borders are.
+				This consists of applying a Gaussian blur to filter the image, setting thresholds for the intensity of the image to cut out any noise, dilating the image (which grows the size of the white regions),
+				and then finding the points and edges which make up the contours in the filtered image. To do this in Python looks something like:</h3>
+
+			<h3 class='code'><code>
+				import cv2<br/>
+				import numpy as np<br/>
+				<br/>
+				camera = cv2.VideoCapture(0)<br/>
+				<br/>
+				def getContours(image, imageContour):<br/>
+				<span style="margin-left: 15px;">contours, hierarchy = cv2.findContours(image, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)</span><br/>
+					<span style="margin-left: 15px;">cv2.drawContours(imageContour, contours, -1, (255, 0, 255), 7)</span><br/>
+					<br/>
+					<span style="margin-left: 15px;">points = []</span><br/>
+					<span style="margin-left: 15px;">for contour in contours:</span><br/>
+					<span style="margin-left: 30px;">perimeter = cv2.arcLength(contour, True)</span><br/>
+						<span style="margin-left: 30px;">approximation = cv2.approxPolyDP(contour, 0.02 * perimeter, True)</span><br/>
+					<br/>
+					<span style="margin-left: 30px;"># Flatten array and get points</span><br/>
+					<span style="margin-left: 30px;">flattenedApprox = approximatthreshold1ion.ravel()</span><br/>
+					<span style="margin-left: 30px;">for i in range(int(len(flattenedApprox) / 2)):</span><br/>
+					<span style="margin-left: 45px;">x = flattenedApprox[2*i]</span><br/>
+						<span style="margin-left: 45px;">y = flattenedApprox[2*i+1]</span><br/>
+						<span style="margin-left: 45px;">points.append([x, y])</span><br/>
+						<br/>
+						<span style="margin-left: 15px;">return points</span><br/>
+					<br/>
+					while(True):<br/>
+					<span style="margin-left: 15px;">success, frame = camera.read()</span><br/>
+						<span style="margin-left: 15px;">baseFrame = frame.copy()</span><br/>
+						<span style="margin-left: 15px;">frameContour = frame.copy()</span><br/>
+						<br/>
+						<span style="margin-left: 15px;">frameBlur = cv2.GaussianBlur(frame, (7, 7), 10)</span><br/>
+						<span style="margin-left: 15px;">frameGray = cv2.cvtColor(frameBlur, cv2.COLOR_BGR2GRAY)</span><br/>
+						<br/>
+						<span style="margin-left: 15px;"># Canny edge detector</span><br/>
+						<span style="margin-left: 15px;">threshold1 = 0, threshold2 = 70</span><br/>
+						<span style="margin-left: 15px;">frameCanny = cv2.Canny(frameGray, threshold1, threshold2)</span><br/>
+						<br/>
+						<span style="margin-left: 15px;">kernel = np.ones((5,5))</span><br/>
+						<span style="margin-left: 15px;">frameDilation = cv2.dilate(frameCanny, kernel, iterations=1)</span><br/>
+						<br/>
+						<span style="margin-left: 15px;">points = getContours(frameDilation, frameContour)</span><br/>
+						<span style="margin-left: 15px;">cv2.imshow('frame', frameContour)</span><br/>
+						<br/>
+						if cv2.waitKey(1) & 0xFF == ord('q'):<br/>
+						<span style="margin-left: 15px;">break</span><br/>
+						<br/>
+						camera.release()<br/>
+						cv2.destroyAllWindows()<br/>
+			</code></h3>
+
+			<h3>This code will continuously read the camera input, blur the image, dilate it, detect the edges, and display them back. It also returns
+				some additional information such as the specific points and perimeter that make up the countour which will be useful for determining the correct
+				contour if there are multiple found in the image and then straightening the detected card outline so that we can better scan it for information.
+			</h3>
+			<h3>By adding one more relatively simple function, we can intake these points from the contour, check that it must be the card (if it has 4 points), and then
+				transform the image to center and straighten the card for easier analysis.
+			</h3>
+
+			<h3 class='code'><code>
+				def straightenImage(imageContour, points):<br/>
+				<span style="margin-left: 15px;">width, height = 336, 468</span><br/>
+				<br/>
+				<span style="margin-left: 15px;">if len(points) != 4:</span><br/>
+				<span style="margin-left: 30px;">return imageContour</span><br/>
+				<span style="margin-left: 15px;">pointsFrom = np.float32(points)</span><br/>
+				<br/>
+				<span style="margin-left: 15px;">if np.linalg.norm(np.array(points[0]) - np.array(points[1])) < 300:</span><br/>
+				<span style="margin-left: 30px;">pointsTo = np.float32([[width,0], [0,0], [0,height], [width,height]])</span><br/>
+				<span style="margin-left: 15px;">else:</span><br/>
+				<span style="margin-left: 30px;">pointsTo = np.float32([[0,0], [0,height], [width,height], [width,0]])</span><br/>
+				<br/>
+				<span style="margin-left: 15px;">matrix = cv2.getPerspectiveTransform(pointsFrom, pointsTo)</span><br/>
+				<span style="margin-left: 15px;">return cv2.warpPerspective(imageContour, matrix, (width, height))</span><br/>
+			</code></h3>
+			<h3>At this point, running our code gives the following:</h3>
+			<br/>
+			
+			<div style = 'display: flex; justify-content: center;'>
+				<img src = 'resources/card-stabilization.gif' width = 600px>
+			</div>
+			<div style = 'text-align: center;'>
+				<h4>Detecting and centering various magic cards with Canny edge detection</h4>
+				<br>
+			</div>
+
+			<h3><strong>Identifying a Magic Card</strong></h3>
+			<h3>Now that we can align the card, there are a number of ways we can attempt to identify which card it actually is. The top few options in increasing difficulty of
+				implementation are:
+			</h3>
+			<ul>
+				<li>Image comparison against a database of cards</li>
+				<li><a href='https://en.wikipedia.org/wiki/Optical_character_recognition' target='_blank'>Optical Character Recognition (OCR)</a></li>
+				<li>Machine Learning</li>
+			</ul>
+			<h3>For the sake of moving quickly to make a prototype, I went with the first option.</h3>
+			<h3>In order to compare two images, there are also a few different approaches. The naive approach might be to use the 
+				<a href='https://en.wikipedia.org/wiki/Mean_squared_error' target='_blank'>Mean Squared Error (MSE)</a>, which can vary between 0 and infinity
+				based on the difference between our detected image and a saved copy of potential card from a database. Instead, I settled on using the
+				<a href='https://en.wikipedia.org/wiki/Structural_similarity' target='_blank'>Structural Similarity Index Measure (SSIM)</a> which is more meant for
+				image comparison than MSE and only varies between -1 and 1 (with 1 meaning perfect similarity between the images).
+			</h3>
+			<h3>Scanning all the cards we want to check against and taking the highest SSIM values, we get a ranked list of estimates for which card we are detecting.</h3>
+			<br/>			
+
+			<div style = 'display: flex; justify-content: center;'>
+				<img src = 'resources/identify-card-name.gif' width = 500px>
+			</div>
+			<div style = 'text-align: center;'>
+				<h4>Displaying the highest SSIM value card name after comparing our aligned image against a local database</h4>
+				<br/>
+			</div>
+
+			<h3>There are a few issues with the approach. The first is that there are around 50,000+ unique magic cards, which would make this procedure incredibly slow.
+				Additionally, there are a number of cards which, although they look similar, can have very different prices and information. SSIM would have a hard time
+				distinguishing between very similar images and may not be reliable in these sort of situations. Take for example, these two:
+			</h3>
+
+			<br/>
+			<div style = 'display: flex; justify-content: center;'>
+				<img src = 'resources/llanowar-elves.png' width = 600px>
+			</div>
+			<div style = 'text-align: center;'>
+				<h4>Reprints of the card <em>Llanowar Elves</em> which are from different sets</h4>
+				<br/>
+			</div>
+
+			<h3>Although what we have works for now, this identification step would be much more reliable and efficient if swapped out with either OCR or machine learning in the future.
+				In that case that we use machine learning, it might be smart to have separate neural networks for identifying the set symbol in the center right of the card and then using that to
+				narrow down the possibilites to only a few hundred cards for a smaller neural net to distinguish between.
+			</h3>
+
+			<h3><strong>Sorting a Magic Card</strong></h3>
+			<h3>Most of this first article was meant as an initial attempt at building just the magic card scanner itself. Since I may be working with a friend on the physical device sometime in the near future,
+				I'll just give my initial thoughts on how we might attempt this and then include those details in a follow-up article.
+			</h3>
+			<h3>As for the sorting method, I envisioned needing something along the lines of a modified <a href='https://en.wikipedia.org/wiki/Pancake_sorting' target='_blank'>pancake sort</a> to include multiple stacks
+				and perhaps some pre-scanning of the cards to be sorted in order to optimize the number of steps this would take. This might be difficult however, since finding the optimal steps for a pancake sort is currently
+				an ongoing area of research. In particular, it would be some variation of a <a href='https://dodona.ugent.be/en/activities/189028897/' target='_blank'>burnt pancake sort</a>, which adds the constraint of 'different sides' to the pancakes
+			  (which is important if we want all of the cards to be facing upwards).</h3>
+			<h3>If this proves to be too difficult to implement, we may go the route of sorting cards into bins, feeding them back into the machine, and then resorting to perform a sort of 
+				<a href='https://en.wikipedia.org/wiki/Merge_sort' target='_blank'>merge sort</a>.</h3>
+
+			<h3>To determine the actual values of cards we want to sort based on, we can query the <a href='https://scryfall.com/docs/api'>Scryfall API</a> for any card information we want. For example, if we detect a card to match <em>Rancor</em> with high probability,
+			  we can query by card name to get the most up-to-date pricing, versions, mana cost, card type, etc.</h3>
+
+			<br/>
+			<div style = 'display: flex; justify-content: center;'>
+				<img src = 'resources/display-card-details.gif' width = 500px>
+			</div>
+			<div style = 'text-align: center;'>
+				<h4>Querying Scryfall by card name and displaying basic card details</h4>
+				<br/>
+			</div>
+
+			<h3>Next steps for this project are to improve the identification step and start work on the physical sorting aspect. Look forward to new articles on this throughout the new year as I add to it and refine the idea!</h3>
+
+			<h3>Happy Holidays!</h3>
+
+			<h3><strong>Resources</strong></h3>
+			<ul>
+				<li><a href='https://www.youtube.com/watch?v=sy7dtW8CvQ4' target='_blank'>Comparison of Existing Machines</a> (video by Jack Baumgartel who is doing a custom sorting machine as well)</li>
+				<li><a href='https://www.youtube.com/watch?v=BZGhRSajybk' target='_blank'>Detection and Identification Example</a></li>
+				<li><a href='https://scryfall.com/docs/api' target='_blank'>Scryfall API</a></li>
+				<li><a href='https://github.com/CapSnCrunch/mtg-cv' target='_blank'>Code Repository for MTG CV</a></li>
+				<li><a href='http://www.mathcirclesnm.org/sites/default/files/activities/On%20the%20problem%20of%20sorting%20burnt%20pancakes%20-%20Cohen%20%26%20Blum.pdf' target='_blank'>Article on Sorting Burnt Pancake</a></li>
+			</ul>
+		</div>
+	 </div>
+	<div id = 'footer'></div>
+  </body>
+</html>
