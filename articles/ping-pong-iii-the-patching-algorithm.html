@@ -38,9 +38,58 @@
             <h3 style="margin-top: -5px;"><strong><a href='mtg-scanner.html'><</a>&emsp; 2 / 11 / 23</strong></h3>
             <h4 style="font-size: 14px; margin-top: -5px;">0 min read</h4> 
             <!-- https://niram.org/read/ -->
-            <h3>In progress...</h3>
         </div>
         <div style = 'text-align: left;'>
+          <h3>Back in Spring of 2021, I started working in the <a href="https://sites.cns.utexas.edu/geometry_lab/research" target="_blank">Texas Experimental Geometry Lab</a> (TXGL) at UT Austin.
+            I had worked on research projects before through REUs over the summer, but this was my first experience in a group focused on pure math. We produced a few results over the three semesters I worked with the group
+            and ended our project in the Summer of 2022 when several of us graduated.
+          </h3>
+          <h3>Although we never completed a publication-worthy article, I'd still like to go back and share some of the cool problems I worked on that last semester to finish up my series of articles you can read here:</h3>
+          <ul>
+            <li><a href='the_ping_pong_lemma.html' target='_blank'>The Ping Pong Lemma</a> (5/25/21)</li>
+            <li><a href='ping_pong_ii_automatic_structures.html' target='_blank'>Ping Pong II: Automatic Structures</a> (12/14/21)</li>
+          </ul>
+          <h3>Assuming you're caught up on the first two iterations of the project, I'll start by discussing a visual problem we came across while debugging the algorithm for more complex groups.</h3>
+          <h3><strong>Better RP1 Visualization</strong></h3>
+          <h3>As you'll recall, visualizations of the RP1 intervals for small-ordered cyclic groups were fairly simple; there were only a few intervals and they didn't necessarily overlap very much. However, as we moved onto the (3,4,4) triangle group,
+            we found that making any sort of meaningful image would be more difficult since it would require at least 13 different intervals all overlapping one another. This would especially be an issue for even more complex groups we had in our sights.
+          </h3>
+          <div style = 'display: flex; justify-content: center;'>
+            <img src = 'resources/linear-search.gif' width = 400px>
+          </div>
+          <div style = 'text-align: center;'>
+              <h4>A hard to see representation of a (3,4,4) triangle group</h4>
+              <h4>(13 disconnected, overlapping intervals with similar colors)</h4>
+          </div>
+          <br/>
+          <h3>Luckily, I had just spent my winter break working a lot with color science. I created a tool that I describe in this article on <a href='color_spaces_and_even_color_spacing.html' target='_blank'>Color Spaces and Even Color Spacing</a> which
+          would be able to generate 'perceptually distinct' sets of colors we could use instead of the random colors we had been assigning to intervals previously.</h3>
+          <h3>The team also came up with a better way for viewing individual intervals by splitting them onto separate instances of RP1 (so they wouldn't overlap on the same circle) and then used a line representation of RP1 to stack all of them together nicely.
+            (We briefly played with putting the intervals on concentric copies of RP1, but this made it difficult to see which ones did in fact overlap).
+          </h3>
+          <div style = 'display: flex; justify-content: center;'>
+            <img src = 'resources/concentric-intervals.png' width = 400px>
+          </div>
+          <div style = 'text-align: center;'>
+              <h4>An early test with each disconnected interval displayed on separate concentric copies of RP1</h4>
+          </div>
+          <br/>
+          <div style = 'display: flex; justify-content: center;'>
+            <img src = 'resources/rp1-segments.png' width = 750px>
+          </div>
+          <div style = 'text-align: center;'>
+              <h4>Cleaner representation of a (3,4,4) triangle group with distinct colors and parallel copies of RP1</h4>
+          </div>
+          <br/>
+          <h3>Above is the final visualization tool we landed on to display more complex groups. In the application itself, you can click on the colored bars on the left to highlight where the images of other intervals end up inside of the selected interval
+            under the corresponding action in the group. The number of non-covered images is shown in red on the left and the number of components in each disconnected interval is shown on the right.
+          </h3>
+          <h3>This tool was extremely helpful for debugging and focusing solely on the implementation of our new algorithm. I encourage you to clone the <a href='https://github.com/CapSnCrunch/TXGL' target='_blank'>github repo</a> and try it out for yourself by running the <code>main.py</code> file.</h3>
+          
+          <h3><strong>The Patching Algorithm</strong></h3>
+          <h3>We left off the previous semester with the idea to try a sort of 'patching' technique for the images.</h3>
+
+          <h3><strong>Whats Left</strong></h3>
         </div>
      </div>
     <div id = 'footer'></div>
