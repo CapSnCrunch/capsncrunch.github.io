@@ -36,7 +36,7 @@
         <div class = 'center'>
             <h2>Ping Pong III: The Patching Algorithm</h2>
             <h3 style="margin-top: -5px;"><strong><a href='mtg-scanner.html'><</a>&emsp; 2 / 11 / 23</strong></h3>
-            <h4 style="font-size: 14px; margin-top: -5px;">0 min read</h4> 
+            <h4 style="font-size: 14px; margin-top: -5px;">5 min read</h4> 
             <!-- https://niram.org/read/ -->
         </div>
         <div style = 'text-align: left;'>
@@ -87,9 +87,37 @@
           <h3>This tool was extremely helpful for debugging and focusing solely on the implementation of our new algorithm. I encourage you to clone the <a href='https://github.com/CapSnCrunch/TXGL' target='_blank'>github repo</a> and try it out for yourself by running the <code>main.py</code> file.</h3>
           
           <h3><strong>The Patching Algorithm</strong></h3>
-          <h3>We left off the previous semester with the idea to try a sort of 'patching' technique for the images.</h3>
+          <h3>We left off the previous semester with the idea to try a sort of 'patching' technique for the images. We realized that if each interval needs to contain a certain set of images, the best approach would likely be setting the next iteration of the 
+            interval to the union of all sets which 'barely cover' those images.</h3>
+          <h3>In mathematical terms, if <math><msub><mi>A</mi><mi>k</mi></msub><msub><mi>M</mi><mi>v</mi></msub></math> must be contained in <math><msub><mi>M</mi><mi>u</mi></msub></math> (where
+            <math><msub><mi>M</mi><mi>u</mi></msub></math> and <math><msub><mi>M</mi><mi>v</mi></msub></math> are <math><mi>&#x211D;</mi><msup><mi>P</mi><mn>1</mn></msup></math> intervals associated to nodes <math><mi>u</mi></math> and <math><mi>v</mi></math> of the automatic structure for the group and <math><msub><mi>A</mi><mi>k</mi></msub></math>
+            is the <math><mi>S</mi><msub><mi>L</mi><mn>2</mn></msub><mo>(</mo><mi>&#x211D;</mi><mo>)</mo></math> action associated to the edge of the automata connecting <math><mi>u</mi></math> and <math><mi>v</mi></math>), then we can define the iteration process:
+          </h3>
+          <h3 style="margin-left: 10px;"><math><msup><msub><mi>M</mi><mi>u</mi></msub><mo><mi>i</mi><mo>+</mo><mn>1</mn></mo></msup><mo>=</mo><msup><msub><mi>M</mi><mi>u</mi></msub><mi>i</mi></msup> <mo> &cup; </mo> <msub><mi>N</mi><mi>&epsilon;</mi></msub><mo>(</mo><msub><mi>A</mi><mi>k</mi></msub>
+            <msup><msub><mi>M</mi><mi>v</mi></msub><mi>i</mi></msup><mo>)</mo></math>, where <math><msub><mi>N</mi><mi>&epsilon;</mi></msub><mo>(</mo><mi>X</mi><mo>)</mo><mo>=</mo><mo>{</mo><mi>z</mi><mo>&#x2208;</mo><mi>&#x211D;</mi><msup><mi>P</mi><mn>1</mn></msup><mo>|</mo>
+            <mi>d</mi><mo>(</mo><mi>z</mi><mo>,</mo><mi>X</mi><mo>)</mo><mo><</mo><mi>&epsilon;</mi><mo>}</mo></math></h3>
+          <h3>We can use this method because the generalized ping pong lemma doesn't require subsets to be connected. This has the advantage of expanding only to where we need instead of guessing some amount like with linear and geometric expansion. It does, however, limit the result of the lemma by
+            only guaranteeing that the kernel of the group action is bounded. This means that in addition to finding valid intervals with this method, we need to somehow calculate this bounding value and then check all group actions corresponding to words in the automatic structure up to some length
+            before claiming that the group acts faithfully.
+          </h3>
+          <h3>We managed to compute this value, which is called <math><mi>&lambda;</mi></math>, but the calculation is quite long so I encourage you to either read <a href='resources/txgl-summer-article.pdf' target='_blank'>our article</a> for more details or try running <code>lambda.py</code> in the repository for an example.</h3>
 
           <h3><strong>Whats Left</strong></h3>
+          <h3>The summer following my last semester with TXGL, the team spent some time putting together <a href='resources/txgl-summer-article.pdf' target='_blank'>an article</a> in the hopes of publishing, but unfortunately couldn't complete one in the few months we had. The most immediate step would be to clean up the proofs in this article
+          and do some complexity analysis of the algorithm.</h3>
+          <h3>Beyond this, I'd like to see a version of this algorithm extended to higher dimensions which would require a new way of storing subsets of <math><mi>&#x211D;</mi><msup><mi>P</mi><mn>n</mn></msup></math>. The way I would likely approach this would be to store each as a set of points and then considering the set to be
+          the convex hull of those points. This would make it much easier to take unions of intervals and expand them.</h3>
+          <h3>I'm extremely grateful for the research opportunity provided by <a href = 'https://web.ma.utexas.edu/users/jdanciger/index.html'>Jeff Danciger</a> with TXGL, the help of <a href = 'https://web.ma.utexas.edu/users/weisman/'>Teddy Weisman</a> throughout all three semesters, and my research partners Jordan Grant, Abhay Katyal, and Jeremy Krill. 
+          Working with you all throughout this project was very rewarding and I'm thankful for the experience this gave me with mathematics research now that I've moved out of academia into software development.</h3>
+          
+          <h3><strong>Resources</strong></h3>
+          <ul>
+            <li><a href = 'https://sites.cns.utexas.edu/geometry_lab/ping-pong-patches' target='_blank'>TXGL Project Writeup</a> (Ping Pong Patches)</li>
+            <li><a href = 'resources/txgl-summer-article.pdf' target='_blank'>TXGL Summer Article</a></li>
+            <li><a href = 'https://search.lib.utexas.edu/discovery/fulldisplay?docid=alma991057930394206011&context=L&vid=01UTAU_INST:SEARCH&lang=en&search_scope=MyInst_and_CI&adaptor=Local%20Search%20Engine&tab=Everything&query=any,contains,office%20hours%20with%20a%20geometric%20group%20theorist&offset=0' target="_blank">Office Hours with a Geometric Group Theorist</a></li>
+            <li><a href = 'https://arxiv.org/pdf/0808.0133.pdf' c>Uniformly Hyperbolic Finite-Valued SL(2,R)-Cocycles</a></li>
+            <li><a href = 'https://github.com/CapSnCrunch/TXGL' v>Repository for TXGL Ping Pong</a></li>
+          </ul>
         </div>
      </div>
     <div id = 'footer'></div>
