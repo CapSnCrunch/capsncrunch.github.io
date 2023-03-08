@@ -7,7 +7,7 @@ body {
     height: 16px;
 }
 
-h1 {
+.name {
     font-size: 32px;
     font-family: 'Ubuntu', sans-serif;
     color: #1C1C1C;
