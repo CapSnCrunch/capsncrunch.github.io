@@ -40,6 +40,28 @@
             <!-- https://niram.org/read/ -->
         </div>
         <div style = 'text-align: left;'>
+          <h3>At some point, back in a geometry class in middle or high school, we all learned how to reflect points across lines. We just need to find the line perpendicular to the one we're wanting to reflect across
+            passing through the point we want to reflect, and then get the point the same distance down the line on the other side.
+          </h3>
+          <h3>This isn't terribly hard, but what does it look like to reflect a point across an arbitrary curve instead? What about closed shapes like ellipses? It seems clear that our reflected point should still be along the line
+            orthogonal to the curve, but how far should it be reflected? How would we calculate this? Let's first remind ourselves of a bit a complex analysis before looking at the answer to these questions.
+          </h3>
+
+          <h3><strong>Review of Complex Analysis</strong></h3>
+          <h3>The complex plane is defined as <math><mi>&#x2102;</mi><mo>:</mo><mo>=</mo><mo>{</mo><mi>z</mi><mo>=</mo><mi>x</mi><mo>+</mo><mi>i</mi><mi>y</mi><mo>:</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>&#x2208;</mo><mi>&#x211D;</mi><mo>}</mo></math>. Each point
+          <math><mi>z</mi><mo>=</mo><mi>x</mi><mo>+</mo><mi>i</mi><mi>y</mi></math> has a complex conjugate <math><mi>z̄</mi><mo>=</mo><mi>x</mi><mo>-</mo><mi>i</mi><mi>y</mi></math> which is the reflection of <math><mi>z</mi></math> across the real-axis.</h3>
+          
+          <h3><strong>Schwarz Function for an Analytic Arc</strong></h3>
+          <h3>Suppose we have an arc <math><mi>C</mi></math> in the plane given by <math><mi>f</mi><mo>(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>)</mo><mo>=</mo><mn>0</mn></math>. We can rewrite this curve in conjugate coordinates as per the section above as <math><mi>f</mi><mo>(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>)</mo><mo>=</mo><mi>f</mi><mo>(</mo><mfrac><mrow><mi>z</mi><mo>+</mo><mi>z̄</mi></mrow><mn>2</mn></mfrac><mo>,</mo>
+            <mfrac><mrow><mi>z</mi><mo>-</mo><mi>z̄</mi></mrow><mrow><mn>2</mn><mi>i</mi></mrow></mfrac><mo>)</mo><mo>=</mo><mi>g</mi><mo>(</mo><mi>z</mi><mo>,</mo><mi>z̄</mi><mo>)</mo><mo>=</mo><mn>0</mn></math>.</h3>
+          <h3>Now suppose that <math><mi>g</mi><mo>(</mo><mi>z</mi><mo>,</mo><mi>z̄</mi><mo>)</mo></math> is an irreducible polynomial, that is, it cannot be factored into two real polynomials with degree at least one.</h3>
+
+          <h3><strong>Schwarzian Reflection</strong></h3>
+
+          <h3><strong>Examples</strong></h3>
+          <h3>Line</h3>
+          <h3>Circle</h3>
+          <h3>Ellipse</h3>
         </div>
      </div>
     <div id = 'footer'></div>
