@@ -17,6 +17,12 @@
       gtag('js', new Date());
 
       gtag('config', 'G-K4LP8WXGLP');
+
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        }
+      };
     </script>
 
   </head>
@@ -47,16 +53,96 @@
             orthogonal to the curve, but how far should it be reflected? How would we calculate this? Let's first remind ourselves of a bit a complex analysis before looking at the answer to these questions.
           </h3>
 
-          <h3><strong>Review of Complex Analysis</strong></h3>
-          <h3>The complex plane is defined as <math><mi>&#x2102;</mi><mo>:</mo><mo>=</mo><mo>{</mo><mi>z</mi><mo>=</mo><mi>x</mi><mo>+</mo><mi>i</mi><mi>y</mi><mo>:</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>&#x2208;</mo><mi>&#x211D;</mi><mo>}</mo></math>. Each point
-          <math><mi>z</mi><mo>=</mo><mi>x</mi><mo>+</mo><mi>i</mi><mi>y</mi></math> has a complex conjugate <math><mi>z̄</mi><mo>=</mo><mi>x</mi><mo>-</mo><mi>i</mi><mi>y</mi></math> which is the reflection of <math><mi>z</mi></math> across the real-axis.</h3>
-          
+          <h3><strong>Important Background</strong></h3>
+          <ul>
+            <li>
+              <h3>Conjugate Coordinates</h3>
+              <h3>The complex plane is defined as <math><mi>&#x2102;</mi><mo>:</mo><mo>=</mo><mo>{</mo><mi>z</mi><mo>=</mo><mi>x</mi><mo>+</mo><mi>i</mi><mi>y</mi><mo>:</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>&#x2208;</mo><mi>&#x211D;</mi><mo>}</mo></math>. Each point
+              <math><mi>z</mi><mo>=</mo><mi>x</mi><mo>+</mo><mi>i</mi><mi>y</mi></math> has a complex conjugate <math><mi>z̄</mi><mo>=</mo><mi>x</mi><mo>-</mo><mi>i</mi><mi>y</mi></math> which is the reflection of <math><mi>z</mi></math> across the real-axis.</h3>
+            </li>
+            <li>
+              <h3>Regular Points</h3>
+            </li>
+            <li>
+              <h3>Analytic Functions</h3>
+            </li>
+            <li>
+              <h3><a href="https://www.math.toronto.edu/courses/mat237y1/20189/notes/Chapter3/S3.1.html" target="_blank">Implicit Function Theorem</a></h3>
+            </li>
+          </ul>
+
+
           <h3><strong>Schwarz Function for an Analytic Arc</strong></h3>
-          <h3>Suppose we have an arc <math><mi>C</mi></math> in the plane given by <math><mi>f</mi><mo>(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>)</mo><mo>=</mo><mn>0</mn></math>. We can rewrite this curve in conjugate coordinates as per the section above as <math><mi>f</mi><mo>(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>)</mo><mo>=</mo><mi>f</mi><mo>(</mo><mfrac><mrow><mi>z</mi><mo>+</mo><mi>z̄</mi></mrow><mn>2</mn></mfrac><mo>,</mo>
+          <h3>Suppose we have an arc <math><mi>C</mi></math> in the plane given by <math><mi>F</mi><mo>(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>)</mo><mo>=</mo><mn>0</mn></math>. We can rewrite this curve in conjugate coordinates as per the section above as <math><mi>F</mi><mo>(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>)</mo><mo>=</mo><mi>F</mi><mo>(</mo><mfrac><mrow><mi>z</mi><mo>+</mo><mi>z̄</mi></mrow><mn>2</mn></mfrac><mo>,</mo>
             <mfrac><mrow><mi>z</mi><mo>-</mo><mi>z̄</mi></mrow><mrow><mn>2</mn><mi>i</mi></mrow></mfrac><mo>)</mo><mo>=</mo><mi>g</mi><mo>(</mo><mi>z</mi><mo>,</mo><mi>z̄</mi><mo>)</mo><mo>=</mo><mn>0</mn></math>.</h3>
-          <h3>Now suppose that <math><mi>g</mi><mo>(</mo><mi>z</mi><mo>,</mo><mi>z̄</mi><mo>)</mo></math> is an irreducible polynomial, that is, it cannot be factored into two real polynomials with degree at least one.</h3>
+          <!-- <h3>Now suppose that <math><mi>g</mi><mo>(</mo><mi>z</mi><mo>,</mo><mi>z̄</mi><mo>)</mo></math> is an irreducible polynomial, that is, it cannot be factored into two real polynomials with degree at least one.</h3> -->
+          <h3>Now suppose that <math><mi>g</mi><mo>(</mo><mi>z</mi><mo>,</mo><mi>z̄</mi><mo>)</mo></math> is an analytic function. For a point <math><msub><mi>z</mi><mn>0</mn></msub></math> on the curve <math><mi>C</mi></math>, if we have that
+          <math><mfrac><mrow><mi>&part;</mi><mi>g</mi></mrow><mrow><mi>&part;</mi><mi>z̄</mi></mrow></mfrac><msub><mi>|</mi><msub><mi>z</mi><mn>0</mn></msub></msub><mo>&#8800;</mo><mn>0</mn></math>, then we can solve for <math><mi>z̄</mi></math> uniquely using the 
+          <a href="https://www.math.toronto.edu/courses/mat237y1/20189/notes/Chapter3/S3.1.html" target="_blank">Implicit Function Theorem</a> to get <math><mi>z̄</mi><mo>=</mo><mi>S</mi><mo>(</mo><mi>z</mi><mo>)</mo></math>. The theorem tells us that <math><mi>S</mi><mo>(</mo><mi>z</mi><mo>)</mo></math>
+          is regular and analytic in a neighborhood of <math><msub><mi>z</mi><mn>0</mn></msub></math>. If all points along <math><mi>C</mi></math> are regular points (ie. they hold the property that their derivative with respect to <math><mi>z̄</mi></math> is nonzero), we can define
+          <math><mi>S</mi><mo>(</mo><mi>z</mi><mo>)</mo></math> in an entire strip-like region around the curve.</h3>
+          
+          <div style = 'display: flex; justify-content: center;'>
+            <img src = 'resources/c-neighborhood.png' width = 350px>
+            <img src = 'resources/c-strip.png' width = 350px>
+          </div>
+          <div style = 'text-align: center;'>
+            <h4>Neighborhood of <math><mi>C</mi></math> for which <math><mi>S</mi><mo>(</mo><mi>z</mi><mo>)</mo></math> is defined. Figure credit to Philip J Davis.</h4>
+          </div>
+
+          <h3>This tells us that for any regular curve, we can find a unique function that maps points on the curve to their conjugate value. But how does <math><mi>S</mi></math> act on points in the neighborhood
+          surrounding our curve? We explore this in the next section.</h3>
 
           <h3><strong>Schwarzian Reflection</strong></h3>
+          <h3>A curve <math><mi>C</mi></math> given by:</h3>
+          <h3 style = "margin-left: 25px;">
+            <math>
+              <mo>{</mo><mtable columnalign="left left" rowspacing=".3em" columnspacing="1em" displaystyle="false">
+              <mtr><mtd><mi>x</mi><mo>=</mo><msub><mi>f</mi><mn>1</mn></msub><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo></mtd></mtr>
+              <mtr><mtd><mi>y</mi><mo>=</mo><msub><mi>f</mi><mn>2</mn></msub><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo></mtd></mtr>
+            </math>
+            &nbsp; where &nbsp; <math><mn>0</mn><mo>&leq;</mo><mi>t</mi><mo>&leq;</mo><mn>1</mn></math> and 
+            <math><mi>z</mi><mo>(</mo><mi>t</mi><mo>)</mo><mo>=</mo><msub><mi>f</mi><mn>1</mn></msub><mo>(</mo><mi>t</mi><mo>)</mo><mo>+</mo><mi>i</mi><msub><mi>f</mi><mn>2</mn></msub><mo>(</mo><mi>t</mi><mo>)</mo><mo>=</mo><mi>f</mi><mo>(</mo><mi>t</mi><mo>)</mo></math>
+          </h3>
+          <h3>is a <em>simple analytic arc</em> if:</h3>
+          <ul>
+            <li><h3><math><mi>z</mi><mo>(</mo><msub><mi>t</mi><mn>1</mn></msub><mo>)</mo><mo>=</mo><mo><mi>z</mi><mo>(</mo><msub><mi>t</mi><mn>2</mn></msub><mo>)</mo></mo></math> only if 
+              <math><msub><mi>t</mi><mn>1</mn></msub><mo>=</mo><msub><mi>t</mi><mn>2</mn></msub></math> (this is the <em>simple</em> part; the curve does not intersect itself)</h3></li>
+            <li><h3><math><msub><mi>f</mi><mn>1</mn></msub><mo>(</mo><mi>t</mi><mo>)</mo></math> and <math><msub><mi>f</mi><mn>2</mn></msub><mo>(</mo><mi>t</mi><mo>)</mo></math> are real analytic functions
+              for <math><mn>0</mn><mo>&leq;</mo><mi>t</mi><mo>&leq;</mo><mn>1</mn></math></h3></li>
+            <li><h3></h3><math><msup><mi>z</mi><mo>'</mo></msup><mo>(</mo><mi>t</mi><mo>)</mo><mo>=</mo><msub><msup><mi>f</mi><mo>'</mo></msup><mn>1</mn></msub><mo>(</mo><mi>t</mi><mo>)</mo><mo>+</mo><mi>i</mi><msub><msup><mi>f</mi><mo>'</mo></msup><mn>2</mn></msub><mo>(</mo><mi>t</mi><mo>)</mo><mo>&NotEqual;</mo><mn>0</mn></math>
+              for <math><mn>0</mn><mo>&leq;</mo><mi>t</mi><mo>&leq;</mo><mn>1</mn></math></h3></li>
+          </ul>
+          <h3>For a point <math><msub><mi>t</mi><mn>0</mn></msub><mo>&isin;</mo><mo>[</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo>]</mo></math>, the function <math><mi>f</mi><mo>(</mo><mi>t</mi><mo>)</mo></math>
+            is analytic in some circle <math><mo>|</mo><mi>t</mi><mo>-</mo><msub><mi>t</mi><mn>0</mn></msub><mo>|</mo><mo>&leq;</mo><mi>&lambda;</mi><mo>(</mo><msub><mi>t</mi><mn>0</mn></msub><mo>)</mo></math>, and since <math><mi>f</mi></math>
+            has nonzero derivative as per our assumptions, it maps a sub-circle <math><mo>|</mo><mi>t</mi><mo>-</mo><msub><mi>t</mi><mn>0</mn></msub><mo>|</mo><mo>&leq;</mo><msub><mi>&lambda;</mi><mn>1</mn></msub><mo>&leq;</mo><mi>&lambda;</mi><mo>(</mo><msub><mi>t</mi><mn>0</mn></msub><mo>)</mo></math>
+            one-to-one conformally onto a region <math><msub><mi>R</mi><msub><mi>z</mi><mn>0</mn></msub></msub></math> containing <math><msub><mi>z</mi><mn>0</mn></msub><mo>=</mo><mi>f</mi><mo>(</mo><msub><mi>t</mi><mn>0</mn></msub><mo>)</mo></math>. Therefore, any <math><mi>z</mi><mo>&isin;</mo>
+            <msub><mi>R</mi><msub><mi>z</mi><mn>0</mn></msub></msub></math> is the image of a unique <math><mi>t</mi></math>.
+          </h3>
+          <h3>Now, if we consider <math><msup><mi>z</mi><mo>*</mo></msup><mo>=</mo><msub><mi>f</mi><mn>1</mn></msub><mo stretchy="false">(</mo><mover rspace="1em"><mi>t</mi><mi>¯</mi></mover>
+            <mo stretchy="false">)</mo><mo>+</mo><mi>i</mi><msub><mi>f</mi><mn>2</mn></msub><mo stretchy="false">(</mo><mover rspace="1em"><mi>t</mi><mi>¯</mi></mover><mo stretchy="false">)</mo></math>, 
+            we see that it is the <em>Schwarz reflection of <math><mi>z</mi></math> in <math><mi>C</mi></math></em> where reflection is given by the sequence <math><mi>z</mi><mo>→</mo><mi>t</mi><mo>→</mo>
+            <mover rspace="1em"><mi>t</mi><mi>¯</mi></mover><mo>→</mo><msup><mi>z</mi><mo>*</mo></msup></math> as depicted in the figure below.</h3>
+
+          <div style = 'display: flex; justify-content: center;'>
+            <img src = 'resources/schwarzian-reflection.png' width = 850px>
+          </div>
+          <div style = 'display: flex; justify-content: center;'>
+            <h4 style = 'text-align: center; width: 500px;'>Sequence of transformations that identify <math><mi>C</mi></math> with the x-axis, conjugate the point <math><mi>t</mi></math>, and return to a reflected point across the curve. Figure credit to Philip J Davis.</h4>
+          </div>
+
+          <h3>We can relate <math><msup><mi>z</mi><mo>*</mo></msup></math> back to the Schwarz function by noting that <math><msup><mi>z̄</mi><mo>*</mo></msup><mo>=</mo><msub><mi>f</mi><mn>1</mn></msub><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo><mo>-</mo>
+            <mi>i</mi><msub><mi>f</mi><mn>2</mn></msub><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo></math> since <math><msub><mi>f</mi><mi>i</mi></msub></math> are real-valued analytic functions and <math><msub><mi>f</mi><mi>i</mi></msub><mo stretchy="false">(</mo>
+            <mover rspace="1em"><mi>t</mi><mi>¯</mi></mover><mo stretchy="false">)</mo><mo>=</mo><mrow style="border-top: 1px solid black; padding-top: 2px;"><msub><mi>f</mi><mi>i</mi></msub><mo>(</mo><mi>t</mi><mo>)</mo></mrow></math>. From there, we can deduce that:</h3>
+          
+          <h3 style="margin-left: 25px;"><math><mi>x</mi><mo>=</mo><msub><mi>f</mi><mn>1</mn></msub><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo><mo>=</mo><mfrac><mrow><mi>z</mi><mo>+</mo><msup><mi>z̄</mi><mo>*</mo></msup></mrow><mn>2</mn></mfrac></math>,
+            <math><mi>y</mi><mo>=</mo><msub><mi>f</mi><mn>2</mn></msub><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo><mo>=</mo><mfrac><mrow><mi>z</mi><mo>-</mo><msup><mi>z̄</mi><mo>*</mo></msup></mrow><mrow><mn>2</mn><mi>i</mi></mrow></mfrac>
+            <mo style="margin: 0 15px;">→</mo><mi>F</mi><mo stretchy="false">(</mo><mfrac><mrow><mi>z</mi><mo>+</mo><mi>z̄</mi></mrow><mn>2</mn></mfrac><mo>,</mo>
+            <mfrac><mrow><mi>z</mi><mo>-</mo><mi>z̄</mi></mrow><mrow><mn>2</mn><mi>i</mi></mrow></mfrac><mo stretchy="false">)</mo><mo>=</mo><mi>g</mi><mo stretchy="false">(</mo><mi>z</mi><mo>,</mo><mi>z̄</mi><mo stretchy="false">)</mo><mo>=</mo><mn>0</mn>
+            <mo style="margin: 0 15px;">→</mo><msup><mi>z̄</mi><mo>*</mo></msup><mo>=</mo><mi>S</mi><mo stretchy="false">(</mo><mi>z</mi><mo stretchy="false">)</mo>
+            <mo style="margin: 0 15px;">→</mo><msup><mi>z</mi><mo>*</mo></msup><mo>=</mo><mrow style="border-top: 1px solid black; padding-top: 2px;"><mi>S</mi><mo stretchy="false">(</mo><mi>z</mi><mo stretchy="false">)</mo></mrow></math></h3>
+
+          <h3>So the Schwarzian reflection is the complex conjugate of the Schwarz function! With this exciting connection, we can finally move on to several fun examples to mess around with in the next section.</h3>
 
           <h3><strong>Examples</strong></h3>
           <h3>Line</h3>
