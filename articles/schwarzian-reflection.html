@@ -7,6 +7,7 @@
     <link href = 'https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap' rel = 'stylesheet'>
     <link rel = 'stylesheet' href = '../styles.css'>   
     <script src = 'https://polyfill.io/v3/polyfill.min.js?features=es6'></script>
+    <script src = "https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.js"></script>
     <script id = 'MathJax-script' async src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'></script>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -42,7 +43,7 @@
         <div class = 'center'>
             <h2>Schwarzian Reflection</h2>
             <h3 style="margin-top: -5px;"><strong><a href='ping-pong-iii-the-patching-algorithm.html'><</a>&emsp; 3 / 27 / 23 &emsp;</strong></h3>
-            <h4 style="font-size: 14px; margin-top: -5px;">0 min read</h4> 
+            <h4 style="font-size: 14px; margin-top: -5px;">6 min read</h4> 
             <!-- https://niram.org/read/ -->
         </div>
         <div style = 'text-align: left;'>
@@ -53,7 +54,7 @@
             orthogonal to the curve, but how far should it be reflected? How would we calculate this? Let's first remind ourselves of a bit a complex analysis before looking at the answer to these questions.
           </h3>
 
-          <h3><strong>Important Background</strong></h3>
+          <h3><strong>Background</strong></h3>
           <ul>
             <li>
               <h3>Conjugate Coordinates</h3>
@@ -62,12 +63,19 @@
             </li>
             <li>
               <h3>Regular Points</h3>
+              <h3>For a curve given by <math><mi>f</mi><mo>(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>)</mo><mo>=</mo><mn>0</mn></math>, a point <math><mi>p</mi></math> along the curve is called 
+                <em>regular</em> if <math><mfrac><mrow><mi>&part;</mi><mi>f</mi></mrow><mrow><mi>&part;</mi><mi>x</mi></mrow></mfrac><msub><mo>|</mo><mi>p</mi></msub><mo>&#8800;</mo><mn>0</mn></math>
+                and <math><mfrac><mrow><mi>&part;</mi><mi>f</mi></mrow><mrow><mi>&part;</mi><mi>y</mi></mrow></mfrac><msub><mo>|</mo><mi>p</mi></msub><mo>&#8800;</mo><mn>0</mn></math> (that is, all of the non-critical points along the curve).</h3>
             </li>
             <li>
-              <h3>Analytic Functions</h3>
+              <h3><a href = 'https://mathworld.wolfram.com/AnalyticFunction.html' target="_blank">Analytic Functions</a></h3>
+              <h3>Functions which are complex-differentiable at all points in a region <math><mi>R</mi></math> are called <em>analytic / holomorphic</em> where <a href="https://mathworld.wolfram.com/ComplexDifferentiable.html" target="_blank">complex differentiability</a> is
+                defined in the same way as for real functions.</h3>
             </li>
             <li>
               <h3><a href="https://www.math.toronto.edu/courses/mat237y1/20189/notes/Chapter3/S3.1.html" target="_blank">Implicit Function Theorem</a></h3>
+              <h3>The Implicit Function Theorem can take some time to explain on its own, but essentially, it tells us that if we have a smooth (differentiable) function, we can solve for either of its variables. Please look into the provided link if you want
+                to learn more about why this works. </h3>
             </li>
           </ul>
 
@@ -142,12 +150,31 @@
             <mo style="margin: 0 15px;">→</mo><msup><mi>z̄</mi><mo>*</mo></msup><mo>=</mo><mi>S</mi><mo stretchy="false">(</mo><mi>z</mi><mo stretchy="false">)</mo>
             <mo style="margin: 0 15px;">→</mo><msup><mi>z</mi><mo>*</mo></msup><mo>=</mo><mrow style="border-top: 1px solid black; padding-top: 2px;"><mi>S</mi><mo stretchy="false">(</mo><mi>z</mi><mo stretchy="false">)</mo></mrow></math></h3>
 
-          <h3>So the Schwarzian reflection is the complex conjugate of the Schwarz function! With this exciting connection, we can finally move on to several fun examples to mess around with in the next section.</h3>
+          <h3>So the Schwarzian reflection is the complex conjugate of the Schwarz function! With this exciting connection, we can finally move on to a more interactive example in the next section.</h3>
 
-          <h3><strong>Examples</strong></h3>
-          <h3>Line</h3>
-          <h3>Circle</h3>
-          <h3>Ellipse</h3>
+          <h3><strong>Example</strong></h3>
+          <!-- <div style = "display: flex; justify-content: center;">
+            <div id = 'canvas' style = 'width: 500;'>
+              <script src = 'scripts/schwarz/numjs.js'></script>
+              <script src = 'scripts/schwarz/main.js'></script>
+            </div>
+          </div> -->
+          <h3>The Schwarz function of a circle centered at <math><msub><mi>z</mi><mn>0</mn></msub></math> with radius <math><mi>r</mi></math> is given by <math><mi>S</mi><mo stretchy="false">(</mo><mi>z</mi><mo stretchy="false">)</mo><mo>=</mo><mfrac><msup><mi>r</mi><mn>2</mn></msup>
+            <mrow><mi>z</mi><mo>-</mo><msub><mi>z</mi><mn>0</mn></msub></mrow></mfrac><mo>+</mo><msub><mi>z̄</mi><mn>0</mn></msub></math>. For any set of points within a neighborhood of the circle, such as the parametrized ellipse below, we can pass them through the Schwarz 
+            function, take the complex conjugate, and get the reflected points in the circle.</h3>
+          <br/>
+          <div style="display: flex; justify-content: center;">
+            <iframe src="https://www.desmos.com/calculator/mwajkoi6mt?embed" width="500" height="500" style="border: 1px solid #ccc" frameborder=0></iframe>
+          </div>
+          <div style = 'display: flex; justify-content: center;'>
+            <h4 style = 'text-align: center; width: 500px;'>An ellipse's reflection across a circle. Try moving the highlighted points around to change the shape of the ellipse and the location of the circle.</h4>
+          </div>
+
+          <h3><strong>Resources</strong></h3>
+          <ul>
+            <li><a href = 'https://www.jstor.org/stable/10.4169/j.ctt5hh99x' target='_blank'>The Schwarz Function and Its Applications</a> (Book by Philip J Davis)</li>
+            <li><a href = 'https://www.math.toronto.edu/courses/mat237y1/20189/notes/Chapter3/S3.1.html' target='_blank'>Implicit Function Theorem</a></li>
+          </ul>
         </div>
      </div>
     <div id = 'footer'></div>
