@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <title>Samuel Perales | Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap"
@@ -33,11 +34,15 @@
       <h2 style="text-align: center; margin-top: 0">Personal Blog</h2>
     </div>
     <div id="topbar">
-      <a href="index.html"><strong>Home</strong></a>
-      <a href="articles.html">Articles</a>
-      <a href="research.html">Research</a>
-      <a href="other.html">Other</a>
-      <a href="contact.html">Contact</a>
+      <div style="display: flex">
+        <a href="index.html"><strong>Home</strong></a>
+        <a href="articles.html">Articles</a>
+      </div>
+      <div style="display: flex">
+        <a href="research.html">Research</a>
+        <a href="other.html">Other</a>
+        <a href="contact.html">Contact</a>
+      </div>
     </div>
     <div class="content">
       <div class="about-me">
@@ -60,7 +65,7 @@
         </div>
       </div>
       <br />
-      <div style="text-align: center; padding: 0 50px">
+      <div style="text-align: center; padding: 0 30px">
         <h3>
           For my projects and technical experience, please find my
           <strong>Resume</strong>
