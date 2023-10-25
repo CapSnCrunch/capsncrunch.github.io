@@ -4,7 +4,6 @@ body {
     /* background-color: #cdf5b0; */
     background-color: #d6f5af;
     align-items: center;
-    height: 16px;
 }
 
 .name {
@@ -146,10 +145,6 @@ li {
     cursor: pointer;
 }
 
-#sam {
-    border-radius: 5%;
-}
-
 #footer {
     padding: 10px 5px;
 }
@@ -159,11 +154,18 @@ li {
     max-width: 850px;
 }
 
-.box {
-    padding: 10px;
-    width: auto;
-    display: table-cell;
-    vertical-align: top;
+.about-me {
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+}
+
+@media only screen and (max-width: 960px) {
+    .about-me {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
 }
 
 .center {

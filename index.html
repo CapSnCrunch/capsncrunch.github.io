@@ -1,58 +1,82 @@
 <!DOCTYPE html>
-<html lang = 'en'>
+<html lang="en">
   <head>
-    <meta charset = 'utf-8'>
+    <meta charset="utf-8" />
     <title>Samuel Perales | Home</title>
-    <link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
-    <link href = 'https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap' rel = 'stylesheet'>
-    <link rel = 'stylesheet' href = 'styles.css'>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-K4LP8WXGLP"></script>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-K4LP8WXGLP"
+    ></script>
     <script>
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
+      function gtag() {
+        dataLayer.push(arguments);
+      }
       gtag('js', new Date());
 
       gtag('config', 'G-K4LP8WXGLP');
     </script>
-    
   </head>
   <body>
-    <div id = 'header'>
-      <h1 style = 'text-align: center; margin-bottom: 10px;'><a class='name' href='index.html'>Samuel Perales</a></h1>
-      <h2 style = 'text-align: center; margin-top: 0;'> Personal Blog </h2>
+    <div id="header">
+      <h1 style="text-align: center; margin-bottom: 10px">
+        <a class="name" href="index.html">Samuel Perales</a>
+      </h1>
+      <h2 style="text-align: center; margin-top: 0">Personal Blog</h2>
     </div>
-    <div id = 'topbar'>
-      <a href = 'index.html'><strong>Home</strong></a>
-      <a href = 'articles.html'>Articles</a>
-      <a href = 'research.html'>Research</a>
-      <a href = 'other.html'>Other</a>
-      <a href = 'contact.html'>Contact</a>
+    <div id="topbar">
+      <a href="index.html"><strong>Home</strong></a>
+      <a href="articles.html">Articles</a>
+      <a href="research.html">Research</a>
+      <a href="other.html">Other</a>
+      <a href="contact.html">Contact</a>
     </div>
-    <div class = 'content'>
-      <div class = 'box' style = 'width: 30%;'>
-        <img id = 'sam' src = 'resources/sam.jpg' width = 300px>
+    <div class="content">
+      <div class="about-me">
+        <img src="resources/sam.jpg" width="300px" style="border-radius: 5%" />
+        <div style="padding: 0 30px; margin-top: 10px">
+          <h2>About Me</h2>
+          <h3>
+            I am a graduate from the mathematics program at The University of
+            Texas at Austin. Currently, my interests include statistical
+            learning methods, voronoi diagrams, and network infrastructure.
+          </h3>
+          <h3>
+            Right now, I'm working remotely in Austin as a Software Engineer at
+            <a href="https://www.charterup.com/">CharterUP</a>. Lately, I've
+            been reading <a href="applications/book-list.html">Dark Data</a> and
+            studying machine learning on
+            <a href="https://www.kaggle.com/">Kaggle</a> in preparation for a
+            Masters in Artificial Intelligence back at UT Austin.
+          </h3>
+        </div>
       </div>
-      <div class = 'box' style = 'width: 70%; padding: 0.5rem 1rem;'>
-        <h2>About Me</h2>
-        <h3>I am a graduate from the mathematics program at The University of Texas at Austin. Currently, my interests include statistical learning methods, voronoi diagrams, and network infrastructure.</h3>
+      <br />
+      <div style="text-align: center; padding: 0 50px">
         <h3>
-          Right now, I'm working remotely in Austin as a Software Engineer at <a href='https://www.charterup.com/'>CharterUP</a>. Lately, I've been reading
-          <a href='applications/book-list.html'>Dark Data</a> and studying machine learning on <a href = "https://www.kaggle.com/">Kaggle</a> in preparation for a Masters in Artificial Intelligence back at UT Austin.
+          For my projects and technical experience, please find my
+          <strong>Resume</strong>
+          <a href="resources/samuel-perales-resume.pdf">here</a>.
         </h3>
-      </div>
-      <br>
-      <div style = 'text-align: center;'>
-        <h3>For my projects and technical experience, please find my <strong>Resume</strong> <a href = 'resources/samuel-perales-resume.pdf'>here</a>.</h3>
-        <h3>For my academic background, please find my <strong>CV</strong> <a href = 'resources/samuel-perales-cv.pdf'>here</a>.</h3>
-        <br>
+        <h3>
+          For my academic background, please find my <strong>CV</strong>
+          <a href="resources/samuel-perales-cv.pdf">here</a>.
+        </h3>
+        <br />
         <details>
           <summary><strong>Courses Completed</strong></summary>
           <div>
-            <br>
-            <div style = 'float: left; width: 50%;'>
-              <div style = 'text-align: center;'>
+            <br />
+            <div style="float: left; width: 50%">
+              <div style="text-align: center">
                 <h4>M325K Discrete Mathematics</h4>
                 <h4>M328K Number Theory</h4>
                 <h4>M341 Linear Algebra</h4>
@@ -66,11 +90,11 @@
                 <h4>M368K Numerical Methods for Applications</h4>
                 <h4>M374M Mathematical Modeling in Science and Engineering</h4>
                 <h4>M375T Quantum Information Science (grad)</h4>
-                <h4><br></h4>
+                <h4><br /></h4>
               </div>
             </div>
-            <div style = 'float: left; width: 50%;'>
-              <div style = 'text-align: center;'>
+            <div style="float: left; width: 50%">
+              <div style="text-align: center">
                 <h4>M365C Real Analysis</h4>
                 <h4>M361 Complex Analysis</h4>
                 <h4>M373K Algebraic Structures</h4>
@@ -84,14 +108,13 @@
                 <h4>CS329E Web Programming</h4>
                 <h4>CS329E Mobile Computing</h4>
                 <h4>CS324E Graphics and Visualizations</h4>
-                <h4><br></h4>
+                <h4><br /></h4>
               </div>
             </div>
-        </div>
+          </div>
         </details>
       </div>
     </div>
-    <div id = 'footer'>
-    </div>
+    <div id="footer"></div>
   </body>
 </html>
