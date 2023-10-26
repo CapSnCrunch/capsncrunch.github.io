@@ -3,6 +3,8 @@
   <head>
     <meta charset = 'utf-8'>
     <title>Samuel Perales | Web Dev Snapshot: Building an Ecommerce Site</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
     <link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
     <link href = 'https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap' rel = 'stylesheet'>
     <link rel = 'stylesheet' href = '../styles.css'>   
@@ -25,12 +27,16 @@
       <h1 style = 'text-align: center; margin-bottom: 10px;'><a class='name' href='../index.html'>Samuel Perales</a></h1>
       <h2 style = 'text-align: center; margin-top: 0;'> Personal Blog </h2>
     </div>
-    <div id = 'topbar'>
-      <a href = '../index.html'>Home</a>
-      <a href = '../articles.html'><strong>Articles</strong></a>
-      <a href = '../research.html'>Research</a>
-      <a href = '../other.html'>Other</a>
-      <a href = '../contact.html'>Contact</a>
+    <div id="topbar">
+      <div style="display: flex">
+        <a href="../index.html">Home</a>
+        <a href="../articles.html"><strong>Articles</strong></a>
+      </div>
+      <div style="display: flex">
+        <a href="../research.html">Research</a>
+        <a href="../other.html">Other</a>
+        <a href="../contact.html">Contact</a>
+      </div>
     </div>
     <div class = 'content'>
         <div class = 'center'>
@@ -38,7 +44,7 @@
             <h3 style="margin-top: -5px;"><strong><a href='elementary_not_easy_irrationality_of_pi.html'><</a> &emsp; 6 / 14 / 22 &emsp;<strong><a href='dance-pad-programming.html'>></a></strong></h3>
             <h4 style="font-size: 14px; margin-top: -5px;">9 min read</h4>
         </div>
-        <div style = 'text-align: left;'>
+        <div style = 'text-align: left; margin: 0 10px;'>
           <h3>It's been a few months since I've had the chance to write an article. I did several things this past semester including operating math club, diving deeper into the Russian
             language, making a startup with my roomate (which I'll talk about later), and graduating from UT!
           </h3>

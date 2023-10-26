@@ -96,7 +96,7 @@ li {
     align-items: center;
 }
 
-@media only screen and (max-width: 960px) {
+@media only screen and (max-width: 600px) {
     #topbar {
       flex-direction: column;
     }
@@ -106,7 +106,7 @@ li {
     }
 }
 
-@media only screen and (min-width: 961px) {
+@media only screen and (min-width: 601px) {
     #topbar {
         flex-direction: row;
     }

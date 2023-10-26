@@ -1,101 +1,372 @@
 <!DOCTYPE html>
-<html lang = 'en'>
+<html lang="en">
   <head>
-    <meta charset = 'utf-8'>
+    <meta charset="utf-8" />
     <title>Samuel Perales | The Ping Pong Lemma</title>
-    <link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
-    <link href = 'https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap' rel = 'stylesheet'>
-    <link rel = 'stylesheet' href = '../styles.css'>
-    <script src = 'https://polyfill.io/v3/polyfill.min.js?features=es6'></script>
-    <script id = 'MathJax-script' async src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../styles.css" />
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script
+      id="MathJax-script"
+      async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+    ></script>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-K4LP8WXGLP"></script>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-K4LP8WXGLP"
+    ></script>
     <script>
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
+      function gtag() {
+        dataLayer.push(arguments);
+      }
       gtag('js', new Date());
 
       gtag('config', 'G-K4LP8WXGLP');
     </script>
-
   </head>
   <body>
-    <div id = 'header'>
-      <h1 style = 'text-align: center; margin-bottom: 10px;'><a class='name' href='../index.html'>Samuel Perales</a></h1>
-      <h2 style = 'text-align: center; margin-top: 0;'> Personal Blog </h2>
+    <div id="header">
+      <h1 style="text-align: center; margin-bottom: 10px">
+        <a class="name" href="../index.html">Samuel Perales</a>
+      </h1>
+      <h2 style="text-align: center; margin-top: 0">Personal Blog</h2>
     </div>
-    <div id = 'topbar'>
-      <a href = '../index.html'>Home</a>
-      <a href = '../articles.html'><strong>Articles</strong></a>
-      <a href = '../research.html'>Research</a>
-      <a href = '../other.html'>Other</a>
-      <a href = '../contact.html'>Contact</a>
+    <div id="topbar">
+      <div style="display: flex">
+        <a href="../index.html">Home</a>
+        <a href="../articles.html"><strong>Articles</strong></a>
+      </div>
+      <div style="display: flex">
+        <a href="../research.html">Research</a>
+        <a href="../other.html">Other</a>
+        <a href="../contact.html">Contact</a>
+      </div>
     </div>
-    <div class = 'content'> 
-        <div class = 'center'>
-            <h2>The Ping Pong Lemma</h2>
-            <h3 style="margin-top: -5px;"><strong>&emsp; 5 / 25 / 21 &emsp;<a href='esolangs_hexagony.html'>></a></strong></h3>
-            <h4 style="font-size: 14px; margin-top: -5px;">7 min read</h4>
-        </div>
-        <div style = 'text-align: left;'>
-          <h3>Today I'm going to talk about an interesting lemma in abstract algebra and how I used it in my research at the <a href='https://sites.cns.utexas.edu/geometry_lab/research'>Texas Experimental Geometry Lab</a>. 
-            Before we talk about the lemma, let's first establish some of the mathematical background we'll need to know.</h3>
-          <h3>Abstract algebra / algebraic structures is all about the study of groups, rings, fields, and the properties of these objects. A group &nbsp;<math><mi>G</mi></math>&nbsp; is a set along with 
-            a binary operation &nbsp;<math><mi>&#8901;</mi></math>&nbsp; such that the following properties are satisfied:
-          </h3>
+    <div class="content">
+      <div class="center">
+        <h2>The Ping Pong Lemma</h2>
+        <h3 style="margin-top: -5px">
+          <strong
+            >&emsp; 5 / 25 / 21 &emsp;<a href="esolangs_hexagony.html"
+              >></a
+            ></strong
+          >
+        </h3>
+        <h4 style="font-size: 14px; margin-top: -5px">7 min read</h4>
+      </div>
+      <div style="text-align: left; margin: 0 10px">
+        <h3>
+          Today I'm going to talk about an interesting lemma in abstract algebra
+          and how I used it in my research at the
+          <a href="https://sites.cns.utexas.edu/geometry_lab/research"
+            >Texas Experimental Geometry Lab</a
+          >. Before we talk about the lemma, let's first establish some of the
+          mathematical background we'll need to know.
+        </h3>
+        <h3>
+          Abstract algebra / algebraic structures is all about the study of
+          groups, rings, fields, and the properties of these objects. A group
+          &nbsp;<math><mi>G</mi></math
+          >&nbsp; is a set along with a binary operation &nbsp;<math
+            ><mi>&#8901;</mi></math
+          >&nbsp; such that the following properties are satisfied:
+        </h3>
+        <ul>
+          <li>
+            <h3>
+              <strong>Closure:</strong> For
+              <math
+                ><mi>a</mi><mo>,</mo><mi>b</mi><mo>&#x2208;</mo><mi>G</mi></math
+              >, we have that
+              <math><mi>a</mi><mo>&#8901;</mo><mi>b</mi></math> is in
+              <math><mi>G</mi></math>
+            </h3>
+          </li>
+          <li>
+            <h3>
+              <strong>Associativity:</strong> For
+              <math
+                ><mi>a</mi><mo>,</mo><mi>b</mi><mo>,</mo><mi>c</mi
+                ><mo>&#x2208;</mo><mi>G</mi></math
+              >, we have a
+              <math
+                ><mi>a</mi><mo>&#8901;</mo><mo>(</mo><mi>b</mi><mo>&#8901;</mo
+                ><mi>c</mi><mo>)</mo><mo>=</mo><mo>(</mo><mi>a</mi
+                ><mo>&#8901;</mo><mi>b</mi><mo>)</mo><mo>&#8901;</mo
+                ><mi>c</mi></math
+              >
+            </h3>
+          </li>
+          <li>
+            <h3>
+              <strong>Identity:</strong> There exists an
+              <math><mi>e</mi><mo>&#x2208;</mo><mi>G</mi></math> such that for
+              any <math><mi>a</mi><mo>&#x2208;</mo><mi>G</mi></math
+              >,&nbsp;
+              <math
+                ><mi>e</mi><mo>&#8901;</mo><mi>a</mi><mo>=</mo><mi>a</mi
+                ><mo>&#8901;</mo><mi>e</mi><mo>=</mo><mi>a</mi></math
+              >
+            </h3>
+          </li>
+          <li>
+            <h3>
+              <strong>Inverses:</strong> For
+              <math><mi>a</mi><mo>&#x2208;</mo><mi>G</mi></math
+              >, there is
+              <math
+                ><msup
+                  ><mi>a</mi><mrow><mo>&#x2212;</mo><mn>1</mn></mrow></msup
+                ><mo>&#x2208;</mo><mi>G</mi></math
+              >
+              such that
+              <math
+                ><mi>a</mi><mo>&#8901;</mo
+                ><msup
+                  ><mi>a</mi><mrow><mo>&#x2212;</mo><mn>1</mn></mrow></msup
+                ><mo>=</mo><mi>e</mi></math
+              >
+            </h3>
+          </li>
+        </ul>
+        <h3>
+          A group presentation is a collection of generators and relations such
+          that
+          <math
+            ><mi>G</mi><mo>=</mo><mo>&#x3008;</mo><mi>generators</mi><mo>|</mo
+            ><mi>relations</mi><mo>&#x27E9;</mo></math
+          >. Perhaps this is best understood with a few examples:
+        </h3>
+        <ul>
+          <li>
+            <h3>
+              <math
+                ><mo>&#x3008;</mo><mi>a</mi><mo>,</mo><mi>b</mi
+                ><mo>&#x27E9;</mo></math
+              >
+              is the set of all multiples of <math><mi>a</mi></math> and
+              <math><mi>b</mi></math> (such as
+              <math
+                ><msup
+                  ><mi>a</mi><mrow><mi>k</mi></mrow></msup
+                ></math
+              >
+              for any integer <math><mi>k</mi></math> or
+              <math
+                ><mi>a</mi><mi>b</mi><mi>a</mi
+                ><msup
+                  ><mi>b</mi><mrow><mo>&#x2212;</mo><mo>2</mo></mrow></msup
+                ></math
+              >
+              etc.)
+            </h3>
+          </li>
+          <li>
+            <h3>
+              The integers with the addition operation can be written as
+              <math
+                ><mi>&#x2124;</mi><mo>=</mo><mo>&#x3008;</mo><mn>1</mn
+                ><mo>&#x27E9;</mo></math
+              >
+              since
+              <math
+                ><msup><mn>1</mn><mi>k</mi></msup></math
+              >
+              (which is to say <math><mn>1</mn></math> added to itself
+              <math><mi>k</mi></math> times since the operation is addition)
+              will generate all of the integers.
+            </h3>
+          </li>
+          <li>
+            <h3>
+              <math
+                ><mo>&#x3008;</mo><mi>a</mi><mo>|</mo
+                ><msup><mi>a</mi><mn>3</mn></msup
+                ><mo>=</mo><mn>1</mn><mo>&#x27E9;</mo></math
+              >
+              is a group with the set of elements
+              <math
+                ><mo>{</mo><mi>e</mi><mo>,</mo><mi>a</mi><mo>,</mo
+                ><msup><mi>a</mi><mn>2</mn></msup
+                ><mo>}</mo></math
+              >
+              since we have the relation which dictates that
+              <math
+                ><msup><mi>a</mi><mn>3</mn></msup></math
+              >
+              must be the identity.
+            </h3>
+          </li>
+        </ul>
+        <h3>
+          The group we will consider today is
+          <math
+            ><mi>S</mi><msub><mi>L</mi><mn>2</mn></msub
+            ><mo>(</mo><mi>&#x211D;</mi><mo>)</mo></math
+          >
+          which is the set of 2x2 real matrices with determinant 1 along with
+          the operation of standard matrix multiplication. Once we have the
+          concept of a group, we need to understand what a group action is.
+          Essentially, a group action is a map which takes
+          <math><mi>G</mi><mo>&#x00D7;</mo><mi>X</mi></math> to
+          <math><mi>X</mi></math> for some space <math><mi>X</mi></math> and
+          preserves the group operation (ie.
+          <math
+            ><mi>g</mi><mo>(</mo><mi>h</mi><mi>x</mi><mo>)</mo><mo>=</mo
+            ><mo>(</mo><mi>g</mi><mi>h</mi><mo>)</mo><mi>x</mi></math
+          >
+          ). The space we will primarily consider is the real projective line
+          <math
+            ><mi>&#x211D;</mi><msup><mi>P</mi><mn>1</mn></msup></math
+          >
+          which is the set of equivalence classes of lines (often represented by
+          a circle).
+        </h3>
+        <h3>
+          Now that we have some of the terminology we need, lets talk about the
+          problem we want to solve. We call a group action faithful if each
+          element of the group other than the identity acts nontrivially on the
+          space <math><mi>X</mi></math
+          >, that is, there is no
+          <math><mi>g</mi><mo>&#x2208;</mo><mi>G</mi></math> such that
+          <math><mi>g</mi><mi>x</mi><mo>=</mo><mi>x</mi></math> for all
+          <math><mi>x</mi><mo>&#x2208;</mo><mi>X</mi></math
+          >. In general, it is very hard to show that a given group has a
+          faithful action on a space. However, we do know that a certain type of
+          group called a free group will always have a faithful action. Free
+          groups are groups with no relations (ie. there are no elements formed
+          by the generators which give us the identity). So, if we want an
+          approach to the problem of determining if a group will have a faithful
+          action on a space, we can attempt to show that the group is isomorphic
+          (equivalent) to a free group.
+        </h3>
+        <h3>
+          This is where the ping pong lemma comes into play. Below we will state
+          the lemma and see immediately how it will be useful in solving our
+          problem.
+        </h3>
+        <h3>
+          <strong>Ping Pong Lemma:</strong> Suppose a and b are generators for a
+          group <em>G</em> which acts on a space <em>X</em>. If:
           <ul>
-            <li><h3><strong>Closure:</strong> For <math><mi>a</mi><mo>,</mo><mi>b</mi><mo>&#x2208;</mo><mi>G</mi></math>, we have that <math><mi>a</mi><mo>&#8901;</mo><mi>b</mi></math> is in <math><mi>G</mi></math></h3></li>
-            <li><h3><strong>Associativity:</strong> For <math><mi>a</mi><mo>,</mo><mi>b</mi><mo>,</mo><mi>c</mi><mo>&#x2208;</mo><mi>G</mi></math>, we have a <math><mi>a</mi><mo>&#8901;</mo><mo>(</mo><mi>b</mi><mo>&#8901;</mo><mi>c</mi><mo>)</mo><mo>=</mo><mo>(</mo><mi>a</mi><mo>&#8901;</mo><mi>b</mi><mo>)</mo><mo>&#8901;</mo><mi>c</mi></math></h3></li>
-            <li><h3><strong>Identity:</strong> There exists an <math><mi>e</mi><mo>&#x2208;</mo><mi>G</mi></math> such that for any <math><mi>a</mi><mo>&#x2208;</mo><mi>G</mi></math>,&nbsp; <math><mi>e</mi><mo>&#8901;</mo><mi>a</mi><mo>=</mo><mi>a</mi><mo>&#8901;</mo><mi>e</mi><mo>=</mo><mi>a</mi></math> </h3></li>
-            <li><h3><strong>Inverses:</strong> For <math><mi>a</mi><mo>&#x2208;</mo><mi>G</mi></math>, there is <math><msup><mi>a</mi><mrow><mo>&#x2212;</mo><mn>1</mn></mrow></msup><mo>&#x2208;</mo><mi>G</mi></math> such that <math><mi>a</mi><mo>&#8901;</mo><msup><mi>a</mi><mrow><mo>&#x2212;</mo><mn>1</mn></mrow></msup><mo>=</mo><mi>e</mi></math>
-            </h3></li>
+            <li>
+              <math><mi>X</mi></math> has disjoint nonempty subsets
+              <math
+                ><msub><mi>X</mi><mi>a</mi></msub></math
+              >
+              and
+              <math
+                ><msub><mi>X</mi><mi>b</mi></msub></math
+              >
+            </li>
+            <li>
+              <math
+                ><msup><mi>a</mi><mi>k</mi></msup
+                ><mo>(</mo><msub><mi>X</mi><mi>a</mi></msub
+                ><mo>)</mo></math
+              >
+              is contained in
+              <math
+                ><msub><mi>X</mi><mi>a</mi></msub></math
+              >
+              and
+              <math
+                ><msup><mi>b</mi><mi>k</mi></msup
+                ><mo>(</mo><msub><mi>X</mi><mi>b</mi></msub
+                ><mo>)</mo></math
+              >
+              is contained in
+              <math
+                ><msub><mi>X</mi><mi>b</mi></msub></math
+              >
+              for all nonzero <math><mi>k</mi></math>
+            </li>
           </ul>
-          <h3>A group presentation is a collection of generators and relations such that <math><mi>G</mi><mo>=</mo><mo>&#x3008;</mo><mi>generators</mi><mo>|</mo><mi>relations</mi><mo>&#x27E9;</mo></math>. Perhaps this is best understood with a few examples:</h3>
+          &emsp;then <math><mi>G</mi></math> is isomorphic to a free group of
+          rank 2.
+        </h3>
+        <h3>
+          Without the ping pong lemma, we would need to check an infinite number
+          of conditions to see if a groups action is faithful (we would need to
+          see that
+          <math><mi>g</mi><mi>x</mi><mo>&#x2260;</mo><mi>x</mi></math> for all
+          <math><mi>g</mi></math> and for all <math><mi>x</mi></math
+          >). But here, we have a finite number of conditions to check to see
+          that the group is free and therefore faithful. The research done in
+          TXGL consisted of extending this lemma to
+          <math><mi>n</mi></math> generators in
+          <math
+            ><mi>S</mi><msub><mi>L</mi><mn>2</mn></msub
+            ><mo>(</mo><mi>&#x211D;</mi><mo>)</mo></math
+          >
+          and coming up with an algorithm to search for intervals which will
+          satisfy these properties.
+        </h3>
+        <h3>
+          Avoiding diving too far into the details of the algorithm, I will talk
+          about the basic procedure. The idea is that the since the eigenvectors
+          of our generators are fixed points under the action of the generator
+          in
+          <math
+            ><mi>&#x211D;</mi><msup><mi>P</mi><mn>1</mn></msup></math
+          >, we know that the intervals must include them. By creating epsilon
+          intervals around these, we have initial intervals to start the search
+          with. From here, we expand endpoints of the intervals, checking if
+          they satisfy the necessary containment properties until we find them.
+          There are different method for interval expansion we tried which are
+          discussed on the TXGL project writeup.
+        </h3>
+        <h3>
+          Here is an example of intervals in
+          <math
+            ><mi>&#x211D;</mi><msup><mi>P</mi><mn>1</mn></msup></math
+          >
+          which satisfy the necessary containment properties to show that the
+          respective group action is faithful:
+        </h3>
+      </div>
+      <div style="display: flex; justify-content: center">
+        <img src = 'resources/intervals.png''>
+      </div>
+      <div style="text-align: left">
+        <h3>
+          There are a lot of details left out in this discussion so if you want
+          to learn more of the math or more about the algorithm, check out these
+          other resources:
           <ul>
-            <li><h3> <math><mo>&#x3008;</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo>&#x27E9;</mo></math> is the set of all multiples of <math><mi>a</mi></math> and <math><mi>b</mi></math> (such as <math><msup><mi>a</mi><mrow><mi>k</mi></mrow></msup></math> for any integer <math><mi>k</mi></math> or <math><mi>a</mi><mi>b</mi><mi>a</mi><msup><mi>b</mi><mrow><mo>&#x2212;</mo><mo>2</mo></mrow></msup></math> etc.)</h3></li>
-            <li><h3>The integers with the addition operation can be written as <math><mi>&#x2124;</mi><mo>=</mo><mo>&#x3008;</mo><mn>1</mn><mo>&#x27E9;</mo></math> since <math><msup><mn>1</mn><mi>k</mi></msup></math> (which is to say <math><mn>1</mn></math> added to itself <math><mi>k</mi></math> times since the operation is addition)
-              will generate all of the integers.</h3></li>
-            <li><h3> <math><mo>&#x3008;</mo><mi>a</mi><mo>|</mo><msup><mi>a</mi><mn>3</mn></msup><mo>=</mo><mn>1</mn><mo>&#x27E9;</mo></math> is a group with the set of elements <math><mo>{</mo><mi>e</mi><mo>,</mo><mi>a</mi><mo>,</mo><msup><mi>a</mi><mn>2</mn></msup><mo>}</mo></math> since we have the relation which dictates that <math><msup><mi>a</mi><mn>3</mn></msup></math> must be the identity.</h3></li>
+            <li>
+              <a
+                href="https://sites.cns.utexas.edu/geometry_lab/ping-pong-and-beyond"
+                target="_blank"
+                >TXGL Project Writeup</a
+              >
+              (Ping Pong and Beyond)
+            </li>
+            <li>
+              <a
+                href="https://search.lib.utexas.edu/discovery/fulldisplay?docid=alma991057930394206011&context=L&vid=01UTAU_INST:SEARCH&lang=en&search_scope=MyInst_and_CI&adaptor=Local%20Search%20Engine&tab=Everything&query=any,contains,office%20hours%20with%20a%20geometric%20group%20theorist&offset=0"
+                target="_blank"
+                >Office Hours with a Geometric Group Theorist</a
+              >
+            </li>
+            <li>
+              <a href="https://github.com/CapSnCrunch/TXGL" target="_blank"
+                >Repository for TXGL Ping Pong</a
+              >
+            </li>
           </ul>
-          <h3>The group we will consider today is <math><mi>S</mi><msub><mi>L</mi><mn>2</mn></msub><mo>(</mo><mi>&#x211D;</mi><mo>)</mo></math> which is the set of 2x2 real matrices with determinant 1 along with the operation of standard matrix multiplication. Once we 
-            have the concept of a group, we need to understand what a group action is. Essentially, a group action is a map which takes <math><mi>G</mi><mo>&#x00D7;</mo><mi>X</mi></math> to <math><mi>X</mi></math> for some space <math><mi>X</mi></math>
-            and preserves the group operation (ie. <math><mi>g</mi><mo>(</mo><mi>h</mi><mi>x</mi><mo>)</mo><mo>=</mo><mo>(</mo><mi>g</mi><mi>h</mi><mo>)</mo><mi>x</mi></math> ). The space we will primarily consider is the real projective line <math><mi>&#x211D;</mi><msup><mi>P</mi><mn>1</mn></msup></math> which is the set of equivalence classes of lines (often represented by a circle).</h3>
-          <h3>Now that we have some of the terminology we need, lets talk about the problem we want to solve. We call a group action faithful if each element of the group other than the identity acts nontrivially on the space
-            <math><mi>X</mi></math>, that is, there is no <math><mi>g</mi><mo>&#x2208;</mo><mi>G</mi></math> such that <math><mi>g</mi><mi>x</mi><mo>=</mo><mi>x</mi></math> for all <math><mi>x</mi><mo>&#x2208;</mo><mi>X</mi></math>. In general, it is very hard to show that a given group has a faithful action on a space. However, we do know that a
-            certain type of group called a free group will always have a faithful action. Free groups are groups with no relations (ie. there are no elements formed by the generators which give us the identity). So, if
-            we want an approach to the problem of determining if a group will have a faithful action on a space, we can attempt to show that the group is isomorphic (equivalent) to a free group.</h3>
-          <h3>This is where the ping pong lemma comes into play. Below we will state the lemma and see immediately how it will be useful in solving our problem.</h3>
-          <h3><strong>Ping Pong Lemma:</strong> Suppose a and b are generators for a group <em>G</em> which acts on a space <em>X</em>. If:
-            <ul>
-              <li><math><mi>X</mi></math> has disjoint nonempty subsets <math><msub><mi>X</mi><mi>a</mi></msub></math> and <math><msub><mi>X</mi><mi>b</mi></msub></math></li>
-              <li><math><msup><mi>a</mi><mi>k</mi></msup><mo>(</mo><msub><mi>X</mi><mi>a</mi></msub><mo>)</mo></math> is contained in <math><msub><mi>X</mi><mi>a</mi></msub></math> and 
-                <math><msup><mi>b</mi><mi>k</mi></msup><mo>(</mo><msub><mi>X</mi><mi>b</mi></msub><mo>)</mo></math> is contained in <math><msub><mi>X</mi><mi>b</mi></msub></math> for all nonzero <math><mi>k</mi></math></li>
-            </ul>
-            &emsp;then <math><mi>G</mi></math> is isomorphic to a free group of rank 2.
-          </h3>
-          <h3>Without the ping pong lemma, we would need to check an infinite number of conditions to see if a groups action is faithful (we would need to see that <math><mi>g</mi><mi>x</mi><mo>&#x2260;</mo><mi>x</mi></math> for all <math><mi>g</mi></math> and for all <math><mi>x</mi></math>). But here, we have a
-          finite number of conditions to check to see that the group is free and therefore faithful. The research done in TXGL consisted of extending this lemma to <math><mi>n</mi></math> generators in <math><mi>S</mi><msub><mi>L</mi><mn>2</mn></msub><mo>(</mo><mi>&#x211D;</mi><mo>)</mo></math> and coming up with an algorithm to
-          search for intervals which will satisfy these properties.</h3>
-          <h3>Avoiding diving too far into the details of the algorithm, I will talk about the basic procedure. The idea is that the since the eigenvectors of our generators are fixed points under the action of the generator in <math><mi>&#x211D;</mi><msup><mi>P</mi><mn>1</mn></msup></math>,
-          we know that the intervals must include them. By creating epsilon intervals around these, we have initial intervals to start the search with. From here, we expand endpoints of the intervals, checking if they satisfy the
-          necessary containment properties until we find them. There are different method for interval expansion we tried which are discussed on the TXGL project writeup.
-          </h3>
-          <h3>Here is an example of intervals in <math><mi>&#x211D;</mi><msup><mi>P</mi><mn>1</mn></msup></math> which satisfy the necessary containment properties to show that the respective group action is faithful:</h3>
-        </div>
-        <div style = 'display: flex; justify-content: center;'>
-          <img src = 'resources/intervals.png''>
-        </div>
-        <div style = 'text-align: left;'>
-          <h3>There are a lot of details left out in this discussion so if you want to learn more of the math or more about the algorithm, check out these other resources:
-            <ul>
-              <li><a href = 'https://sites.cns.utexas.edu/geometry_lab/ping-pong-and-beyond' target="_blank">TXGL Project Writeup</a> (Ping Pong and Beyond)</li>
-              <li><a href = 'https://search.lib.utexas.edu/discovery/fulldisplay?docid=alma991057930394206011&context=L&vid=01UTAU_INST:SEARCH&lang=en&search_scope=MyInst_and_CI&adaptor=Local%20Search%20Engine&tab=Everything&query=any,contains,office%20hours%20with%20a%20geometric%20group%20theorist&offset=0' target="_blank">Office Hours with a Geometric Group Theorist</a></li>
-              <li><a href = 'https://github.com/CapSnCrunch/TXGL' target="_blank">Repository for TXGL Ping Pong</a></li>
-            </ul>
-          </h3>
-        </div>
-     </div>
-    <div id = 'footer'></div>
+        </h3>
+      </div>
+    </div>
+    <div id="footer"></div>
   </body>
 </html>

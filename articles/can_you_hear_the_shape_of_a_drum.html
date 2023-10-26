@@ -1,175 +1,349 @@
 <!DOCTYPE html>
-<html lang = 'en'>
+<html lang="en">
   <head>
-    <meta charset = 'utf-8'>
+    <meta charset="utf-8" />
     <title>Samuel Perales | Can you hear the shape of a drum?</title>
-    <link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
-    <link href = 'https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap' rel = 'stylesheet'>
-    <link rel = 'stylesheet' href = '../styles.css'>   
-    <script src = 'https://polyfill.io/v3/polyfill.min.js?features=es6'></script>
-    <script id = 'MathJax-script' async src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../styles.css" />
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script
+      id="MathJax-script"
+      async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+    ></script>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-K4LP8WXGLP"></script>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-K4LP8WXGLP"
+    ></script>
     <script>
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
+      function gtag() {
+        dataLayer.push(arguments);
+      }
       gtag('js', new Date());
 
       gtag('config', 'G-K4LP8WXGLP');
     </script>
-  
   </head>
   <body>
-    <div id = 'header'>
-      <h1 style = 'text-align: center; margin-bottom: 10px;'><a class='name' href='../index.html'>Samuel Perales</a></h1>
-      <h2 style = 'text-align: center; margin-top: 0;'> Personal Blog </h2>
+    <div id="header">
+      <h1 style="text-align: center; margin-bottom: 10px">
+        <a class="name" href="../index.html">Samuel Perales</a>
+      </h1>
+      <h2 style="text-align: center; margin-top: 0">Personal Blog</h2>
     </div>
-    <div id = 'topbar'>
-      <a href = '../index.html'>Home</a>
-      <a href = '../articles.html'><strong>Articles</strong></a>
-      <a href = '../research.html'>Research</a>
-      <a href = '../other.html'>Other</a>
-      <a href = '../contact.html'>Contact</a>
+    <div id="topbar">
+      <div style="display: flex">
+        <a href="../index.html">Home</a>
+        <a href="../articles.html"><strong>Articles</strong></a>
+      </div>
+      <div style="display: flex">
+        <a href="../research.html">Research</a>
+        <a href="../other.html">Other</a>
+        <a href="../contact.html">Contact</a>
+      </div>
     </div>
-    <div class = 'content'>
-        <div class = 'center'>
-          <h2>Can you hear the shape of a drum?</h2>
-          <h3 style="margin-top: -5px;"><strong><a href='anatomy_of_qr_codes.html'><</a>&emsp; 11 / 5 / 21 &emsp;<a href='ping_pong_ii_automatic_structures.html'>></a></strong></h3>
-          <h4 style="font-size: 14px; margin-top: -5px;">7 min read</h4>
+    <div class="content">
+      <div class="center">
+        <h2>Can you hear the shape of a drum?</h2>
+        <h3 style="margin-top: -5px">
+          <strong
+            ><a href="anatomy_of_qr_codes.html"><</a>&emsp; 11 / 5 / 21 &emsp;<a
+              href="ping_pong_ii_automatic_structures.html"
+              >></a
+            ></strong
+          >
+        </h3>
+        <h4 style="font-size: 14px; margin-top: -5px">7 min read</h4>
+      </div>
+      <div style="text-align: left; margin: 0 10px">
+        <h3>Unfortunately, no.</h3>
+        <h3>
+          You may have heard this question before though. It was first posed by
+          mathematician Mark Kac in 1966 and took until 1992 to find an answer
+          for the two-dimensional case. The question formatted in mathematical
+          terms is asking whether the spectrum of the laplacian uniquely
+          determines a boundary in
+          <math
+            ><msup><mi>&#x211D;</mi><mn>2</mn></msup></math
+          >
+          for the Dirichlet problem:
+        </h3>
+      </div>
+      <div style="text-align: center">
+        <h3>
+          <math
+            ><mi>Δ</mi><mi>u</mi><mo>+</mo><mi>λ</mi><mi>u</mi><mo>=</mo
+            ><mn>0</mn></math
+          >
+        </h3>
+        <h3>
+          <math
+            ><mi>u</mi
+            ><msub
+              ><mi>|</mi><mi><mi>&part;</mi><mi>u</mi></mi></msub
+            ><mo>=</mo><mn>0</mn></math
+          >
+        </h3>
+      </div>
+      <div style="text-align: left">
+        <h3>
+          In 1992, Gordon, Webb, and Wolpert constructed the following
+          isospectral regions, answering Kac's question:
+        </h3>
+      </div>
+      <div style="display: flex; justify-content: center">
+        <img src="resources/isospectral.png" width="550px" />
+      </div>
+      <div style="text-align: center">
+        <h4>
+          Since the sound a drum produces is entirely dependent on its
+          eigenvalues, these two isospectral regions would produce the same
+          noise.
+        </h4>
+      </div>
+      <div style="text-align: left">
+        <h3>
+          It seems there isn't a whole lot left to work on with this problem
+          then; an infinite family of counterexamples has been found. There is a
+          great opportunity here though to get some practice with numerical
+          methods and come up with some nice visualizations for the drum
+          problem.
+        </h3>
+        <h3>
+          In general, finding the explicit spectrum of a region is pretty
+          difficult. This is part of the reason it took nearly 30 years to find
+          this counterexample. In an afternoon we could find nice eigenvalues
+          and eigenfunctions for squares, rectangles, and circles, but if given
+          a non-regular, piece-wise defined mess, it might take us a few decades
+          to work that out too.
+        </h3>
+        <h3>
+          Enter numerical approximation. Today, we're going to talk about how we
+          can use the <u>finite difference laplacian</u> to come up with a
+          numerical estimate for the spectrum of a region. Once we've put
+          together all of our code for this, we can test it out on the two
+          regions above to see if we estimate about the same values.
+        </h3>
+        <br />
+        <h3><strong>Discretizing our Region</strong></h3>
+        <h3>
+          Before worrying about how to discretly approximate the laplacian
+          operator, we need to break our region into a discrete set of points
+          and somehow define the 2D functions <math><mi>u</mi></math> as
+          vectors. To do this, we can just choose any density of a grid that we
+          want and find the points of the grid which lie inside the region using
+          some sort of <code>in_polygon</code> function. I used
+          <a
+            href="https://stackoverflow.com/questions/31542843/inpolygon-for-python-examples-of-matplotlib-path-path-contains-points-method"
+          >
+            matplotlib.path</a
+          >
+          to get something like this:
+        </h3>
+      </div>
+      <div style="display: flex; justify-content: center">
+        <img src="resources/discrete-grid.png" width="400px" />
+      </div>
+      <div style="text-align: center">
+        <h4>
+          We can later increase the resolution of this grid to get better
+          approximations of our spectrum.
+        </h4>
+      </div>
+      <div style="text-align: left">
+        <h3>
+          The idea from here is to index this grid and use it as a way to
+          vectorize functions defined on the region. Then we can define the
+          discrete Laplacian as a matrix acting on these vectorized functions
+          and find the eigenvalues of that matrix. There is no correct way to
+          label the points in our region but its easiest to just name them left
+          to right, up to down. I wrote a function
+          <code>index_array</code> which takes binary numpy arrays and gives all
+          of the ones in the array a unique index. Using the function on a
+          discrete grid, we get an array that looks like this:
+        </h3>
+      </div>
+      <div style="display: flex; justify-content: center">
+        <img src="resources/indexed-grid.png" width="400px" />
+      </div>
+      <div style="text-align: center">
+        <h4>
+          The indexing can go in any order we want. I chose left to right top to
+          bottom for simplicity.
+        </h4>
+      </div>
+      <div style="text-align: left">
+        <h3>
+          Now all functions in
+          <math
+            ><msub><mi>C</mi><mn>0</mn></msub
+            ><mo>(</mo><mi>Ω</mi><mo>)</mo></math
+          >
+          can be described by a unique vector in
+          <math
+            ><msup><mi>&#x211D;</mi><mn>N</mn></msup></math
+          >
+          where <math><mn>N</mn></math> is the number of indicies in our grid.
+        </h3>
+        <br />
+        <h3><strong>Constructing the Discrete Laplacian</strong></h3>
+        <h3>
+          To define an estimate for the Laplacian on this region, we use a
+          finite difference method. In this case, we use the following 5-point
+          scheme:
+        </h3>
+      </div>
+      <div style="display: flex; justify-content: center">
+        <img src="resources/five-points.png" width="400px" />
+      </div>
+      <div style="text-align: center">
+        <h4></h4>
+      </div>
+      <div style="text-align: left">
+        <h3>
+          If we want the value of
+          <math
+            ><mi>&#x394;</mi><mi>u</mi><mo>(</mo
+            ><msub><mi>x</mi><mi>i</mi></msub
+            ><mo>,</mo><msub><mi>y</mi><mi>i</mi></msub
+            ><mo>)</mo></math
+          >, we can approximate the second derivatives in both variables by
+          getting two estimates of the slope with adjacent points and using
+          those to get an estimate of the second derivative. This works out to
+          be
+          <math
+            ><mi>&#x394;</mi><mi>u</mi><mo>(</mo
+            ><msub><mi>x</mi><mi>i</mi></msub
+            ><mo>,</mo><msub><mi>y</mi><mi>i</mi></msub
+            ><mo>)</mo><mi> &#8776; </mi> <mo>(</mo><mi>u</mi><mo>(</mo
+            ><msub><mi>x</mi><mi>i+1</mi></msub
+            ><mo>,</mo><msub><mi>y</mi><mi>i</mi></msub
+            ><mo>)</mo><mo>+</mo> <mi>u</mi><mo>(</mo
+            ><msub><mi>x</mi><mi>i-1</mi></msub
+            ><mo>,</mo><msub><mi>y</mi><mi>i</mi></msub
+            ><mo>)</mo><mo>+</mo> <mi>u</mi><mo>(</mo
+            ><msub><mi>x</mi><mi>i</mi></msub
+            ><mo>,</mo><msub><mi>y</mi><mi>i+1</mi></msub
+            ><mo>)</mo><mo>+</mo> <mi>u</mi><mo>(</mo
+            ><msub><mi>x</mi><mi>i</mi></msub
+            ><mo>,</mo><msub><mi>y</mi><mi>i-1</mi></msub
+            ><mo>)</mo><mo>-</mo> <mn>4</mn><mi>u</mi><mo>(</mo
+            ><msub><mi>x</mi><mi>i</mi></msub
+            ><mo>,</mo><msub><mi>y</mi><mi>i</mi></msub
+            ><mo>)</mo><mo></mo><mo>)</mo><mo>/</mo
+            ><msup><mi>h</mi><mn>2</mn></msup></math
+          >
+          where <math><mi>h</mi></math> is the distance between adjacent points.
+          Since our function is described by some vector, we can describe this
+          transformation as a matrix with the diagonal consisting of -4's and
+          minor diagonals with 1's depending on how we indexed the region. These
+          matrices are sparse, so we can use <code>eigsh</code> from
+          <code>scipy.sparse.linalg</code> to quickly get the eigenvalues and
+          eigenvectors.
+        </h3>
+      </div>
+      <div style="display: flex; justify-content: center">
+        <img src="resources/spy.png" width="300px" />
+      </div>
+      <div style="text-align: center">
+        <h4>An example of a finite difference laplacian</h4>
+      </div>
+      <div style="text-align: left">
+        <h3>
+          At this point, we are able to approximately compute the spectra of the
+          two regions that were claimed to be isospectral and see that they are
+          nearly identical when we use a high number of points! I encourage you
+          to get the code from the resources and try this yourself.
+        </h3>
+        <br />
+        <h3><strong>Initial Conditions and Animations</strong></h3>
+        <h3>
+          There is a bit more we can do now too though. Since we also get the
+          eigenvectors of the matrix (really vectorized eigenfunctions) and we
+          know that they form a basis for the space our solutions lie in, we are
+          able to construct explicit solutions when given some initial
+          conditions. To best simulate reality, I assumed
+          <math
+            ><mi>u</mi><mo>(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>,</mo
+            ><mi>0</mi><mo>)</mo><mo>=</mo><mn>0</mn></math
+          >
+          and
+          <math
+            ><msub><mi>u</mi><mi>t</mi></msub
+            ><mo>(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>,</mo><mi>0</mi
+            ><mo>)</mo><mo>=</mo><mi>f</mi></math
+          >
+          where <math><mi>f</mi></math> is some gaussian which represents
+          hitting the drum with some initial velocity at a particular point.
+        </h3>
+        <br />
+        <div style="display: flex; justify-content: center">
+          <img src="resources/eigenfuncs.JPG" width="600px" />
         </div>
-        <div style = 'text-align: left;'>
-          <h3>Unfortunately, no.</h3>
-          <h3>You may have heard this question before though. It was first posed by mathematician Mark Kac in 1966 and took until 1992 to find an answer for the two-dimensional case.
-            The question formatted in mathematical terms is asking whether the spectrum of the laplacian uniquely determines a boundary in <math><msup><mi>&#x211D;</mi><mn>2</mn></msup></math>
-            for the Dirichlet problem:</h3>
+        <div style="text-align: center">
+          <h4>The first few eigenfunctions of a star-shaped drum.</h4>
         </div>
-        <div style = 'text-align: center;'>
-          <h3><math><mi>Δ</mi><mi>u</mi><mo>+</mo><mi>λ</mi><mi>u</mi><mo>=</mo><mn>0</mn></math></h3>
-          <h3><math><mi>u</mi><msub><mi>|</mi><mi><mi>&part;</mi><mi>u</mi></mi></msub><mo>=</mo><mn>0</mn></math></h3>
+        <br />
+        <h3>
+          With an explicit solution in time, we can start to make some pretty
+          simulations for any region we want!
+        </h3>
+        <br />
+        <div style="display: flex; justify-content: center">
+          <img src="resources/star-drum.gif" width="400px" />
         </div>
-        <div style = 'text-align: left;'>
-          <h3>In 1992, Gordon, Webb, and Wolpert constructed the following isospectral regions, answering Kac's question:</h3>
+        <div style="text-align: center">
+          <h4>
+            A simulation of a star-shaped drum being hit in one of the corners.
+          </h4>
         </div>
-        <div style = 'display: flex; justify-content: center;'>
-          <img src = 'resources/isospectral.png' width = 550px>
-        </div>
-        <div style = 'text-align: center;'>
-          <h4>Since the sound a drum produces is entirely dependent on its eigenvalues, these two isospectral regions would produce the same noise.</h4>
-        </div>
-        <div style = 'text-align: left;'>
-          <h3>It seems there isn't a whole lot left to work on with this problem then; an infinite family of counterexamples has been found. There is a great opportunity here though
-            to get some practice with numerical methods and come up with some nice visualizations for the drum problem.</h3>
-          <h3>In general, finding the explicit spectrum of a region is pretty difficult. This is part of the reason it took nearly 30 years to find this counterexample. In an afternoon
-            we could find nice eigenvalues and eigenfunctions for squares, rectangles, and circles, but if given a non-regular, piece-wise defined mess, it might take us a few decades
-            to work that out too.</h3>
-          <h3>Enter numerical approximation. Today, we're going to talk about how we can use the <u>finite difference laplacian</u> to come up with a numerical estimate for the spectrum of a
-            region. Once we've put together all of our code for this, we can test it out on the two regions above to see if we estimate about the same values.
-          </h3>
-          <br>
-          <h3><strong>Discretizing our Region</strong></h3>
-          <h3>Before worrying about how to discretly approximate the laplacian operator, we need to break our region into a discrete set of points and somehow define the 2D functions
-              <math><mi>u</mi></math> as vectors. To do this, we can just choose any density of a grid that we want and find the points of the grid which lie inside the region using some
-              sort of <code>in_polygon</code> function. I used <a href = 'https://stackoverflow.com/questions/31542843/inpolygon-for-python-examples-of-matplotlib-path-path-contains-points-method'>
-              matplotlib.path</a> to get something like this:
-          </h3>
-        </div>
-        <div style = 'display: flex; justify-content: center;'>
-          <img src = 'resources/discrete-grid.png' width = 400px>
-        </div>
-        <div style = 'text-align: center;'>
-          <h4>We can later increase the resolution of this grid to get better approximations of our spectrum.</h4>
-        </div>
-        <div style = 'text-align: left;'>
-          <h3>The idea from here is to index this grid and use it as a way to vectorize functions defined on the region. Then we can define the discrete Laplacian as a matrix acting on these
-            vectorized functions and find the eigenvalues of that matrix. There is no correct way to label the points in our region but its easiest to just name them left to right, up to down.
-            I wrote a function <code>index_array</code> which takes binary numpy arrays and gives all of the ones in the array a unique index. Using the function on a discrete grid, we get
-            an array that looks like this:</h3>
-        </div>
-        <div style = 'display: flex; justify-content: center;'>
-          <img src = 'resources/indexed-grid.png' width = 400px>
-        </div>
-        <div style = 'text-align: center;'>
-          <h4>The indexing can go in any order we want. I chose left to right top to bottom for simplicity.</h4>
-        </div>
-        <div style = 'text-align: left;'>
-          <h3>Now all functions in <math><msub><mi>C</mi><mn>0</mn></msub><mo>(</mo><mi>Ω</mi><mo>)</mo></math> can be described by a unique vector in
-          <math><msup><mi>&#x211D;</mi><mn>N</mn></msup></math> where <math><mn>N</mn></math> is the number of indicies in our grid.</h3>
-          <br>
-          <h3><strong>Constructing the Discrete Laplacian</strong></h3>
-          <h3>To define an estimate for the Laplacian on this region, we use a finite difference method. In this case, we use the following 5-point scheme:</h3>
-        </div>
-        <div style = 'display: flex; justify-content: center;'>
-          <img src = 'resources/five-points.png' width = 400px>
-        </div>
-        <div style = 'text-align: center;'>
-          <h4></h4>
-        </div>
-        <div style = 'text-align: left;'>
-          <h3>If we want the value of <math><mi>&#x394;</mi><mi>u</mi><mo>(</mo><msub><mi>x</mi><mi>i</mi></msub><mo>,</mo><msub><mi>y</mi><mi>i</mi></msub><mo>)</mo></math>,
-          we can approximate the second derivatives in both variables by getting two estimates of the slope with adjacent points and using those to get an estimate of the second derivative.
-          This works out to be <math><mi>&#x394;</mi><mi>u</mi><mo>(</mo><msub><mi>x</mi><mi>i</mi></msub><mo>,</mo><msub><mi>y</mi><mi>i</mi></msub><mo>)</mo><mi> 	
-            &#8776; </mi>
-            <mo>(</mo><mi>u</mi><mo>(</mo><msub><mi>x</mi><mi>i+1</mi></msub><mo>,</mo><msub><mi>y</mi><mi>i</mi></msub><mo>)</mo><mo>+</mo>
-            <mi>u</mi><mo>(</mo><msub><mi>x</mi><mi>i-1</mi></msub><mo>,</mo><msub><mi>y</mi><mi>i</mi></msub><mo>)</mo><mo>+</mo>
-            <mi>u</mi><mo>(</mo><msub><mi>x</mi><mi>i</mi></msub><mo>,</mo><msub><mi>y</mi><mi>i+1</mi></msub><mo>)</mo><mo>+</mo>
-            <mi>u</mi><mo>(</mo><msub><mi>x</mi><mi>i</mi></msub><mo>,</mo><msub><mi>y</mi><mi>i-1</mi></msub><mo>)</mo><mo>-</mo>
-            <mn>4</mn><mi>u</mi><mo>(</mo><msub><mi>x</mi><mi>i</mi></msub><mo>,</mo><msub><mi>y</mi><mi>i</mi></msub><mo>)</mo><mo></mo><mo>)</mo><mo>/</mo><msup><mi>h</mi><mn>2</mn></msup></math>
-          where <math><mi>h</mi></math> is the distance between adjacent points. Since our function is described by some vector, we can describe this transformation as a matrix
-          with the diagonal consisting of -4's and minor diagonals with 1's depending on how we indexed the region. These matrices are sparse, so we can use <code>eigsh</code> from
-          <code>scipy.sparse.linalg</code> to quickly get the eigenvalues and eigenvectors.</h3>
-        </div>
-        <div style = 'display: flex; justify-content: center;'>
-          <img src = 'resources/spy.png' width = 300px>
-        </div>
-        <div style = 'text-align: center;'>
-          <h4>An example of a finite difference laplacian</h4>
-        </div>
-        <div style = 'text-align: left;'>
-          <h3>At this point, we are able to approximately compute the spectra of the two regions that were claimed to be isospectral and see that they are nearly identical when we use
-            a high number of points! I encourage you to get the code from the resources and try this yourself.
-          </h3>
-          <br>
-          <h3><strong>Initial Conditions and Animations</strong></h3>
-          <h3>There is a bit more we can do now too though. Since we also get the eigenvectors of the matrix (really vectorized eigenfunctions) and we know that they form a basis for the
-            space our solutions lie in, we are able to construct explicit solutions when given some initial conditions. To best simulate reality, I assumed 
-            <math><mi>u</mi><mo>(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>,</mo><mi>0</mi><mo>)</mo><mo>=</mo><mn>0</mn></math> and 
-            <math><msub><mi>u</mi><mi>t</mi></msub><mo>(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>,</mo><mi>0</mi><mo>)</mo><mo>=</mo><mi>f</mi></math> where <math><mi>f</mi></math> is some
-            gaussian which represents hitting the drum with some initial velocity at a particular point.
-          </h3>
-          <br>
-          <div style = 'display: flex; justify-content: center;'>
-            <img src = 'resources/eigenfuncs.JPG' width = 600px>
-          </div>
-          <div style = 'text-align: center;'>
-            <h4>The first few eigenfunctions of a star-shaped drum.</h4>
-          </div>
-          <br>
-          <h3>With an explicit solution in time, we can start to make some pretty simulations for any region we want!</h3>
-          <br>
-          <div style = 'display: flex; justify-content: center;'>
-            <img src = 'resources/star-drum.gif' width = 400px>
-          </div>
-          <div style = 'text-align: center;'>
-            <h4>A simulation of a star-shaped drum being hit in one of the corners.</h4>
-          </div>
-          <br>
-          <h3>To wrap up, I will mention a few things that could use improvement. This finite difference method may have some issues with certain drum shapes. If you imagine
-            a drum which has some long tentacles or other boundary types, the grid may not be fine enough to capture and simulate those details. Other than this though, I think it may
-            be interesting to try and expand this simulation to include the sound the drum might produce. I tried this a bit but couldn't quite get it to sound realistic. 
-          </h3>
-          <h3>Feel free to try this yourself! I made a little interface that allows you to draw any shape you would like. The spacebar with add points, the mouse will drag them around, 
-            pressing '/' will calculate the eigenfunctions, and pressing '0' will make the animation! Thanks for reading!
-          </h3>
-          <br>
-          <h3><strong>Resources</strong></h3>
-          <ul>
-            <li><a href = 'https://github.com/CapSnCrunch/drums'>GitHub Repository</a></li>
-            <li><a href = 'resources/drum-presentation.pdf'>My Presentation on This</a></li>
-            <li><a href = 'https://blogs.mathworks.com/cleve/2012/08/06/can-one-hear-the-shape-of-a-drum-part-1-eigenvalues/'>MATLAB Version of Discretization</a></li>
-          </ul>
-        </div>
-     </div>
-    <div id = 'footer'></div>
+        <br />
+        <h3>
+          To wrap up, I will mention a few things that could use improvement.
+          This finite difference method may have some issues with certain drum
+          shapes. If you imagine a drum which has some long tentacles or other
+          boundary types, the grid may not be fine enough to capture and
+          simulate those details. Other than this though, I think it may be
+          interesting to try and expand this simulation to include the sound the
+          drum might produce. I tried this a bit but couldn't quite get it to
+          sound realistic.
+        </h3>
+        <h3>
+          Feel free to try this yourself! I made a little interface that allows
+          you to draw any shape you would like. The spacebar with add points,
+          the mouse will drag them around, pressing '/' will calculate the
+          eigenfunctions, and pressing '0' will make the animation! Thanks for
+          reading!
+        </h3>
+        <br />
+        <h3><strong>Resources</strong></h3>
+        <ul>
+          <li>
+            <a href="https://github.com/CapSnCrunch/drums">GitHub Repository</a>
+          </li>
+          <li>
+            <a href="resources/drum-presentation.pdf"
+              >My Presentation on This</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://blogs.mathworks.com/cleve/2012/08/06/can-one-hear-the-shape-of-a-drum-part-1-eigenvalues/"
+              >MATLAB Version of Discretization</a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div id="footer"></div>
   </body>
 </html>
