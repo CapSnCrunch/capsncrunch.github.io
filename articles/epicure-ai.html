@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Samuel Perales | Epicure AI</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../styles.css" />
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script
+      id="MathJax-script"
+      async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+    ></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-K4LP8WXGLP"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+
+      gtag('config', 'G-K4LP8WXGLP');
+    </script>
+  </head>
+  <body>
+    <div id="header">
+      <h1 style="text-align: center; margin-bottom: 10px">
+        <a class="name" href="../index.html">Samuel Perales</a>
+      </h1>
+      <h2 style="text-align: center; margin-top: 0">Personal Blog</h2>
+    </div>
+    <div id="topbar">
+      <div style="display: flex">
+        <a href="../index.html">Home</a>
+        <a href="../articles.html"><strong>Articles</strong></a>
+      </div>
+      <div style="display: flex">
+        <a href="../research.html">Research</a>
+        <a href="../other.html">Other</a>
+        <a href="../contact.html">Contact</a>
+      </div>
+    </div>
+    <div class="content">
+      <div class="center">
+        <h2>Epicure AI</h2>
+        <h3 style="margin-top: -5px">
+          <strong>
+            <a href="first-year-of-fullstack.html"><</a>
+            &emsp; 1 / 31 / 24 &emsp;
+            <!-- <a href=''>></a> -->
+          </strong>
+        </h3>
+        <h4 style="font-size: 14px; margin-top: -5px">0 min read</h4>
+        <!-- https://niram.org/read/ -->
+      </div>
+      <div style="text-align: left; margin: 0 10px">
+        <h3>
+          The spring semester has started and so has my
+          <a href="https://cdso.utexas.edu/msai" target="_blank"
+            >Master's program in AI</a
+          >! I've gotten into a nice rhythm of splitting my time between work,
+          reading, studying, and (finally) making progress on my side projects.
+          The theme of most of these projects has been working with different AI
+          tools to see what sort of unique value I can extract from them. This
+          article will discuss one of the projects that I just wrapped up and
+          some of the interesting things I learned while making it.
+        </h3>
+
+        <h3><strong>The Idea</strong></h3>
+        <h3>
+          I had the plan a while back to make a website that has no human-made
+          content and is instead, generated in real time as a user searches for
+          it. In this way, the website can be infinitely deep; the only goal
+          being for individual generated pages to have actually interesting or
+          useful material.
+        </h3>
+        <h3>
+          The context I went with to build this sort of site was a
+          <strong>recipe blog</strong>. Users should be able to come with an
+          appetite for anything and leave with specific, detailed instructions
+          on how to make exactly what their craving (even if it doesn't already
+          exist on the site).
+        </h3>
+        <h3>
+          With the help of ChatGPT, I came up with the name Epicure AI and got
+          started implementing!
+        </h3>
+
+        <br />
+        <div style="display: flex; justify-content: center">
+          <a href="https://github.com/CapSnCrunch/epicure-ai" target="_blank"
+            ><img src="resources/epicure-ai-title.png" width="700px"
+          /></a>
+        </div>
+        <br />
+
+        <h3><strong>Generating Recipes</strong></h3>
+
+        <h3>
+          Creating recipes using generative AI has a few things to take into
+          consideration:
+        </h3>
+        <ol>
+          <li>What content should we generate?</li>
+          <li>How can we control the content format?</li>
+          <li>How much will it cost to generate the content?</li>
+          <li>How long will it take to generate the content?</li>
+        </ol>
+
+        <h3>
+          For the first item, I wanted to make sure I was generating enough
+          content to make the website feel 'real'. If you've ever visited a
+          recipe blog, you know that there's a whole novel's worth of text
+          before you even get to see the ingredient list. This is the sort of
+          vibe I wanted to go with (just a bit less extreme) so the site didn't
+          look too bare. I also thought it would be cool to list some 'similar
+          recipes' and 'complimentary recipes' for the user to click through and
+          keep generating recipes down a rabbit hole.
+        </h3>
+
+        <!-- <h3>Overall, each recipe page will end up having:</h3>
+        <ul>
+          <li>A name</li>
+          <li>An image</li>
+          <li>A short description</li>
+          <li>A long description</li>
+          <li>A list of ingredients</li>
+          <li>A list of instructions</li>
+          <li>A list of 'recipe tips' (advice for making the recipe better)</li>
+          <li>A list of 'similar recipes'</li>
+          <li>A list of 'complimentary recipes'</li>
+        </ul> -->
+
+        <h3>
+          Since we are just asking GPT-3 through the API to generate this recipe
+          for us and then trying to use it in the rest of our code, we want to
+          make sure it has some consistent structure. Luckily, we can take
+          advantage of <strong>prompting</strong> and the built-in
+          <code class="code" style="padding: 2px">response_format</code>
+          parameter.
+        </h3>
+
+        <h3>Setting the <code class="code" style="padding: 2px">response_format</code> to return JSON will guarantee we get a valid JSON object and defining a system prompt
+        reinforces that the AI should output in this format. To get more specific with what fields we want, we can define explicit names of fields and rules for how to generate 
+        each of them. Then all we need to do is pass in a <code class="code" style="padding: 2px">recipeName</code> param that the user defines and we get an object containing
+        all the details of our recipe!
+        </h3>
+
+        <h3 class="code">
+          <span>const completion = await openai.chat.completions.create({</span><br/>
+          <span style="margin-left: 15px;">messages: [</span><br/>
+          <span style="margin-left: 30px;">{</span><br/>
+          <span style="margin-left: 45px;">role: "system",</span><br/>
+          <span style="margin-left: 45px;">content: "You are a helpful recipe generation assistant designed to output JSON.",</span><br/>
+          <span style="margin-left: 30px;">},</span><br/>
+          <span style="margin-left: 30px;">{ </span><br/>
+          <span style="margin-left: 45px;">role: "user", </span><br/>
+          <span style="margin-left: 45px;">content: `Generate a recipe for '${recipeName}'. Give me your response in JSON format</span><br/>
+          <span style="margin-left: 60px;">with fields for a tasty-sounding 'name' (a string with less 10 words), a 'description'</span><br/>
+          <span style="margin-left: 60px;">(a string with at least 60 words), 'ingredients' (a list of strings), 'instructions'</span><br/>
+          <span style="margin-left: 60px;">(a list of strings), 'similarRecipes' (a list of 5 strings with names of recipes with </span><br/>
+          <span style="margin-left: 60px;">less than 10 words each), and 'complimentaryRecipes' (a list of 5 strings with names</span><br/>
+          <span style="margin-left: 60px;">of recipes that would pair well in a meal with this one, less than 10 words each).` </span><br/>
+          <span style="margin-left: 30px;">},</span><br/>
+          <span style="margin-left: 15px;">],</span><br/>
+          <span style="margin-left: 15px;">model: "gpt-3.5-turbo-1106",</span><br/>
+          <span style="margin-left: 15px;">response_format: { type: "json_object" },</span><br/>
+          <span>})</span><br/>
+        </h3>
+
+        <h3>
+          This method worked pretty well for me with some rare exceptions of the JSON being valid but with incorrectly populated fields 
+          (empty lists or string values that didn't match the constraints I had set).
+        </h3>
+
+        <h3>
+          Image generation was similarly quick to build and only took a few params to define:
+        </h3>
+
+        <h3 class="code">
+          <span>const response = await openai.images.generate({</span><br/>
+          <span style="margin-left: 15px;">model: "dall-e-3",</span><br/>
+          <span style="margin-left: 15px;">prompt: ` ${search} delicious-looking food blog image, bright warm lighting, country-home tabletop`,</span><br/>
+          <span style="margin-left: 30px;">with a table cloth with simple pattern, photorealistic, high-resolution, depth of field`,</span><br/>
+          <span style="margin-left: 15px;">size: "1024x1024",</span><br/>
+          <span style="margin-left: 15px;">n: 1,</span><br/>
+          <span>})</span><br/>
+        </h3>
+      
+        <h3>The prompt for DALL-E definitely required a bit more trial and error to get what I was looking for. If you want consistent images, its important 
+        to define a style and possibly even a specific background / setting all of the images should share. One issue I came across and have not found a consistent way to avoid
+        is having cameras appear in my images because of all the photography terminology used in the prompt (most images don't include these, but they pop up every once in a while).</h3>
+
+        <br />
+        <div style="display: flex; justify-content: center">
+          <img src="resources/epicure-ai-cherry-pie.jpg" width="300px"/>
+          <img src="resources/epicure-ai-iced-tea.jpg" width="300px" style="margin: 0 25px;"/>
+          <img src="resources/epicure-ai-pulled-pork.jpg" width="300px"/>
+        </div>
+        <h4 style="text-align: center">Some examples of images generated with the prompt above (cherry pie, citrus iced tea, and pulled pork tacos)</h4>
+        <br />
+
+        <!-- <h3>
+          With this particular project, I was wanting to start getting
+          experience with
+          <a href="https://platform.openai.com/docs/overview" target="_blank"
+            >OpenAI's API</a
+          >
+          so thats what I went with. 
+        </h3> -->
+
+        <h3><strong>Filtering Out Harmful Content</strong></h3>
+
+        <h3><strong>Searching Existing Recipes</strong></h3>
+
+        <h3><strong>Resources</strong></h3>
+        <ul>
+          <li>
+            <a href="https://platform.openai.com/docs/overview" target="_blank"
+              >OpenAI's API</a
+            >
+          </li>
+          <li>
+            <a href="https://github.com/CapSnCrunch/epicure-ai" target="_blank"
+              >GitHub Repository</a
+            >
+          </li>
+          <li>
+            <a href="https://www.loveandlemons.com/" target="_blank"
+              >Love & Lemons</a
+            >
+            (my design inspiration for the UI)
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div id="footer"></div>
+  </body>
+</html>

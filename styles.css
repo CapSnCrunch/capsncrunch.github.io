@@ -7,19 +7,19 @@ body {
 }
 
 .name {
-    font-size: 32px;
+    font-size: 36px;
     font-family: 'Ubuntu', sans-serif;
     color: #1C1C1C;
 }
 
 h2 {
-    font-size: 22px;
+    font-size: 24px;
     font-family: 'Ubuntu', sans-serif;
     color: #1C1C1C;
 }
 
 h3 {
-    font-size: 16px;
+    font-size: 18px;
     font-family: 'Ubuntu', sans-serif;
     font-weight: normal;
     color: #1C1C1C;
@@ -27,14 +27,14 @@ h3 {
 }
 
 h4 {
-    font-size: 12px;
+    font-size: 14px;
     font-family: 'Ubuntu', sans-serif;
     font-weight: normal;
     color: #1C1C1C;
 }
 
 summary {
-    font-size: 16px;
+    font-size: 18px;
     font-family: 'Ubuntu', sans-serif;
     font-weight: normal;
     color: #1C1C1C;
@@ -43,7 +43,7 @@ summary {
 }
 
 a {
-    font-size: 16px;
+    font-size: 18px;
     font-family: 'Ubuntu', sans-serif;
     /*color: #15795B;*/
     color: #0e9e73;
@@ -80,7 +80,7 @@ button:hover {
 }
 
 li {
-    font-size: 16px;
+    font-size: 18px;
     font-family: 'Ubuntu', sans-serif;
     font-weight: normal;
     color: #1C1C1C;
@@ -98,7 +98,7 @@ li {
 
 @media only screen and (max-width: 600px) {
     #topbar {
-      flex-direction: column;
+        flex-direction: column;
     }
 
     #topbar a {
@@ -176,9 +176,9 @@ li {
 
 @media only screen and (max-width: 960px) {
     .about-me {
-      
-      flex-direction: column;
-      align-items: center;
+
+        flex-direction: column;
+        align-items: center;
     }
 }
 
