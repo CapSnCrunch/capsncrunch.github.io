@@ -1,382 +1,143 @@
 <!DOCTYPE html>
-<html lang = 'en'>
+<html lang='en'>
   <head>
-    <meta charset = 'utf-8'>
+    <meta charset='utf-8'>
     <title>Samuel Perales | My Book List</title>
-    <link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
-    <link href = 'https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap' rel = 'stylesheet'>
-    <link rel = 'stylesheet' href = '../styles.css'>   
+    <link rel='preconnect' href='https://fonts.gstatic.com'>
+    <link href='https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap' rel='stylesheet'>
+    <link rel='stylesheet' href='../styles.css'>
     <script src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.js"></script>
-
-    <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-K4LP8WXGLP"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'G-K4LP8WXGLP');
     </script>
   </head>
   <body>
-    <div id = 'header'>
-      <h1 style = 'text-align: center; margin-bottom: 10px;'><a class='name' href='../index.html'>Samuel Perales</a></h1>
-      <h2 style = 'text-align: center; margin-top: 0;'> Personal Blog </h2>
+    <div id='header'>
+      <h1 style='text-align: center; margin-bottom: 10px;'><a class='name' href='../index.html'>Samuel Perales</a></h1>
+      <h2 style='text-align: center; margin-top: 0;'>Personal Blog</h2>
     </div>
-    <div id = 'topbar'>
-      <a href = '../index.html'>Home</a>
-      <a href = '../articles.html'>Articles</a>
-      <a href = '../research.html'>Research</a>
-      <a href = '../other.html'><strong>Other</strong></a>
-      <a href = '../contact.html'>Contact</a>
+    <div id='topbar'>
+      <a href='../index.html'>Home</a>
+      <a href='../articles.html'>Articles</a>
+      <a href='../research.html'>Research</a>
+      <a href='../other.html'><strong>Other</strong></a>
+      <a href='../contact.html'>Contact</a>
     </div>
-    <div class = 'content'>
-        <div class = 'center'>
-            <h2>My Book List</h2>
-            <h3 style="margin-top: -5px;"><strong><a href='json2yaml.html'><</a>&emsp; 6 / 15 / 22 &emsp;<a href='layolay.html'>></a></strong></strong></h3>
-            <div style = 'text-align: left;'>
-              <h3>A friend of mine tracks the books they've been reading on their personal website. I liked the idea so I thought I would do this too. I'll update it whenever I add something to the list of
-                things to read or when I start / finish a book.
-              </h3>
-              <div style = 'display: grid; grid-template-columns: 3fr 1fr 1fr 1fr; justify-items: center;'>
-                  <h3 style="margin-bottom: 10px;">Book Title</h3>
-                  <h3 style="margin-bottom: 10px;">Start Date</h3>
-                  <h3 style="margin-bottom: 10px;">Completion Date</h3>
-                  <h3 style="margin-bottom: 10px;">Notes</h3>
-              </div>
-
-              <hr style = 'border: none; height: 1px; background-color: black;'>
-              <h4 style="margin-bottom: 8px; font-size: 14px;"><strong>Reading in 2022 <span style="font-size: 12px;">(5 books)</span></strong></h4>
-
-              <div style="display: flex; flex-direction: column;">
-                <div style="display: flex;">
-                  <div style="flex-basis: 50%;">
-                    <h3 style="margin-bottom: 0px; margin-top: 10px;"><a href = 'https://pragprog.com/titles/tpp20/the-pragmatic-programmer-20th-anniversary-edition/' target="_blank">The Pragmatic Programmer</a></h3>
-                    <h4 style="margin-bottom: 5px; margin-top: 5px;">David Thomas and Andrew Hunt</h4>
-                  </div>
-                  <h3 style="flex-basis: 17%; text-align: center;">5 / 25 / 22</h3>
-                  <h3 style="flex-basis: 17%; text-align: center;">6 / 15 / 22</h3>
-                  <h3 style="flex-basis: 16%; text-align: center;"></h3>
-
-                </div>
-                <div style="display: flex;">
-                  <div style="flex-basis: 50%;">
-                    <h3 style="margin-bottom: 0px; margin-top: 10px;"><a href = 'https://www.askyourdeveloper.com/' target="_blank">Ask Your Developer</a></h3>
-                    <h4 style="margin-bottom: 5px; margin-top: 5px;">Jeff Lawson</h4>
-                  </div>
-                  <h3 style="flex-basis: 17%; text-align: center;">10 / 12 / 22</h3>
-                  <h3 style="flex-basis: 17%; text-align: center;">11 / 3 / 22</h3>
-                  <h3 style="flex-basis: 16%; text-align: center;"></h3>
-                </div>
-                <div style="display: flex;">
-                  <div style="flex-basis: 50%;">
-                    <h3 style="margin-bottom: 0px; margin-top: 10px;"><a href = 'https://doc.lagout.org/programmation/Regular%20Expressions/Mastering%20Regular%20Expressions_%20Understand%20Your%20Data%20and%20Be%20More%20Productive%20%283rd%20ed.%29%20%5BFriedl%202006-08-18%5D.pdf' target="_blank">Mastering Regular Expressions</a></h3>
-                    <h4 style="margin-bottom: 5px; margin-top: 5px;">Jeffrey Friedl</h4>
-                  </div>
-                  <h3 style="flex-basis: 17%; text-align: center;">11 / 4 / 22</h3>
-                  <h3 style="flex-basis: 17%; text-align: center;">12 / 3 / 22</h3>
-                  <h3 style="flex-basis: 16%; text-align: center;"><a href="https://docs.google.com/document/d/1Iz62QzN-8tQC9UcBhomeccaQDyQOQTCr0eJhjiAvMXw/edit?usp=sharing" target="_blank">Notes</a></h3>
-                </div>
-                <div style="display: flex;">
-                  <div style="flex-basis: 50%;">
-                    <h3 style="margin-bottom: 0px; margin-top: 10px;"><a href = 'https://www.amazon.com/Maya-Based-Edgar-Cayce-readings/dp/0876040598' target="_blank">The Maya</a></h3>
-                    <h4 style="margin-bottom: 5px; margin-top: 5px;">Carolyn Hatt</h4>
-                  </div>
-                  <h3 style="flex-basis: 17%; text-align: center;">12 / 4 / 22</h3>
-                  <h3 style="flex-basis: 17%; text-align: center;">12 / 5 / 22</h3>
-                  <h3 style="flex-basis: 16%; text-align: center;"></h3>
-                </div>
-                <div style="display: flex;">
-                  <div style="flex-basis: 50%;">
-                    <h3 style="margin-bottom: 0px; margin-top: 10px;"><a href = 'https://public.nikhil.io/Designing%20Data%20Intensive%20Applications.pdf' target="_blank">Designing Data-Intensive Applications</a></h3>
-                    <h4 style="margin-bottom: 5px; margin-top: 5px;">Martin Kleppmann</h4>
-                  </div>
-                  <h3 style="flex-basis: 17%; text-align: center;">12 / 7 / 22</h3>
-                  <h3 style="flex-basis: 17%; text-align: center;">12 / 31 / 22</h3>
-                  <h3 style="flex-basis: 16%; text-align: center;"><a href="https://docs.google.com/document/d/1EQG0HimB8d7oqUhGvlUX3mx3twyJiip5bUv-mHvpxHI/edit?usp=sharing" target="_blank">Notes</a></h3>
-                </div>
-              </div>
-              
-              <hr style = 'border: none; height: 1px; background-color: black; margin: 20px 0 10px 0;'>
-              <h4 style="margin-bottom: 8px; font-size: 14px;"><strong>Reading in 2023 <span style="font-size: 12px;">(11 books)</span></strong></h4>
-
-              <div style="display: flex; flex-direction: column;">
-                <div style="display: flex;">
-                  <div style="flex-basis: 50%;">
-                    <h3 style="margin-bottom: 0px; margin-top: 10px;"><a href = 'https://www.amazon.com/Reading-Maya-Glyphs-Second-Michael/dp/0500285535/' target="_blank">Reading the Maya Glyphs</a></h3>
-                    <h4 style="margin-bottom: 5px; margin-top: 5px;">Michael Coe and Mark Van Stone</h4>
-                  </div>
-                  <h3 style="flex-basis: 17%; text-align: center;">1 / 5 / 23</h3>
-                  <h3 style="flex-basis: 17%; text-align: center;">1 / 16 / 23</h3>
-                  <h3 style="flex-basis: 16%; text-align: center;"></h3>
-                </div>
-                <div style="display: flex;">
-                  <div style="flex-basis: 50%;">
-                    <h3 style="margin-bottom: 0px; margin-top: 10px;"><a href = 'https://sre.google/books/' target="_blank">Site Reliability Engineering</a></h3>
-                    <h4 style="margin-bottom: 5px; margin-top: 5px;">Jennifer Petoff and Niall Murphy</h4>
-                  </div>
-                  <h3 style="flex-basis: 17%; text-align: center;">1 / 17 / 23</h3>
-                  <h3 style="flex-basis: 17%; text-align: center;">1 / 24 / 23</h3>
-                  <h3 style="flex-basis: 16%; text-align: center;"><a href="https://docs.google.com/document/d/198M0Wtk0wB2A6kDDwRAXIxS3WSiZFASnojMJliQk1kI/edit?usp=sharing" target="_blank">Notes</a></h3>
-                </div>
-                <div style="display: flex;">
-                  <div style="flex-basis: 50%;">
-                    <h3 style="margin-bottom: 0px; margin-top: 10px;"><a href = 'https://brianchristian.org/algorithms-to-live-by/' target="_blank">Algorithms to Live By</a></h3>
-                    <h4 style="margin-bottom: 5px; margin-top: 5px;">Brian Christian and Tom Griffiths</h4>
-                  </div>
-                  <h3 style="flex-basis: 17%; text-align: center;">2 / 8 / 23</h3>
-                  <h3 style="flex-basis: 17%; text-align: center;">3 / 1 / 23</h3>
-                  <h3 style="flex-basis: 16%; text-align: center;"></h3>
-                </div>
-                <div style="display: flex;">
-                  <div style="flex-basis: 50%;">
-                    <h3 style="margin-bottom: 0px; margin-top: 10px;"><a href = 'https://dl1.newoutlook.it/book/2020/03/networking-fundamentals-skills-required-pass-98-366.pdf' target="_blank">Networking Fundamentals</a></h3>
-                    <h4 style="margin-bottom: 5px; margin-top: 5px;">Gordon Davies</h4>
-                  </div>
-                  <h3 style="flex-basis: 17%; text-align: center;">4 / 3 / 23</h3>
-                  <h3 style="flex-basis: 17%; text-align: center;">4 / 20 /23</h3>
-                  <h3 style="flex-basis: 16%; text-align: center;"><a href="https://docs.google.com/document/d/11AIuluifPQ4zT82I0lYKaTZ2WBiuLhwz2u8V5C5OXik/edit?usp=sharing" target="_blank">Notes</a></h3>
-                </div>
-                <div style="display: flex;">
-                  <div style="flex-basis: 50%;">
-                    <h3 style="margin-bottom: 0px; margin-top: 10px;"><a href = 'https://www.youtube.com/watch?v=ff5RrTUmtl4' target="_blank">Things Fall Together</a></h3>
-                    <h4 style="margin-bottom: 5px; margin-top: 5px;">Skylar Tibbits</h4>
-                  </div>
-                  <h3 style="flex-basis: 17%; text-align: center;">4 / 21 / 23</h3>
-                  <h3 style="flex-basis: 17%; text-align: center;">4 / 25 / 23</h3>
-                  <h3 style="flex-basis: 16%; text-align: center;"></h3>
-                </div>
-                <div style="display: flex;">
-                  <div style="flex-basis: 50%;">
-                    <h3 style="margin-bottom: 0px; margin-top: 10px;"><a href = 'https://www.amazon.com/Machine-Learning-Applied-Mathematics-Introduction/dp/1916081606/ref=sr_1_1?crid=CAQA85WFON3Y&keywords=machine+learning+an+applied&qid=1655323090&s=books&sprefix=machine+learning+an+applied%2Cstripbooks%2C99&sr=1-1' target="_blank">Machine Learning: An Applied Mathematics Introduction</a></h3>
-                    <h4 style="margin-bottom: 5px; margin-top: 5px;">Paul Wilmott</h4>
-                  </div>
-                  <h3 style="flex-basis: 17%; text-align: center;">5 / 4 / 23</h3>
-                  <h3 style="flex-basis: 17%; text-align: center;">6 / 19 / 23</h3>
-                  <h3 style="flex-basis: 16%; text-align: center;"></h3>
-                </div>
-                <div style="display: flex;">
-                  <div style="flex-basis: 50%;">
-                    <h3 style="margin-bottom: 0px; margin-top: 10px;"><a href = 'https://www.amazon.com/Hidden-Qualities-Water-Wolfram-Schwenk/dp/086315610X' target="_blank">Contraception and Abortion from the Ancient World to the Renaissance</a></h3>
-                    <h4 style="margin-bottom: 5px; margin-top: 5px;">John M. Riddle</h4>
-                  </div>
-                  <h3 style="flex-basis: 17%; text-align: center;">6 / 26 / 23</h3>
-                  <h3 style="flex-basis: 17%; text-align: center;">7 / 4 / 23</h3>
-                  <h3 style="flex-basis: 16%; text-align: center;"></h3>
-                </div>
-                <div style="display: flex;">
-                  <div style="flex-basis: 50%;">
-                    <h3 style="margin-bottom: 0px; margin-top: 10px;"><a href = 'https://www.amazon.com/Essential-Child-Essentialism-Cognitive-Development/dp/0195181980' target="_blank">The Essential Child: Origins of Essentialism in Everyday Thought</a></h3>
-                    <h4 style="margin-bottom: 5px; margin-top: 5px;">Susan Gelman</h4>
-                  </div>
-                  <h3 style="flex-basis: 17%; text-align: center;">7 / 11 / 23</h3>
-                  <h3 style="flex-basis: 17%; text-align: center;">7 / 26 / 23</h3>
-                  <h3 style="flex-basis: 16%; text-align: center;"></h3>
-                </div>
-              </div>
-              <div style="display: flex;">
-                <div style="flex-basis: 50%;">
-                  <h3 style="margin-bottom: 0px; margin-top: 10px;"><a href = 'https://darkdata.website/' target="_blank">Dark Data</a></h3>
-                  <h4 style="margin-bottom: 5px; margin-top: 5px;">David J. Hand</h4>
-                </div>
-                <h3 style="flex-basis: 17%; text-align: center;">8 / 17 / 23</h3>
-                <h3 style="flex-basis: 17%; text-align: center;">9 / 1 / 23</h3>
-                <h3 style="flex-basis: 16%; text-align: center;"></h3>
-              </div>
-              <div style="display: flex;">
-                <div style="flex-basis: 50%;">
-                  <h3 style="margin-bottom: 0px; margin-top: 10px;"><a href = 'https://www.mcdbooks.com/books/user-friendly' target="_blank">User Friendly</a></h3>
-                  <h4 style="margin-bottom: 5px; margin-top: 5px;">Cliff Kuang and Robert Fabricant</h4>
-                </div>
-                <h3 style="flex-basis: 17%; text-align: center;">9 / 26 / 23</h3>
-                <h3 style="flex-basis: 17%; text-align: center;">10 / 11 / 23</h3>
-                <h3 style="flex-basis: 16%; text-align: center;"></h3>
-              </div>
-              <div style="display: flex;">
-                <div style="flex-basis: 50%;">
-                  <h3 style="margin-bottom: 0px; margin-top: 10px;"><a href = 'https://www.biblio.com/book/golden-apples-sun-bradbury-ray/d/1370038796?aid=frg&srsltid=AfmBOooRgPzjlzrILuWRP5OaJs5k4gzYrGkLETX2IxDacP5LNjzZuYu8cno' target="_blank">The Golden Apples of The Sun</a></h3>
-                  <h4 style="margin-bottom: 5px; margin-top: 5px;">Ray Bradbury</h4>
-                </div>
-                <h3 style="flex-basis: 17%; text-align: center;">12 / 6 / 23</h3>
-                <h3 style="flex-basis: 17%; text-align: center;">12 / 25 / 23</h3>
-                <h3 style="flex-basis: 16%; text-align: center;"></h3>
-              </div>
-
-              <hr style = 'border: none; height: 1px; background-color: black; margin: 20px 0 10px 0;'>
-              <h4 style="margin-bottom: 8px; font-size: 14px;"><strong>Reading in 2024 <span style="font-size: 12px;">(1 book, so far...)</span></strong></h4>
-
-              <div style="display: flex;">
-                <div style="flex-basis: 50%;">
-                  <h3 style="margin-bottom: 0px; margin-top: 10px;"><a href = 'https://www.oreilly.com/library/view/introducing-mlops/9781492083283/'>Introducing MLOps</a></h3>
-                  <h4 style="margin-bottom: 5px; margin-top: 5px;">Mark Treveil and Dataiku Team</h4>
-                </div>
-                <h3 style="flex-basis: 17%; text-align: center;">12 / 28 / 23</h3>
-                <h3 style="flex-basis: 17%; text-align: center;">1 / 8 / 24</h3>
-                <h3 style="flex-basis: 16%; text-align: center;"><a href="https://docs.google.com/document/d/1lDlkUvO64-4XA2NiCW1wH1XnkKXyWQFpq95biU9vGCs/edit?usp=sharing" target="_blank">Notes</a></h3>
-              </div>
-              <div style="display: flex;">
-                <div style="flex-basis: 50%;">
-                  <h3 style="margin-bottom: 0px; margin-top: 10px;"><a href = 'https://mitpress.mit.edu/9780262535953/gps/' target="_blank">GPS</a></h3>
-                  <h4 style="margin-bottom: 5px; margin-top: 5px;">Paul E. Ceruzzi</h4>
-                </div>
-                <h3 style="flex-basis: 17%; text-align: center;">2 / 17 / 24</h3>
-                <h3 style="flex-basis: 17%; text-align: center;">2 / 19 / 24</h3>
-                <h3 style="flex-basis: 16%; text-align: center;"></h3>
-              </div>
-              <div style="display: flex;">
-                <div style="flex-basis: 50%;">
-                  <h3 style="margin-bottom: 0px; margin-top: 10px;"><a href = 'https://mitpress.mit.edu/9780262529129/self-tracking/' target="_blank">Self-Tracking</a></h3>
-                  <h4 style="margin-bottom: 5px; margin-top: 5px;">Gina Neff and Dawn Nafus</h4>
-                </div>
-                <h3 style="flex-basis: 17%; text-align: center;">3 / 17 / 24</h3>
-                <h3 style="flex-basis: 17%; text-align: center;">3 / 23 / 24</h3>
-                <h3 style="flex-basis: 16%; text-align: center;"></h3>
-              </div>
-              <div style="display: flex;">
-                <div style="flex-basis: 50%;">
-                  <h3 style="margin-bottom: 0px; margin-top: 10px;"><a href = 'https://archive.org/details/deborah-lupton-the-quantified-self-policy-press-2016/page/n1/mode/2up' target="_blank">The Quanitifed Self</a></h3>
-                  <h4 style="margin-bottom: 5px; margin-top: 5px;">Deborah Lupton</h4>
-                </div>
-                <h3 style="flex-basis: 17%; text-align: center;">3 / 27 / 24</h3>
-                <h3 style="flex-basis: 17%; text-align: center;">-</h3>
-                <h3 style="flex-basis: 16%; text-align: center;"></h3>
-              </div>
-
-              <hr style = 'border: none; height: 1px; background-color: black; margin: 20px 0 10px 0;'>
-              <h4 style="margin-bottom: 8px; font-size: 14px;"><strong>On My Shelf</strong></h4>
-
-              <div style="display: flex;">
-                <div style="flex-basis: 50%;">
-                  <h3 style="margin-bottom: 0px; margin-top: 10px;"><a href = 'https://hastie.su.domains/Papers/ESLII.pdf' target="_blank">The Elements of Statistical Learning</a></h3>
-                  <h4 style="margin-bottom: 5px; margin-top: 5px;">Trevor Hastie, Robert Tibshirani, and Jerome Friedman</h4>
-                </div>
-                <h3 style="flex-basis: 17%; text-align: center;">-</h3>
-                <h3 style="flex-basis: 17%; text-align: center;">-</h3>
-                <h3 style="flex-basis: 16%; text-align: center;"></h3>
-              </div>
-              <div style="display: flex;">
-                <div style="flex-basis: 50%;">
-                  <h3 style="margin-bottom: 0px; margin-top: 10px;"><a href = 'https://drerictopol.com/portfolio/deep-medicine/' target="_blank">Deep Medicine</a></h3>
-                  <h4 style="margin-bottom: 5px; margin-top: 5px;">Eric Topol</h4>
-                </div>
-                <h3 style="flex-basis: 17%; text-align: center;">-</h3>
-                <h3 style="flex-basis: 17%; text-align: center;">-</h3>
-                <h3 style="flex-basis: 16%; text-align: center;"></h3>
-              </div>
-              <div style="display: flex;">
-                <div style="flex-basis: 50%;">
-                  <h3 style="margin-bottom: 0px; margin-top: 10px;"><a href = 'https://www.philippdettmer.net/immune' target="_blank">Immune</a></h3>
-                  <h4 style="margin-bottom: 5px; margin-top: 5px;">Philipp Dettmer</h4>
-                </div>
-                <h3 style="flex-basis: 17%; text-align: center;">-</h3>
-                <h3 style="flex-basis: 17%; text-align: center;">-</h3>
-                <h3 style="flex-basis: 16%; text-align: center;"></h3>
-              </div>
-              <div style="display: flex;">
-                <div style="flex-basis: 50%;">
-                  <h3 style="margin-bottom: 0px; margin-top: 10px;"><a href = 'https://github.com/faquir-1990/itBooks/blob/master/Classic%20Shell%20Scripting.pdf' target="_blank">Classic Shell Scripting</a></h3>
-                  <h4 style="margin-bottom: 5px; margin-top: 5px;">Arnold Robbins and Nelson H. F. Beebe</h4>
-                </div>
-                <h3 style="flex-basis: 17%; text-align: center;">-</h3>
-                <h3 style="flex-basis: 17%; text-align: center;">-</h3>
-                <h3 style="flex-basis: 16%; text-align: center;"></h3>
-              </div>
-              <div style="display: flex; flex-direction: column;">
-                <div style="display: flex;">
-                  <div style="flex-basis: 50%;">
-                    <h3 style="margin-bottom: 0px; margin-top: 10px;"><a href = 'https://press.princeton.edu/books/hardcover/9780691133157/hidden-markov-processes' target="_blank">Hidden Markov Processes: Theory and Applications to Biology</a></h3>
-                    <h4 style="margin-bottom: 5px; margin-top: 5px;">Mathukumalli Vidyasagar</h4>
-                  </div>
-                  <h3 style="flex-basis: 17%; text-align: center;">-</h3>
-                  <h3 style="flex-basis: 17%; text-align: center;">-</h3>
-                  <h3 style="flex-basis: 16%; text-align: center;"></h3>
-                </div>
-                <div style="display: flex;">
-                  <div style="flex-basis: 50%;">
-                    <h3 style="margin-bottom: 0px; margin-top: 10px;"><a href = 'https://www.amazon.com/Petroleum-Development-Geology-Parke-Dickey/dp/0878143076' target="_blank">Petroleum Development Geology</a></h3>
-                    <h4 style="margin-bottom: 5px; margin-top: 5px;">Parke A. Dickey</h4>
-                  </div>
-                  <h3 style="flex-basis: 17%; text-align: center;">-</h3>
-                  <h3 style="flex-basis: 17%; text-align: center;">-</h3>
-                  <h3 style="flex-basis: 16%; text-align: center;"></h3>
-                </div>
-                <div style="display: flex;">
-                  <div style="flex-basis: 50%;">
-                    <h3 style="margin-bottom: 0px; margin-top: 10px;"><a href = 'https://www.amazon.com/gp/product/1568811306/ref=ppx_yo_dt_b_asin_title_o01_s00?ie=UTF8&psc=1' target="_blank">Winning Ways for your Mathematical Plays: Volume 1</a></h3>
-                    <h4 style="margin-bottom: 5px; margin-top: 5px;">Elwyn Berlekamp, John Conway, and Richard Guy</h4>
-                  </div>
-                  <h3 style="flex-basis: 17%; text-align: center;">-</h3>
-                  <h3 style="flex-basis: 17%; text-align: center;">-</h3>
-                  <h3 style="flex-basis: 16%; text-align: center;"></h3>
-                </div>
-                <div style="display: flex;">
-                  <div style="flex-basis: 50%;">
-                    <h3 style="margin-bottom: 0px; margin-top: 10px;"><a href = 'https://www.amazon.com/Homotopy-Type-Theory-Foundations-Mathematics/dp/B00DVZHHWA' target="_blank">Homotopy Type Theory: Univalent Foundations of Mathematics</a></h3>
-                    <h4 style="margin-bottom: 5px; margin-top: 5px;">The Univalent Foundations Program (many authors)</h4>
-                  </div>
-                  <h3 style="flex-basis: 17%; text-align: center;">-</h3>
-                  <h3 style="flex-basis: 17%; text-align: center;">-</h3>
-                  <h3 style="flex-basis: 16%; text-align: center;"></h3>
-                </div>
-                <div style="display: flex;">
-                  <div style="flex-basis: 50%;">
-                    <h3 style="margin-bottom: 0px; margin-top: 10px;"><a href = 'https://www.amazon.com/Data-Compression-Techniques-Applications-Considerations/dp/0471929417' target="_blank">Data Compression: Techniques and Applications, Hardware and Software Considerations</a></h3>
-                    <h4 style="margin-bottom: 5px; margin-top: 5px;">Gilbert Held</h4>
-                  </div>
-                  <h3 style="flex-basis: 17%; text-align: center;">-</h3>
-                  <h3 style="flex-basis: 17%; text-align: center;">-</h3>
-                  <h3 style="flex-basis: 16%; text-align: center;"></h3>
-                </div>
-                <div style="display: flex;">
-                  <div style="flex-basis: 50%;">
-                    <h3 style="margin-bottom: 0px; margin-top: 10px;"><a href = 'https://press.princeton.edu/books/hardcover/9780691191720/hot-molecules-cold-electrons' target="_blank">Hot Molecules, Cold Electrons</a></h3>
-                    <h4 style="margin-bottom: 5px; margin-top: 5px;">Paul J. Nahin</h4>
-                  </div>
-                  <h3 style="flex-basis: 17%; text-align: center;">-</h3>
-                  <h3 style="flex-basis: 17%; text-align: center;">-</h3>
-                  <h3 style="flex-basis: 16%; text-align: center;"></h3>
-                </div>
-                <div style="display: flex;">
-                  <div style="flex-basis: 50%;">
-                    <h3 style="margin-bottom: 0px; margin-top: 10px;"><a href = 'https://www.amazon.com/Approach-Print-Basic-Printing-Processes/dp/0713705310' target="_blank">An Approach to Print</a></h3>
-                    <h4 style="margin-bottom: 5px; margin-top: 5px;">Roy Brewer</h4>
-                  </div>
-                  <h3 style="flex-basis: 17%; text-align: center;">-</h3>
-                  <h3 style="flex-basis: 17%; text-align: center;">-</h3>
-                  <h3 style="flex-basis: 16%; text-align: center;"></h3>
-                </div>
-                <div style="display: flex;">
-                  <div style="flex-basis: 50%;">
-                    <h3 style="margin-bottom: 0px; margin-top: 10px;"><a href = 'https://www.amazon.com/Special-Matrices-Applications-Numerical-Mathematics/dp/0486466752' target="_blank">Special Matrices and Their Applications in Numerical Mathematics</a></h3>
-                    <h4 style="margin-bottom: 5px; margin-top: 5px;">Miroslav Fielder</h4>
-                  </div>
-                  <h3 style="flex-basis: 17%; text-align: center;">-</h3>
-                  <h3 style="flex-basis: 17%; text-align: center;">-</h3>
-                  <h3 style="flex-basis: 16%; text-align: center;"></h3>
-                </div>
-                <div style="display: flex;">
-                  <div style="flex-basis: 50%;">
-                    <h3 style="margin-bottom: 0px; margin-top: 10px;"><a href = 'https://www.amazon.com/Statistical-Theory-Communication-Yuk-Wing/dp/0471522066' target="_blank">Statistical Theory of Communication</a></h3>
-                    <h4 style="margin-bottom: 5px; margin-top: 5px;">Y. W. Lee</h4>
-                  </div>
-                  <h3 style="flex-basis: 17%; text-align: center;">-</h3>
-                  <h3 style="flex-basis: 17%; text-align: center;">-</h3>
-                  <h3 style="flex-basis: 16%; text-align: center;"></h3>
-                </div>
-                <!-- <div style="display: flex;">
-                  <div style="flex-basis: 50%;">
-                    <h3 style="margin-bottom: 0px; margin-top: 10px;"><a href = ''>Title</a></h3>
-                    <h4 style="margin-bottom: 5px; margin-top: 5px;">Author</h4>
-                  </div>
-                  <h3 style="flex-basis: 17%; text-align: center;">-</h3>
-                  <h3 style="flex-basis: 17%; text-align: center;">-</h3>
-                  <h3 style="flex-basis: 16%; text-align: center;"></h3>
-                </div> -->
-              </div>
+    <div class='content'>
+      <div class='center'>
+        <h2>My Book List</h2>
+        <h3 style="margin-top: -5px;"><strong><a href='json2yaml.html'><</a>&emsp; 6 / 15 / 22 &emsp;<a href='layolay.html'>></a></strong></h3>
+        <div style='text-align: left;'>
+          <h3>A friend of mine tracks the books they've been reading on their personal website. I liked the idea so I thought I would do this too. I'll update it whenever I add something to the list of things to read or when I start / finish a book.</h3>
+          <div style='display: grid; grid-template-columns: 3fr 1fr 1fr 1fr; justify-items: center;'>
+            <h3 style="margin-bottom: 10px;">Book Title</h3>
+            <h3 style="margin-bottom: 10px;">Start Date</h3>
+            <h3 style="margin-bottom: 10px;">Completion Date</h3>
+            <h3 style="margin-bottom: 10px;">Notes</h3>
           </div>
+          
+          <div id="books"></div>
+
         </div>
-        <br>
-     </div>
-    <div id = 'footer'></div>
+      </div>
+    </div>
+    <script>
+      const books = [
+        {
+          year: "2022",
+          list: [
+            { "title": "The Pragmatic Programmer", "author": "David Thomas and Andrew Hunt", "startDate": "5 / 25 / 22", "endDate": "6 / 15 / 22", "link": "https://pragprog.com/titles/tpp20/the-pragmatic-programmer-20th-anniversary-edition/", "notes": "" },
+            { "title": "Ask Your Developer", "author": "Jeff Lawson", "startDate": "10 / 12 / 22", "endDate": "11 / 3 / 22", "link": "https://www.askyourdeveloper.com/", "notes": "" },
+            { "title": "Mastering Regular Expressions", "author": "Jeffrey Friedl", "startDate": "11 / 4 / 22", "endDate": "12 / 3 / 22", "link": "https://doc.lagout.org/programmation/Regular%20Expressions/Mastering%20Regular%20Expressions_%20Understand%20Your%20Data%20and%20Be%20More%20Productive%20%283rd%20ed.%29%20%5BFriedl%202006-08-18%5D.pdf", "notes": "https://docs.google.com/document/d/1Iz62QzN-8tQC9UcBhomeccaQDyQOQTCr0eJhjiAvMXw/edit?usp=sharing" },
+            { "title": "The Maya", "author": "Carolyn Hatt", "startDate": "12 / 4 / 22", "endDate": "12 / 5 / 22", "link": "https://www.amazon.com/Maya-Based-Edgar-Cayce-readings/dp/0876040598", "notes": "" },
+            { "title": "Designing Data-Intensive Applications", "author": "Martin Kleppmann", "startDate": "12 / 7 / 22", "endDate": "12 / 31 / 22", "link": "https://public.nikhil.io/Designing%20Data%20Intensive%20Applications.pdf", "notes": "https://docs.google.com/document/d/1EQG0HimB8d7oqUhGvlUX3mx3twyJiip5bUv-mHvpxHI/edit?usp=sharing" }
+          ]
+        },
+        {
+          year: "2023",
+          list: [
+            { "title": "Reading the Maya Glyphs", "author": "Michael Coe and Mark Van Stone", "startDate": "1 / 5 / 23", "endDate": "1 / 16 / 23", "link": "https://www.amazon.com/Reading-Maya-Glyphs-Second-Michael/dp/0500285535/", "notes": "" },
+            { "title": "Site Reliability Engineering", "author": "Jennifer Petoff and Niall Murphy", "startDate": "1 / 17 / 23", "endDate": "1 / 24 / 23", "link": "https://sre.google/books/", "notes": "https://docs.google.com/document/d/198M0Wtk0wB2A6kDDwRAXIxS3WSiZFASnojMJliQk1kI/edit?usp=sharing" },
+            { "title": "Algorithms to Live By", "author": "Brian Christian and Tom Griffiths", "startDate": "2 / 8 / 23", "endDate": "3 / 1 / 23", "link": "https://brianchristian.org/algorithms-to-live-by/", "notes": "" },
+            { "title": "Networking Fundamentals", "author": "Gordon Davies", "startDate": "4 / 3 / 23", "endDate": "4 / 20 / 23", "link": "https://dl1.newoutlook.it/book/2020/03/networking-fundamentals-skills-required-pass-98-366.pdf", "notes": "https://docs.google.com/document/d/11AIuluifPQ4zT82I0lYKaTZ2WBiuLhwz2u8V5C5OXik/edit?usp=sharing" },
+            { "title": "Things Fall Together", "author": "Skylar Tibbits", "startDate": "4 / 21 / 23", "endDate": "4 / 25 / 23", "link": "https://www.youtube.com/watch?v=ff5RrTUmtl4", "notes": "" },
+            { "title": "Machine Learning: An Applied Mathematics Introduction", "author": "Paul Wilmott", "startDate": "5 / 4 / 23", "endDate": "6 / 19 / 23", "link": "https://www.amazon.com/Machine-Learning-Applied-Mathematics-Introduction/dp/1916081606/ref=sr_1_1?crid=CAQA85WFON3Y&keywords=machine+learning+an+applied&qid=1655323090&s=books&sprefix=machine+learning+an+applied%2Cstripbooks%2C99&sr=1-1", "notes": "" },
+            { "title": "Contraception and Abortion from the Ancient World to the Renaissance", "author": "John M. Riddle", "startDate": "6 / 26 / 23", "endDate": "7 / 4 / 23", "link": "https://www.amazon.com/Hidden-Qualities-Water-Wolfram-Schwenk/dp/086315610X", "notes": "" },
+            { "title": "The Essential Child: Origins of Essentialism in Everyday Thought", "author": "Susan Gelman", "startDate": "7 / 11 / 23", "endDate": "7 / 26 / 23", "link": "https://www.amazon.com/Essential-Child-Essentialism-Cognitive-Development/dp/0195181980", "notes": "" },
+            { "title": "Dark Data", "author": "David J. Hand", "startDate": "8 / 17 / 23", "endDate": "9 / 1 / 23", "link": "https://darkdata.website/", "notes": "" },
+            { "title": "User Friendly", "author": "Cliff Kuang and Robert Fabricant", "startDate": "9 / 26 / 23", "endDate": "10 / 17 / 23", "link": "https://www.amazon.com/User-Friendly-Built-Hidden-Changed/dp/0374279756", "notes": "" },
+            { "title": "Managing Humans", "author": "Michael Lopp", "startDate": "10 / 18 / 23", "endDate": "11 / 4 / 23", "link": "https://randsinrepose.com/", "notes": "" }
+          ]
+        },
+        {
+          year: "2024",
+          list: [
+            { "title": "Introducing MLOps", "author": "Mark Treveil and Dataiku Team", "link": "https://www.oreilly.com/library/view/introducing-mlops/9781492083283/", "startDate": "12 / 28 / 23", "endDate": "1 / 8 / 24" },
+            { "title": "GPS", "author": "Paul E. Ceruzzi", "link": "https://mitpress.mit.edu/9780262535953/gps/", "startDate": "2 / 17 / 24", "endDate": "2 / 19 / 24" },
+            { "title": "Self-Tracking", "author": "Gina Neff and Dawn Nafus", "link": "https://mitpress.mit.edu/9780262529129/self-tracking/", "startDate": "3 / 17 / 24", "endDate": "3 / 23 / 24" },
+            { "title": "I Have No Mouth and I Must Scream", "author": "Harlan Ellison", "link": "https://www.abebooks.com/servlet/BookDetailsPL?bi=31415338934&dest=usa&ref_=ps_ggl_17730966692&cm_mmc=ggl-_-US_Shopp_Trade50up-_-product_id=COM9780515035216USED-_-keyword=&gclid=Cj0KCQjwxqayBhDFARIsAANWRnRUvjZ_IjoOflI2K7t4JT5n7AEWIEuJZ2GJaYD-Ph8x5qc5fFWBa50aAqlEEALw_wcB", "startDate": "4 / 30 / 24", "endDate": "5 / 8 / 24" },
+            { "title": "Mediations", "author": "Marcus Aurelius", "link": "https://archive.org/details/thoughtsofempero1893marc", "startDate": "", "endDate": "" }, 
+            // { "title": "", "author": "", "link": "", "startDate": "", "endDate": "" }, 
+          ]
+        },
+        {
+          year: "On my Shelf",
+          list: [
+            { "title": "The Quantified Self", "author": "Deborah Lupton", "link": "https://archive.org/details/deborah-lupton-the-quantified-self-policy-press-2016/page/n1/mode/2up", "startDate": "", "endDate": "" },
+            { "title": "The Elements of Statistical Learning", "author": "Trevor Hastie, Robert Tibshirani, and Jerome Friedman", "link": "https://hastie.su.domains/Papers/ESLII.pdf", },
+            { "title": "Deep Medicine", "author": "Eric Topol", "link": "https://drerictopol.com/portfolio/deep-medicine/", },
+            { "title": "Immune", "author": "Philipp Dettmer", "link": "https://www.philippdettmer.net/immune", },
+            { "title": "Classic Shell Scripting", "author": "Arnold Robbins and Nelson H. F. Beebe", "link": "https://github.com/faquir-1990/itBooks/blob/master/Classic%20Shell%20Scripting.pdf", },
+            { "title": "Hidden Markov Processes: Theory and Applications to Biology", "author": "Mathukumalli Vidyasagar", "link": "https://press.princeton.edu/books/hardcover/9780691133157/hidden-markov-processes", },
+            { "title": "Petroleum Development Geology", "author": "Parke A. Dickey", "link": "https://www.amazon.com/Petroleum-Development-Geology-Parke-Dickey/dp/0878143076", },
+            { "title": "Winning Ways for your Mathematical Plays: Volume 1", "author": "Elwyn Berlekamp, John Conway, and Richard Guy", "link": "https://www.amazon.com/gp/product/1568811306/ref=ppx_yo_dt_b_asin_title_o01_s00?ie=UTF8&psc=1", },
+            { "title": "Homotopy Type Theory: Univalent Foundations of Mathematics", "author": "The Univalent Foundations Program (many authors)", "link": "https://www.amazon.com/Homotopy-Type-Theory-Foundations-Mathematics/dp/B00DVZHHWA", },
+            { "title": "Data Compression: Techniques and Applications, Hardware and Software Considerations", "author": "Gilbert Held", "link": "https://www.amazon.com/Data-Compression-Techniques-Applications-Considerations/dp/0471929417", },
+            { "title": "Hot Molecules, Cold Electrons", "author": "Paul J. Nahin", "link": "https://press.princeton.edu/books/hardcover/9780691191720/hot-molecules-cold-electrons", },
+            { "title": "An Approach to Print", "author": "Roy Brewer", "link": "https://www.amazon.com/Approach-Print-Basic-Printing-Processes/dp/0713705310", },
+            { "title": "Special Matrices and Their Applications in Numerical Mathematics", "author": "Miroslav Fielder", "link": "https://www.amazon.com/Special-Matrices-Applications-Numerical-Mathematics/dp/0486466752", },
+            { "title": "Statistical Theory of Communication", "author": "Y. W. Lee", "link": "https://www.amazon.com/Statistical-Theory-Communication-Yuk-Wing/dp/0471522066",
+            }
+          ]
+        }
+      ];
+
+      function displayBooks() {
+        let booksDiv = document.getElementById('books');
+        let html = '';
+
+        books.forEach(yearData => {
+          html += `<hr style='border: none; height: 1px; background-color: black; margin-bottom: 20px;'>`
+          if (yearData.year == new Date().getFullYear()) {
+            html += `<h3 style="font-size: 14px;">Reading in ${yearData.year} <span style="font-size: 12px">(${yearData.list.length} books, so far...)</span></h3>`;
+          }
+          else if (/\b2\d{3}\b/.test(yearData.year)) {
+            html += `<h3 style="font-size: 14px;">Reading in ${yearData.year} <span style="font-size: 12px">(${yearData.list.length} books)</span></h3>`;
+          } else {
+            html += `<h3 style="font-size: 14px;">On my Shelf</h3>`;
+          }
+          yearData.list.forEach(book => {
+            html += `
+              <div style="display: grid; grid-template-columns: 3fr 1fr 1fr 1fr; justify-items: center; margin-bottom: 5px;">
+                <div style="display:flex; flex-direction: column; justify-content: center; align-items: start; text-align: left; width: 100%;">
+                  <h3 style="margin: 0px"><a href="${book.link}">${book.title}</a></h3>
+                  <h4 style="margin: 5px 0px">${book.author}</h4>
+                </div>
+                <h3 style="display: flex; align-items: center; justify-content: center;">${book.startDate || '-'}</h3>
+                <h3 style="display: flex; align-items: center; justify-content: center;">${book.endDate || '-'}</h3>
+                <h3 style="display: flex; align-items: center; justify-content: center;">${book.notes ? `<a href="${book.notes}">Notes</a>` : ''}</h3>
+              </div>`;
+          });
+        });
+
+        booksDiv.innerHTML = html;
+      }
+
+      window.onload = displayBooks;
+    </script>
   </body>
 </html>
