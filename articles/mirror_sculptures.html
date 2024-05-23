@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
-    <link href = 'https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap' rel = 'stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
     <link rel = 'stylesheet' href = '../styles.css'>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -31,17 +31,23 @@
         <a href="../articles.html"><strong>Articles</strong></a>
       </div>
       <div style="display: flex">
-        <a href="../research.html">Research</a>
         <a href="../other.html">Other</a>
         <a href="../contact.html">Contact</a>
       </div>
     </div>
     <div class = 'content'>
-        <div class = 'center'>
-            <h2>Mirror Sculptures</h2>
-            <h3 style="margin-top: -5px;"><strong><a href='reu_computational_imaging.html'><</a>&emsp; 7 / 13 / 21 &emsp;<a href='oscilloscopes_and_surfaces.html'>></a></strong></h3>
-            <h4 style="font-size: 14px; margin-top: -5px;">4 min read</h4>
+
+      <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+        <h2 style="text-align: center;"> Mirror Sculptures </h2>
+        <div style="display: flex; align-items: center; text-align: center; width: 100%; max-width: 300px;">
+          <h3 style="flex: 1;"><strong><a href='reu_computational_imaging.html'>< Previous</a></strong></h3>
+          <h3 style="flex: 1; margin: 0 15px;"><strong> 7 / 13 / 21 </strong></h3>
+          <h3 style="flex: 1;"><strong><a href='oscilloscopes_and_surfaces.html'>Next ></a></strong></h3>
         </div>
+        <h4 style="font-size: 14px; margin-top: -5px;"> 4 min read </h4> 
+        <!-- https://niram.org/read/ -->
+      </div>
+
         <div style = 'text-align: left; margin: 0 10px;'>
           <details>
             <summary style="cursor: pointer;">
@@ -68,7 +74,7 @@
               images that only the corresponding sculpture would reveal.</h3>
         </div>
         <div style = 'display: flex; justify-content: center;'>
-          <img src = 'resources/mirror_sketch.png' width = 600px>
+          <img src = 'resources/mirror_sketch.png' width = 600px style="max-width: 100%">
         </div>
         <div style = 'text-align: center;'>
           <h4>An example of a valid but non-perfect sculpture with its top-down visualization</h4>
@@ -85,7 +91,7 @@
           <h3>We can place premade images along either premade or random sculptures to see what the reflection will look like. Randomized sculptures are not guaranteed to be either valid or perfect but can be any size.</h3>
         </div>
         <div style = 'display: flex; justify-content: center;'>
-          <img src = 'resources/premade_images.jpg' width = 600px>
+          <img src = 'resources/premade_images.jpg' width = 600px style="max-width: 100%">
         </div>
         <div style = 'text-align: center;'>
           <h4>Premade images on random sculptures of sizes 3 and 10</h4>
@@ -99,7 +105,7 @@
           <br>
         </div>
         <div style = 'display: flex; justify-content: center;'>
-          <img src = 'resources/image_drawing.gif' width = 400px>
+          <img src = 'resources/image_drawing.gif' width = 400px style="max-width: 100%">
         </div>
         <div style = 'text-align: center;'>
           <h4>Image drawing tool on the example sculpture above</h4>
@@ -111,7 +117,7 @@
           <br>
         </div>
         <div style = 'display: flex; justify-content: center;'>
-          <img src = 'resources/reflection_drawing.gif' width = 400px>
+          <img src = 'resources/reflection_drawing.gif' width = 400px style="max-width: 100%">
         </div>
         <div style = 'text-align: center;'>
           <h4>Reflection drawing tool on the example sculpture above</h4>
@@ -126,14 +132,14 @@
           <br>
         </div>
         <div style = 'display: flex; justify-content: center;'>
-          <img src = 'resources/images.jpg' width = 400px>
+          <img src = 'resources/images.jpg' width = 400px style="max-width: 100%">
         </div>
         <div style = 'text-align: center;'>
           <h4>Set of images designed with the reflection tool and drawn with sharpie</h4>
           <br>
         </div>
         <div style = 'display: flex; justify-content: center;'>
-          <img src = 'resources/reflections.jpg' width = 450px>
+          <img src = 'resources/reflections.jpg' width = 450px style="max-width: 100%">
         </div>
         <div style = 'text-align: center;'>
           <h4>The four reflections seen when rotating the images through their possible configurations</h4>

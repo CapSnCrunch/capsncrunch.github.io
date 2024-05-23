@@ -6,10 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../styles.css" />
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script
@@ -46,23 +43,23 @@
         <a href="../articles.html"><strong>Articles</strong></a>
       </div>
       <div style="display: flex">
-        <a href="../research.html">Research</a>
         <a href="../other.html">Other</a>
         <a href="../contact.html">Contact</a>
       </div>
     </div>
     <div class="content">
-      <div class="center">
-        <h2>Color Spaces and Even Color Spacing</h2>
-        <h3 style="margin-top: -5px">
-          <strong
-            ><a href="ping_pong_ii_automatic_structures.html"><</a>&emsp; 1 / 14
-            / 22 &emsp;
-            <a href="elementary_not_easy_irrationality_of_pi.html">></a></strong
-          >
-        </h3>
-        <h4 style="font-size: 14px; margin-top: -5px">7 min read</h4>
+
+      <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+        <h2 style="text-align: center;"> Color Spaces and Even Color Spacing </h2>
+        <div style="display: flex; align-items: center; text-align: center; width: 100%; max-width: 300px;">
+          <h3 style="flex: 1;"><strong><a href='ping_pong_ii_automatic_structures.html'>< Previous</a></strong></h3>
+          <h3 style="flex: 1; margin: 0 15px;"><strong> 1 / 14 / 22  </strong></h3>
+          <h3 style="flex: 1;"><strong><a href='elementary_not_easy_irrationality_of_pi.html'>Next ></a></strong></h3>
+        </div>
+        <h4 style="font-size: 14px; margin-top: -5px;">7 min read </h4> 
+        <!-- https://niram.org/read/ -->
       </div>
+      
       <div style="text-align: left; margin: 0 10px">
         <details>
           <summary style="cursor: pointer;">
@@ -107,9 +104,9 @@
           in three or four dimensional space.
         </h3>
       </div>
-      <div style="display: flex; justify-content: center">
-        <img src="resources/rgb-cube.png" , width="300px" />
-        <img src="resources/hsv-cylinder.png" , width="300px" />
+      <div id="imgs">
+        <img src="resources/rgb-cube.png" width="300px" style="max-width: 100%" />
+        <img src="resources/hsv-cylinder.png" width="300px" style="max-width: 100%" />
       </div>
       <div style="text-align: center">
         <h4>Visualizations of the RGB and HSV color models respectively</h4>
@@ -124,7 +121,7 @@
         </h3>
       </div>
       <div style="display: flex; justify-content: center">
-        <img src="resources/random-hsl.png" , width="300px" />
+        <img src="resources/random-hsl.png" width="300px" style="max-width: 100%" />
       </div>
       <div style="text-align: center">
         <h4>
@@ -147,7 +144,7 @@
         </h3>
       </div>
       <div style="display: flex; justify-content: center">
-        <img src="resources/random-rgb.png" , width="300px" />
+        <img src="resources/random-rgb.png" width="300px" style="max-width: 100%" />
       </div>
       <div style="text-align: center">
         <h4>
@@ -189,7 +186,7 @@
         </h3>
       </div>
       <div style="display: flex; justify-content: center">
-        <img src="resources/cie-rgb.png" , width="400px" />
+        <img src="resources/cie-rgb.png" width="400px" style="max-width: 100%" />
       </div>
       <div style="text-align: center">
         <h4>CIE RGB color component color functions</h4>
@@ -213,7 +210,7 @@
         </h3>
       </div>
       <div style="display: flex; justify-content: center">
-        <img src="resources/cie-xyz.png" , width="400px" />
+        <img src="resources/cie-xyz.png" width="400px" style="max-width: 100%" />
       </div>
       <div style="text-align: center">
         <h4>CIE XYZ color component color functions</h4>
@@ -234,7 +231,7 @@
         </h3>
       </div>
       <div style="display: flex; justify-content: center">
-        <img src="resources/macadams-ellipse.png" , width="600px" />
+        <img src="resources/macadams-ellipse.png" width="600px" style="max-width: 100%" />
       </div>
       <div style="text-align: center">
         <h4>
@@ -273,7 +270,7 @@
         </h3>
       </div>
       <div style="display: flex; justify-content: center">
-        <img src="resources/cielab-grid.gif" , width="350px" />
+        <img src="resources/cielab-grid.gif" width="350px" style="max-width: 100%" />
       </div>
       <div style="text-align: center">
         <h4>Lattice in the CIELAB colorspace</h4>
@@ -287,7 +284,7 @@
         </h3>
       </div>
       <div style="display: flex; justify-content: center">
-        <img src="resources/even-colors.png" , width="300px" />
+        <img src="resources/even-colors.png" width="300px" style="max-width: 100%" />
       </div>
       <div style="text-align: center">
         <h4>Colors along a lattice in CIELAB</h4>
@@ -344,3 +341,21 @@
     <div id="footer"></div>
   </body>
 </html>
+
+<style>
+  #imgs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @media only screen and (min-width: 601px) {
+      #imgs {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+      }
+  }
+</style>

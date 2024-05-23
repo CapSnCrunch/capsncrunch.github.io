@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 	<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
-	<link href = 'https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap' rel = 'stylesheet'>
+	<link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
 	<link rel = 'stylesheet' href = '../styles.css'>   
 	<script src = 'https://polyfill.io/v3/polyfill.min.js?features=es6'></script>
 	<script id = 'MathJax-script' async src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'></script>
@@ -33,18 +33,24 @@
 		  <a href="../articles.html"><strong>Articles</strong></a>
 		</div>
 		<div style="display: flex">
-		  <a href="../research.html">Research</a>
 		  <a href="../other.html">Other</a>
 		  <a href="../contact.html">Contact</a>
 		</div>
-	  </div>
+	</div>
 	<div class = 'content'>
-	  <div class = 'center'>
-			<h2>MTG Scanner</h2>
-			<h3 style="margin-top: -5px;"><strong><a href='dance-pad-programming.html'><</a>&emsp; 12 / 24 / 22 &emsp;<a href='ping-pong-iii-the-patching-algorithm.html'>></a></strong></strong></h3>
-			<h4 style="font-size: 14px; margin-top: -5px;">7 min read</h4> 
-			<!-- https://niram.org/read/ -->
+
+		<div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+			<h2 style="text-align: center;"> MTG Scanner </h2>
+			<div style="display: flex; align-items: center; text-align: center; width: 100%; max-width: 320px;">
+				<h3 style="flex: 1;"><strong><a href='dance-pad-programming.html'>< Previous</a></strong></h3>
+				<h3 style="flex: 1; margin: 0 15px;"><strong> 12 / 24 / 22  </strong></h3>
+				<h3 style="flex: 1;"><strong><a href='ping-pong-iii-the-patching-algorithm.html'>Next ></a></strong></h3>
 			</div>
+			<h4 style="font-size: 14px; margin-top: -5px;"> 7 min read </h4> 
+			<!-- https://niram.org/read/ -->
+		</div>
+	
+	  	<div class = 'center'>
 			<div style = 'text-align: left; margin: 0 10px;'>
 				<details>
 					<summary style="cursor: pointer;">
@@ -165,7 +171,7 @@
 			<br/>
 			
 			<div style = 'display: flex; justify-content: center;'>
-				<img src = 'resources/card-stabilization.gif' width = 600px>
+				<img src = 'resources/card-stabilization.gif' width = 600px style="max-width: 100%">
 			</div>
 			<div style = 'text-align: center;'>
 				<h4>Detecting and centering various magic cards with Canny edge detection</h4>
@@ -192,7 +198,7 @@
 			<br/>			
 
 			<div style = 'display: flex; justify-content: center;'>
-				<img src = 'resources/identify-card-name.gif' width = 500px>
+				<img src = 'resources/identify-card-name.gif' width = 500px style="max-width: 100%">
 			</div>
 			<div style = 'text-align: center;'>
 				<h4>Displaying the highest SSIM value card name after comparing our aligned image against a local database</h4>
@@ -206,7 +212,7 @@
 
 			<br/>
 			<div style = 'display: flex; justify-content: center;'>
-				<img src = 'resources/llanowar-elves.png' width = 600px>
+				<img src = 'resources/llanowar-elves.png' width = 600px style="max-width: 100%">
 			</div>
 			<div style = 'text-align: center;'>
 				<h4>Reprints of the card <em>Llanowar Elves</em> which are from different sets</h4>
@@ -234,7 +240,7 @@
 
 			<br/>
 			<div style = 'display: flex; justify-content: center;'>
-				<img src = 'resources/display-card-details.gif' width = 500px>
+				<img src = 'resources/display-card-details.gif' width = 500px style="max-width: 100%">
 			</div>
 			<div style = 'text-align: center;'>
 				<h4>Querying Scryfall by card name and displaying basic card details</h4>

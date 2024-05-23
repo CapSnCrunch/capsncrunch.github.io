@@ -6,10 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../styles.css" />
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script
@@ -46,24 +43,23 @@
         <a href="../articles.html"><strong>Articles</strong></a>
       </div>
       <div style="display: flex">
-        <a href="../research.html">Research</a>
         <a href="../other.html">Other</a>
         <a href="../contact.html">Contact</a>
       </div>
     </div>
     <div class="content">
-      <div class="center">
-        <h2>Epicure AI</h2>
-        <h3 style="margin-top: -5px">
-          <strong>
-            <a href="first-year-of-fullstack.html"><</a>
-            &emsp; 1 / 31 / 24 &emsp;
-            <!-- <a href=''>></a> -->
-          </strong>
-        </h3>
-        <h4 style="font-size: 14px; margin-top: -5px">10 min read</h4>
+
+      <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+        <h2 style="text-align: center;"> Epicure AI </h2>
+        <div style="display: flex; align-items: center; text-align: center; width: 100%; max-width: 320px;">
+          <h3 style="flex: 1;"><strong><a href='first-year-of-fullstack.html'>< Previous</a></strong></h3>
+          <h3 style="flex: 1; margin: 0 15px;"><strong> 1 / 31 / 24  </strong></h3>
+          <h3 style="flex: 1;"><strong><a href='epicure-ai.html'></a></strong></h3>
+        </div>
+        <h4 style="font-size: 14px; margin-top: -5px;"> 10 min read </h4> 
         <!-- https://niram.org/read/ -->
       </div>
+
       <div style="text-align: left; margin: 0 10px">
         <details>
           <summary style="cursor: pointer;">
@@ -116,9 +112,9 @@
 
         <br />
         <div style="display: flex; justify-content: center">
-          <a href="https://github.com/CapSnCrunch/epicure-ai" target="_blank"
-            ><img src="resources/epicure-ai-title.png" width="700px"
-          /></a>
+          <a href="https://github.com/CapSnCrunch/epicure-ai" target="_blank">
+            <img src="resources/epicure-ai-title.png" width="700px" style="max-width: 100%"/>
+          </a>
         </div>
         <br />
 
@@ -207,10 +203,10 @@
         is having cameras appear in my images because of all the photography terminology used in the prompt (most images don't include these, but they pop up every once in a while).</h3>
 
         <br />
-        <div style="display: flex; justify-content: center">
-          <img src="resources/epicure-ai-cherry-pie.jpg" width="300px"/>
-          <img src="resources/epicure-ai-iced-tea.jpg" width="300px" style="margin: 0 25px;"/>
-          <img src="resources/epicure-ai-pulled-pork.jpg" width="300px"/>
+        <div id="imgs">
+          <img src="resources/epicure-ai-cherry-pie.jpg" width="300px" style="max-width: 100%; padding: 5px 0;" />
+          <img src="resources/epicure-ai-iced-tea.jpg" width="300px" style="margin: 0 25px; max-width: 100%; padding: 5px 0;" />
+          <img src="resources/epicure-ai-pulled-pork.jpg" width="300px" style="max-width: 100%; padding: 5px 0;" />
         </div>
         <h4 style="text-align: center">Some examples of images generated with the prompt above (cherry pie, citrus iced tea, and pulled pork tacos)</h4>
         <br />
@@ -239,7 +235,7 @@
 
         <br />
         <div style="display: flex; justify-content: center">
-          <img src="resources/epicure-ai-recipe.png" width="650px"/>
+          <img src="resources/epicure-ai-recipe.png" width="650px" style="max-width: 100%;" />
         </div>
         <br />
 
@@ -291,7 +287,7 @@
 
         <br />
         <div style="display: flex; justify-content: center">
-          <img src="resources/epicure-ai-validation.png" width="700px"/>
+          <img src="resources/epicure-ai-validation.png" width="700px" style="max-width: 100%" />
         </div>
         <br />
 
@@ -345,7 +341,7 @@
 
         <br />
         <div style="display: flex; justify-content: center">
-          <img src="resources/epicure-ai-search.png" width="650px"/>
+          <img src="resources/epicure-ai-search.png" width="650px" style="max-width: 100%" />
         </div>
         <br />
 
@@ -381,3 +377,21 @@
     <div id="footer"></div>
   </body>
 </html>
+
+<style>
+  #imgs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @media only screen and (min-width: 601px) {
+    #imgs {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+</style>

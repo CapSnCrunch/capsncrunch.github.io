@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
-    <link href = 'https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap' rel = 'stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
     <link rel = 'stylesheet' href = '../styles.css'>
     <script src = 'https://polyfill.io/v3/polyfill.min.js?features=es6'></script>
     <script id = 'MathJax-script' async src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'></script>
@@ -33,17 +33,23 @@
           <a href="../articles.html"><strong>Articles</strong></a>
         </div>
         <div style="display: flex">
-          <a href="../research.html">Research</a>
           <a href="../other.html">Other</a>
           <a href="../contact.html">Contact</a>
         </div>
     </div>
     <div class = 'content'>
-        <div class = 'center'>
-            <h2>Oscilloscopes and Surfaces</h2>
-            <h3 style="margin-top: -5px;"><strong><a href='mirror_sculptures.html'><</a>&emsp; 8 / 17 / 21 &emsp;<a href='reu_social_insect_networks.html'>></a></strong></h3>
-            <h4 style="font-size: 14px; margin-top: -5px;">5 min read</h4>
+
+        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+            <h2 style="text-align: center;"> Oscilloscopes and Surfaces </h2>
+            <div style="display: flex; align-items: center; text-align: center; width: 100%; max-width: 300px;">
+              <h3 style="flex: 1;"><strong><a href='mirror_sculptures.html'>< Previous</a></strong></h3>
+              <h3 style="flex: 1; margin: 0 15px;"><strong> 8 / 17 / 21 </strong></h3>
+              <h3 style="flex: 1;"><strong><a href='reu_social_insect_networks.html'>Next ></a></strong></h3>
+            </div>
+            <h4 style="font-size: 14px; margin-top: -5px;"> 5 min read </h4> 
+            <!-- https://niram.org/read/ -->
         </div>
+
         <div style = 'text-align: left; margin: 0 10px;'>
             <details>
                 <summary style="cursor: pointer;">
@@ -75,7 +81,7 @@
             <h3>Here's an example:</h3>
         </div>
         <div style = 'display: flex; justify-content: center;'>
-            <img src = 'resources/torus.png' width = 300px>
+            <img src = 'resources/torus.png' width = 300px style="max-width: 100%">
         </div>
         <div style = 'text-align: center;'>
             <h4>The torus can be described by <math><mi>&sigma;</mi><mo>(</mo><mi>u</mi><mo>,</mo><mi>v</mi><mo>)</mo><mo>=</mo><mo>(</mo><mi>a</mi><mi>b</mi><mi>cos</mi><mo>(</mo><mi>u</mi><mo>)</mo><mi>cos</mi><mo>(</mo><mi>v</mi><mo>)</mo><mo>,</mo>
@@ -91,7 +97,7 @@
         </div>
         <br>
         <div style = 'display: flex; justify-content: center;'>
-            <img src = 'resources/torus.gif' width = 300px>
+            <img src = 'resources/torus.gif' width = 300px style="max-width: 100%">
         </div>
         <div style = 'text-align: center;'>
             <h4>The same torus as before but with perpendicular curves included and arrow keys to control rotation.
@@ -104,7 +110,7 @@
         <div style = 'display: flex; justify-content: center;'>
             <div style = 'float: left; width: 33%;'>
                 <div style = 'display: flex; justify-content: center;'>
-                    <img src = 'resources/cyclide.gif' width = 300px>
+                    <img src = 'resources/cyclide.gif' width = 300px style="max-width: 100%">
                 </div>
                 <div style = 'text-align: center;'>
                     <h4><strong>Dupin Cyclide</strong>
@@ -117,7 +123,7 @@
             </div>
             <div style = 'float: left; width: 33%;'>
                 <div style = 'display: flex; justify-content: center;'>
-                    <img src = 'resources/trefoil.gif' width = 300px>
+                    <img src = 'resources/trefoil.gif' width = 300px style="max-width: 100%">
                 </div>
                 <div style = 'text-align: center;'>
                     <h4><strong>Trefoil Knot</strong> </h4>
@@ -125,7 +131,7 @@
             </div>
             <div style = 'float: left; width: 33%;'>
                 <div style = 'display: flex; justify-content: center;'>
-                    <img src = 'resources/dinis.gif' width = 300px>
+                    <img src = 'resources/dinis.gif' width = 300px style="max-width: 100%">
                 </div>
                 <div style = 'text-align: center;'>
                     <h4><strong>Dini's Surface</strong> </h4>
@@ -142,7 +148,7 @@
         </div>
         <br>
         <div style = 'display: flex; justify-content: center;'>
-            <img src = 'resources/oscilloscope.png' width = 500px>
+            <img src = 'resources/oscilloscope.png' width = 500px style="max-width: 100%">
         </div>
         <div style = 'text-align: center;'>
             <h4>My BK Precision 2190B Analog Oscilloscope</h4>
@@ -162,23 +168,18 @@
             </h3>
             <br>
         </div>
-        <div>
-            <div style = 'float: left; width: 50%;'>
-                <div style = 'display: flex; justify-content: center;'>
-                    <video width = '400' controls>
-                        <source src = 'resources/cyclide.mp4' type = 'video/mp4'>
-                        Your browser does not support the video tag.
-                    </video>
-                </div>
+        <div id="videos">
+            <div style="padding: 5px;">
+                <video width="400" controls>
+                    <source src="resources/cyclide.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
             </div>
-            <div style = 'float: left; width: 50%;'>
-                <div style = 'display: flex; justify-content: center;'>
-                    <video width = '400' controls>
-                        <source src = 'resources/trefoil.mp4' type = 'video/mp4'>
-                        Your browser does not support the video tag.
-                    </video>
-                </div>
-                <br><br>
+            <div style="padding: 5px;">
+                <video width="400" controls>
+                    <source src="resources/trefoil.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
             </div>
         </div>
         <div style = 'text-align: left;'>
@@ -199,3 +200,20 @@
   </body>
 </html>
  
+<style>
+    #videos {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    @media only screen and (min-width: 601px) {
+        #videos {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+</style>

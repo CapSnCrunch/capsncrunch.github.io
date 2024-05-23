@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
-    <link href = 'https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap' rel = 'stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
     <link rel = 'stylesheet' href = '../styles.css'>   
     <script src = 'https://polyfill.io/v3/polyfill.min.js?features=es6'></script>
     <script src = "https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.js"></script>
@@ -40,18 +40,23 @@
         <a href="../articles.html"><strong>Articles</strong></a>
       </div>
       <div style="display: flex">
-        <a href="../research.html">Research</a>
         <a href="../other.html">Other</a>
         <a href="../contact.html">Contact</a>
       </div>
     </div>
-    <div class = 'content'>
-        <div class = 'center'>
-            <h2>Schwarzian Reflection</h2>
-            <h3 style="margin-top: -5px;"><strong><a href='ping-pong-iii-the-patching-algorithm.html'><</a>&emsp; 3 / 27 / 23 &emsp;<a href='first-year-of-fullstack.html'>></a></strong></h3>
-            <h4 style="font-size: 14px; margin-top: -5px;">10 min read</h4> 
-            <!-- https://niram.org/read/ -->
+    <div class='content'>
+
+      <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+        <h2 style="text-align: center;"> Schwarzian Reflection </h2>
+        <div style="display: flex; align-items: center; text-align: center; width: 100%; max-width: 320px;">
+          <h3 style="flex: 1;"><strong><a href='ping-pong-iii-the-patching-algorithm.html'>< Previous</a></strong></h3>
+          <h3 style="flex: 1; margin: 0 15px;"><strong> 3 / 27 / 23  </strong></h3>
+          <h3 style="flex: 1;"><strong><a href='first-year-of-fullstack.html'>Next ></a></strong></h3>
         </div>
+        <h4 style="font-size: 14px; margin-top: -5px;"> 7 min read </h4> 
+        <!-- https://niram.org/read/ -->
+      </div>
+
         <div style = 'text-align: left; margin: 0 10px;'>
           <details>
             <summary style="cursor: pointer;">
@@ -111,8 +116,8 @@
           <math><mi>S</mi><mo>(</mo><mi>z</mi><mo>)</mo></math> in an entire strip-like region around the curve.</h3>
           
           <div style = 'display: flex; justify-content: center;'>
-            <img src = 'resources/c-neighborhood.png' width = 350px>
-            <img src = 'resources/c-strip.png' width = 350px>
+            <img src = 'resources/c-neighborhood.png' width = 350px style="max-width: 100%">
+            <img src = 'resources/c-strip.png' width = 350px style="max-width: 100%">
           </div>
           <div style = 'text-align: center;'>
             <h4>Neighborhood of <math><mi>C</mi></math> for which <math><mi>S</mi><mo>(</mo><mi>z</mi><mo>)</mo></math> is defined. Figure credit to Philip J Davis.</h4>
@@ -153,7 +158,7 @@
             <mover rspace="1em"><mi>t</mi><mi>¯</mi></mover><mo>→</mo><msup><mi>z</mi><mo>*</mo></msup></math> as depicted in the figure below.</h3>
 
           <div style = 'display: flex; justify-content: center;'>
-            <img src = 'resources/schwarzian-reflection.png' width = 850px>
+            <img src = 'resources/schwarzian-reflection.png' width = 850px style="max-width: 100%">
           </div>
           <div style = 'display: flex; justify-content: center;'>
             <h4 style = 'text-align: center; width: 500px;'>Sequence of transformations that identify <math><mi>C</mi></math> with the x-axis, conjugate the point <math><mi>t</mi></math>, and return to a reflected point across the curve. Figure credit to Philip J Davis.</h4>

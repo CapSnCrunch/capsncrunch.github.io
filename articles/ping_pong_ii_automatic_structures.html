@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
-    <link href = 'https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap' rel = 'stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
     <link rel = 'stylesheet' href = '../styles.css'>   
     <script src = 'https://polyfill.io/v3/polyfill.min.js?features=es6'></script>
     <script id = 'MathJax-script' async src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'></script>
@@ -33,17 +33,23 @@
         <a href="../articles.html"><strong>Articles</strong></a>
       </div>
       <div style="display: flex">
-        <a href="../research.html">Research</a>
         <a href="../other.html">Other</a>
         <a href="../contact.html">Contact</a>
       </div>
     </div>
     <div class = 'content'>
-        <div class = 'center'>
-            <h2>Ping Pong II: Automatic Structures</h2>
-            <h3 style="margin-top: -5px;"><strong><a href='can_you_hear_the_shape_of_a_drum.html'><</a>&emsp; 12 / 14 / 21 &emsp;<a href='color_spaces_and_even_color_spacing.html'>></a></strong></h3>
-            <h4 style="font-size: 14px; margin-top: -5px;">6 min read</h4>
+
+      <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+        <h2 style="text-align: center;"> Ping Pong II: Automatic Structures </h2>
+        <div style="display: flex; align-items: center; text-align: center; width: 100%; max-width: 320px;">
+          <h3 style="flex: 1;"><strong><a href='can_you_hear_the_shape_of_a_drum.html'>< Previous</a></strong></h3>
+          <h3 style="flex: 1; margin: 0 15px;"><strong> 12 / 14 / 21  </strong></h3>
+          <h3 style="flex: 1;"><strong><a href='color_spaces_and_even_color_spacing.html'>Next ></a></strong></h3>
         </div>
+        <h4 style="font-size: 14px; margin-top: -5px;">6 min read </h4> 
+        <!-- https://niram.org/read/ -->
+      </div>
+      
         <div style = 'text-align: left; margin: 0 10px;'>
           <details>
             <summary style="cursor: pointer;">
@@ -73,7 +79,7 @@
           free group <math><mo>&#x3008;</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo>&#x27E9;</mo></math>:</h3>
         </div>
         <div style = 'display: flex; justify-content: center;'>
-          <img src = 'resources/free-group-structure.png' width = 400px>
+          <img src = 'resources/free-group-structure.png' width = 400px style="max-width: 100%">
         </div>
         <div style = 'text-align: center;'>
             <h4>By tracing paths along this graph, we get exactly the words in the free group on two generators. No path exists that will trace out a word which can be reduced
@@ -83,7 +89,7 @@
         <h3>Some groups may have multiple automatic structures such as <math><mo>&#x3008;</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo>|</mo><msup><mi>a</mi><mn>2</mn></msup><mo>=</mo><msup>
           <mi>b</mi><mn>3</mn></msup><mo>=</mo><mn>1</mn><mo>&#x27E9;</mo></math>:</h3>
         <div style = 'display: flex; justify-content: center;'>
-          <img src = 'resources/free-product-structure.png' width = 650px>
+          <img src = 'resources/free-product-structure.png' width = 650px style="max-width: 100%">
         </div>
         <div style = 'text-align: center;'>
             <h4>Three possible automatic structures for a free product of cyclic groups with order 2 and 3.
@@ -111,7 +117,7 @@
           </h3>
         </div>
         <div style = 'display: flex; justify-content: center;'>
-          <img src = 'resources/linear-search.gif' width = 400px>
+          <img src = 'resources/linear-search.gif' width = 400px style="max-width: 100%">
         </div>
         <div style = 'text-align: center;'>
             <h4>Linear search for (3,4,4)-triangle group intervals
@@ -124,7 +130,7 @@
           </h3>
         </div>
         <div style = 'display: flex; justify-content: center;'>
-          <img src = 'resources/image-search.png' width = 400px>
+          <img src = 'resources/image-search.png' width = 400px style="max-width: 100%">
         </div>
         <div style = 'text-align: center;'>
             <h4>Image patch search for (3,4,4)-triangle group intervals

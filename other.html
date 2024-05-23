@@ -5,10 +5,7 @@
     <title>Samuel Perales | Other</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css" />
     <script src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.js"></script>
 
@@ -40,7 +37,6 @@
         <a href="articles.html">Articles</a>
       </div>
       <div style="display: flex">
-        <a href="research.html">Research</a>
         <a href="other.html"><strong>Other</strong></a>
         <a href="contact.html">Contact</a>
       </div>
@@ -54,81 +50,91 @@
         </h3>
       </div>
       <div style="margin: 0 10px">
-        <div id="apps" style="display: grid; width: 100%">
-          <div
-            onclick="location.href = 'applications/hitomezashi-stitching.html';"
-          >
-            <h3><strong>Hitomezashi Stitches</strong></h3>
-            <h4>
-              Japanese stitching technique and an online tool I made for pattern
-              making.
-            </h4>
-            <h4><strong>(12 / 9 / 21)</strong></h4>
-          </div>
-          <div onclick="location.href = 'applications/robo-rosewater.html';">
-            <h3><strong>Robo Rosewater</strong></h3>
-            <h4>
-              Online database I made for AI generated Magic the Gathering cards.
-            </h4>
-            <h4><strong>(12 / 26 / 21)</strong></h4>
-          </div>
-          <div
-            onclick="location.href = 'applications/pareidolic-painting.html'"
-          >
-            <h3><strong>Pareidolic Painting</strong></h3>
-            <h4>A fun form of mix media artwork I like to mess around with.</h4>
-            <h4><strong>(2 / 19 / 22)</strong></h4>
-          </div>
-          <div onclick="location.href = 'applications/ping-pong-patches.html'">
-            <h3><strong>Ping Pong Patches</strong></h3>
-            <h4>
-              Examples of 'computational proofs' found by an algoridivm I wrote
-              for a research group.
-            </h4>
-            <h4><strong>(4 / 26 / 22)</strong></h4>
-          </div>
-          <div onclick="location.href = 'applications/sl2r-action-viewer.html'">
-            <h3><strong>SL(2,R) Action Viewer</strong></h3>
-            <h4>
-              Visualization tool for actions of special linear matrices on real
-              projective space.
-            </h4>
-            <h4><strong>(5 / 5 / 22)</strong></h4>
-          </div>
-          <div onclick="location.href = 'applications/json2yaml.html'">
-            <h3><strong>json2yaml</strong></h3>
-            <h4>Tool for converting between the JSON and YAML data formats.</h4>
-            <h4><strong>(5 / 30 / 22)</strong></h4>
-          </div>
-          <div onclick="location.href = 'applications/book-list.html'">
-            <h3><strong>My Book List</strong></h3>
-            <h4>A running list of books I'm reading.</h4>
-            <h4><strong>(6 / 15 / 22)</strong></h4>
-          </div>
-          <div onclick="location.href = 'applications/layolay.html'">
-            <h3><strong>Layolay</strong></h3>
-            <h4>3D printing e-commerce platform.</h4>
-            <h4><strong>(2 / 24 / 23)</strong></h4>
-          </div>
-          <div onclick="location.href = 'applications/certifications.html'">
-            <h3><strong>Certifications</strong></h3>
-            <h4>
-              List of technical certifications I've received and the notes I
-              used to prep for them.
-            </h4>
-            <h4><strong>(5 / 15 / 23)</strong></h4>
-          </div>
-          <!-- <div onclick="location.href = 'applications/interesting-links.html'">
-            <h3><strong>Interesting Links</strong></h3>
-            <h4>
-              Compilation of interesting places to check out when you're bored
-            </h4>
-            <h4><strong>(1 / 7 / 24)</strong></h4>
-          </div> -->
-        </div>
+        <div id="apps" style="display: grid; width: 100%"></div>
       </div>
     </div>
-    <div id="footer"></div>
+
+    <script>
+      const sections = [
+        {
+          title: "Hitomezashi Stitches",
+          description: "Japanese stitching technique and an online tool I made for pattern making.",
+          date: "(12 / 9 / 21)",
+          link: "applications/hitomezashi-stitching.html"
+        },
+        {
+          title: "Robo Rosewater",
+          description: "Online database I made for AI generated Magic the Gathering cards.",
+          date: "(12 / 26 / 21)",
+          link: "applications/robo-rosewater.html"
+        },
+        {
+          title: "Pareidolic Painting",
+          description: "A fun form of mix media artwork I like to mess around with.",
+          date: "(2 / 19 / 22)",
+          link: "applications/pareidolic-painting.html"
+        },
+        {
+          title: "Ping Pong Patches",
+          description: "Examples of 'computational proofs' found by an algorithm I wrote for a research group.",
+          date: "(4 / 26 / 22)",
+          link: "applications/ping-pong-patches.html"
+        },
+        {
+          title: "SL(2,R) Action Viewer",
+          description: "Visualization tool for actions of special linear matrices on real projective space.",
+          date: "(5 / 5 / 22)",
+          link: "applications/sl2r-action-viewer.html"
+        },
+        {
+          title: "json2yaml",
+          description: "Tool for converting between the JSON and YAML data formats.",
+          date: "(5 / 30 / 22)",
+          link: "applications/json2yaml.html"
+        },
+        {
+          title: "My Book List",
+          description: "A running list of books I'm reading.",
+          date: "(6 / 15 / 22)",
+          link: "applications/book-list.html"
+        },
+        {
+          title: "Layolay",
+          description: "3D printing e-commerce platform.",
+          date: "(2 / 24 / 23)",
+          link: "applications/layolay.html"
+        },
+        {
+          title: "Certifications",
+          description: "List of technical certifications I've received and the notes I used to prep for them.",
+          date: "(5 / 15 / 23)",
+          link: "applications/certifications.html"
+        }
+      ];
+
+      const appsDiv = document.getElementById("apps");
+
+      sections.forEach((section) => {
+        const sectionDiv = document.createElement("div");
+        sectionDiv.onclick = () => {
+          location.href = section.link;
+        };
+
+        const titleHeading = document.createElement("h3");
+        titleHeading.innerHTML = `<strong>${section.title}</strong>`;
+        sectionDiv.appendChild(titleHeading);
+
+        const descriptionHeading = document.createElement("h4");
+        descriptionHeading.textContent = section.description;
+        sectionDiv.appendChild(descriptionHeading);
+
+        const dateHeading = document.createElement("h4");
+        dateHeading.innerHTML = `<strong>${section.date}</strong>`;
+        sectionDiv.appendChild(dateHeading);
+
+        appsDiv.appendChild(sectionDiv);
+      });
+    </script>
   </body>
 </html>
 
