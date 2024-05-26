@@ -39,7 +39,7 @@
         </div>
 
         <div style='text-align: left;'>
-          <h3>A friend of mine tracks the books they've been reading on their personal website. I liked the idea so I thought I would do this too. I'll update it whenever I add something to the list of things to read or when I start / finish a book.</h3>
+          <h3 style="margin-bottom: 0;">A friend of mine tracks the books they've been reading on their personal website. I liked the idea so I thought I would do this too. I'll update it whenever I add something to the list of things to read or when I start / finish a book.</h3>
           <div style='display: grid; grid-template-columns: 3fr 1fr 1fr 1fr; justify-items: center;'>
             <h3 style="margin-bottom: 10px;">Book Title</h3>
             <h3 style="margin-bottom: 10px;">Start Date</h3>
@@ -117,7 +117,7 @@
         let html = '';
 
         books.forEach(yearData => {
-          html += `<hr style='border: none; height: 1px; background-color: black; margin-bottom: 20px;'>`
+          html += `<hr style='border: none; height: 1px; background-color: black; margin: 20px 0px;'>`
           if (yearData.year == new Date().getFullYear()) {
             html += `<h3 style="font-size: 14px;">Reading in ${yearData.year} <span style="font-size: 12px">(${yearData.list.length} books, so far...)</span></h3>`;
           }
@@ -133,9 +133,9 @@
                   <h3 style="margin: 0px"><a href="${book.link}">${book.title}</a></h3>
                   <h4 style="margin: 5px 0px">${book.author}</h4>
                 </div>
-                <h3 style="display: flex; align-items: center; justify-content: center;">${book.startDate || '-'}</h3>
-                <h3 style="display: flex; align-items: center; justify-content: center;">${book.endDate || '-'}</h3>
-                <h3 style="display: flex; align-items: center; justify-content: center;">${book.notes ? `<a href="${book.notes}">Notes</a>` : ''}</h3>
+                <h3 style="display: flex; align-items: center; justify-content: center; margin: 10px 0;">${book.startDate || '-'}</h3>
+                <h3 style="display: flex; align-items: center; justify-content: center; margin: 10px 0;">${book.endDate || '-'}</h3>
+                <h3 style="display: flex; align-items: center; justify-content: center; margin: 10px 0;">${book.notes ? `<a href="${book.notes}">Notes</a>` : ''}</h3>
               </div>`;
           });
         });

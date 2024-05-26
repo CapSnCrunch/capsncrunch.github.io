@@ -42,40 +42,41 @@
     </div>
     <div class="content">
       <div class="about-me">
-        <img src="resources/sam.jpg" width="300px" style="border-radius: 5%" />
-        <div style="padding: 0 30px; margin-top: 10px">
-          <h2>About Me</h2>
-          <h3>
+        <img src="resources/sam.jpg" height="320px" style="border-radius: 5%" />
+        <div style="padding: 0 30px;">
+          <h2 style="margin: 10px 0;">About Me</h2>
+          <h3 style="margin: 10px 0;">
             I am a graduate from the mathematics program at The University of
             Texas at Austin. Currently, my interests include statistical
             learning methods, voronoi diagrams, and network infrastructure.
           </h3>
-          <h3>
-            Right now, I'm working remotely in Austin as a Software Engineer at
+          <h3 style="margin: 10px 0;">
+            Right now, I'm working remotely in <strong>Austin, TX</strong> as a <strong>Software Engineer</strong> at
             <a href="https://www.charterup.com/">CharterUP</a>. Lately, I've
             been reading
             <a href="applications/book-list.html">I Have No Mouth and I Must Scream</a> and
             studying reinforcement learning on in preparation for my Masters in
             Artificial Intelligence back at UT Austin.
           </h3>
+          <h3 style="margin: 10px 0;">
+            If you want to see my
+            <strong>Resume</strong>,
+            you can look
+            <a href="resources/samuel-perales-resume.pdf">here</a>.
+          </h3>
         </div>
       </div>
       <br />
       <div style="text-align: center; padding: 0 30px">
-        <h3>
-          For my projects and technical experience, please find my
-          <strong>Resume</strong>
-          <a href="resources/samuel-perales-resume.pdf">here</a>.
-        </h3>
-        <h3>
+        <!-- <h3>
           For my academic background, please find my <strong>CV</strong>
           <a href="resources/samuel-perales-cv.pdf">here</a>.
-        </h3>
+        </h3> -->
         <br />
         <details>
           <summary style="cursor: pointer;"><strong>Courses Taken</strong></summary>
           <div>
-            <h4 style="margin-bottom: 0">For other students interested in what classes I took in:</h4>
+            <h4 style="margin-bottom: 0">For students interested in what classes I took in:</h4>
             <h3><strong>Undergrad:</strong> Mathematics</h3>
             <div style="float: left; width: 50%">
               <div style="text-align: center">
@@ -126,3 +127,25 @@
     <div id="footer"></div>
   </body>
 </html>
+
+<style>
+  .about-me {
+    display: flex;
+    align-items: center;
+  }
+
+  @media only screen and (max-width: 960px) {
+    .about-me {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+
+  @media only screen and (min-width: 961px) {
+    .about-me {
+      display: flex;
+      flex-direction: row;
+      margin-top: 20px;
+    }
+  }
+</style>
