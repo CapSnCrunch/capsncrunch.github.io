@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Samuel Perales | Articles</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css" />
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script
+      id="MathJax-script"
+      async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+    ></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-K4LP8WXGLP"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+
+      gtag('config', 'G-K4LP8WXGLP');
+    </script>
+  </head>
+  <body>
+    <div id="header">
+      <h1 style="text-align: center; margin-bottom: 10px">
+        <a class="name" href="../index.html">Samuel Perales</a>
+      </h1>
+      <h2 style="text-align: center; margin-top: 0">Personal Blog</h2>
+    </div>
+    <div id="topbar">
+      <div style="display: flex">
+        <a href="../index.html">Home</a>
+        <a href="../articles.html"><strong>Articles</strong></a>
+      </div>
+      <div style="display: flex">
+        <a href="../other.html">Other</a>
+        <a href="../contact.html">Contact</a>
+      </div>
+    </div>
+    <div class="content">
+
+      <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+        <h2 style="text-align: center;"> My Personal Analytics </h2>
+        <div style="display: flex; align-items: center; text-align: center; width: 100%; max-width: 320px;">
+          <h3 style="flex: 1;"><strong><a href='learn-anything-io.html'>< Previous</a></strong></h3>
+          <h3 style="flex: 1; margin: 0 15px;"><strong> 6 / 22 / 24  </strong></h3>
+          <h3 style="flex: 1;"><strong><a href=''></a></strong></h3>
+        </div>
+        <h4 style="font-size: 14px; margin-top: -5px;"> 12 min read </h4> 
+        <!-- https://niram.org/read/ -->
+      </div>
+
+      <div style="text-align: left; margin: 0 10px">
+        <details>
+          <summary style="cursor: pointer;">
+            <strong>TLDR</strong> 
+            <span style="font-size: 12px; margin-top: -5px;"> (click to show/hide)</span>
+          </summary>
+          <div style="text-align: left; margin: 0 10px; margin-bottom: 30px;">
+            <h3 style="font-size: 14px;">
+              <!-- TLDR GOES HERE -->
+            </h3>
+          </div>
+        </details>
+
+        <h3>
+            For a while now, I've been keeping a detailed calendar for myself, both to efficiently pack my goals into relatively little free time
+            and as a means of recording how my time was <em>actually</em> spent. Without much overhead (an hour or two of week total) to maintain,
+            I've gained what I feel has been a much more productive use of my time and a sort of <a href="https://en.wikipedia.org/wiki/Memex" target="_blank">memex</a>
+            tracking what I've done over the past 2.5 years (with about 30 minute precision).
+        </h3>
+        <h3>
+            I enjoy the increased foresight that this practice has given me and its a nice bonus to be able to tell you what I was doing on any exact day
+            at whatever exact time. I would encourage others to try keeping their own calendar with this level of detail since the benefits definitely extend beyond
+            the workplace which people typically use them for.
+        </h3>
+
+        <div style="display: flex; flex-direction: column; align-items: center; margin: 30px 0;">
+          <img src="resources/calendar.png" width="700px" style="max-width: 100%;" />
+          <h4 style="text-align: center; max-width: 500px;">An example of what my calendar looked like for some week in December of last year (with work-related and location-identifying information removed).</h4>
+        </div>
+
+        <h3>
+          However, these sorts of medium-length planning and memory benefits are not what I'm writing about today. Instead, now that I've collected a good amount
+          of this data, I'm interested in sharing some of my 'personal analytics'. That is, extracting some interesting results from my calendar data, visualizing it,
+          and perhaps trying to infer / optimize my behavior based on what I find.
+        </h3>
+        <h3>A great example of the type of article I'm writing can be found on <a href="https://writings.stephenwolfram.com/2012/03/the-personal-analytics-of-my-life/" target="_blank">Stephen Wolfram's blog</a>.</h3>
+
+        <h3><strong>The Quanitifed Self</strong></h3>
+        <h3>
+          Taking a step back for a second, this idea of personal analytics lives within a broader context of the <a href="https://quantifiedself.com/" target="_blank">Quantified Self</a>,
+          a cultural phenomenon and community of self-proclaimed 'self-trackers' who maintain detailed records of all sorts of data about themselves. The most common form that you might engage in
+          even is fitness tracking. Calorie counting, diet apps, Apple Watches, and even pen-and-paper notes about what medications you've taken througout the week fit in this category.
+        </h3>
+        <h3>
+          There are a lot of benefits to self-tracking including personalized results, control of your own data (in some cases), and contribution to <a href="https://en.wikipedia.org/wiki/Citizen_science" target="_blank">citizen science</a>
+          when participating in the larger community. There are some real criticisms of the practice though, aruging that the western idea of striving for the 'optimal self' inherently biases us
+          against those that are 'non-optimal' (the poor, fat, ill, etc.). There's also a tendency among some self-trackers to realize that an obsession with this sort of behavior can detract from the
+          overall human experience.
+        </h3>
+        <h3>
+          For some time, I did feel that maintenance of my calendar and sticking to my schedule was starting to dominate the actual experiences I had planned for myself. Reading more about the topic
+          from books like <a href="https://dl.acm.org/doi/10.5555/3052450" target="_blank">The Quantified Self</a> and <a href="https://mitpress.mit.edu/9780262529129/self-tracking/" target="_blank">Self-Tracking</a>
+          have since helped me view my calendar as more of a tool for record keeping than the sort of contractual agreement with my past self that it was becoming.
+        </h3>
+
+        <h3><strong>My Data</strong></h3>
+        <h3>Now for the fun stuff!</h3>
+        <h3>
+          I first had to pull and clean my calendar data which took quite a bit of time. <a href="https://takeout.google.com/settings/takeout?pli=1" target="_blank">Google Takeout</a> is a handy way of getting
+          a copy of your data from any of Google's services, but for the calendar, exports in an old ICS format that does not support color. Since I track a large portion of the categorical data for my events with color
+          I needed to set up a GCP service account, configure OAuth credentials, and <a href="resources/google-calendar.py">write a script</a> to access my events (with color data) in batches. I also truncated my data to
+          only include events since 01/01/2023 since I had some different color schemes prior to that which I didn't care to try and reconcile.
+        </h3>
+
+        <h3>
+          Across the 12 event types that I track (in addition to me sleeping in the negative space of the events), I counted the total number of each that occured in the last year and a half:
+        </h3>
+        <div style="display: flex; justify-content: center;">
+          <div id="gridContainer" style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; max-width: 600px; width: 100%;">
+          </div>
+        </div>
+
+        <h3>
+          I also put together some colorful summary charts for the aggregated data by month and by week. The categories from bottom to top
+          are roughly ordered according to their 'necessity' level, sleep and work being the most important and personal projects and relaxation time being less so:
+        </h3>
+        <div style="display: flex; flex-direction: column; align-items: center; margin: 20px 0;">
+          <img src="resources/23-24-events-by-month.png" width="800px" style="max-width: 100%;" />
+          <h4 style="text-align: center; max-width: 500px;">The average number of hours I spent each day doing one of these 13 categories for each month in the last year and a half (2023 - mid 2024).</h4>
+        </div>
+        <div style="display: flex; flex-direction: column; align-items: center; margin: 20px 0;">
+          <img src="resources/23-events-by-week.png" width="1200px" style="max-width: 100%;" />
+          <h4 style="text-align: center; max-width: 500px;">The average number of hours I spent in each category for each week of 2023.</h4>
+        </div>
+
+        <h3>
+          These are interesting for identifying some memorable outliers like that spike of driving and sleeping I did in August of 2023 (on the second chart) which was when
+          Linda and I made the exhausting drive back from Ann Arbor to Austin and then immediately moved into a new apartment followed by us sleeping for 12 or so hours over the next couple days.
+          Its also easy to tell when I take a week off of work during the holidays (at the two ends of the second chart) and socialized significantly more with family and friends.
+        </h3>
+
+        <h3>
+          Since one of my unoffical goals has been to utilize my free time more effectively by reading, learning, and working on projects more, I decided to chop out the 'necessary' events
+          from these charts and take a look at just my free time:
+        </h3>
+
+        <div style="display: flex; flex-direction: column; align-items: center; margin: 20px 0;">
+          <img src="resources/23-24-relax-time-by-week.png" width="800px" style="max-width: 100%;" />
+          <h4 style="text-align: center; max-width: 500px;">How I spent my free time in 2023.</h4>
+        </div>
+        <div style="display: flex; flex-direction: column; align-items: center; margin: 20px 0;">
+          <img src="resources/24-relax-time-by-week.png" width="1200px" style="max-width: 100%;" />
+          <h4 style="text-align: center; max-width: 500px;">How I've spent my free time so far in 2024.</h4>
+        </div>
+
+        <h3>
+          Some things that are in the 'Other' category I can never get rid of; chores like doing the laundry, washing dishes, and cleaning, taking showers, and allowing myself to just relax 
+          for a minute. In general though, it does seem like a trend is forming of me using some of the 'suboptimal' free-time for growth instead of video games and doom-scrolling (I do still consider
+          gaming with friends a 'Social' activity, but if I'm playing alone I would prefer one of these other alternatives).
+        </h3>
+        <h3>
+          Overall, I do see a nice trend of using more of my free time for personal growth activites in 2024 compared to 2023. For example, you can see me start on my Master's degree
+          as I started 'Learning' more in early 2024 and more recently how I spent a lot of time focusing on my <a href="../applications/learn-anything.html" target="_blank">Learn Anything</a> hackathon project.
+        </h3>
+
+        <h3>Below you can see what my 'daily rhythms' look like as a set of probability distributions representing the chance you will find me engaging in a particular type of activity throughout the day:</h3>
+        <div style="display: flex; flex-direction: column; align-items: center; margin: 20px 0;">
+          <img src="resources/event-distributions.png" width="1200px" style="max-width: 100%;" />
+          <h4 style="text-align: center; max-width: 500px;">Distributions of event types throughout the day.</h4>
+        </div>
+
+        <h3>Again, some interesting things to point out:</h3>
+        <h3>
+          <ul>
+            <li>
+              My morning standup meetings stick out quite a bit. You can also see the dip in work / meetings when I got to lunch and the little bump in the evening representing our
+              bi-weekly evening prod deployments.
+            </li>
+            <li>I only eat two meals a day, perhaps this is a sign I should start making myself breakfast.</li>
+            <li>
+              The peak in the execise chart is when I take my daily post-work walk around the neighborhood. Since both my work and my free time are spent primary at my desk (since I work from home)
+              I enjoy doing this as a way to transition my thoughts away from work and towards whatever I'm planning on for my evening. There's a noticeable dip in most of the other charts
+              where I'm taking this walk and when I'm driving home on the days I do actually go into the office.
+            </li>
+            <li>
+              My reading and project time conflict with one another, primarily because I don't have a lot of room to fit both of those along with studying into my evenings, but something I might try to
+              balance this is intentionally focusing on reading in the earlier evening and then turning back to projects later in the evening after I've had some extra time away from my desk.
+            </li>
+          </ul>
+        </h3>
+        <h3><strong>Conclusion</strong></h3>
+        <h3>
+          If nothing else, this was an incredibly fun look into how I operate on average day-to-day. I leave this analysis with a few takeways that I'll try to implement as habit over the remainder of 2024 and 
+          some useful scripts to make this sort of overview faster to generate in the future.
+        </h3>
+        <h3>
+          My calendar is also only one of a few different things that I keep a detailed record of; I also maintain a similar level of data on my spending habits, my <a href="../applications/book-list.html">reading habits</a>, and am looking to start 
+          tracking some basic fitness data by getting either a FitBit or an Apple Watch. It will be interesting to see the correlation between some of the more general events I spend my time on and 
+          how those affect my savings and health.
+        </h3>
+
+        <h3><strong>Resources</strong></h3>
+        <h3>
+          <ul>
+            <li><a href="https://writings.stephenwolfram.com/2012/03/the-personal-analytics-of-my-life/" target="_blank">Stephen Wolfram's Personal Analytics</a> (over many more years than mine)</li>
+            <li>
+              Some Books on Self-Tracking:
+              <ul>
+                <li><a href="https://dl.acm.org/doi/10.5555/3052450" target="_blank">The Quantified Self</a></li>
+                <li><a href="https://mitpress.mit.edu/9780262529129/self-tracking/" target="_blank">Self-Tracking</a></li>
+              </ul>
+            </li>
+            <li><a href="https://takeout.google.com/settings/takeout" target="_blank">Google Takeout</a> (for obtaining a copy of your own data)</li>
+            <li><a href="resources/google-calendar.py">Script for Pulling Google Calendar Data</a> (specifically if you care about event color information)</li>
+            <li><a href="../applications/book-list.html">My Reading List</a> (some more of my self-tracking)</li>
+          </ul>
+        </h3>
+    </div>
+
+    <div id="footer"></div>
+
+    <script>
+      const data = [
+        { category: 'Work:', eventCount: '1604 events', hours: '1226 hours' },
+        { category: 'Meetings:', eventCount: '1198 events', hours: '788.5 hours' },
+        { category: 'Important Tasks:', eventCount: '546 events', hours: '380 hours' },
+        { category: 'Driving:', eventCount: '916 events', hours: '623.5 hours' },
+        { category: 'Eating:', eventCount: '1133 events', hours: '943.5 hours' },
+        { category: 'Exercise:', eventCount: '333 events', hours: '183 hours' },
+        { category: 'Social / Activities:', eventCount: '458 events', hours: '822.5 hours' },
+        { category: 'Side Hustles:', eventCount: '93 events', hours: '157 hours' },
+        { category: 'Learning:', eventCount: '312 events', hours: '272 hours' },
+        { category: 'Reading:', eventCount: '168 events', hours: '167.5 hours' },
+        { category: 'Personal Projects:', eventCount: '264 events', hours: '272.5 hours' },
+        { category: 'Other:', eventCount: '3597 events', hours: '2657.5 hours' }
+      ];
+
+      const gridContainer = document.getElementById('gridContainer');
+
+      data.forEach(item => {
+        const categoryDiv = document.createElement('h3');
+        const eventCountDiv = document.createElement('h3');
+        const hoursDiv = document.createElement('h3');
+        
+        categoryDiv.innerHTML = `<strong>${item.category}</strong>`;
+        
+        eventCountDiv.textContent = item.eventCount;
+        hoursDiv.textContent = item.hours;
+
+        categoryDiv.style.textAlign = 'right';
+        categoryDiv.style.paddingRight = '40px';
+
+        categoryDiv.style.marginTop = '0px';
+        eventCountDiv.style.marginTop = '0px';
+        hoursDiv.style.marginTop = '0px';
+
+        categoryDiv.style.marginBottom = '0px';
+        eventCountDiv.style.marginBottom = '0px';
+        hoursDiv.style.marginBottom = '0px';
+
+        gridContainer.appendChild(categoryDiv);
+        gridContainer.appendChild(eventCountDiv);
+        gridContainer.appendChild(hoursDiv);
+      });
+    </script>
+  </body>
+</html>
