@@ -40,7 +40,7 @@
 
         <div style='text-align: left;'>
           <h3 style="margin-bottom: 0;">
-            This is my list of books TBR which I update when I acquire, start, or finish a book. Where possible, I try to include a link to a free copy of the text; and otherwise will link to
+            This is a list books I've read / want to read which I update when I acquire, start, or finish a book. Where possible, I try to include a link to a free copy of the text; and otherwise will link to
             the cheapest copy I can find that includes the same content. The list is not yet a complete representation of my personal library.
           </h3>
           <div style='display: grid; grid-template-columns: 3fr 1fr 1fr 1fr; justify-items: center; margin-top: 15px;'>
@@ -93,11 +93,13 @@
             { "title": "Mediations", "author": "Marcus Aurelius", "link": "https://archive.org/details/thoughtsofempero1893marc", "startDate": "5 / 20 / 24", "endDate": "5 / 27 / 24" }, 
             { "title": "Dune", "author": "Frank Herbert", "link": "https://ia802205.us.archive.org/22/items/dune-by-frank-herbert/Dune%20by%20Frank%20Herbert.pdf", "startDate": "5 / 30 / 24", "endDate": "6 / 4 / 24" }, 
             { "title": "Dune Messiah", "author": "Frank Herbert", "link": "https://blackbooksdotpub.wordpress.com/wp-content/uploads/2021/05/dune-chronicles-volume-2-frank-herbert-dune-messiah-berkley-1984.pdf", "startDate": "6 / 5 / 24", "endDate": "6 / 8 / 24" }, 
-            { "title": "Reinforcement Learning: An Introduction", "author": "Richard Sutton and Andrew Barto", "link": "http://incompleteideas.net/sutton/book/RLbook2018.pdf", "startDate": "6 / 6 / 24", "endDate": "" }, 
+            { "title": "Reinforcement Learning: An Introduction", "author": "Richard Sutton and Andrew Barto", "link": "http://incompleteideas.net/sutton/book/RLbook2018.pdf", "startDate": "6 / 6 / 24", "endDate": "8 / 11 / 24" }, 
             { "title": "The Quantified Self", "author": "Deborah Lupton", "link": "https://archive.org/details/deborah-lupton-the-quantified-self-policy-press-2016/page/n1/mode/2up", "startDate": "6 / 9 / 24", "endDate": "6 / 14 / 24" },
             { "title": "Breakdown of Will", "author": "George Ainslie", "link": "https://www.scribd.com/document/319587970/Ainslie-George-Breakdown-of-Will-pdf", "startDate": "6 / 17 / 24", "endDate": "6 / 30 / 24" }, 
             { "title": "Toxin, the Cunning of Bacterial Poisons", "author": "Alistair Lax", "link": "https://academic.oup.com/book/53181", "startDate": "7 / 1 / 24", "endDate": "7 / 14 / 24" },
-            { "title": "Causal Learning", "author": "Alison Gopnik and Laura Schulz", "link": "https://academic.oup.com/book/36085?login=false", "startDate": "7 / 15 / 24", "endDate": "" }, 
+            { "title": "Causal Learning", "author": "Alison Gopnik and Laura Schulz", "link": "https://academic.oup.com/book/36085?login=false", "startDate": "7 / 15 / 24", "endDate": "" },
+            { "title": "Brave New World", "author": "Aldous Huxley", "link": "https://www.plato-philosophy.org/wp-content/uploads/2016/05/BraveNewWorld-1.pdf", "startDate": "8 / 12 / 24", "endDate": "8 / 17 / 24" },
+            { "title": "I, Robot", "author": "Isaac Asimov", "link": "https://ekladata.com/-Byix64G_NtE0xI4A6PA1--o1Hc/Asimov-Isaac-I-Robot.pdf", "startDate": "8 / 18 / 24", "endDate": "" },
             // { "title": "", "author": "", "link": "", "startDate": "", "endDate": "" }, 
           ]
         },
@@ -126,21 +128,21 @@
         let booksDiv = document.getElementById('books');
         let html = '';
 
-        books.forEach(yearData => {
+        books.forEach(data => {
           html += `<hr style='border: none; height: 1px; background-color: black; margin: 20px 0px;'>`
-          if (yearData.year == new Date().getFullYear()) {
-            html += `<h3 style="font-size: 14px;">Reading in ${yearData.year} <span style="font-size: 12px">(${yearData.list.length} books, so far...)</span></h3>`;
+          if (data.year == new Date().getFullYear()) {
+            html += `<h3 style="font-size: 14px;">Reading in ${data.year} <span style="font-size: 12px">(${data.list.length} books, so far...)</span></h3>`;
           }
-          else if (/\b2\d{3}\b/.test(yearData.year)) {
-            html += `<h3 style="font-size: 14px;">Reading in ${yearData.year} <span style="font-size: 12px">(${yearData.list.length} books)</span></h3>`;
+          else if (/\b2\d{3}\b/.test(data.year)) {
+            html += `<h3 style="font-size: 14px;">Reading in ${data.year} <span style="font-size: 12px">(${data.list.length} books)</span></h3>`;
           } else {
             html += `<h3 style="font-size: 14px;">On my Shelf</h3>`;
           }
-          yearData.list.forEach(book => {
+          data.list.forEach(book => {
             html += `
               <div style="display: grid; grid-template-columns: 3fr 1fr 1fr 1fr; justify-items: center; margin-bottom: 5px;">
                 <div style="display: flex; flex-direction: column; justify-content: center; align-items: start; text-align: left; width: 100%;">
-                  <h3 style="margin: 0px"><a href="${book.link}">${book.title}</a></h3>
+                  <h3 style="margin: 0px;"><a href="${book.link}">${book.title}</a></h3>
                   <h4 style="margin: 5px 0px">${book.author}</h4>
                 </div>
                 <h3 style="display: flex; align-items: center; justify-content: center; margin: 10px 0;">${book.startDate || '-'}</h3>
