@@ -54,7 +54,7 @@
           <h3 style="flex: 1; margin: 0 15px;"><strong> 9 / 13 / 24  </strong></h3>
           <h3 style="flex: 1;"><strong><a href=''></a></strong></h3>
         </div>
-        <h4 style="font-size: 14px; margin-top: -5px;"> X min read </h4> 
+        <h4 style="font-size: 14px; margin-top: -5px;"> 8 min read </h4> 
         <!-- https://niram.org/read/ -->
       </div>
 
@@ -66,7 +66,8 @@
           </summary>
           <div style="text-align: left; margin: 0 10px; margin-bottom: 30px;">
             <h3 style="font-size: 14px;">
-              <!-- TLDR GOES HERE -->
+              2048 is an easy game to learn but can be difficult to master unless you know the 'optimal' strategy. This article covers how we can use the
+              Monte Carlo Tree Search algorithm to not just beat the game, but excel beyond the typical human performance without actually 'learning' how to play.
             </h3>
           </div>
         </details>
@@ -184,7 +185,65 @@
         </h3>
 
         <h3><strong>Combining the Two</strong></h3>
+
+        <h3>Playing 2048 specifically with MCTS is actually pretty easy.</h3>
+        <h3>We don't need the selection and expansion steps since they can actually skew the value away from what the true expecation of our current state should be.
+          This is because of the stochastic element of actions in 2048 - when 2's and 4's get added randomly following a move. If we were to try and think ahead even just a 
+          few steps, the simulated state could be vastly different from what we would actually see making those moves.
+        </h3>
+        <h3>Instead, we can get away with just running the simulation step from our current state directly, N-many times for each action available.
+          In my implementation, I just went with a random rollout policy. Since the moves the rollout policy makes are not the best, I averaged the scores of
+          30 of them for each action to get a better idea of what the relative expected value of the actions were.
+        </h3>
+        <h3>Since the game doesn't have a true win-condition, I instead track and backup the score for each simulation. We can also get a speedup by only simulating out T-many 
+          steps into the future (as opposed until playing until termination). By making T large enough, we can ensure (in expectation) that the algorithm should not decide to take
+          a move that would likely cause it to lose in the next T-steps.
+        </h3>
+
+        <div style = 'display: flex; flex-direction: column; align-items: center; margin: 30px 0;'>
+          <video width="500px" style="max-width: 100%;" controls autoplay muted>
+            <source src='resources/2048-mcts.mov'>
+          </video>
+          <div style = 'text-align: center; width: 650px;'>
+            <h4>MCTS with N=30 simulations per move going T=20 steps deep on each</h4>
+          </div>
+        </div>
+
+        <h3>With very little complexity, MCTS is able to beat this game that the average human player would have some difficulty with. Interestingly,
+          it doesn't seem to maintain much of a strategy compared to humans who need to keep their higher valued tiles in the corner. The algorithm
+          does still lose in the end, but ramping up N and T would allow it to go further albeit at the cost of more computation per step.
+        </h3>
+
         <h3><strong>MCTS in the Wild</strong></h3>
+
+        <h3>Complex games with a much higher branching factor can't be 'solved' as easily as this. We managed to get away without a tree policy, a random rollout policy,
+          and early termination of our simulations. However, MCTS is still incredibly useful as a means of extending other algorithms that learn an actual tree / rollout policy.
+          For example, AlphaGo combined deep-learned value and policy networks with MCTS to beat the world champion Lee Sedol in 2016.
+        </h3>
+
+        <div style = 'display: flex; flex-direction: column; align-items: center; margin: 40px 0;'>
+          <img src = 'resources/alphago-mcts.png' width = 700px style="max-width: 100%;">
+          <div style = 'text-align: center; width: 650px;'>
+            <h4>MCTS implementation used in AlphaGo (image from <a href="https://jonathan-hui.medium.com/monte-carlo-tree-search-mcts-in-alphago-zero-8a403588276a" style="font-size: 12px;">Jonathan Hui</a>).
+            </h4>
+          </div>
+        </div>
+
+        <h3>Aside from games, MCTS is also useful for any deterministic planning environment that may have too large a state space to explore by other means.
+          One such application that I find interesting is <a href="https://www.iaeng.org/publication/IMECS2010/IMECS2010_pp2086-2091.pdf">using MCTS for scheduling</a>.
+        </h3>
+
+        <h3>I'm planning to come back to this and implement MCTS for other more complex games like <a href="https://boardgamegeek.com/boardgame/2655/hive">Hive</a>, but since that one is two-player,
+          theres a bit of extra work that will go into designing a model for that. I encourage you to check out the GitHub I have linked in the resources below if you're interested in
+          either the 2048 engine, the MCTS implementation, or both! Thats it for today though, thanks for reading! 
+        </h3>
+
+        <h3><strong>Resources</strong></h3>
+        <ul>
+          <li><a href="https://github.com/CapSnCrunch/2048">GitHub repository for this project</a></li>
+          <li><a href="http://incompleteideas.net/sutton/book/RLbook2018.pdf">Reinforcement Learning, An Introduction (Sutton and Barto)</a></li>
+          <li><a href="https://www.youtube.com/watch?v=WXuK6gekU1Y">AlphaGo Documentary (loosely related but a good watch)</a></li>
+        </ul>
       </div>
     </div>
     <div id="footer"></div>
