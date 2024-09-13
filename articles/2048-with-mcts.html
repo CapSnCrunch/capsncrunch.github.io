@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Samuel Perales | Articles</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css" />
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script
+      id="MathJax-script"
+      async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+    ></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-K4LP8WXGLP"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+
+      gtag('config', 'G-K4LP8WXGLP');
+    </script>
+  </head>
+  <body>
+    <div id="header">
+      <h1 style="text-align: center; margin-bottom: 10px">
+        <a class="name" href="../index.html">Samuel Perales</a>
+      </h1>
+      <h2 style="text-align: center; margin-top: 0">Personal Blog</h2>
+    </div>
+    <div id="topbar">
+      <div style="display: flex">
+        <a href="../index.html">Home</a>
+        <a href="../articles.html"><strong>Articles</strong></a>
+        <a href="../other.html">Other</a>
+        <a href="../contact.html">Contact</a>
+      </div>
+    </div>
+    <div class="content">
+
+      <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+        <h2 style="text-align: center;"> 2048 with Monte Carlo Tree Search </h2>
+        <div style="display: flex; align-items: center; text-align: center; width: 100%; max-width: 320px;">
+          <h3 style="flex: 1;"><strong><a href='two-years-in-tech.html'>< Previous</a></strong></h3>
+          <h3 style="flex: 1; margin: 0 15px;"><strong> 9 / 13 / 24  </strong></h3>
+          <h3 style="flex: 1;"><strong><a href=''></a></strong></h3>
+        </div>
+        <h4 style="font-size: 14px; margin-top: -5px;"> X min read </h4> 
+        <!-- https://niram.org/read/ -->
+      </div>
+
+      <div style="text-align: left; margin: 0 10px">
+        <details>
+          <summary style="cursor: pointer;">
+            <strong>TLDR</strong> 
+            <span style="font-size: 12px; margin-top: -5px;"> (click to show/hide)</span>
+          </summary>
+          <div style="text-align: left; margin: 0 10px; margin-bottom: 30px;">
+            <h3 style="font-size: 14px;">
+              <!-- TLDR GOES HERE -->
+            </h3>
+          </div>
+        </details>
+
+        <h3>It's common to conflate Artificial Intelligence with Machine Learning. There are of course different subtopics within Machine Learning itself
+          like supervised, unsupervised, and reinforcement learning, but ML as a whole is distinct from AI because there exist algorithms that <em>appear</em> intelligent without
+          learning anything at all. It seems like lacking a mechanism for learning would be very limiting when dealing with more complex tasks, but these sorts of methods can be used to extend the abilities of
+          already high-performing ML agents and, as you'll read in this article, can end up performing quite well on their own.
+        </h3>
+
+        <div style = 'display: flex; flex-direction: column; align-items: center; margin: 20px 0;'>
+          <img src = 'resources/ai-venn-diagram.png' width = 400px style="max-width: 100%;">
+        </div>
+
+        <h3><strong>2048</strong></h3>
+        <h3>You may have played or at least heard of the popular game 2048 which launched back in March 2014. The idea is simple enough, sliding tiles in a 4 x 4 grid either up, down,
+          left, or right and combining them when their values are equal. To keep the game going, every time a move is made, a new tile (either a 2 or 4) will spawn randomly in one
+          of the open tiles.
+        </h3>
+
+        <h3>The game is lost when there are no remaining movements that can be made to change the board state. Though you could technically combine tiles to incredibly
+          high powers of 2, its difficult enough to reach 2048 (2^11) that human players consider that to be 'winning'. The typical strategy to make it this far is to keep your highest 
+          value tiles in the corner and snake them in a descending order around the board to maintain a chain that can easily be fully combined when able.
+        </h3>
+
+        <h3>I made a basic pygame version to play a few years back but left the engine general enough to handle n x n boards and more easily allow for programmatic inputs. It ended up being
+          a toy example that I could come back to as a way of testing different 'input schemes' I came up with like my <a href="dance-pad-programming.html">dance pad programming</a> project.
+        </h3>
+
+        <div style = 'display: flex; flex-direction: column; align-items: center; margin: 30px 0;'>
+          <img src = 'resources/2048-human.gif' width = 400px style="max-width: 100%;">
+          <div style = 'text-align: center;'>
+            <h4>An example of a human playing 2048</h4>
+          </div>
+        </div>
+
+        <h3><strong>Monte Carlo Tree Search</strong></h3>
+
+        <h3>One of the easiest to understand and yet highly performant non-learning algorithms is <a href="https://en.wikipedia.org/wiki/Monte_Carlo_tree_search">Monte Carlo Tree Search (MCTS)</a>.
+          At its core MCTS is, as it says in the name, a search algorithm. It maintains no long-term memory of learned parameters, environment states, etc. It's simply a method for approaching
+          tree search problems where the search space is incredibly large (to the point where exhaustively searching would be literally impossible). The algorithm is commonly used for playing games,
+          which is why I decided to try applying it to 2048.
+        </h3>
+
+        <h3>MCST maintains a temporary state-action tree in memory which it expands and prunes on the fly as the state changes.
+          Each node represents either a state or an action that can be taken from that state (appearing in alternating layers).
+          A value is associated to each state node which the algorithm uses to determine how good being in that state seems to be.
+        </h3>
+        <h3>
+          The root node always represents the current state while its children represent possible future states which are actively being evaluated.
+          The only requirement for using this algorithm is having a model of the environment (game) which can be queried (for any state we're in, we can
+          simulate what the outcome of any action would be).
+        </h3>
+        
+        <h3>The algorithm consists of four main parts:</h3>
+
+        <ul>
+          <li>
+            <strong>Selection</strong> 
+            <h3>Traverse the tree down to an action node which has not been explored yet according to a <strong>tree policy</strong>.
+              Since the root node is the current state of whatever game we're playing, this step can be interpreted as us 'thinking ahead'
+              to positions we haven't fully thought through yet.
+            </h3>
+            
+            <h3>The tree policy can be anything; randomly selecting actions until we come 
+              across something we haven't explored, greedily choosing the options we currently think are the best, or following an 
+              <strong>upper confidence bound</strong> action selection method which attempts to balance exploration with greedy decision making.
+            </h3>
+          </li>
+
+          <li style="margin-top: 10px;">
+            <strong>Expansion</strong>
+            <h3>Once we've reached a state with an unexplored action, we use our model of the environment to simulate that action and expand our
+              in-memory tree to include the resulting state and its available actions.
+            </h3>
+          </li>
+          <li style="margin-top: 10px;">
+            <strong>Simulation</strong>
+            <h3>We're now in a position we haven't seen yet. To gauge how good it is, we can rapidly simulate many games out until termination and
+              average the performance of those games to get a sense of the 'value' of this position. Since we're already a decent ways out from our
+              true current state, its not useful to store these simulations in our tree.
+            </h3>
+            <h3>Our choice of actions from this point follows a <strong>rollout policy</strong> which, like the tree policy, can be anything we want.
+              The limiting factor is that all of our decisions are being made in uncharted territory (these game states are not yet a part of our tree) so we 
+              don't have state values to base our decisions off of.
+            </h3>
+            <h3>We again have the option for randomly selecting moves until the game terminates in each simulation, but we can easily plug in other decision models
+              like actual ML agents.
+            </h3>
+          </li>
+          <li style="margin-top: 10px;">
+            <strong>Backup</strong>
+            <h3>The value of a child state should affect the value of its parent (if the game isn't looking good for me a few moves away, I should be worried about
+              where I'm at now). To propagate what we've learned about the value of our state from the simulations, we update all of the states above the node we just
+              ran them from.
+            </h3>
+            <h3>This update and the way we represent value for each node in general depends on the type of environment we're dealing with. If its the type of game where
+              you have a boolean outcome (either you win or lose), it is usually sufficient to store the ratio of simulated wins to losses associated with each state.
+            </h3>
+          </li>
+        </ul>
+
+        <div style = 'display: flex; flex-direction: column; align-items: center; margin: 30px 0;'>
+          <img src = 'resources/mcts-diagram.png' width = 700px style="max-width: 100%;">
+          <div style = 'text-align: center; width: 650px;'>
+            <h4>MCTS diagram (image from <a href="http://incompleteideas.net/sutton/book/RLbook2018.pdf" style="font-size: 12px;">Reinforcement Learning, An Introduction</a> by Sutton and Barto). 
+              The white nodes represent states of an environment and the black nodes represent the possible actions that can be taken from each.
+            </h4>
+          </div>
+        </div>
+
+        <h3>By repeating this process of tree exploration/expansion, simulation, and value-estimation, we can gain probabilistic information about what the best expected outcome
+          would be from our current state no matter where we are in the massive state space. Once we select a move, we can prune away all of the nodes that are no longer reachable
+          and continue until the game terminates.
+        </h3>
+
+        <h3><strong>Combining the Two</strong></h3>
+        <h3><strong>MCTS in the Wild</strong></h3>
+      </div>
+    </div>
+    <div id="footer"></div>
+  </body>
+</html>
