@@ -172,8 +172,6 @@ li {
 }
 
 .center {
-    padding: 10px;
-    /*width: 50%;*/
     margin: auto;
     text-align: center;
 }
