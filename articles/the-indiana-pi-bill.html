@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Samuel Perales | Articles</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css" />
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script
+      id="MathJax-script"
+      async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+    ></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-K4LP8WXGLP"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+
+      gtag('config', 'G-K4LP8WXGLP');
+    </script>
+  </head>
+  <body>
+    <div id="header">
+      <h1 style="text-align: center; margin-bottom: 10px">
+        <a class="name" href="../index.html">Samuel Perales</a>
+      </h1>
+      <h2 style="text-align: center; margin-top: 0">Personal Blog</h2>
+    </div>
+    <div id="topbar">
+      <div style="display: flex">
+        <a href="../index.html">Home</a>
+        <a href="../articles.html"><strong>Articles</strong></a>
+        <a href="../other.html">Other</a>
+        <a href="../contact.html">Contact</a>
+      </div>
+    </div>
+    <div class="content">
+
+      <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+        <h2 style="text-align: center;"> The Indiana Pi Bill </h2>
+        <div style="display: flex; align-items: center; text-align: center; width: 100%; max-width: 320px;">
+          <h3 style="flex: 1;"><strong><a href='2048-with-mcts.html'>< Previous</a></strong></h3>
+          <h3 style="flex: 1; margin: 0 15px;"><strong> 5 / 25 / 24  </strong></h3>
+          <h3 style="flex: 1;"><strong><a href='ENTER NEXT HERE'></a></strong></h3>
+        </div>
+        <h4 style="font-size: 14px; margin-top: -5px;"> 10 min read </h4> 
+        <!-- https://niram.org/read/ -->
+      </div>
+
+      <div style="text-align: left; margin: 0 10px">
+        <details>
+          <summary style="cursor: pointer;">
+            <strong>TLDR</strong> 
+            <span style="font-size: 12px; margin-top: -5px;"> (click to show/hide)</span>
+          </summary>
+          <div style="text-align: left; margin: 0 10px; margin-bottom: 30px;">
+            <h3 style="font-size: 14px;">
+              A funny historical incident where Pi = 3.2 was almost codified into Indiana State Law and some additional mathematical background
+              on the topic of geometric constructions in general for those that are interested.
+            </h3>
+          </div>
+        </details>
+
+        <h3>
+          You'll have to forgive me. I'm writing this article hastily on 3/15 to release as my retrospective Pi Day post. I was actually
+          searching for an intriguing math fact or some interesting proof to write about on the subject of Pi as I did with 
+          <a href="elementary_not_easy_irrationality_of_pi.html">Elementary Not Easy: The Irrationality of Pi</a> a few years ago but nothing
+          struck me yesterday until, of course, as I was lying in bed last night. Scrolling through my phone just before sleeping, I saw this meme
+          on Reddit:
+        </h3>
+
+        <div style = 'display: flex; justify-content: center; margin: 30px 0;'>
+          <img src = 'resources/date-of-pi-day.jpg' width = 500px style="max-width: 100%; border-radius: 5px;">
+        </div>
+
+        <h3>Reading into the story behind it a bit, I found it had just enough historical intrigue and a good enough proportion of geometry to talk about.
+          This was the article I wanted to write about and is now my new favorite math fact about Pi (aside from <a href="https://en.wikipedia.org/wiki/Buffon%27s_needle_problem">Buffon's Needle</a>).
+        </h3>
+        
+        <h3><strong>The Story of the Indiana Pi Bill</strong></h3>
+        <h3>Centuries had it been unknown whether <a href="https://en.wikipedia.org/wiki/Squaring_the_circle">squaring the circle</a> was possible with traditional 
+          <a href="https://en.wikipedia.org/wiki/Straightedge_and_compass_construction">geometric construction</a> (a compass and straightedge). But in 1882
+          Lindemann and Weierstrass had <a href="https://en.wikipedia.org/wiki/Lindemann%E2%80%93Weierstrass_theorem">proven a theorem</a> which, as a consequence, established that the transcendence of Pi which, as a further consequence, made
+          the ancient task impossible. The problem now determined, joined a group of other well known 
+          <a href="https://www.math.toronto.edu/mathnet/questionCorner/impossconstruct.html">impossible classic constructions of geometry</a>. This did not stop
+          Edward J. Goodwin, a physician from Solitude, Indiana from believing he had a solution 15 years later in 1897. He had published on Goodwin's model circle
+          to the American Mathematical Monthly that in fact there was a solution to the "impossible" construction:
+        </h3>
+        
+        <div style = 'display: flex; flex-direction: column; align-items: center; margin: 30px 0;'>
+          <img src = 'resources/goodwins-model-circle.png' width = 250px style="max-width: 100%; border-radius: 5px;">
+          <h4 style='margin-top: 20px;'>Goodwin's model circle (the proposed solution to squaring the circle with compass and straightedge)</h4>
+        </div>
+
+        <h3>As a gesture of goodwill, he wanted to contribute his finding as a gift to Education in the State of Indiana by codifing his model into law with
+          the <a href="https://www.springssoft.com/downloads/Reading_Journals/Essays/PI%20Bill.pdf">ENGROSSED HOUSE BILL No. 246</a>. Now, take a moment to yourself
+          reader, and see the immediate flaw with the model above. With the numbers provided, you can likely prove to yourself fairly quickly that π = 3.2 exactly. This 
+          had likely slipped by the legislature since they may not have understood the <a href="https://proofwiki.org/wiki/Squaring_the_Circle/Fallacious_Proof/Edward_J._Goodwin">"proof"</a> 
+          that was provided to them. 
+        </h3>
+
+        <h3>Luckily, on the day of the bill's proposal, Purdue University mathematics professor <a href="https://en.wikipedia.org/wiki/Clarence_Abiathar_Waldo">Clarence Waldo</a>
+          happened to be present for an unrelated matter (seeking the annual appropriation for the Indiana Academy of Science). Noticing the Bill in the day's schedule along with the
+          impossibility of the result immediately, he discussed it with other senators before it was to be voted on. When it reached the Senate Floor, the senators Waldo had alerted got the 
+          bill idefinitely postponed.
+        </h3>
+
+        <h3>The incident reached the Chicago Tribune, Indianapolis News, and other publications which all poked fun.</h3>
+
+        <div style = 'display: flex; flex-direction: column; align-items: center; margin: 30px 0;'>
+          <img src = 'resources/edwin-goodwin-cartoon.jpg' width = 350px style="max-width: 100%; border-radius: 5px;">
+          <h4 style='margin-top: 20px;'>
+            <a href="https://en.wikipedia.org/wiki/The_Dispatch_/_The_Rock_Island_Argus" style="font-size: 12px">The Rock Island Argus's</a>
+            cartoon on Goodwin's model circle.
+          </h4>
+        </div>
+
+        <h3><strong>On Non-Impossible Geometric Constructions</h3></strong>
+        
+        <h3>
+          <a href="https://en.wikipedia.org/wiki/Straightedge_and_compass_construction">Geometric construction</a> dates back to Ancient Greece
+          where mathematicians had first attempted ways to perform math algorithmically via geometry. The most basic of these included the following those to
+          do with points, lines, and circles which could be extended to more complex procedures for finding fractions of angles, n-sided regular polygons, etc: 
+        </h3>
+
+        <div style = 'display: flex; flex-direction: column; align-items: center; margin: 30px 0;'>
+          <img src = 'resources/basic-geometric-constructions.gif' width = 750px style="max-width: 100%; border-radius: 5px;">
+          <h4 style='margin-top: 20px;'>
+            Basic geometric constructions with compass and straightedge
+          </h4>
+        </div>
+
+        <h3>After centuries, progress stalled until Gauss discovered how to construct a <a href="https://en.wikipedia.org/wiki/Heptadecagon">Heptadecagon</a>
+          and eventually Hilbert found a complete set of <a href="https://en.wikipedia.org/wiki/Hilbert%27s_axioms">axioms for geometry</a> describing the field
+          as an axiomatic algebra. I found this to be a pretty cool fact I did not know / think about before which can actually be fairly shortly stated:
+        </h3>
+        <div style="margin-left: 20px;">
+          <h3>Axiom System for Geometry:</h3>
+          <ul>
+            <li>
+              <h3>Primitive Objects</h3>
+              <ul>  
+                <li><em>Point</em></li>
+                <li><em>Line</em></li>
+                <li><em>Plane</em></li>
+              </ul>
+            </li>
+            <li>
+              <h3>Primitive Relations</h3>
+              <ul>  
+                <li><em>Betweenness</em> (ternary relation on points)</li>
+                <li><em>Lies on (Containment)</em>, three binary relations linking points and straight lins, points and planes, and straight lines and places</li>
+                <li><em>Congruence</em> two binary relations linking line segments and linking angles</li>
+              </ul>
+            </li>            
+          </ul>
+        </div>
+
+        <h3>
+          With the above alone, one can construct line segments, angles, triangles, polygons, and the rest of Euclidean solid geometry. Unfortunately 
+          they do not fit neatly as a <a href="https://en.wikipedia.org/wiki/First-order_logic">First-Order Theory</a>, but a later set of axioms by 
+          <a href="https://en.wikipedia.org/wiki/Tarski">Tarksi (1926)</a> can be represented as such.
+        </h3>
+        <h3>
+          I have not read <a href="https://www.amazon.com/Geometric-Constructions-Undergraduate-Texts-Mathematics/dp/1461268451?gQT=1">this book</a> on the topic,
+          but I imagine it would be quite interesting. Among its topics are Euclidean Constructions, variations of construction axioms, and paperfolding.
+        </h3>
+
+        <h3><strong>Conclusion</strong></h3>
+        <h3>
+          Geometric constructions are a cool field of math for both their rich history and their eventual linking to algebra by Hilbert.
+          <a href="https://en.wikipedia.org/wiki/Algebraic_geometry">Algebraic Geometry</a> has since expanded well beyond these old problems.
+          As an eventual consequence somewhere between the two being that Pi was a transcendal number made the Indiana Pi Bill all that funnier
+          both at the time, and still today.
+        </h3>
+        <h3>Hope y'all enjoyed and happy Pi Day!</h3>
+      </div>
+    </div>
+    <div id="footer"></div>
+  </body>
+</html>
