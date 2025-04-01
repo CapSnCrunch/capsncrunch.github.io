@@ -50,11 +50,11 @@
       <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
         <h2 style="text-align: center;">What K-Means Means for Strings (and Other Things)</h2>
         <div style="display: flex; align-items: center; text-align: center; width: 100%; max-width: 320px;">
-          <h3 style="flex: 1;"><strong><a href='./2048-with-mcts.html'>< Previous</a></strong></h3>
-          <h3 style="flex: 1; margin: 0 15px;"><strong> 3 / 6 / 25  </strong></h3>
+          <h3 style="flex: 1;"><strong><a href='./the-indiana-pi-bill.html'>< Previous</a></strong></h3>
+          <h3 style="flex: 1; margin: 0 15px;"><strong> 3 / 31 / 25  </strong></h3>
           <h3 style="flex: 1;"><strong><a href=''></a></strong></h3>
         </div>
-        <h4 style="font-size: 14px; margin-top: -5px;"> X min read </h4> 
+        <h4 style="font-size: 14px; margin-top: -5px;"> 12 min read </h4> 
         <!-- https://niram.org/read/ -->
       </div>
 
@@ -66,12 +66,635 @@
           </summary>
           <div style="text-align: left; margin: 0 10px; margin-bottom: 30px;">
             <h3 style="font-size: 14px;">
-              <!-- TLDR GOES HERE -->
+              When you know your dataset has underlying structure but don't know what labels to use, clustering is valuable tool to extract these. But if your data
+              is not numeric, more commonly know algorithms like K-means won't work. This article gives a brief interactive introduction to K-means, its abstraction to K-medoids,
+              and a real-world example of how I used K-medoids at work to cluster non-numeric user data.
             </h3>
           </div>
         </details>
 
-        <!-- ARTICLE CONTENT GOES HERE -->
+        <h3>
+          A common problem encountered when analyzing data is the need to group it without any predefined labels.
+          For example, a news service might want to group articles into categories like "sports", "politics", or "entertainment" 
+          without any prior knowledge of what those categories are. This general type of problem is called 
+          <a href="https://en.wikipedia.org/wiki/Cluster_analysis">clustering</a>.
+        </h3>
+
+        <h3>
+          This article will give you a brief introduction to one of the most popular clustering algorithms,
+          <a href="https://en.wikipedia.org/wiki/K-means_clustering">K-means</a>, through an interactive example.
+          But we'll soon see that although powerful, K-means is limited in its ability to cluster data of certain types
+          and will need to be generalized to work with them.
+        </h3>
+
+        <h3><strong>K-Means Clustering</strong></h3>
+        <h3>
+          The general idea of K-means is to take a set of data points and group them into K clusters which are as similar to each other as possible.
+          The algorithm works by starting with K random points (called centroids) and assigning each data point to the cluster whose centroid is closest to it.
+          By measuring the distance between each point and its cluster's centroid, we can determine how much error there is in our clustering, and update
+          the centroids to minimize that error.
+        </h3>
+
+        <h3>
+          This is done with two steps:
+          <ul>
+            <li>
+              <strong>Assignment Step:</strong> Assign each data point to the cluster whose centroid is closest to it.
+            </li>
+            <li>
+              <strong>Update Step:</strong> Update the centroids of each cluster to be the average of all the points assigned to it.
+            </li>
+          </ul>
+        </h3>
+
+        <h3>
+          By iteratively moving the centroids and reassigning the points, we can minimize the error in our clustering, stopping the algorithm when the centroids no longer change.
+          Experiment with this yourself below by clicking to add K-many initial centroids and stepping through the algorithm. The larger circles represent the <em>current centroids</em> 
+          while the X's represent the <em>true centroids</em> for the current clusters of points. The error lines show the distance between each point and its assigned centroid. Try to see 
+          if you can find an initial set of centroids that doesn't need to be updated!
+        </h3>
+
+        <div style="text-align: center; margin-top: 30px; position: relative;">
+          <canvas id="kmeansCanvas" width="500" height="500" style="border: 1px solid #d6f5af; border-radius: 10px; display: block; margin: 0 auto;"></canvas>
+          <div style="margin-top: 20px; display: flex; justify-content: center; align-items: center; gap: 10px; max-width: 500px; margin: 0 auto;">
+            <button id="useClusters">Use K = <span id="clusterCount">0</span> Clusters</button>
+            <button id="stepBackward" style="display: none;">Step Backward</button>
+            <button id="stepForward" style="display: none;">Step Forward</button>
+            <button id="toggleErrorLines" style="display: none;">Hide Error Lines</button>
+            <button id="refresh" style="font-size: 32px; cursor: pointer; transform: rotate(90deg); margin-right: 20px; margin-left: auto;">↻</button>
+          </div>
+          <h3 id="convergedMessage" style="margin-top: 10px; font-size: 16px; visibility: hidden;"><strong>Converged!</strong></h3>
+        </div>
+
+        <script>
+          const canvas = document.getElementById('kmeansCanvas');
+          const ctx = canvas.getContext('2d');
+          const width = canvas.width;
+          const height = canvas.height;
+
+          let points = [];
+          let centroids = [];
+          let clusters = [];
+          let history = [];
+          let step = 0;
+          let trueClusterCount = 0;
+          let maxClusters = 15;
+          let showErrorLines = true;
+          let hasConverged = false;
+
+          function resetPlot() {
+            step = 0;
+            hasConverged = false;
+            maxClusters = 15;
+            centroids = [];
+            clusters = [];
+            history = [];
+            document.getElementById('clusterCount').textContent = centroids.length;
+            document.getElementById('stepBackward').style.display = 'none';
+            document.getElementById('stepForward').style.display = 'none';
+            document.getElementById('toggleErrorLines').style.display = 'none';
+            document.getElementById('useClusters').style.display = 'inline';
+            document.getElementById('convergedMessage').style.visibility = 'hidden';
+            generateRandomPoints(100);
+            drawInitialPoints();
+            plotErrorForClusterCounts();
+          }
+
+          function generateRandomPoints(numPoints, clusterCount = null) {
+            const padding = 75;
+            const possibleN = [3, 5, 100];
+            const N = possibleN[Math.floor(Math.random() * possibleN.length)];
+            trueClusterCount = N;
+
+            if (clusterCount != null) {
+              trueClusterCount = clusterCount;
+            }
+
+            let truePoints = [];
+            do {
+              truePoints = Array.from({ length: N }, () => ({
+                x: Math.random() * (width - 2 * padding) + padding,
+                y: Math.random() * (height - 2 * padding) + padding,
+              }));
+            } while (
+              trueClusterCount <= 5 &&
+              truePoints.some((point, i) =>
+                truePoints.some((otherPoint, j) => 
+                    i !== j && Math.hypot(point.x - otherPoint.x, point.y - otherPoint.y) < 100 &&
+                    (point.x < padding || point.x > width - padding || point.y < padding || point.y > height - padding)
+                )
+              )
+            );
+
+            points = [];
+            truePoints.forEach(truePoint => {
+              const pointsPerCluster = Math.floor(numPoints / N);
+              for (let i = 0; i < pointsPerCluster; i++) {
+              const angle = Math.random() * 2 * Math.PI;
+              const radius = Math.random() * 100; // Random radius within 30px
+              points.push({
+                x: truePoint.x + radius * Math.cos(angle),
+                y: truePoint.y + radius * Math.sin(angle),
+              });
+              }
+            });
+          }
+
+          function drawInitialPoints() {
+            ctx.fillStyle = 'white';
+            ctx.fillRect(0, 0, width, height);
+
+            points.forEach(point => {
+              ctx.fillStyle = 'black';
+              ctx.beginPath();
+              ctx.arc(point.x, point.y, 5, 0, Math.PI * 2);
+              ctx.fill();
+            });
+
+            centroids.forEach((centroid, index) => {
+              ctx.fillStyle = `hsl(${(index * 360) / centroids.length}, 100%, 40%)`;
+              ctx.beginPath();
+              ctx.arc(centroid.x, centroid.y, 8, 0, Math.PI * 2);
+              ctx.fill();
+            });
+          }
+
+          canvas.addEventListener('click', (event) => {
+            if (centroids.length >= maxClusters) return;
+
+            const rect = canvas.getBoundingClientRect();
+            const x = event.clientX - rect.left;
+            const y = event.clientY - rect.top;
+
+            centroids.push({ x, y });
+            document.getElementById('clusterCount').textContent = centroids.length;
+            drawInitialPoints();
+          });
+
+          function assignClusters() {
+            clusters = points.map(point => {
+              let minDist = Infinity;
+              let clusterIndex = -1;
+              centroids.forEach((centroid, index) => {
+              const dist = Math.hypot(point.x - centroid.x, point.y - centroid.y);
+              if (dist < minDist) {
+                minDist = dist;
+                clusterIndex = index;
+              }
+              });
+              return clusterIndex;
+            });
+          }
+
+          function updateCentroids(calcHasConverged = false) {
+            hasConverged = true && calcHasConverged;
+            centroids = centroids.map((centroid, index) => {
+              const clusterPoints = points.filter((_, i) => clusters[i] === index);
+              if (clusterPoints.length === 0) return centroid;
+              const avgX = clusterPoints.reduce((sum, p) => sum + p.x, 0) / clusterPoints.length;
+              const avgY = clusterPoints.reduce((sum, p) => sum + p.y, 0) / clusterPoints.length;
+              const newCentroid = { x: avgX, y: avgY };
+              if (newCentroid.x !== centroid.x || newCentroid.y !== centroid.y) {
+                hasConverged = false;
+              }
+              return newCentroid;
+            });
+
+            if (hasConverged) {
+              document.getElementById('convergedMessage').style.visibility = 'visible';
+            }
+          }
+
+          function saveState() {
+            history.push({ points: [...points], centroids: [...centroids], clusters: [...clusters] });
+          }
+
+          function drawClusters() {
+            ctx.fillStyle = 'white';
+            ctx.fillRect(0, 0, width, height);
+
+            // Draw Voronoi cells
+            if (centroids.length > 0) {
+              for (let x = 0; x < width; x += 3) {
+                for (let y = 0; y < height; y += 3) {
+                  let minDist = Infinity;
+                  let closestCentroid = -1;
+                  centroids.forEach((centroid, index) => {
+                    const dist = Math.hypot(x - centroid.x, y - centroid.y);
+                    if (dist < minDist) {
+                      minDist = dist;
+                      closestCentroid = index;
+                    }
+                  });
+                  ctx.fillStyle = `hsl(${(closestCentroid * 360) / centroids.length}, 100%, 90%)`;
+                  ctx.fillRect(x, y, 3, 3);
+                }
+              }
+            }
+
+            // Draw points and clusters
+            clusters.forEach((cluster, i) => {
+              ctx.fillStyle = `hsl(${(cluster * 360) / centroids.length}, 100%, 70%)`;
+              ctx.beginPath();
+              ctx.arc(points[i].x, points[i].y, 5, 0, Math.PI * 2);
+              ctx.fill();
+
+              // Draw error lines if enabled
+              if (showErrorLines) {
+                ctx.strokeStyle = `hsl(${(cluster * 360) / centroids.length}, 100%, 50%)`;
+                ctx.setLineDash([5, 5]); // Dotted line
+                ctx.beginPath();
+                ctx.moveTo(points[i].x, points[i].y);
+                ctx.lineTo(centroids[cluster].x, centroids[cluster].y);
+                ctx.stroke();
+                ctx.setLineDash([]); // Reset line dash
+              }
+            });
+
+            // Draw centroids
+            centroids.forEach((centroid, i) => {
+              ctx.fillStyle = `hsl(${(i * 360) / centroids.length}, 100%, 40%)`;
+              ctx.beginPath();
+              ctx.arc(centroid.x, centroid.y, 8, 0, Math.PI * 2);
+              ctx.fill();
+            });
+
+            // Draw true centroids as X
+            const currentClusters = clusters.slice(); // Use the current step's clusters
+            centroids.forEach((_, index) => {
+              const clusterPoints = points.filter((_, i) => currentClusters[i] === index);
+              if (clusterPoints.length > 0) {
+                const avgX = clusterPoints.reduce((sum, p) => sum + p.x, 0) / clusterPoints.length;
+                const avgY = clusterPoints.reduce((sum, p) => sum + p.y, 0) / clusterPoints.length;
+                ctx.strokeStyle = `hsl(${(index * 360) / centroids.length}, 100%, 20%)`;
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.moveTo(avgX - 5, avgY - 5);
+                ctx.lineTo(avgX + 5, avgY + 5);
+                ctx.moveTo(avgX + 5, avgY - 5);
+                ctx.lineTo(avgX - 5, avgY + 5);
+                ctx.stroke();
+              }
+            });
+          }
+
+          function stepForward() {
+            if (hasConverged) return;
+
+            if (step < history.length - 1) {
+              step++;
+              const state = history[step];
+              points = state.points;
+              centroids = state.centroids;
+              clusters = state.clusters;
+            } else {
+              updateCentroids(true);
+              saveState();
+              step++;
+            }
+            assignClusters();
+            drawClusters();
+          }
+
+          function stepBackward() {
+            if (step > 0) {
+              step--;
+              const state = history[step];
+              points = state.points;
+              centroids = state.centroids;
+              clusters = state.clusters;
+              document.getElementById('convergedMessage').style.visibility = 'hidden';
+              hasConverged = false;
+            }
+            assignClusters();
+            drawClusters();
+          }
+
+          function toggleErrorLines() {
+            showErrorLines = !showErrorLines;
+            if (showErrorLines) {
+              document.getElementById('toggleErrorLines').textContent = 'Hide Error Lines';
+            } else {
+              document.getElementById('toggleErrorLines').textContent = 'Show Error Lines';
+            }
+            drawClusters();
+          }
+
+          document.getElementById('useClusters').addEventListener('click', () => {
+            if (centroids.length > 0) {
+              maxClusters = centroids.length;
+              assignClusters();
+              saveState();
+              drawClusters();
+              document.getElementById('useClusters').style.display = 'none';
+              document.getElementById('stepBackward').style.display = 'inline';
+              document.getElementById('stepForward').style.display = 'inline';
+              document.getElementById('toggleErrorLines').style.display = 'inline';
+            }
+          });
+
+          document.getElementById('stepForward').addEventListener('click', stepForward);
+          document.getElementById('stepBackward').addEventListener('click', stepBackward);
+          document.getElementById('toggleErrorLines').addEventListener('click', toggleErrorLines);
+          document.getElementById('refresh').addEventListener('click', resetPlot);
+
+          generateRandomPoints(100, 100);
+          drawInitialPoints();
+        </script>
+
+        <h3 style="margin-top: 10px;">
+          Some things you might have noticed while exploring:
+          <ol>
+            <li>The algorithm always converges. There is no way to initialize the points such that they move around forever.</li>
+            <li>The final clustering depends on where the initial centroids are placed. We might converge to different solutions for the same K value. (The algorithm only finds local optima).</li>
+            <li>It is possible that some clusters end up with no points.</li>
+            <li>The regions of each cluster have an interesting shape (these are called <a href="https://en.wikipedia.org/wiki/Voronoi_diagram">Voronoi cells</a>).</li>
+          </ol>
+        </h3>
+
+        <h3>
+          So what if you want to know how many "real clusters" there are? What should the "correct" K-value to start with be? This is where we can run many
+          experiments with different K values and see how the clustering changes. Keeping track of the total error (the sum of the distances between each point and its assigned centroid)
+          for the final clustering, we can see how the error drops as we increase K.
+        </h3>
+
+        <h3>
+          We expect that if K = 1, the error will be very high and if K = N (where N is the number of points), the error would be 0. Somewhere in between, there should be
+          a sharp decrease in the error when we reach a K-value near the "true" number of clusters. This is called the <a href="https://en.wikipedia.org/wiki/Elbow_method_(clustering)">elbow method</a>.
+          You can see in the example below that the error drops sharply when K = 3, which indicates that once we have 3 clusters, we are able to explain most of the variance in the data.
+        </h3>
+
+        <div class="center">
+          <img src="resources/elbow-method.png" width="500px" style="max-width: 100%;" />
+        </div>
+
+        <h3>
+          Below is the elbow curve for the set of points you just explored. Try refreshing the data points to see how the elbow changes for different numbers of true clusters.
+          If the dataset's true number of clusters is very high (like 100), you will likely not see this elbow.
+        </h3>
+        <div style="display: flex; justify-content: center; align-items: center; flex-direction: column; margin-top: 30px;">
+          <div style="text-align: center; position: relative; width: 500px;">
+            <canvas id="errorPlotCanvas" width="500" height="375" style="border: 1px solid #d6f5af; border-radius: 10px; display: block; margin: 0 auto;"></canvas>
+            <button id="refreshErrorPlot" style="font-size: 32px; cursor: pointer; transform: rotate(90deg); position: absolute; bottom: 5px; right: 10px;">↻</button>
+          </div>
+        </div>
+
+        <script>
+          function calculateTotalError() {
+            return points.reduce((totalError, point, i) => {
+              const centroid = centroids[clusters[i]];
+              const dist = Math.hypot(point.x - centroid.x, point.y - centroid.y);
+              return totalError + dist;
+            }, 0);
+          }
+
+          function plotErrorForClusterCounts() {
+            const errorCanvas = document.getElementById('errorPlotCanvas');
+            const errorCtx = errorCanvas.getContext('2d');
+            const errors = [];
+            const originalCentroids = [...centroids];
+
+            for (let k = 1; k <= 10; k++) {
+              centroids = [];
+              for (let i = 0; i < k; i++) {
+                centroids.push({
+                  x: Math.random() * width,
+                  y: Math.random() * height,
+                });
+              }
+
+              let converged = false;
+              while (!converged) {
+                assignClusters();
+                const prevCentroids = JSON.stringify(centroids);
+                updateCentroids();
+                converged = prevCentroids === JSON.stringify(centroids);
+              }
+
+              errors.push(calculateTotalError());
+            }
+
+            centroids = originalCentroids;
+            
+            // Plot the errors
+            errorCtx.clearRect(0, 0, errorCanvas.width, errorCanvas.height);
+            errorCtx.fillStyle = '#d6f5af';
+            errorCtx.fillRect(0, 0, errorCanvas.width, errorCanvas.height);
+
+            errorCtx.strokeStyle = 'black';
+            errorCtx.beginPath();
+            errorCtx.moveTo(50, 10);
+            errorCtx.lineTo(50, 290);
+            errorCtx.lineTo(490, 290);
+            errorCtx.stroke();
+
+            // Add rotated 'Total Error' label
+            errorCtx.save();
+            errorCtx.translate(20, 200);
+            errorCtx.rotate(-Math.PI / 2);
+            errorCtx.fillStyle = 'black';
+            errorCtx.font = '16px "Ubuntu", sans-serif';
+            errorCtx.fillText('Total Error', 0, 0);
+            errorCtx.restore();
+
+            // Add 'K' label
+            errorCtx.fillStyle = 'black';
+            errorCtx.font = '16px "Ubuntu", sans-serif';
+            errorCtx.fillText('K', 480, 315);
+
+            const maxError = Math.max(...errors);
+            errors.forEach((error, i) => {
+              const x = 50 + (i * 40);
+              const y = 290 - (error / maxError) * 250;
+              errorCtx.beginPath();
+              errorCtx.arc(x, y, 5, 0, Math.PI * 2);
+              errorCtx.fill();
+              if (i > 0) {
+                const prevX = 50 + ((i - 1) * 40);
+                const prevY = 290 - (errors[i - 1] / maxError) * 250;
+                errorCtx.beginPath();
+                errorCtx.moveTo(prevX, prevY);
+                errorCtx.lineTo(x, y);
+                errorCtx.stroke();
+              }
+
+              // Add K values below the x-axis
+              errorCtx.fillStyle = 'black';
+              errorCtx.font = '16px "Ubuntu", sans-serif';
+              errorCtx.fillText(i + 1, x - 3, 315);
+            });
+
+            // Display the true number of clusters
+            errorCtx.fillStyle = 'black';
+            errorCtx.font = '16px "Ubuntu", sans-serif';
+            errorCtx.textAlign = 'center';
+            errorCtx.fillText(`True Number of Clusters: ${trueClusterCount}`, errorCanvas.width / 2 + 30, 355);
+          }
+
+          document.getElementById('refreshErrorPlot').addEventListener('click', () => {
+            resetPlot();
+          });
+
+          plotErrorForClusterCounts();
+        </script>
+
+        <h3>
+          But now another question: If using the K-means algorithm requires I calculate the centroid of a subset of my data, how can I cluster data
+          that is not numeric? If the data I'm using is something like text or images, what does it mean to calculate the "centroid" of those data points?
+          Enter K-medoids...
+        </h3>
+
+        <h3><strong>K-Medoids Clustering (K-Means for Other Things)</strong></h3>
+
+        <h3><a href="https://en.wikipedia.org/wiki/K-medoids">K-medoids</a> is a sort of generalization of K-means which works differently in two main ways:</h3>
+        <h3>
+          <ol>
+            <li>
+              Instead of calculating the Euclidean distance between two points (which may not be possible depending on our data type), we instead provide
+              our own distance matrix which represents whatever we want define as the distance between two points.
+            </li>
+            <li>Because we may not know how to define any arbitrary point between a pair of others given our data type (ex: what does it mean to be half way between the strings "cat" and "dog"?)
+              we instead use the actual data points as our centroids. This means that the centroids are always one of the points in our dataset.
+            </li>
+          </ol>
+        </h3>
+
+        <h3>
+          This distance matrix which we can define however we like gives us the power to cluster data of any type. For example, if we wanted to cluster strings, 
+          we could define the distance between two strings as the number of edits needed to convert one into the other (the 
+          <a href="https://en.wikipedia.org/wiki/Levenshtein_distance">Levenshtein distance</a>). But if we want to, we could even choose one of 
+          <a href="https://en.wikipedia.org/wiki/String_metric">many other options</a> that better suits the data we are working with.
+        </h3>
+
+        <h3>
+          Because we can be creative and come up with some notion of distance between almost any type of data, this opens us up to many new possibilities.
+          This is best illustrated with a real world example that I've recently worked at at CharterUP.
+        </h3>
+
+        <h3><strong>Case Study: Permissions and Roles</strong></h3>
+
+        <h3>
+          The problem my team is currently facing is that after years of (trying to) maintain an in-house roles and permissions system, we've ended up in a situation
+          where there are many "roles" that correspond to what should actually be "permisssions". Instead of roles reflecting the real-life job positions
+          that people at the company have, they instead take the form of something like <span class="code" style="padding: 2px">can_view_this_table</span> or
+          <span class="code" style="padding: 2px">can_edit_that_thing</span>. As a consequence, everyone at the company may have a dozen or so of these "roles"
+          which can easily get out of sync with other people that should be having the exact same experience in the application.
+        </h3>
+
+        <h3>
+          Investigating this a bit further, I found that despite hiring for only a couple dozen unique positions, there were 86 unique role configurations
+          among users! This makes it difficult to debug issues where a user might be missing a permission or have one they shouldn't. There are frequently
+          problems that are resolved by simply copying the roles of one user who a feature works for to another user for which it doesn't.
+        </h3>
+
+        <h3>
+          There are a few ways we could go about solving this problem:
+          <ol>
+            <li>
+              Start from the top-down by going through an org-chart and redefining roles from scratch to match up with those.
+              The difficulty with this is that differences in the org-chart may not correspond to actual differences in how those
+              users use the application and the true org-chart is split across many teams internal definitions of what roles are.
+            </li>
+            <li>
+              Start from the bottom-up by clustering the various role configurations that people already use to see where minor differences can be adjusted
+              and then redefine the roles to match up with those clusters.
+            </li>
+          </ol>
+        </h3>
+
+        <h3>
+          The second option here is nice because we don't need to go piece together what the true org-chart should be; we can just get an approximation
+          of those true application personas by looking at the data we already have. This is where K-medoids comes in.
+        </h3>
+
+        <h3>
+          Without revealing any particular internal details of the roles at our company, I can share that these "role configurations" I'm working with look
+          like lists of integer <span class="code" style="padding: 2px">role_id</span>'s (ex: <span class="code" style="padding: 2px">[5, 7, 32, 405]</span>).
+          Some user might have the same roles as someone else plus or minus a couple random ones that should really be shared between the two.
+        </h3>
+        <h3>
+          To be able to run K-medoids, we need to define some notion of distance between a pair of these role configurations. I tried both the 
+          <a href="https://en.wikipedia.org/wiki/Jaccard_index">Jaccard index</a> (the ratio area of overlap and area of union of two sets) and the 
+          <a href="https://en.wikipedia.org/wiki/Levenshtein_distance">Levenshtein (edit) distance</a> which we mentioned earlier. For each, I created a
+          distance matrix representing the pairwise distances between all the role configurations across users:
+        </h3>
+
+        <div class="center">
+          <img src="resources/jaccard-distance-map.png" width="500px" style="max-width: 100%;" />
+        </div>
+
+        <div class="center" style="margin-top: 30px;">
+          <img src="resources/edit-distance-map.png" width="500px" style="max-width: 100%;" />
+        </div>
+
+        <h3>
+          I found the latter to be a bit better at generating understandable clusters when testing and so went with that one. After some initial iterations
+          of clustering and generating elbow curves, I found that around 20 clusters was a good number. But generating this many clusters was still grouping users
+          that I knew should have been distinct, For example, SDRs and SDR Managers explicitly need to have different permissions, but because the role configurations
+          for each of them were both short (each consisting of only one or two each), the edit distance betwween them was small enough that they ended up in the same cluster.
+        </h3>
+
+        <h3>To address this issue, I was able to manipulate particular pairs within the distance matrix to embed some of this outside knowledge. This resulted in
+          the following "boosted" distance matrix which forces distinct clusters for these pairs by setting their distance to an arbitrarily high value:
+        </h3>
+
+        <div class="center" style="margin-top: 30px; margin-bottom: 30px;">
+          <img src="resources/boosted-edit-distance-map.png" width="500px" style="max-width: 100%;" />
+          <h4>In this manipulated distance matrix, you can see blocks of users that are explicitly marked for separate clusters.</h4>
+        </div>
+
+        <h3>
+          With this change, the clusters fit the hard constraints of specific role distinctions, but the elbow curve was difficult to parse. Although there
+          is some true number of clusters in this case, there was enough noise and overlap in the data, that extracting a <em>precise</em> number between
+          20 and 30 was difficult. To help with this, I checked the "cluster stability" for each K-value. As you'll recall in the K-means section above, these
+          clustering algorithms are guaranteed to converge, but only to local optima. By re-running the algorithm many times with different starting centroids,
+          we can see if the clusters converge to the same solution each time (more stable) or if they change with high variance (which would indicate they are
+          not our "real" clusters):
+        </h3>
+
+        <div class="center" style="margin-top: 30px;">
+          <img src="resources/elbow-curve.png" width="500px" style="max-width: 100%;" />
+        </div>
+
+        <div class="center" style="margin-bottom: 30px;">
+          <img src="resources/cluster-stability.png" width="500px" style="max-width: 100%;" />
+        </div>
+
+        <h3>
+          This cluster stability test revealed that 24 clusters was a better representation of the data that 20 (a difference of 90% vs 96% stable) but
+          also that any K-value between 8 and 15 was particularly unstable. Adjusting to K = 24, I ran a final confirmation that this was a reasonable choice
+          by generating a consensus matrix, which looks back at the pairwise datapoints and checks how frequently they end up in the same cluster over many runs.
+          This is just another way of more closely inspecting the results of a particular K-value's stability:
+        </h3>
+
+        <div style="display: flex; flex-direction: column; justify-self: center; margin-top: 30px;">
+          <img src="resources/consensus-matrix.png" width="500px" style="max-width: 100%;" />
+          <h4 style="width: 500px;">
+            Here we can see blocks for each of the consistently clustered role configurations and the couple of sections where the clusters can flip-flop
+            depending on the initial centroids.
+          </h4>
+        </div>
+
+        <h3><strong>Summary</strong></h3>
+
+        <h3>
+          K-means is a powerful tool that has been around for a long time. It offers a quick way to extract meaningful clusters when you know there is some underlying structure
+          that you just don't have labels for. By extending this tool to any arbitrary data type, K-medoids is really something I think anyone who works with data should at least
+          be aware of and keep in their back pocket for situations like these.
+        </h3>
+
+        <h3>
+          Notably though, these tools are imperfect and its often difficult to extract a precise number of clusters. Its all too easy to "tinker" with the numbers and generate a 
+          bunch of graphs, but know that if you use these tools, that will mostly be a waste of time. K-means and K-medoids (among other data analysis techniques) really shine 
+          when you can make <em>quick</em> use of them to gather some high-level insights about your data for decision making and not lingering too much in the details.
+        </h3>
+
+        <h3>
+          Whenever I use these tools, I am sure to have code generation tools write a lot of the boilerplate for me, generate the graphs, and parse the output. Most of the work for
+          this case study was done in only a couple hours but still gave some valuable insights. I highly encourage trying clustering some data yourself, but even more so suggest that
+          you do it with code generation as it will deliver these insights much faster.
+        </h3>
+
       </div>
     </div>
     <div id="footer"></div>
