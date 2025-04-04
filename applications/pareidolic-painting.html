@@ -45,6 +45,20 @@
           document.getElementById('image2').style.webkitTransform = 'rotate(180deg)';
         }
       }
+      var slider1 = document.getElementById('slider1');
+      slider1.oninput = function() {
+        document.getElementById('image3').style.webkitTransform = 'rotate(' + this.value + 'deg)';
+      }
+
+      var slider2 = document.getElementById('slider2');
+      slider2.oninput = function() {
+        document.getElementById('image4').style.webkitTransform = 'rotate(' + this.value + 'deg)';
+      }
+
+      var slider3 = document.getElementById('slider3');
+      slider3.oninput = function() {
+        document.getElementById('image5').style.webkitTransform = 'rotate(' + this.value + 'deg)';
+      }
     }
   </script>
   <body>
@@ -70,27 +84,93 @@
       </div>
 
         <div style = 'text-align: left;'>
-          <h3>You've likely experienced <a href = 'https://en.wikipedia.org/wiki/Pareidolia' target="_blank">Pareidolia</a>; perceiving patterns in random data. I've recently started
-          making art embracing this false pattern recognition by making 'found doodle' art in paintings on cardboard. My process has been to mix paints, spread them
-          around a piece of cardboard in little blobs, and sketch in all of the weird faces and animals I notice after it's dried. Adding a little bit of organization
-          by laying out the paints following some sort of color gradient gives a great overall look at the end and an experience I would highly encourage trying!
+          <h3>
+            You've likely experienced <a href = 'https://en.wikipedia.org/wiki/Pareidolia' target="_blank">Pareidolia</a>; perceiving patterns in random data. I've recently started
+            making art embracing this false pattern recognition by making 'found doodle' art in paintings on cardboard. My process has been to mix paints, spread them
+            around a piece of cardboard in little blobs, and sketch in all of the weird faces and animals I notice after it's dried. Adding a little bit of organization
+            by laying out the paints following some sort of color gradient gives a great overall look at the end and an experience I would highly encourage trying!
           </h3>
       </div>
-      <div style = 'display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 1rem;'>
-        <button id = 'flip' style = 'margin-bottom: 2rem;'>
-          <strong>FLIP</strong>
-        </button>
-        <img id = 'image' src = 'resources/painting.png' width = 850px>
-        <h4 style = 'margin-top: 2rem;'>Added on 2 / 19 / 22</h4>
+      
+      <div class='image-row'>
+        <div style = 'display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 1rem;'>
+          <input type='range' id='slider1' min='0' max='360' value='0' style='margin-bottom: 2rem; cursor: pointer; z-index: 1;'>
+          <img id = 'image3' src = 'resources/painting-red.png' width = 450px>
+          <h4 style = 'margin-top: 2rem;'>Added on 4 / 3 / 25</h4>
+        </div>
+        <div style = 'display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 1rem;'>
+          <input type='range' id='slider2' min='0' max='360' value='0' style='margin-bottom: 2rem; cursor: pointer; z-index: 1;'>
+          <img id = 'image4' src = 'resources/painting-green.png' width = 450px>
+          <h4 style = 'margin-top: 2rem;'>Added on 4 / 3 / 25</h4>
+        </div>
+        <div style = 'display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 1rem;'>
+          <input type='range' id='slider3' min='0' max='360' value='0' style='margin-bottom: 2rem; cursor: pointer; z-index: 1;'>
+          <img id = 'image5' src = 'resources/painting-blue.png' width = 450px>
+          <h4 style = 'margin-top: 2rem;'>Added on 4 / 3 / 25</h4>
+        </div>
       </div>
+
       <div style = 'display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 1rem;'>
         <button id = 'flip2' style = 'margin-bottom: 2rem;'>
-          <strong>FLIP</strong>
+          <strong>Click to Flip</strong>
         </button>
-        <img id = 'image2' src = 'resources/painting-2.png' width = 850px>
+        <img id = 'image2' src = 'resources/painting-2.png' width = 900px>
         <h4 style = 'margin-top: 2rem;'>Added on 3 / 18 / 22</h4>
       </div>
+
+      <div style = 'display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 1rem;'>
+        <button id = 'flip' style = 'margin-bottom: 2rem;'>
+          <strong>Click to Flip</strong>
+        </button>
+        <img id = 'image' src = 'resources/painting.png' width = 900px>
+        <h4 style = 'margin-top: 2rem;'>Added on 2 / 19 / 22</h4>
+      </div>
+
      </div>
     <div id = 'footer'></div>
   </body>
 </html>
+
+<style>
+  @media (min-width: 1500px) {
+    .image-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+  @media (max-width: 1500px) {
+    .image-row {
+      display: block;
+    }
+  }
+
+  input[type='range'] {
+    -webkit-appearance: none;
+    width: 100%;
+    max-width: 250px;
+    height: 8px;
+    background: #C6E59E;
+    outline: none;
+    opacity: 0.7;
+    transition: opacity .2s;
+  }
+
+  input[type='range']::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: white;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+
+  input[type='range']::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: white;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+</style>
