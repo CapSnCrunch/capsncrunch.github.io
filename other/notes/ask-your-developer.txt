@@ -1,0 +1,6 @@
+Ask Your Developer
+- Team mitosis around layers, services, etc.
+- Talk to customers
+- Build vs Die
+- Infrastructure is important (move fast with stable infra)
+- Give problems, not solutions to your team of engineers

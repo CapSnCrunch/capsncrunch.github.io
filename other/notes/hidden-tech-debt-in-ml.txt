@@ -1,0 +1,15 @@
+Hidden Technical Debt in ML Systems
+
+Complex Models Erode Boundaries
+- CACE
+    - Isolate models and serve ensembles
+    - Focus on detecting changes in prediction behavior as they occur
+- Correction Cascades
+    - Either eat the cost of making a new model or try and tweak the existing model directly
+- Undeclared Consumers (visibility debt in classical software)
+Data Dependencies Cost More than Code Dependencies
+- Unstable Data Dependencies (TF/IDF scores?)
+    - Create versioned copies of data dependencies (frozen versions of mappings)
+- Underutilized Data Dependencies (“92 impact predictors from legacy features, bundled features, epsilon features, or correlated features)
+    - Detect and remove exhaustively with leave-one-feature-out evaluations
+- Static Analysis for Data Dependencies

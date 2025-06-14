@@ -1,0 +1,79 @@
+Toxin: The Cunning of Bacterial Poisons
+Toxins are Everywhere
+- Toxins are biological poisons released by bacteria, plants, snakes, and some marine life. The often display extraordinary intricacy; cleverly design molecules working as if having detailed knowledge of how our bodies work
+- Cause the main symptoms of disease for many bacteria
+- Some examples include tetanus, diphtheria, cholera, typhoid, and the plague
+- US Surgeon General, William H Stewart, 1969 - “we can close the book on infectious diseases”
+- Particularly an issue in the developing world today (millions of deaths per year from immunizable diseases)
+- Constraints on types of vaccines thats can be delivered; cost, special storage concerns, injection vs oral
+- Many diseases come from bacteria which are harmless in an animal host but are transmitted to humans, exacerbated by globalization
+- Christian Church rose to power in part because of a series of pestilences after the life of Christ
+- The plague has wreaked the most havoc, causing pandemics in the 540s, 1340s and 1890s
+- Sienna, Italy cathedral wall (monument to infectious disease)
+- The plague killed those with leprosy so a distinct lack of leprosy can be found in areas of the world ravaged by these epidemics; there are also suggestions that since the same protein is used by the agent of the plague and HIV, Europeans are more resistant
+- 60% of deaths in the American Civil War can be attributed to dysentery, typhoid, and cholera
+- “Toxin” comes from the Greek “toxic on pharmakon” meaning “arrow poison”
+The Germ of an Idea
+- Contagion vs infection
+- Not always thought that all life forms had parents, instead thought that things like bugs and frogs were spontaneously generated from mud and leaves
+- In the 1670s, microscopes powerful enough to see microbes were invented and “bacteriology” was started
+- “Animalcules”
+- Antoni Van Leeuwenhoek (father of microbiology)
+- Many doctors suggested that nurses themselves might be transmitting disease but they were ridiculed for the idea of washing hands
+- Public health was started when Edwin Chadwick required cause of death to be reported and wrote and published a detail report on Britains sanitary conditions (though his motivations were governmental)
+- John Snow conducted the first epidemiological study in 1849 where he analyzed the cause of an outbreak to find that 87 of 89 victims were known to drink from a particular water source while those in the brewery did not get sick
+The Golden Age of Microbiology 
+- The last 25 years of the nineteenth century were the “golden age of microbiology” (exceeded the leap in understanding of bacteria that occurred in the late twentieth)
+- Louis Pasteur discovered mirrored asymmetry in molecules (tartrates and paratartrates) and then found that a mixture of both could be fermented but that only one would be effected by micro-organisms (enzymes would only bind to one of them)
+    - Showed that both fermentations and putrefactions were the same underlying process and relied on living organisms not dead ones, differing only in the compounds they producer 
+    - Rediscovered anaerobic bacteria but understood the significance now that oxygen had been discovered
+    - Disproved spontaneous generation with some effort (required showing that some bacteria were resistant to boiling)
+    - Later found that he could intentionally vaccinated chickens against fowl cholera then did the same with anthrax and announced his work in 1881
+    - Developed rabies vaccine
+- “What is the use of a baby?”, Benjamin Franklin on the value of basic science
+- Robert Koch began independently studying anthrax and determined its life cycle in a matter of a month (and through this found that dead animals could remain infectious by the spores of such bacterium persisting for longer)
+    - Developed staining techniques and agar attenuation (credit to his colleagues wife Fanny Hesse)
+    - Koch’s Postulates for investigating disease
+    - Discovered TB 
+- Other nineteenth century inventions / discoveries included the Petri dish, Gram stain, etc.
+The Anatomy of Diphtheria
+- Characterized by diphtheric (leathery) membrane on throat which made it difficult to breathe
+- A study by Friedrich Loeffler found that it consisted of both rod shaped “bacillus” and ball shaped “coccus”
+    - The bacillus alone caused all the symptoms, but could only be isolated in the throat (he wondered if this might be the result of a soluble poison)
+- It was discovered that taking the blood of an infected animal and removing the cells left a resulting serum that acted as an “anti-toxin” (which worked so long as the bacteria had not already escaped into one’s cells)
+    - An effective vaccine had been developed but understanding how the toxin worked was still a mystery
+    - Alwin Pappenheimer then devised a method which had a high yield of distilled active toxin (by using simple nutrients that were easier to purify)
+    - He then noticed that presence of iron was measured by the bacteria and limited its toxin production
+- All toxins that affect humans follow an AB pattern; active - functionality to attack or perform some action, and binding - functionality to bind to and cross the cell membrane
+Understanding
+- Toxins were previously characterized by the diseases they caused but are commonly categorized now by the method of attack they use, for which there are three types
+    - Type 1 (superantigens disrupt cells without entering them, typically by interrupting signaling pathways)
+    - Type 2 (destroy the cell membrane to enter them, Haemolytic toxins penetrate the cell membrane either directly or by forming holes or pores)
+    - Type 3 (AB toxins described before)
+- Cell signaling and regulation is built on top of the src and ras proteins which can be mutated and potentially cause cancer (around 30% of cancers have mutated ras)
+    - Rapidly growing cells are more susceptible to DNA mutations so radiation therapy can help
+Why are Plague and Typhoid so Deadly?
+- 90% of the cells making up our body are bacteria and 10% are our own (but this is because our gut bacteria are a 10000th the size of our other cells so there are a large number of them making up only 0.1% of our weight)
+- The Yersinia bacteria (which causes the plague) grows inside of rat fleas blocking their gut. When the flea tries to feed, it will bite into a new body and vomit the bacteria directly into the host
+    - Yersinia then uses type 3 secretion to inject six different proteins into macrophages, five of which interfere with signaling
+Deviant Biology
+- Bioweapons have been categorized alongside nuclear and chemical ones as weapons of mass destruction for the indiscriminacy of their potential use
+    - They have been used for a long time including in ancient times of catapulting dead bodies, the civil war with leaving rotting animals in ponds, and more recently have been the motivating factor for things like the Gulf War in 2003
+- Shiro Ishii was an ultra-nationalist with a PhD in medicine who was a major proponent of biological weapons manufacturing in 1930s Japan
+    - For several years, actual weapons were designed and tested against Rita Chinese civilians
+    - Unit 731 tested on and consciously dissected babies, women, and prisoners of war from China, Russia, Britain, American, etc. (~3000 deaths between 1940 and 1945)
+    - No justifiable scientific reasoning for conducting these experiments; purely for the motive of power over those being extremely tortured
+    - The secret was found in the 1984s when a student came across an old box of unsorted papers in a second-hand book store that contained detailed descriptions of death by tetanus
+- The US tested the effectiveness of the spread of viruses by releasing harmless a “simulant” (Bacillus globigii) in the NY subway in 1966 and across SF in 1950
+- Most states are expected to not use these sorts of weapons, but the threat of smaller, radicalized terrorist groups are more likely
+    - RISE was a far-right racist group in 1970s Chicago that attempted to contaminate the water supply with typhi
+A More Optimistic Outcome
+- Specialized toxins (chimaeras?) being developed that might target only cancer cells (immunotoxins)
+    - Issue can arise when the immune system rejects this toxin (since diphtheria toxin, exotoxin A; ETA, and ricin are used and people have some immunity against diphtheria)
+- Botulinum toxin used for BOTOX (botulinum serotype A) but has also been useful in treating other therapies involving blocking nerve function
+- Can also use toxins three functions to probe cells for different types of information
+    - For example, diphtheria toxin can sense pH
+    - With a high level of knowledge like this, we might engineer toxins that can manipulate the immune system to better fight pathogens
+    - Can stitch additional proteins onto a toxin to pass them across the cell membrane
+- Also able to use toxins to specifically disable signaling functions to learn more about them
+Where is Toxinology Going Now

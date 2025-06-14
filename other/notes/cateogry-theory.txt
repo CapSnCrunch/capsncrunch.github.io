@@ -1,0 +1,12 @@
+Category Theory
+
+- Abstract theories, sets, functions (exactly 1 point, a form of set relationship that is not many-to-many or one-to-many but does allow the others, can be surjective injective bijective or neither) 
+- Math functions are a subset of programming functions (since they can be effectful) (used in purely-functional languages)
+    - Operations like rendering and IO are considered “side effects” since they can’t be done with purely mathematical functions
+    - Haskell is purely functional and handles this by having types that handle them at runtime (there is an IO type)
+- Function composition (external diagrams show only the functions between sets and not on their individual elements)
+- Commuting diagrams (graphs in which all parts are equivalent)
+- Category Theory comes in by defining one-to-one and invertible “functions”, not just on sets (bijective homomorphisms) that preserve some kind of mathematical structure, also called an isomorphism 
+    - Each set isomorphic to itself because of identity
+    - Can compose isomorphisms to get a third between sets
+    - All singleton sets are isomorphic

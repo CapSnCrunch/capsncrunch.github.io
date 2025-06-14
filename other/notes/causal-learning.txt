@@ -1,0 +1,80 @@
+Causal Learning
+Introduction
+- Causal-Directed Graphical Models (Bayes Nets) attempt to formalize causal learning
+- Scientists seem to infer theories from evidence but philosophers of science found it difficult to explain how these inferences were made
+- Deductive logic is certain, but inductive logic involves hypotheses, evidence, and some probability your theory is correct or not
+- Causal hypotheses are represented by directed acyclic graphs consisting of variables and direct causal relations between them
+    - Variables can be discrete or continuous
+    - Relations can be deterministic / probabilistic, generative / inhibitory, linear / nonlinear, etc.
+    - The nature of these relations is called the parametrization of the graph
+- Variables X and Y are unconditionally independent if P(XY) = P(X) P(Y) and conditionally independent on Z if each of these is conditioned on Z
+- Causal Markov Assumption (disconnected variables are independent, think of Markov Blankets)
+- We think of the graphs in terms of causal relations instead of representing probabilities because we can then use them to analyze predictions about interventions vs probabilities (these relations would be very dense as opposed to the actual causation)
+- The Intervention Assumption: I is an intervention on X if:
+    - I is exogenous (not caused by anything else in the graph)
+    - I directly fixed the value of X to x
+    - I does not directly affect the other variables except through X
+- By constructing an intervention (through “graph surgery”) we can narrow in on its true structure
+- You can learn these graphs either through experimental design as such and holding certain variables constant or by simply observing their relative probabilities
+- The Faithfulness Assumption: In the joint distribution on the variables in the graph, all conditional on dependencies are consequences of the Markov assumption applied to the graph
+- Piaget proposed children develop causal reasoning over time but are “precausal” when they are younger because of the seemingly confused psychological activity and physical mechanism in children’s explanations
+    - Artificialistic (events attributed to human intervention; clouds move because we walk)
+    - Animistic (events attributed to psychological intention; string turns because it wants to unwind itself)
+- Though full explanations of causality come later, even infants expect causal constraints on object motion (objects respect principles of support, containment, cohesion, continuity, and contact)
+- Nativists view this ability as innate with some core domain-specific mechanisms as opposed to general methods for learning
+- Causation is understood “primarily in terms of generative transmission” versus covariation of cause and effect
+- Imitative Learning (learning from observation of others, whether their attempts are successful or not)
+- Instrumental Learning (learning the causal structures between non-human components)
+- Associative Learning
+- Operant Learning
+- Contingency matters for learning; cues must be predictive (probability of effect given cue is greater than the probability of the effect in the absence of the cue, ie. the cues presence appears to increase the probability of the effect)
+Part I: Causation and Intervention
+Interventionist Theories of Causation
+- Interventionism posits that if by manipulating some factor, a change in another occurs, the first causes the second
+- It is important that the method of creating the intervention on X does not itself directly affect Y (otherwise we cannot conclude that X causes Y)
+- Classical/Pavlovian Conditioning (learning an association between two events outside of one’s control)
+- Instrumental Conditioning (learning an association between one’s own behavior and an outcome)
+- Evidenced that concern can connect causal sequences with counter factual claims both when they did have an affect and when they didn’t (ex: Carol had muddy shoes and marked inside, now the floor is dirty. What would happen if Carol took off her shoes outside?)
+    - Counterfactual thinking is also brought up on their own even when not explicitly prompted
+- Both adults and children seem to learn faster given the ability to intervene than when learning by passive observation
+    - When we intervene, we tend to do so on more diagnostic variables (ex: Y in X > Y > Z)
+    - We distinguish intervention and observation in reasoning by backtracking in the latter case (ex: A causes B causes C and either we observe B not happen or we intervene on B to not happen; in the first case, we assume A was less likely to have happened where in the second case, we do not)
+- People both have a default tendency to behave / reason as though our voluntary actions are interventions and have a strong tendency to think that changes that temporarily follow these interventions are caused by them
+    - Requires we know when our action is voluntary and that our voluntary actions must often have the characteristics of interventions
+    - Some voluntary actions may be biased and therefore correlated with the biasing variable, but most actions over time should be true interventions
+- Some push our ability to understand causal inference over nonhuman primates as far as saying that we interpret causations sometimes as unobservable whereas animals might think purely perceptually
+- Egocentric, agent causal, and fully causal understandings of causal relationships 
+Infants Causal Learning: Intervention, Observation, Imitation
+- Theory Baye’s net model permits both observation and action as methods of learning
+- Skinner believed that infants could not spontaneously imitate and that this ability was due to operant conditioning
+- Piaget also believed this, but for the reason that they needed to first reach a certain stage of cognitive sophistication (self and other are known in different terms such that they cannot be linked, ex: an infant has not seen their own face so an “invisible imitation” of a parents facial movement y must be impossible)
+- Meltzhoff showed that contrary to these theories, infants can in fact imitate facial movements (even at 42 minutes - 72 hours old)
+- Believes that imitation is goal-directed (in that infants will minimize some error over time to achieve a more accurate imitation of the target)
+    - Done even without reinforcement
+    - Creative errors (45deg tongue protrusion)
+    - (Multi-modal auto-encoder between perception and performance?)
+- Can learn novel interventions from observation alone (novel blicket detector test)
+    - Performance is boosted however if observation is quickly converted into self-produced manipulation (self-action is “more memorable” than observed interventions)
+- Difficult to test whether they learn the causal structure or if they simply faithfully copy adults actions (since they do so in full instead of reproducing the result by their own means)
+    - Infants can perform goal actions even only having seen failed interventions
+    - Will appeal for help even if imitating the failure (understand their is a goal they have not achieved)
+    - However, they do not infer the goal if the actor of a failed intervention is non-human (but will be able to if the intervention is successful)
+Detecting Causal Structure
+- 6 month olds understand goal-directed behavior
+- 12 month olds gain the ability to perceive attentional, instrumental, and novel actions as object-directed
+- Infants can then parse a stream of goal-relevant units of behavior to predict future actions
+An Interventionist Approach to Causation
+- An ideal intervention I on X is one which removes the intervened on variable from the influence of other variables, does not itself affect Y (where Y is what we are testing for causation by X), and is not effected exogenously itself (no bias in the intervention itself)
+- Control variables are a way of identifying whether variables are simply epiphenomenal on an underlying micro physical reality 
+    - ex: turning a radio knob causing its volume to change has a large, specific, systematic effect
+    - ex: smoking is a control variable for cancer (interventions have a large effect) meaning the causal relationship can be found at a macro physical level
+- Difference between intervening in such a way that it causes an intention versus providing you with reasons
+Learning from Doing: Intervention and Causal Inference
+- Similar to how spatial relations can be modeled egocentrically or geometrically, causal relations have multiple ways of being modeled (egocentrically or relationally)
+- A determined lack of causal relations as well as currently unknown relations are both informative of inference and the construction of novel interventions
+- Power Theory of Probabilistic Contrast (Cheng 1997) predicts how people might estimate the relative strength of variables to produce an outcome
+- How do we determine which variables are the cause and effect in an observation? Especially when there is no temporal difference to cue us in
+Causal Reasoning through Intervention
+- 
+On the Importance of Causal Taxonomy
+- 

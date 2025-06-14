@@ -1,0 +1,54 @@
+GPS
+
+Introduction
+- Global Positioning System built in the early 1970s with availability, coverage, accuracy, user equipment, and usability in mind
+- Initially conceived in the 1940s with the primary intention of use in military applications
+- GPS is American, Galileo is from the EU, INRSS from India, BeiDou from China, and QZSS from Japan (Soviet Union also operated GLONASS)
+- In antiquity, determining latitude was easy (by North Star and other celestial bodies), but longitude was difficult (required a precise 24-hour chronometer and sunrise measurements)
+- Prime Meridian set in 1884 at Greenwich
+- Charles Babbage was actually initially inspired to create a machine that would compute navigation tables accurately 
+
+Twentieth-Century Navigation
+- Quartz oscillators were standardized in the late 1930s when problems related to factors like temperature and mechanical shop were all mostly dealt with
+- Reflections off the ionosphere cause time delays that radio has to account for, but pass-throughs of the ionosphere also cause a time delay that GPS needs to account for
+- “Radio-based” lighthouses were used for planes to orient themselves (by turning a loop antenna until signal nulled) - Very High Frequency Omnidirectional Range (VOR)
+- VOR used high frequencies that couldn’t bounce off the ionosphere, so new technologies were needed for ocean navigation
+- Mid 1900s saw LORAN, Omega, and inertial navigation
+- LORAN based on transmitting several synchronized time signals (same as GPS)
+- Inertial navigation came from ballistic middles like the German V-2 which could determine velocity without measurements from the outside world
+- Carousels were developed by Delco (GM) using tech from MIT as gyroscopes used on planes
+
+The Origins of Satellite Navigation
+- Gyroscopes had drift that needed to be corrected for by taking celestial observations, which submarines couldn’t take advantage of, this lead to the first use of satellites for navigation with Transit in 1949
+- Worked by the Doppler effect as Transit passed overhead
+- Transit made its way to commercial users in 1967 and could approximate within 200m accuracy (required a relatively still object and could not detect altitude)
+- The USSR released Sputnik in 1957 as a part of their geospatial initiative which Americans could detect and calculate its orbital position (“Sputnik in reverse”)
+- The Vietnam war inspired the search for altitude detection (which none of the contemporary systems could do)
+- Horologists found that there were slight variations in the Earths rotation due to tidal forces which made the definition of a second difficult to track and would require an atomic clock, separate from anything celestial
+- Originally called Navstar, then Navstar Global Positioning System, then GPS
+- The next most important feature of the system would be implementing strict laws treating the electromagnetic spectrum as a finite resource which limited transmissions to set bands and required circuits which would transmit with high precision
+- A spread-spectrum technique allowed GPS to transmit across a wider range of frequencies to become more resistant to jamming (the downside being that power was traded for bandwidth, which makes the signal too weak to receive under cover)
+- Broadcasting and receiving on a sequence of pseudo-random frequencies would allow several satellites to occupy the same band
+- Kalman filter used in receivers
+- The final addition to GPS was using subsequent readings to calculate heading and speed
+
+The Birth of GPS
+- In 1983, a Korean flight over the USSR (unintentional error due to a failure to switch from magnetic compass to inertial navigation) was shot down
+- The above incident led Reagan to announce that the US was prepared to make GPS available to the general public, but stronger than expected accuracies worried some since it would be available to enemies
+
+A Commercial Market Emerges: 1983-1995
+- GPS was pushed into commercial use by the internet, microprocessors, cell phones, drones, smart phones
+- In the 1990s, Wi-Fi was invented to allow sales terminals to move around within a building without having to rewire anything
+
+Convergence: 1995-2015
+- “Put all your eggs in the one basket and - WATCH THAT BASKET” (Mark Twain)
+- Protecting GPS satellites can be difficult, solar events may damage the physical system or disrupt the ionosphere (sun spots, coronal mass ejections, solar storms, etc.)
+- The “Carrington Event” in 1859 was a solar storm that disrupted a modest network of telegraph lines
+- GPS is low powered relative to LORAN which can make inadvertent (or intentional) jamming easy
+- OnStar from the 1990s was an early ELD system from GM that would automatically alert when sudden stops (potential accidents) occurred
+- Some drivers that dislike being tracked will buy (illegal) jammers
+- Spoofing is another potential issue
+
+European, Russian, and Other Satellite Systems
+
+Conclusion

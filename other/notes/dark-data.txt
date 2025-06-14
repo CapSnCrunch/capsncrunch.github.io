@@ -1,0 +1,119 @@
+Dark Data
+
+Dark Data: What We Don’t See Shapes Our World
+- Parents who question vaccines think there is no threat but they are just missing the data about it
+- Dark-Data (DD) Types the various forms in which it can appear (the book lists 15 types, but there are likely many more because of the number of motivating factors behind its existence)
+- Counterfactuals (types 6 and 7)
+- Type 1: Data we know are missing (missing responses from patients we know exist)
+- Type 2: Data we don’t know are missing (test to detect potholes but missed entirely those that aren’t detected)
+- Type 3: Choosing just some cases (survivorship bias sort of, leaving out all of the 0 data points from the total)
+- Type 4: Self-selection (data can be collected only if there is a measurement instrument, the Anthropic Principle, “you are here” example on map)
+- Type 5: Missing what matters
+- Type 6: Data which might have been (what would it have looked like if we did it over with different parameters?)
+- Type 7: Changes with time (what would it look like tomorrow?)
+- Type 8: Definitions of Data
+- Type 10: Measurement error / uncertainty
+- Type 11: Feedback and Gaming
+- Type 12: Information Asymmetry 
+- Type 13: Intentionally darkened data (using dark data to our advantage; double-blind studies)
+- Type 14: Fabricated and synthetic data
+- Type 15: Extrapolating beyond your data (correlation is not causation)
+
+Discovering Dark Data: What We Collect and What We Don’t
+- Ways to collect data include collecting on everything / everyone you are interested in (censuses, taking inventory, etc.), on some of the population (sampling), changing conditions (as opposed to observational studies, experimental, gives data about counterfactuals)
+- Data Exhaust (ex: black box recorders)
+- Administrative data (what people do not what they say they do)
+- Consenters to sharing medical information for research differed in unpredictable ways (which causes a problem for research based on this data)
+- Sudden changes in time series could be due to changes in the underlying reality or the data collection procedure itself
+- How to handle imputation?
+- Randomized controlled trials (“Randomistas: How Radical Researchers Are Changing Our World”)
+- Experimental Design (branch of stats concerned with assigning objects to treatments to best yield the treatment effectiveness)
+- Running A/B testing could violate Article 1 of the Nuremberg Code (requires consent for experiment participation)
+- Base rate fallacy (false positives depend on the rate in the population)
+- Conjunction fallacy (people think more specific cases are more likely)
+- Confirmation bias
+- Negativity bias
+- Acquiesce bias (saying what they think the interviewer / researcher wants to hear)
+- Bandwagon effect
+- Bizarreness effect (striking material remembered better than common material)
+
+Definitions and Dark Data: What Do You Want To Know
+- Its important to know what the data means, especially administrative data (crime rates are measured differently if you look at police reports vs asking people the crimes they’ve been a victim of, the latter wouldn’t include murders or possession by definition)
+- As medicine advances and the definitions of disease broaden, diagnoses increase without the actual rate necessarily increasing
+- Price indexes for measuring the economy don’t always measure online sales (recently started to use web scraping)
+- Simpson’s paradox (titanic male vs female and crew vs third class, within vs between groups)
+- Screening filters the population into those most likely to have a successful trial when measurement is expensive (ex: osteoporosis screening)
+- Type I and II errors
+- Length-Time Bias (number of people with 1-day disease and 1-year disease by sampling  on a given day)
+
+Unintentional Dark Data: Saying One Thing, Doing Another
+- Measurements cannot be infinitely accurate
+- Need to be careful of humans reading measurements because they’ll be likely to round away the precision of the instrument
+- Topcoding / bottomcoding (saying X or more as the top category)
+- Digit transposition (98 instead of 89)
+- Twyman’s Law (any figure that looks interesting or different is usually wrong)
+- IBM estimated that poor data quality costs the US economy $3.1 trillion per year
+- Ceiling / floor effect due to instrument limitations
+
+Strategic Dark Data: Gaming, Feedback, and Information Asymmetry
+- “Gaming the system” is distinct from fraud (does not deliberately conceal data)
+- Principal agent problem (agent acting on behalf of a principal becomes incentivized to take actions that benefit themselves, employee/employer, politician/constituents, etc.)
+- Regulatory arbitrage (changing regime to choose the regulator that is best)
+- Campbell’s law
+- Goodhart’s law (“when a measure becomes a target, it ceases to be a good measure”, see gradeinflation.com)
+- Feedback mechanisms can encourage things like grade inflation and increases in system gaming
+- Asymmetric information (used car market and lemons where data is asymmetric between parties)
+- Adverse selection (machine learning algorithm to predict survival chance of pneumonia predicted lower rates if they had asthma because it was unaware they were actually high risk and sent to first-class care which improved their rates)
+- Can sometimes predict hidden, protected information (sex, age, race, etc.) with correlated, non-protected information like credit scores
+
+Intentional Dark Data: Fraud and Deception
+- System 1 vs System 2 thinking (quick and instinctive CS slow and logical)
+- Dark data permits anonymity but also identity theft online
+- “Waterbed effect” where deterring one type of fraud increases other types
+- Insider trading as a form of asymmetric information
+
+Science and Dark Data: The Nature of Discovery
+- Science is distinguished from religion and pseudoscience by falsifiability and testability
+- Reproducibility crisis in science
+- Publication bias (publications don’t reflect the whole body of scientific work)
+- “The Journal of Non-Significant Differences” and “The Journal of Irreproducible Results”
+- Theories are necessarily always partly dark (always have a chance to find new experimental data that rejects a theory)
+- Journal impact factor (proportional to number of citations) is highly correlated to the number of retractions for suspected fraud and error
+- P-hacking (looking at different characteristics in different ways until it looks interesting, “if you torture days long enough, they will confess”)
+- Ig Nobel prize for “Neural correlates of inter species perspective taking in the post-mortem Atlantic Salmon”
+- Bonferroni Correction (adjusting p-values to account for the number of independent tests being run)
+- HARKing (hypothesizing after the result is known)
+- Hoaxing (fabrication of data or even physical objects with the intention of the truth being discovered, scientific practical joke)
+- Forging (hoaxing but discovery is not intended)
+- Trimming (adjustment of data to make them better fit the theory)
+- Cooking (make data look more accurate by taking many observations and cherry picking the ones that match the theory)
+- retractionwatch.com for retracted papers
+
+Dealing with Dark Data: Shining a Light
+- If we can’t gather all of the data we need, the first thing to do is explore the relationship between the observed data and whether items are missing
+- Three types of missing data (non-ignorable missing / Unseen Data Dependent, missing at random / Seen Data Dependent, and completely at random / Not Data Dependent)
+- NDD is fine to drop, SDD is fine to estimate, UDD requires external information or follow ups
+- Group by permutation of missing data and analyze each group independently
+- Survival analysis (estimating how long until something happens; stay in a job, until you die, blood pressure normalizes, etc.)
+- “Censored time” is the duration of time measured and is less than or equal to the survival time
+- Unbalanced experiments (different counts in different groups) can require more complex statistical calculations; we should want to impute such that we rebalance and get a simpler calculation without skewing the results
+- Using average value imputation is only good if the values are NDD and can still mess up the variance
+- LOCF (last observation carried forward) imputation also has reason for hesitation
+- Predict the missing value with other values
+- Hot Deck Imputation (from records that match closest based on some metric, randomly choose one and take its value)
+- Multiple imputation (get a distribution of summary statistics by repeating the process for multiple permutations of imputation)
+- Expectation Maximization Algorithm (finds the model that best explains data with NDD or SDD in the sense that it would be most likely to produce that data; start with initial imputation guesses, make a model, estimate variable relationships, make new guesses, repeat; convergence under some conditions)
+- Data can be missing but also wrong which requires both prevention and detection (can detect logically, by departure from Benford’s Distribution, checksums, etc.)
+
+Benefiting from Dark Data: Reframing the Question
+- Randomized trials break causal links so we can learn about the treatments on their own
+- Simulation is a useful tool that can be seen as a form of dark data (could have been collected but was obscured by model inaccuracies)
+- The process of making predictive models
+- Boosting uses replicated copies of incorrectly predicted data to improve later iterations of the model
+- Bootstrapping (finding variations between models of subsamples; this gives us an estimated relationship between population and a sample by looking at a sample and it’s subsamples)
+- Priors (beliefs before) and posteriors (after data is collected)
+- Privacy and confidentiality preservation 
+- Secure multiparty computation (aggregating data without letting individuals learn each others data)
+
+Classifying Dark Data: A Route through the Maze
+- The most important message of the book is to be “suspicious of the data”

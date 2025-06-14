@@ -1,0 +1,156 @@
+
+Breakdown of Will
+Part 1: Breakdowns of Will: The Puzzle of Akrasia
+Introduction
+- Plenty of theories across psych, Econ, etc. about why we engage in self-defeating behavior seems to indicate we have not hit the core of the issue of “will”
+- “Akrasia” is the “weakness of Will” coined by Socrates (reason vs passion)
+- Roman physician Galen said that “irascible” passions could be tamed but “concupiscible” passions could be controlled only because starving them - like an animal
+- Judeo-Christian theology developed in parallel the view of “weakness of the flesh” in which passion was a sin but sometimes augmented by external demons
+- Pelagianism
+- Francis Bacon recognized the two (passion and will) might both be patterns in the same internal system
+- Schools of study of will-related decisions:
+    - Behaviorism; animal models with similar enough brain structure to study addiction and reward (righteousness of method; that peoples behavior is deterministic, overshadows their experiments in academia)
+    - Cognitive Psychology; many high standard studies on maladaptive behavior, but a lack of focus on the process of motivation
+    - Economics; consumer utility maximization explains many systems, but makes unrealistic assumptions that all decisions are deliberate and based only on external goods (as opposed to those invented in your own head)
+    - Philosophy of the Mind; has developed plentiful thought experiments for testing theories, but assumes a unitary self (not housing contradictory or unconscious elements)
+    - Psychoanalysis; first major attempt at analyzing self-contradictory behavior, Freud defined several models (libido - consciousness, id, ego, superego - organization, etc.) but we’re not unified and even worse, later discredited by its standards for observation and proof, but the questions are important
+    - Bargaining Research; games in which stable decisions that are not in all or any of the members best interests
+    - Chaos Theory; recursive processes in the will may cause its unpredictability
+    - Sociobiology; competition among populations may have applications to conflicting motives
+    - Neurophysiology; precise findings on brain mechanisms including those that create motivation (which neurotramitters reward certain behaviors)
+    - Theology; sensitive to individual experiences, but lacks test ability
+    - Subjective Experience; any explanation of Akrasia must be compatible with subjective experiences, which is the most prolific type of human observation
+- The approach in this book is reductionistic (all changes in thinking, feeling, wanting, planning, etc. are to do with some physical basis in nerve cells, in turn dependent on chemistry, etc.) and therefore deterministic
+The Dichotomy at the Root of Decision Science: Do we make choices by desires or by judgements?
+- Wanting vs judging
+- Wanting: Hume, Skinner, hedonistic, economic, utilitarian
+- Judging: Piaget, Kuhl, cognitive, rationalistic
+- No theory for how these two compete for dominance (the prevailing assumption is that it our decisions are cognitive and that, out of several ways to weight a decision, satisfaction level is one of them)
+- Cognitivism attributes self-defeating behaviors to illusions, false assumptions, “misjudgement”, but doesn’t allow for further analysis of choice (doesn’t answer how and when we’re swayed by motives and not)
+- Utility theory on the other hand, assumes some elementary motive “reward” that offers a common dimension for which options can be substituted and evaluated, maximizing satisfaction, the Economic Man, but has trouble explaining why we choose things that don’t maximize prospects
+- Responses can be viewed by classical conditioning (pushed by prior events, associations with what’s happened in the past) or goal-oriented (pulled by expected reward or punishment in the future)
+- Computer modeling has shown that both can be explained by just a reward factor (pull) and that conditioning only links information
+- “Two-factor theory”
+The Warp in how we Evaluate the Future
+- Utility theory uses reward (utile) discounts for the future following an exponential curve (multiplicative discounts)
+- Notably, exponentially discount rewards are always positive, if you’d choose to do something today, you would still choose to do it a long time from now
+- Those with addictions however, see swings in their preferences termed “dynamic inconsistency” for which fudge factors have been created to make it fit the exponentially discounted rewards maximization mode
+- The contending theory is hyperbolic discounting (however exponential would seem more rational in trade / utility)
+- Can test for this by offering a small reward at delay D from the moment of choice or a larger reward after additional lag D + L. If discounting according to an exponential distribution, the options are proportional, but according to hyperbolic discounting, the shorter reward will spike up above the longer rewards curve (however a learned compensation for real-world exponentially discounting opponents might cover up their true thinking)
+    - Works with consumable rewards
+    - Also works with tokenized rewards like money ($100 now* or $200 in 3 years, $100 in 6 years or $200 in 9 years*)
+- All age groups have been shown to have hyperbolic curves with different steepnesses / amplitudes varying by age, introversion, addiction, etc.
+- The effect is not always shown but can be forced to show / not show based on the experiment setup
+- “Melioration”
+- Hyperbolic discounting is also apparent in lower animals
+- Value = Amount / ( C1 + ( C2 x Discount))
+- Viewing decision making then as an internal marketplace of competing vendors each using hyperbolic discounting
+- The strength of competing rewards is governed by “interest”
+- Constraint of limited resources for expression
+- Perhaps the “impulsivity” given by hyperbolic discounting was a competitive advantage that purely rational beings would not have benefitted from
+The Warp Can Create Involuntary Behaviors: Pains, Hungers, Emotions
+- Addictions:
+    - Isolated examples are “impulses”
+    - Physical symptoms can occur for addictions that don’t involve a substance (like gambling), so the cause is not always chemical
+    - Characterized by full reversal of intentional behavior on a temporary (but varying) time scale
+- Compulsions:
+    - Longer temporary preference, can be identified usually only as signs of ambivalence
+    - Alexithymia (inability to interpret one’s own emotions)
+    - Usually viewed as “character flaws”
+    - Require more foresight to regret
+- Itches:
+    - Unwanted behaviors that are preferred so briefly they never feel deliberate
+- Pains:
+    - The shortest time frame of shorter, smaller reward by paying attention
+    - Dominates internal marketplace for attention
+    - First explanation of how it attracts attention while deterring physical behavior
+    - There is little research on how aversive stimuli reward attention, but there are cells in the nucleus accumbens that respond to both rewarding and aversive stimuli
+- Thinking of competing interests as competing animals which have periods and environments of dominance
+- Interests can be short, mid, or long ranged, can parasitize one another, stack in “food chains”
+- Using short ranged interests teaming with a long range to overcome a midrange
+- Hyperbolic discounting also explains appetite (hungers and emotions)
+    - Emotions range from basic (fear, lust, anger, etc.) associated to neuronal processes out to distinguishable “stereotyped emotions” (joy, contempt, etc.) to situational “subtle emotions” (envy, irony, etc.)
+    - Hungers have less variation and are associated with a stimulus (food, warmth, a drug, etc.) and are learned through “tastes”
+    - Emotions can be viewed just as another motive for behaviors, as a hill is to topography, it is so named as an identifiable feature for the convenience of the observer
+    - David Hume recognized this continuity 250 years ago
+    - Deprivation can be shown (in some cases) to lead to hunger only when hunger had some likelihood of leading to consumption (those under starvation can avoid generating appetite, sailors learn not to crave cigarettes when the “smoking light” is off, etc.)
+    - Cravings are not only cue-dependent and belief-dependent but cost-dependent
+    - Hard to think of hungers as goal-directed when they “fail” so often, but think of a dog begging (a cheap action) when the reward is so high comparatively
+The Components of Intertemporal Bargaining
+The Elementary Interaction of Interests
+- To compete, interests need to both offer the highest reward at some point and forestall conflicting interests long enough to realize the reward
+- Four tactics an interest can employ to commit future choice:
+    - Extrapsychic Commitment; for a long range interest to make it physically impossible to engage in a short range interest in the future (ex: disulfiram for alcoholics, joining a community to put reputation as stake, etc.)
+    - Manipulation of Attention; avoiding information that would change your mind, the “value of ignorance”, especially effective against very short range urges (first thought is valanced and may steer us to avoid / seek more information; when you first see someone / something)
+    - Preparation of Emotion; “isolation of affect”, controlling emotion to influence the weight of rewards, intentionally seeking information to incite an emotion to forestall a contrary one
+    - Personal Rules; making resolutions, “willpower”, commuting to patterns of choice across broad categories of choices rather than individual choices, the “value of choosing in categories”, formalizing a personal valued policy to reach “intention stability”, Kant’s “categorical imperative”
+- Choosing categorically can be tested by testing not only a single, but a series of smaller, sooner rewards vs a series of later, larger ones
+- So why not get more reward from Just This Once and following the rule later for maximized expected rewards now? To break this pattern, we need to adjust the expected reward of the categorical choice based on our likelihood of allowing for more exceptions. In this sense, self-control becomes about self-prediction and recognizing that Just This Once will happen again; a slippery slope.
+Sophisticated Bargaining Among Internal Interests
+- Bargaining theories “limited warfare” describes agents desires for contrary goals but a shared desire to avoid some other outcome (prisoners dilemma)
+- A strategy emerges when there are a pattern of successive prisoners dilemmas by which we can set a precedent for our choices in future ones
+- If a choice is “unique” it can benefit from early reward without setting a precedent and lowering the long term expected return
+- Risk of shifting personal rule lines a bit to fit more exceptions, need to have “bright lines”
+The Subjective Experience of Intertemporal Bargaining
+- Definition of the Will as interpersonal bargaining seems unintuitive for three reasons:
+    - Doesn’t ring a bell
+- Seems to require too much attention to be practical
+    - Most of our choices don’t feel like they have the “life or death” quality that an alcoholics decision about drinking might have
+- In basic bartering systems, there need not be a theory of negotiation
+- “A wakeful child doesn’t push her belief that her mother will come every time she’s called for fear that she’ll produce a counterexample”
+- It feels wrong to value things with situational pricing (but some social process it is easier to reason about stable prices)
+- In the Middle Ages, we believed that everything had a single, objective, “just” price
+- External determination of worth may be simply a belief that we cling to as a universal personal rule (which we continue to reinforce out of fear the role will become meaningless)
+- We don’t necessarily need to continually negotiate with ourselves (think of a legislature that debates a bill but then codifies it so that it goes untouched for years), we can explicitly perform this “policy iteration” by evaluating our decisions and redeciding (maximizing) which to follow
+- Degrees of recursiveness can vary with your strategy (ex: putting things in their proper place could be the result of self-predicting your future laziness or just making things easier to find)
+    - Wall Street example is either value-based investors or portfolio-insurers (who invest based on the psychology of the market)
+- Less at stake means having less resolve (a balance to support the development of a stronger will but allow for retries in the case of failure)
+Getting Evidence About a Nonlinear Motivational System
+- “Nonlinear systems may be as extensive as non-elephant biology”
+- There are five distinct models of the Will in literature that collectively portray eight properties which we will show the intertemporal bargaining model predicts all of:
+    - The Null Model (no extra motivation, the Will is superfluous)
+    - The Organ Theory (strong or weak in general, directed by independent “muscle”)
+    - The Resolute Choice Theory (maximizes conventional utility by avoidance of reconsidering plans)
+    - The Pattern Seeking Theory (appreciate of pattern that is intrinsically motivating)
+- …
+- Kavka’s problem; offered a large sum of money to be received upon truly intending to drink poison (verified by brain scan)
+    - Would intention change after reward is received?
+    - Would they still have motive to drink the poison after?
+    - Can they truly intend at all expecting this? (Is intent such that we can effortlessly move it or are there constraints to changing it?)
+- We can intend things while simultaneously not expecting for them to occur
+- Newcomb’s problem
+The Ultimate Breakdown of Will: Nothing Fails Like Success
+The Downside of Willpower
+- Personal rules that are most powerful and flexible strategies against the effects of hyperbolic discounting have the greatest potential for harming long range interests
+- Avoiding scrupulosity (governing yourself minutely by rules)
+- “Errant self control”; exercise of self control in support of behavior that conflicts with a consciously held decisive better judgment
+- Plans can become prisons
+- Motivation from an actions precedent is stronger if the rewards are marked by discrete stimuli (ex: subjects learned to not make bad choices when the consequence was less money per turn versus longer delays between turns; amounts are countable, delays have to be intuitive or calculated)
+    - By this mechanism however, compulsions may gain the upper hand if their criteria are clear enough to form personal rules
+- People who depend on willpower for impulse control are at risk of being coerced by logic that doesn’t serve what they themselves regard as their best interests; concrete personal rules dominate subtle situations
+- Over adherence to mid-range interests like diets can cause an alliance between short range interests of binging and long range interests of emotional satisfaction (an alcoholic planning to go off disulfiram in advance is not just an interest but a compulsion)
+- Modern culture causes some of these problems; increasing dependence on cash prices and wages over bartering, long term records resulting from your behavior, lengthy formalized acculturation by schooling and standards
+- Reliance on a community for personal self control was evident in Native American, African, and Medieval European communities (less dependent on individual willpower, more on social influence swayed by crowd psychology)
+- Contrastingly, western society has marched towards individual autonomy and privacy; individual beds, houses, reading for individual entertainment, television sets, walk-men, internet, the individual as the unit of accountability, etc.
+- Kants Categorial Imperative: Always choose as if your choice set the precedent for a universal rule
+- This divergence in community culture caused a split in gender roles where men specialized their “iron wills” and protected wives who in turn were expected to cultivate social arts to assuage the effects of rigidity, emotional isolation, and social inhibition
+- Our cultural heroes are increasingly those who rage against the system
+An Efficient Will Undermines Appetite
+- “The poor man must walk to get meat for his stomach, the rich man a stomach for his meat” - Poor Richard’s Almanac
+- The limitation of emotion puzzle (constructed emotions are less meaningful to us; what mechanism causes them to act like limited goods?)
+- The construction of fact puzzle (what constraints make belief different from make believe?)
+- The vicarious experience puzzle (how do other people move us and what are the constraints on this process?)
+- The indirection puzzle (how can a goal directed activity be undermined by striving towards its reward? How can a reward dependent activity not be strengthened by its reward? ex: trying to sleep makes it harder to, same with laughing, etc.)
+- The answer to each lies in the fourth negative property of Will; that it’s relentless systemization of experience braces it against temporary preference but renders it incapable of the subtlety required for maximizing reward
+- Appetite has some “potential for consumption” that affects the reward itself (ex: eating to fast ruins the meal, reading a spoiler ruins the movie, etc.)
+- Ideally, we gauge the available appetite and constrain our rate of consumption to maximize our exploitation of it, but this can be difficult to do
+    - This is caused by hyperbolic discounting; early consumption of short term rewards exhausting the available appetite
+    - Surprise as the basis on aesthetic value
+- The tendency of vivid rewards to fade into habit keeps you motivated to explore
+- Reward is not a function on the environment directly but of the emotion induced by the occasion which can change over time
+- Willpower cannot learn to control premature satiation and can therefore degrade emotional satisfaction even operating at optionally (since its efficiency may deplete available appetite)
+The Need to Maintain Appetite Eclipses the Will
+- Empathic models through “theory of mind”
+- Negative empathy
+Conclusions 
+- 

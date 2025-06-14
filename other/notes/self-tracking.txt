@@ -1,0 +1,51 @@
+Self-Tracking
+An Introduction to Self-Tracking
+- Not always an individual thing (things like genetic analysis have implications for family and things like air quality could only be controlled in ways that affect others)
+- Self tracking, life logging, and self experimentation
+- Biomedicalization
+- Communal Tracking (citizen science) involves donating privately tracked data to public health research (Open Paths)
+- Pushed Tracking (economic incentive for tracking and sharing data)
+- Imposed Tracking (prerequisite for employment or insurance)
+
+What is at Stake? The Personal Gets Political
+- “Data” is etymologically tied to “that which is given before an argument”
+- Can use “givens” to assert information with healthcare providers
+- Apples ResearchKit let’s people donate data
+- Data can be about seeing what we cannot see (we may feel fine but our data says otherwise)
+- Knowing what to do given data does not necessarily mean you will do it (even if you agree with it)
+- Logic of care vs logic of choice
+- Open Artificial Pancreas System (and having access to your own data in companies hands)
+- The economic value of data puts limits on what companies are willing to share
+- “Self as commodity”
+- Privacy is relative (directed graph is visibility)
+- Who owns data when multiple parties contribute to its creation? (Think about a kinship relationship between yourself and the virtual self as opposed to market relationships as if data were a commodity)
+
+Making Sense of Data
+- Different purposes for tracking (monitoring/evaluating, eliciting sensations, aesthetic curiosity, debugging a problem, and cultivating a habit)
+- Abstracting measurements for more difficult metrics can be helpful (gold stars for runs instead of timestamps and durations, personal qualitative assessments instead of specific caloric information may be sufficient for diet tracking, etc.)
+- Data can become a “prosthetic of feeling” (exosenses)
+- Case-crossover design (control, exposure, and hazard categories)
+- A/B/A/B testing (alternating treatments)
+- “Habit hacking” (“tiny habits” by starting with subtask habitualization, “chaining habits” by starting a new one immediately before or after an existing one)
+- Beeminder let’s you bet on your success (get money back if you achieve, lose money otherwise)
+- Tracking in any format counts (numbers, pictures, and words can all be quantified)
+- 
+
+Self-Tracking and The Technology
+- Probabilities “tame chance” which opens up for the flow of investment
+- “Technological solutionism” posits that complex social problems can be solved by technology alone (ignores social effects on technology itself)
+- Products come from a range of categories including Health, Luxury, and Work
+- The US does not have wide governmental privacy protection (unlike the EU)
+- HIPAA protects things like blood pressure data collected in clinical settings but not from consumer devices
+
+Self-Tracking and Medicine
+- Data can change the social / power relationships in healthcare
+- Few clinical protocols on how to make a decision based on self-reported patient data
+- Self-tracking tools also change how life science research is done (data donation makes the research process go a lot faster and be more diverse)
+- Medical apps target the wrong groups (should benefit old and chronically ill, but not advertised as such)
+- Data can arguably reduce costs ($2500 for retrofitting home with sensors as opposed to a the $80k nursing facility)
+
+Future Directions for Self-Tracking
+- Future depends on the outcome of current controversies
+- Data access is still a struggle (but patients should be given access to their own data regardless of their expertise)
+- Privacy will likely be an ongoing negotiation (some problems are technical ones, like preventing hackers from monitoring data)

@@ -1,0 +1,85 @@
+Introducing MLOps
+
+Why Now and Challenges
+- MLOps < ModelOps != AIOps (AI for DevOps)
+- Many dependencies, no common language for business, data science, software, and IT 
+- Different from DevOps in that models are made up of both code and data
+- Risk Assessment
+    - What if the model is unavailable for a given period of time?
+    - What if the model returns a bad prediction for a given sample?
+    - What if the modes accuracy decreases over time?
+    - What if the skills necessary to maintain the model are lost?
+- Making sure open source software is deployed on the same version it was verified on and that there is performance monitoring understandable at all levels 
+- Responsible AI
+    - Intentionality (models behave in ways aligned with their purpose)
+    - Accountability (centrally controlling, managing, and auditing the enterprise AI effort, no shadow IT)
+
+People of MLOps
+- Subject Matter Experts (SMEs)
+    - Should have the goals, business questions, and KPIs they want to achieve
+    - Without them, data teams struggle to gain traction and additional budget
+    - Business Decision Modeling (to understand what the areas of potential impact are)
+    - Play a role once a model is deployed to determine whether it is performing well
+- Data Scientists
+    - Role is much wider than model building but they are often siloed (physically, culturally, or both)
+- Data Engineers
+- Software Engineers
+- DevOps
+- Model Risk Managers / Auditors
+- Machine Learning Architects
+
+Developing Models
+- Models are a projection of reality that partially and approximately represent some aspects of a real thing or process
+- The generalization capacity of a mode is its ability to accurately predict cases that lie outside of the training data
+- Required components:
+    - Training data
+    - Performance metric
+    - ML algorithm
+    - Hyperparameters
+- Algorithm types
+    - Linear (linear regression, logistic)
+    - Tree-Based (decision tree, random forest, gradient boosting)
+    - Deep Learning (neural networks)
+- A lot of models have been around for a long time; the reason they are successful now is because of cheaper computing power
+- Data Exploration
+    - Documenting assumptions and checking for anything that might make the data unusable (incompleteness, inaccuracy, inconsistency, etc.)
+    - Cleaning, filling, reshaping, filtering, clipping, sampling, etc.
+    - Requires domain knowledge
+- Feature Engineering / Selection
+    - Derivatives (infer new info from existing, ex: what is the day of the week for a given date?)
+    - Enrichment (add new external information, ex: is this day a public holiday?)
+    - Encoding (present the same info differently, ex: weekday vs weekend boolean)
+    - Combination (link feature by some function, ex: weighting the size of a backlog based on item complexity, introducing nonlinear combinations for domain knowledge)
+    - Services exist to enrich data beyond what is accessible to public institutions and companies
+    - Imputation
+    - One-hot encoding
+    - Embeddings (more complex, but allows for image / text inputs)
+    - Transfer learning (using info gained from solving one problem in solving another, ex: reusing the embedding from one model in another)
+    - Feature selection can make the model more expensive to compute, require more maintenance, lose some stability, and raise privacy concerns
+    - Feature selection can be partially automated with tools like Auto-sklearn or AutoML
+    - Feature stores / factories keep track of features associated with business entities for easier reuse (typically has an offline and online part that are kept consistent)
+- Experimentation
+    - Assessing model quality, finding the best params (algorithms, hyperparams, feature preprocessing, etc.), tuning bias / variance tradeoff, and finding a balance between mode improvement and computation cost reduction
+    - High Bias (underfitting) fails to discover some rules than could have been learned
+    - High Variance (overfitting) sees patterns in noise and does not generalize well beyond training data
+    - Tools exist to run experiments across a space of possibilities (GridSearch) (can be time and computation intensive so it’s good to set a budget and acceptance threshold for experiments)
+    - Stratified model training can train multiple models based on different groups with different behavior (one model per store, per customer group, etc.)
+- Evaluating / Comparing Models
+    - “All models are wrong but some are useful” George E P Box, statistician
+    - Accuracy is a simple metric for classification, but isn’t always good with unbalanced classes
+    - Cross-Testing (holding data for testing at a later phase of mode development)
+    - k-Fold Cross Validation (rotating parts of data being held in order to evaluate and train multiple times, increases stability of the metric)
+    - Should take reasonable steps to make sure a model is not actively harmful, ex: predicting all patients should be seen by a doctor is good when optimizing for raw prevention but harmful with the more realistic resource allocation metric)
+    - Good to cross check different metric, inputs, and sub populations split in a given dimension
+- Version Management / Reproducibility
+    - Versioning is arguably solved when everything is code based (just need to be able to go back to any experiment and replicate it in another branch)
+    - To be reproducible, all of the following must be documented and reusable (assumptions, randomness, data, settings, results, implementation, and environment)
+
+Preparing for Production
+- Runtime Environments
+- Model Risk Evaluation
+- QA for ML
+- Key Testing Considerations
+- Reproducibility and Auditability
+- Machine Learning Security
+- Model Risk Mitigation

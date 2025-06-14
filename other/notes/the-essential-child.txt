@@ -1,0 +1,90 @@
+The Essential Child
+Introduction
+- Children reflect more competence than credited earlier but still have bizarre categories in some cases (the moon is “a ball”) seeming to focus on physics characteristics over defining features (shape as opposed to taxonomic or thematic)
+- Need to reconcile their apparent sophistication with there many errors
+- Essentialism is a human categorization bias that can mislead or assist (has many philosophical controversies)
+- Most powerfully applied to natural kinds (animals, plants, substances) and social kinds (race, gender, etc) and less to human artifacts (socks, tables, etc.)
+- Propose that essentialism does not require language but language is an important cue children use to determine what to essentialize
+- Three component to psychological essentialism: people believe certain categories are natural kinds, there is an unobservable essence that gives rise to observable similarities in meme era of a category, and that everyday words reflect this real-world structure (dog, tree, etc map onto natural kinds)
+- Essentialism can be viewed as metaphysical or representational
+- Essences can be sortal, causal, or ideal
+- People can hold an intuitive placeholder belief that an essence exists even if it’s details have not been revealed
+- This book focuses on causal, representational, placeholder essentialism 
+- Distinct from categories (all animals form categories), not all categories are essentialized (though the more richly structured “natural kinds” are more likely to be (ex: “white things” is an invented category whereas “tigers” have a discovered essence)
+- “Sortals” (the simple categories that are required for individuating entities) are required for determining essence (ie. can’t ask the essence of this without supplying a sortal of what “this” is)
+- Important to study since it has been discussed for millennia across societies, reveals nonobvious traits of children in developing concepts (“good”), it motivates / underlies stereotyping (“bad”), and has educational / social implications (impedes attempts to teach evolution, etc.)
+- Essentialism is a set of evolved (non-singular) adaptations beneficial for interacting with the world
+- One reason for suspecting essentialism is that the meanings of certain words (proper nouns) rely on something other than known or superficial properties
+
+Notes on Research Methods
+- Categorization by observable feature is not evidence against essentialism (as a society we still deeply believe in an innate difference between men and women)
+- Psychological essentialism entails that people believe in essences not that they have detailed knowledge regarding their content or existence
+
+The Inductive Potential of Categories
+- Focus is on children’s capacity to make novel inferences based on categories (involves reasoning about nonobvious properties and recognizing that appearances can be deceiving)
+- We rarely learn in the form of universal quantifies so we don’t inference based on deductive reasoning
+- Carey (1985) pioneered inductive inference experiments (a dog had a spleen; do people? do plants?)
+- Children more often projected from people to other animals than between animals of greater similarity
+- Triad task (sets of images where they tested to see how children inferred properties between categories and whether their similarity mattered), also tested across properties of internal parts, behavior, physical transformation, function, origin, and various natural kinds [children based 68% of inferences on category membership and Stanford undergrads, 86%], control study done by asking the questions alone without giving info
+- Category based induction demonstrated in 24 month olds (Jawsal and Markman) based on how they played with toys of similar category / appearance with prior information and with / without a label
+- Control studies done to ensure children were not just trying to please the researcher
+- Category based inferences do not require an adult label (tested by showing children images, given them a property of the image, and then asking if it extended to other images)
+- Results do not depend on the fact that categories were familiar (but the conceptual grasp of a category being named did matter, ie. the coherence of a label determined whether it would influence inferences)
+- Children have little faith in the predictive power of a property (boy vs girl is more meaningful than “grow up to be a dad” vs “grow up to be a mom”, which although is just as informative, is not an explicit category label) - Label > Property
+- Category/Label -> Property (induction), Property -> Category/Label (categorization)
+- Level of inductive potential matters when multiple categories are present (age beats gender in inferring properties, but gender beats physical appearance when comparing general similarity)
+- Children will answer differently when posed a categorization question versus an inductive inference task
+- Adjectives for people > adjectives for non-people (essentialized domain matters, ie. what “kind” the categories apply to)
+- Among all levels of a thing, which are privileged for induction / can be essentialized (brown-backed gray squirrel, gray squirrel, squirrel, mammal, animal, living thing, object)
+- In both US and Itzaj Mayan adults, induction plateaus around the species level (gray squirrel to squirrels is fine but not squirrels to mammals)
+- US students however, are inconsistent in that they will list life form level (bird, fish, etc.) as an attribute of a given category
+
+Hidden, Nonobvious Properties
+- Stability over transformations, boundary intensification, and nonobvious properties
+- Children struggle to grasp constancy until around 2nd grade (they report that superficial changes alter invariant physical quantities, ex: changing container causes there to be more / less water) though at that point, they can distinguish between animal and artifact transformations
+- This task requires inferring category from property (which is a much more difficult inferencing task than category to property)
+- When the transformation was a costume change (even realistic) children maintained category had not changed (seems they just struggle with knowing what transformations constitute a category change), even adults struggle with this task (consider DNA manipulation)
+- For certain properties, children expect constancy over growth (true of race and gender but not size)
+- Children maintain that many natural categories are immutable (don’t explain things with evolution)
+- People treat categories as discrete (the sounds “ba” and “pa” are not on a continuum, but switch over rather quickly with voice onset time), they recognize natural fuzziness but greatly reduce it compared to the variability in the underlying physical stimulus
+- People much prefer artifact hybrids to animal hybrids (are much more willing to accept a cup could also be a bird feeder for example)
+- People will give stronger category membership ratings than typicality ratings (how clearly a member is a penguin of birds vs how good an example is a penguin of a bird?)
+- “Casual innards principle” for animals and a “surface generalization rule” for inanimate objects (insides are a physical but non-visible essential part of a category membership for animate objects)
+- When authenticating whether an object is a member of a category (two similar pictures, but told one is a dog, one is a toy), children care about the insides, origins, and behaviors of the objects (varies across ontological, basic, and nominal differences between the pair of objects)
+
+Children’s Conceptions of Nature and Nurture
+- Categories associated with inheritance are considered “natural” (children project properties by relation before perceptual appearance)
+- Kinship based inferences we’re specific to biological properties (scratches on legs could project to either child or best friend equally likely)
+- When choosing between the predictive power of nature vs nurture (adoption and switched at birth tasks), 4 year olds go with natured (innate potential)
+- Children tend to think psychological traits are inherited
+
+Causal Explanations, Causal Determinism
+- Classical view of categories (set of necessary and sufficient characteristics)
+- Prototypical view of categories (distance of an object to a prototype)
+- Neither of the above consider the causal link of features
+- Ex: “curved” is more essential to a boomerang than a banana, a man jumping into a pool fully clothed may be categorized as “drunk”, etc.
+- Causal Status Hypothesis: Causes matter more than effects, features with causal implications are weighted more heavily in creating and extending a category
+- Undergraduates free-sort triads on the basis of cause, also categorize based on cause (rooban experiment)
+- Even infants display causal bias (prefer consequences they can control directly)
+- Causal determinism (the human mind seeks explanations for everything) contributes to essentialism
+- For the casual deterministic account of essentialism to work, children must recognize that certain events are outside of human control (which is the case according to findings by Gelman and Kremer)
+
+Conclusions to Part 1
+What Parents Say about Essences
+- Is essentialism learned by children (from parents and media) or developed naturally by the child?
+- There are a lot of essentialist stories out there told to children (the ugly duckling, certain Disney shows, etc.) and children believe things their parents tell them (Santa and tooth fairy), but there are non essentialist stories told to children as well
+- In recording mothers utterances to preschoolers, very few were explicitly essentialist (rarely mentioned insides and focused more on artifacts than animals)
+- Systematic patterns did exist however, for mothers to implicitly express essentialist ideas through grouping (disproportionately focused on taxonomically related individuals, ex: two horses, etc.)
+- Overall, very little is known about why children have an essentialist bias
+
+Essentialism in Language
+
+Theory Theories and DAM Theories
+
+Unfinished Business
+
+Why Do We Essentialize?
+
+Questions for Gelman:
+- I was very interested in the creative study design (particular questions, playing games, showing images) to get past constraints of working with younger children. Do you think these methods are as strong as you’d like in proving statements or would you like to see a move towards computational / imaging approaches in the next stages of psychology?
+- Where has essentialism gone since the book was written? What are some of the current topics that are being investigated? Do we have a better understanding of why children have an essentialist bias?

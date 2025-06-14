@@ -1,0 +1,61 @@
+
+Algorithms to Live By
+Optimal Stopping
+- Look then leap (37% rule)
+- Threshold rule (immediate acceptance above some bound)
+
+Explore / Exploit
+- Gittins Index (optimal decision by number of wins vs number of losses)
+
+Sorting
+
+Caching
+- Cache hierarchy
+- Belady’s Algorithm (clairvoyant)
+- Random Eviction
+- First In, first out
+- Least recently used
+- Forgetting curves (Ebbinghaus)
+
+Scheduling
+- Single Machine (many multi-machine are intractable)
+- Earliest Due Date
+- Thrashing (being completely preoccupied with metawork)
+- Interrupt Coalescing (assigning minimal time allotted for each task)
+- Priority Inheritance
+
+Bayes Rule
+
+Overfitting
+- Fitting polynomials
+- Cross-validation (building model with subset of data and testing it against the complement)
+- Regularization (constraints which penalize complexity)
+- Lasso (regularization technique penalizing with the total weight of variables)
+- Early Stopping (regularization technique)
+
+Relaxation
+- Discrete (dropping constraints)
+- Continuous (allowing non-discrete solutions)
+- Lagrangian (turning constraints into costs)
+
+Randomness
+- Monte Carlo Methods (sampling)
+- Randomized algorithms
+- Bloom Filter (probabilistic data structure that checks items against a Rabin-Miller-like function to check for novelty)
+- Hill Climbing (finds local maximum)
+- Metropolis Algorithm (hill climbing with occasional bad solutions accepted to jitter towards the global max)
+- Simulated Annealing (metropolis algorithm where probability of jittering is high and then “cools” to only accepting good solutions)
+
+Networking
+- Packet Switching (TCP)
+- ACKs (serially incremented)
+- Exponential Backoff (double delay each time you try between successive failures)
+- AIMD (Additive Increase, Multiplicative Decrease - after a single failure, number of packets increases by 1 and decreases by half, TCP Sawtooth)
+- Linguistic Flow Control (hmm, yeah, uh-huh, oh, etc.)
+- Tail Drop (every packet beyond a network buffer filling is dropped)
+
+Game Theory
+- Recursive Anticipation
+- Nash Equilibrium (set of moves where neither player would regret their move)
+- Algorithmic Game Theory
+- “The price of anarchy”

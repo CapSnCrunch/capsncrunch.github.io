@@ -1,0 +1,46 @@
+The Quantified Self
+
+Introduction
+Know Thyself
+- Vanevar Bush (presidential science advisor 1945) wrote about a theoretical “memex” which could extend human memory and store memories from external cameras
+- Gordon Bell was inspired by this and attempted to record all aspects of his life
+- Steve Mann was an incredibly early experimenter (1970s) and founded the MIT Wearable Computing project
+- Some more self-tracking artists; Andy Warhol, On Kawara, Alberto Frigo
+- “Know thyself; tracking every facet of life: from sleep to mood to pain, 24/7/365” Gary Wolf 2009 - cofounder of QS
+- See Personal Informatics for a list of tools
+- Common pitfalls with self tracking include tracking too much (causes tracking fatigue), lack of scientific rigor, or failure to track the triggers associated with responses)
+New Hybrid Beings
+- Sociomaterialism / assemblages
+- “Knowing Capitalism”, the commodification of knowledge
+- New era where “self-reinvention” is a common desire in society (cosmetic surgery, going to therapy, self-help books, self-tracking)
+- Modern selfhood and competitive individualism can easily devolve into narcissism and vanity (though the boundaries of each are dynamic)
+- Technologies of production, sign systems, power, and self
+- Development towards one’s “best self” has become an ethical motivation, but has political influence (neoliberalism tends to prefer soft power as opposed to hard power; having citizens believe by default they should be productive, etc.)
+- It is a more western idea that the mind and body are separate and that the mind should exert control over the body (bodily containment; thin/fat, healthy/ill, etc.)
+- The “optic” has taken precedence over the “haptic” in revealing the truth of the body (imaging, tomography, X-ray, etc.)
+- Data is never raw, it’s always cooked by whatever sociocultural process created it
+An Optimal Human Being
+- Metaphors of the body are frequently protesting it as a machine with inputs, outputs, and sensors
+- “Prosthetics of selfhood”
+- “Exosenses”
+- Self-tracking offers emotional engagement, aesthetics, and a means of control over the uncertainty around one’s own destiny
+- This behavior can also lead to distraction and overall deterioration of the human experience
+You Are Your Data
+- We have underlying quantifiable signals that are undetectable perceptually but can be recorded and analyzed through sensors
+- No need for a top-down understanding of personal bodily mechanics when data approximated what you might want to know
+- Projecting experiences onto lower dimensional data sets however can degrade the emotionality of those experiences
+- Part of the QS movement is the creative aspect of visualizing and sharing personal data (see feltron.com)
+- These projects can go pretty far such as an art installation by Agakis and Tolaas which grew different cheese cultures from human microbiota
+- Context is highly important for interpreting personal data - a fitness app can tell you your activity is down but not that it was caused by a sprained ankle; it might have been interpreted as being lazy as opposed to steadily recovering
+- “Inadvertent algorithmic cruelty” when data elicit a negative emotional response
+Data’s Capacity for Betrayal
+- What are the legal aspects of lifelog data? Who owns it? To what extent can it be sequestered? Can another individual access all/part of it if it includes information about themselves?
+- Fitbit data has been used as evidence in a court defense (2014) but may soon be grounds for prosecution
+- Insurance and corporate wellness pushed/imposed self-tracking
+- Developers may not reveal how or to who data of these apps are available to
+- “Quantified Us”
+- Humans becoming nodes in the IoT
+- QS has joined a parent foundation focused on general health initiatives and they have started to make efforts in citizen science
+- Extensions for “tracking of tracking” to see what others are able to obtain from us
+Final Reflections
+- Five modes of self-tracking discussed (private, pushed, communal, imposed, and exploited)

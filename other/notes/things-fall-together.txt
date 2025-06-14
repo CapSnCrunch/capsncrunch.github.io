@@ -1,0 +1,69 @@
+
+Things Fall Together
+Programming Matter
+- The Industrial Revolution ruined our perception and craftsmanship with materials
+- The Digital Revolution changed our perception about what it means to be a “smart” material (we think it needs to have software)
+- Programmable materials / active matter
+- Computer Aided Design (CAD)
+- Computer Numerically Controlled (CNC)
+- Computer Aided Manufacturing (CAM)
+
+Computing is Physical
+- Morphological Computing, the interplay of objects to perform computation
+- Computationally Universal, requires conditional branching and read-write functionality
+- Biological computers and microfluidics
+- Materials can communicate as hybrid collaborators with electronics, or as remote sensors on their own
+- Creative computing
+- Materials can embody polymorphism (something that responds to heat and moisture on their own will have a unique reaction to hot water)
+- Morphogensis
+- “A New Kind of Science”: patterns can be growth/death, repetitive, chaotic/noisy, oscillation between chaotic and ordered
+
+Order from Chaos
+- “Life is the fundamental pursuit of negative entropy”
+- Entropy and Maxwells Demon
+- Design a system so that the lowest energy state is the most useful / interesting one
+- Self-Assembly had a transition phase where you need the right amount of energy based on several factors (material, medium, size, density, bonds, temperature, etc.)
+- Helium Balloons with Velcro nodes form random lattices (generally useful to consider the “stickiness” of components and connection strength once stuck)
+- Granular convection (differences in size and density causes components to separate when mixed and vice versa)
+- “Male to female” connections may have a stronger chance of holding while the other combinations are weaker
+- Patterned Error Correction: Generally useful to have several “lock and key” components to guarantee they match when connected
+- Can print fabricated magnetic patterns to have any complementary magnetic pair
+
+Less Is Smart
+- “Smart” products are usually complex, require power, easier to break, etc.
+- Flexibility of components is a type of error correction
+- Granular jamming (redundancy, rocks and string)
+
+Robots Without Robots
+- 4D printing (3D printing a multi-material object that can transform with exposure to water, heat, and light)
+- Materials can be both actuators and sensors
+
+Build from the Bottom Up
+- Stigmergy (intelligent collaboration on an individual agent scale instead of a top down plan)
+- Decentralized drones and other robots
+- Surrender of control to these bottom up processes is hard but can be productive (delegation)
+- There is overhead for getting an emergent process to work for a pre-designed product, but it pays off by being scalable
+- Destruction as construction (muscle building, forest fires, coastal storms, etc.)
+
+Design from the Bottom Up
+- Design > Build > Function > Dispose
+- Material > Assembly > Design > Adaptation
+- Easier to evolve around constraints to create many solutions than trying to come up with one on your own
+- Design by chaos, design by committee, genius designer, design as optimization, design as adaptation
+- Hardware version of softwares “deploy early and often”
+
+Reverse, Reuse, Recycle
+- Customization allows for gradual evolution and is less wasteful
+- Rapid Liquid Printing (RLP) allows for quick production of soft robotics which typically requires a mold
+- Fused Deposition Modeling (FDM)
+- Stereolithography Apparatus (SDA)
+- Can print liquid metal in powder support to imitate RLP with different materials (faster since it cools in seconds and reversible by melting)
+- Self Healing typically uses a bilayer which, when punctured, causes an interaction to expand or harden the material
+- Important to build disassembly into products to make them easier to recycle
+
+ The Future of Matter is Evolving
+- Blending Disciplines
+- Common Platform (to reduce complexity with so many new techniques, mechanisms, and experiments)
+- Self-Replication
+- Mass Speciation (with mass replication, we want to carry information, mutations, and evolution with each generation)
+- Material AI

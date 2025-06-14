@@ -1,0 +1,93 @@
+User Friendly
+Part I: Easy to Use
+Confusion
+- “When you look hard enough at a monumental machine disaster, you can usually find a design problem”
+- Don Norman coined “user experience” in the 1960s 
+- Three Mile Island disaster
+- When something works well enough that you can predict what it will do next, you are able to build a mental model of it
+- Feedback is key for a good product (given in the natural world but must be designed for man made things)
+- Many problems in life are due to lack of immediate feedback (unhealthy eating, climate change, doctor prescriptions, etc.)
+- Previously we used brands to create trust, now we use buyer/seller feedback (Facebook, AirBnb, Uber, etc.)
+
+Industry
+- Mladen Barbaric (designer from Bosnia, if our better selves are within easier reach, then we’ll be better people)
+- Dr. Dusty Johnstone pointed out that designing an emergency 911 button would not work for assaults because 80% are by people the victim knows (became Ripple, user-friendly 911)
+- Henry Dreyfuss removed theater carpet because it was “too fancy” for Iowans and was driving them away
+- He moved on from broadway to industrial design (housewares and the like)
+- “Design is the silent salesman”
+- Dreyfuss “defined an approach friendly to big businesses but still allowed him to criticize the status quo, that was protective of the consumer without being patronizing”
+- He had a great concept but lacked a full process to embody his motivations (later known as human-centered design)
+- Henry Ford was inspired to create the assembly line by seeing slaughterhouses in Chicago (disassembly lines)
+- Mass production is democratic for design, good design is a sort of manifest destiny for market societies, if a design is not available to the common man it is not good
+- American women overthrew the idea that good design was imported
+
+Error
+- Story of pilot lost within reach
+- “Machines cannot fight alone”
+- Things should be designed “psychologically natural” (turn left means go left, up is on, etc, varies by culture though)
+- Psychophysics, tuning up consonants and down vowels would improve understandability over staticky lines
+- Traffic sign shapes and the airforce logo were determined by testing what was most easily recognizable
+- The complexity of machinery in WW2 led to the birth of ergonomics
+- Big Four Design Firms: Dreyfuss, Loewy, Geddes, and Teague
+- Dreyfuss came up with Joe and Josephine; the average humans for which to design for
+
+Trust
+- Boringness of driverless cars is a feat because it replaces fear with trust
+- We trust machines only if they mimic the way we come to trust other people (3+1; need to know mode, what it will do before it acts, what the machine is seeing, and have clear transitions between human and machine controlled)
+- Clifford Nass researched human-machine interactions (particularly politeness); our expectations of machines are the same as we would have for other humans
+- Grice’s Maxims for conversation
+- Don Norman’s idea of affordance (physical design aspects that convey how to use something)
+
+Metaphor
+- “Metaphors die with repeated use but leave behind the reality that they had languaged into being” (Klauss Krippendorff)
+- People introduced to things after the metaphors died, or people who the metaphors don’t resonate with fail to understand and build a mental mode as quickly
+- Metaphors including (world wide web, browser, navigate, hyperlink, pages, etc.)
+- A lot of these are built by connecting concepts with earlier physical intuitions (“being conscious” with “up”, “beginning to like someone” with “warming”, “importance” is “heavy”) and good metaphors allow you to make inferences
+    - These metaphors can be hacked by relying on the physical sensation to elicit a deeper response
+    - Experiments show people being more trustworthy when holding a warm drink, leaning forward thinking of the future and back when recalling the past
+- A good coach gives enough information to act and no more
+- Aside from explaining ideas, metaphors can also generate them
+- “Interfaces make empires” (IBMs punch card mainframes, GUIs, iPod click wheel, iPhone touch screen, Amazons 1-click shopping, Facebooks like button)
+    - 1-click is patented? Apparently Amazon made billions licensing it to Apple
+- Phillipa Mothersill designed a CAD software that allows you to specify what emotion an object should make you feel and it will adjust it on a slider
+- Personification matters (fascia of a car)
+
+Part II: Easy to Want
+Empathy
+- People will readily reveal hidden information about themselves if you ask
+- In the 1990s, Alan Cooper came up with the idea of the persona
+- “It’s not the consumers job to figure out what they want” (Steve Jobs)
+- “If I had asked people what they wanted, they would have said faster horses” (Henry Ford)
+
+Humanity
+- Mother of All Demos (December 9, 1968) Doug Engelbart
+- “As We May Think” Vannevar Bush
+- In China, the mental model for smartphones is different and mostly chat based (WeChat is insanely popular)
+    - Seemed like the way “the next billion” from India and Africa might start interacting with technology without climbing the same latter of metaphors as the west did
+    - Exemplified in the movie “Her”
+    - Human-to-human interactions should be the metaphor for design
+- We want technology to be like a friend (technology so good it’s almost invisible)
+- Vint Cerf made the first email protocols in 1972, strongly believing in electronic messaging because it was the best way to communicate with his deaf wife while he was at work
+
+Personalization
+- “Smart replies” make up 10 percent of google messages
+- Apps try to display convenience before goosebumps of how they actually work sets in (but we’re very open to using these still)
+- An issue of many companies (Disney included), innovation is viewed as a function owned by an anointed few rather than an emergent property of the system
+    -  Can see this in Amazon, AWS, Google, Apple, etc. with hyper nested services and features
+- “Shipping your org chart” (releasing a bunch of junk that’s users have to sift through and figure out what they want)
+- “Ubiquitous computing” Mark Weisner
+- It’s a lot of social training for employees to make hyper-personalization a luxury and not a creeping incursion
+    - Related technologies need to become more polite as the my integrate into more sensitive parts of our lives
+    - “Creepy” technologies like targeted ads are in a sense just “rude” (not engaging in conversation to glean information like a human would)
+
+Peril
+- Randomness / underdogs are associated to domaine rushes because our brains care more about “novel” things than recurring ones
+- This aspect is worked into “modern Skinner boxes” that get us addicted to technologies
+- Uber has “forward dispatch” which queues up the next rider before the driver has finished the current trip
+- The “Oppenheimer moment” for product design is when your intentions are stripped away from your creation and you see how it can be used negatively
+- Facebook amplifies the universal tendency towards tribalism
+- The modern user experience is becoming a black box
+- Automation paradox (by automating away tasks to reduce friction, we become less able to do what we once took for granted)
+
+Promise
+- . . .

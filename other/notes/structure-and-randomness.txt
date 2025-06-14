@@ -1,0 +1,13 @@
+Structure and Randomness
+Expository Articles
+- Quantum Mechanics and Tomb Raider analogy
+- Compressed sensing and single pixel cameras
+    - Haar Wavelet System allows us to compress images by viewing them in the wavelet basis and keeping the coefficients that capture the notable features
+    - What if a camera knew ahead of time which coefficients to capture so we don’t need to filter or compress afterwards?
+    - Consumer photography doesn’t really need this upgrade but other forms of imaging do (in situ measurements, etc.)
+    - We can’t know the wavelets we need to measure against so instead we take several measurements and see which ones correlate with different wavelets to decide which ones to sum (Matching pursuit or Basis pursuit, l1 minimization, simplex method)
+    - MRI Radon transform
+- Ultrafilters, non-standard analysis, and epsilon management
+    - 
+Lectures
+Open Problems
