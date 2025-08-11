@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leafcast - Turn Any Book Into an Audiobook</title>
+    <meta name="description" content="Transform your physical books into personalized audiobooks with AI-powered voice narration. Scan, listen, and enjoy your favorite books anywhere.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom fonts -->
+    <style>
+        @font-face {
+            font-family: 'SpaceMono';
+            src: url('./assets/fonts/SpaceMono-Regular.ttf') format('truetype');
+        }
+        
+        /* Custom animations and gradients */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(147, 51, 234, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(147, 51, 234, 0.6); }
+        }
+        
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        @keyframes slide-in-left {
+            from { transform: translateX(-100px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        @keyframes slide-in-right {
+            from { transform: translateX(100px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        @keyframes fade-in-up {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        @keyframes bounce-in {
+            0% { transform: scale(0.3); opacity: 0; }
+            50% { transform: scale(1.05); opacity: 0.8; }
+            70% { transform: scale(0.9); opacity: 1; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        @keyframes ripple {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(4); opacity: 0; }
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(-45deg, #022c22, #451a03, #1a2e05, #431407, #052e16, #713f12);
+            background-size: 400% 400%;
+            animation: gradient-shift 15s ease infinite;
+        }
+        
+        .glass-morphism {
+            backdrop-filter: blur(16px) saturate(180%);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.125);
+            transition: background 0.3s ease, backdrop-filter 0.3s ease;
+        }
+        
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .pulse-glow {
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+        
+        .slide-in-left {
+            animation: slide-in-left 0.8s ease-out;
+        }
+        
+        .slide-in-right {
+            animation: slide-in-right 0.8s ease-out;
+        }
+        
+        .fade-in-up {
+            animation: fade-in-up 0.8s ease-out;
+        }
+        
+        .bounce-in {
+            animation: bounce-in 0.6s ease-out;
+            animation-fill-mode: both;
+        }
+        
+        .voice-card.bounce-in.playing {
+            animation: pulse-glow 1s ease-in-out infinite;
+            animation-fill-mode: both;
+        }
+        
+        .voice-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .voice-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.1) 100%);
+        }
+        
+        .voice-card.playing {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.3) 0%, rgba(245, 158, 11, 0.3) 100%);
+            animation: pulse-glow 1s ease-in-out infinite;
+            animation-fill-mode: both;
+        }
+        
+        .ripple-effect {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .ripple-effect::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        
+        .ripple-effect:active::before {
+            width: 300px;
+            height: 300px;
+        }
+        
+        .feature-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.1) 100%);
+        }
+        
+        .text-gradient {
+            background: linear-gradient(45deg, #16a34a, #d97706);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .text-gradient-rainbow {
+            background: linear-gradient(45deg, #10b981, #f59e0b, #84cc16, #d97706, #eab308, #a3a3a3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 300% 300%;
+            animation: gradient-shift 3s ease infinite;
+        }
+        
+        /* Scroll-triggered animations */
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+        
+        .scroll-animate.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Audio visualization */
+        .audio-wave {
+            display: inline-block;
+            width: 4px;
+            height: 20px;
+            background: currentColor;
+            margin: 0 1px;
+            animation: audio-wave 1.5s ease-in-out infinite;
+        }
+        
+        .audio-wave:nth-child(2) { animation-delay: 0.1s; }
+        .audio-wave:nth-child(3) { animation-delay: 0.2s; }
+        .audio-wave:nth-child(4) { animation-delay: 0.3s; }
+        .audio-wave:nth-child(5) { animation-delay: 0.4s; }
+        
+        @keyframes audio-wave {
+            0%, 100% { height: 4px; }
+            50% { height: 20px; }
+        }
+        
+        .app-mockup {
+            background: linear-gradient(135deg, #16a34a 0%, #d97706 50%, #eab308 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .app-mockup::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 overflow-x-hidden">
+    <!-- Navigation -->
+    <nav class="glass-morphism fixed w-full z-50 border-b border-white/20" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-3 slide-in-left">
+                    <img src="./assets/images/icon.png" alt="Leafcast Logo" class="w-8 h-8 sm:w-10 sm:h-10 rounded-lg">
+                    <span class="text-xl sm:text-2xl font-bold text-white">Leafcast</span>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-8 slide-in-right">
+                    <a href="#features" class="text-white hover:text-gray-200 transition-colors duration-300">Features</a>
+                    <a href="#how-it-works" class="text-white hover:text-gray-200 transition-colors duration-300">How It Works</a>
+                    <a href="#voices" class="text-white hover:text-gray-200 transition-colors duration-300">Voices</a>
+                    <a href="#pricing" class="text-white hover:text-gray-200 transition-colors duration-300">Pricing</a>
+                    <a href="https://apps.apple.com/us/app/leafcast/id6746976062" target="_blank" class="bg-white/20 backdrop-blur-sm text-white px-6 py-2 rounded-lg hover:bg-white/30 transition-all duration-300 ripple-effect" style="box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);">
+                        Download App
+                    </a>
+                </div>
+
+                <!-- Mobile Burger Menu Button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-white p-3 rounded-xl bg-white/10 hover:bg-white/20 active:bg-white/30 transition-all duration-200 transform hover:scale-110 active:scale-95 shadow-lg" aria-label="Toggle mobile menu">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Navigation Menu -->
+            <div id="mobile-menu" class="md:hidden absolute top-16 left-0 right-0 bg-black/90 backdrop-blur-lg border-t border-white/30 shadow-2xl opacity-0 invisible transition-all duration-300 transform -translate-y-2">
+                <div class="px-6 py-8 space-y-6">
+                    <a href="#features" class="block text-white hover:text-green-400 transition-colors duration-200 py-3 text-xl font-medium mobile-menu-item border-b border-white/10 hover:border-green-400/50">Features</a>
+                    <a href="#how-it-works" class="block text-white hover:text-green-400 transition-colors duration-200 py-3 text-xl font-medium mobile-menu-item border-b border-white/10 hover:border-green-400/50">How It Works</a>
+                    <a href="#voices" class="block text-white hover:text-green-400 transition-colors duration-200 py-3 text-xl font-medium mobile-menu-item border-b border-white/10 hover:border-green-400/50">Voices</a>
+                    <a href="#pricing" class="block text-white hover:text-green-400 transition-colors duration-200 py-3 text-xl font-medium mobile-menu-item border-b border-white/10 hover:border-green-400/50">Pricing</a>
+                    <a href="https://apps.apple.com/us/app/leafcast/id6746976062" target="_blank" class="block bg-gradient-to-r from-green-600 to-orange-600 text-white px-8 py-4 rounded-xl hover:from-green-700 hover:to-orange-700 transition-all duration-200 text-center mt-6 mobile-menu-item font-semibold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 active:scale-95">
+                        Download App
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-gradient text-white pt-20 sm:pt-24 pb-16 sm:pb-20 relative overflow-hidden">
+        <!-- Floating background elements -->
+        <div class="absolute inset-0 overflow-hidden">
+            <div class="absolute top-20 left-4 sm:left-10 w-48 sm:w-72 h-48 sm:h-72 bg-white/10 rounded-full blur-3xl floating"></div>
+            <div class="absolute top-40 right-4 sm:right-10 w-64 sm:w-96 h-64 sm:h-96 bg-purple-500/20 rounded-full blur-3xl floating" style="animation-delay: -2s;"></div>
+            <div class="absolute bottom-20 left-1/3 w-56 sm:w-80 h-56 sm:h-80 bg-pink-500/20 rounded-full blur-3xl floating" style="animation-delay: -4s;"></div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center">
+                <h1 class="text-4xl sm:text-5xl md:text-8xl font-bold mb-6 sm:mb-8 leading-tight fade-in-up">
+                    Turn Any Book Into<br>
+                    <span class="text-gradient-rainbow">
+                        an Audiobook
+                    </span>
+                </h1>
+                <p class="text-lg sm:text-xl md:text-2xl mb-8 sm:mb-10 max-w-4xl mx-auto opacity-90 fade-in-up px-4" style="animation-delay: 0.2s;">
+                    Turn any <strong>physical book</strong> into a <strong>personalized audiobook</strong> with AI voices. 
+                    Just <strong>scan the pages</strong> and get <strong>studio-quality narration</strong>.
+                </p>
+                
+                <!-- App Icon with floating animation -->
+                <div class="mb-8 sm:mb-10 fade-in-up" style="animation-delay: 0.4s;">
+                    <img src="./assets/images/icon.png" alt="Leafcast App Icon" class="w-32 sm:w-40 md:w-48 h-32 sm:h-40 md:h-48 mx-auto rounded-3xl floating">
+                </div>
+                
+                <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center fade-in-up px-4" style="animation-delay: 0.6s;">
+                    <a href="https://apps.apple.com/us/app/leafcast/id6746976062" target="_blank" class="w-full sm:w-auto bg-white text-green-700 px-8 sm:px-10 py-4 rounded-2xl font-semibold text-base sm:text-lg hover:bg-gray-100 transition-all duration-300 shadow-2xl hover:shadow-green-500/25 hover:scale-105 ripple-effect flex items-center justify-center space-x-3">
+                        <svg class="w-5 h-5 sm:w-6 sm:h-6" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+                        </svg>
+                        <span>Download for iOS</span>
+                    </a>
+                    <button class="w-full sm:w-auto glass-morphism text-white/70 px-8 sm:px-10 py-4 rounded-2xl font-semibold text-base sm:text-lg transition-all duration-300 shadow-2xl cursor-not-allowed flex items-center justify-center space-x-3 opacity-75">
+                        <svg class="w-5 h-5 sm:w-6 sm:h-6" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/>
+                        </svg>
+                        <span>Android Coming Soon...</span>
+                    </button>
+                </div>
+                <p class="text-sm mt-6 opacity-75 fade-in-up" style="animation-delay: 0.8s;">
+                    Free to download • Premium voices available • No subscription required
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 bg-gradient-to-br from-green-50 to-orange-50 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-r from-green-400/5 to-orange-400/5"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16 scroll-animate">
+                <h2 class="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
+                    Revolutionary Book Experience
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Combining cutting-edge OCR technology with premium AI voices to create the most natural audiobook experience possible.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Feature 1: Camera Scanning -->
+                <div class="feature-card p-8 rounded-3xl scroll-animate">
+                    <div class="w-20 h-20 bg-gradient-to-br from-green-500 to-green-600 rounded-3xl flex items-center justify-center mb-6" style="box-shadow: 0 0 20px rgba(34, 197, 94, 0.3);">
+                        <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Smart Camera Scanning</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Simply point your camera at any book page. Our advanced OCR technology instantly recognizes text with incredible accuracy, even handling different fonts, layouts, and lighting conditions.
+                    </p>
+                </div>
+
+                <!-- Feature 2: AI Voices -->
+                <div class="feature-card p-8 rounded-3xl scroll-animate" style="animation-delay: 0.2s;">
+                    <div class="w-20 h-20 bg-gradient-to-br from-orange-500 to-amber-500 rounded-3xl flex items-center justify-center mb-6" style="box-shadow: 0 0 20px rgba(249, 115, 22, 0.3);">
+                        <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Premium AI Narrators</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Choose from 9 professional AI voices powered by OpenAI and Inworld. Each narrator adapts their tone, pacing, and expression to match your book's genre and mood for an engaging experience.
+                    </p>
+                </div>
+
+                <!-- Feature 3: Seamless Playback -->
+                <div class="feature-card p-8 rounded-3xl scroll-animate" style="animation-delay: 0.4s;">
+                    <div class="w-20 h-20 bg-gradient-to-br from-yellow-500 to-lime-500 rounded-3xl flex items-center justify-center mb-6" style="box-shadow: 0 0 20px rgba(234, 179, 8, 0.3);">
+                        <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h1m4 0h1m6-4a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Seamless Audio Experience</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Enjoy continuous playback with smart chapter detection, background audio support, and the ability to resume exactly where you left off. Perfect for commuting, exercising, or relaxing.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Voice Preview Section -->
+    <section id="voices" class="py-20 bg-gradient-to-br from-green-900 via-amber-900 to-orange-900 text-white relative overflow-hidden">
+        <!-- Animated background -->
+        <div class="absolute inset-0 opacity-30">
+            <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-green-600/20 to-orange-600/20 transform skew-y-3"></div>
+            <div class="absolute bottom-0 right-0 w-full h-full bg-gradient-to-l from-yellow-600/20 to-amber-600/20 transform -skew-y-3"></div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16 scroll-animate">
+                <h2 class="text-4xl md:text-6xl font-bold mb-6">
+                    Meet Your <span class="text-gradient-rainbow">AI Narrators</span>
+                </h2>
+                <p class="text-xl max-w-3xl mx-auto opacity-90">
+                    Choose from 9 professional Inworld AI voices, each with unique personality and perfect for different genres. Click to preview each voice!
+                </p>
+            </div>
+
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6 mb-12 px-4 sm:px-0">
+                <!-- Voice previews with actual icons and audio -->
+                <div class="voice-card rounded-2xl p-4 sm:p-4 sm:p-6 text-center cursor-pointer bounce-in" data-voice="alex" onclick="playVoice('alex')">
+                    <div class="relative mb-3 sm:mb-3 sm:mb-4">
+                        <img src="./assets/images/alex-icon.png" alt="Alex" class="w-16 sm:w-20 h-16 sm:h-20 rounded-full mx-auto shadow-lg">
+                        <div class="absolute inset-0 flex items-center justify-center opacity-0 voice-playing-indicator transition-opacity duration-300">
+                            <div class="audio-visualizer">
+                                <span class="audio-wave"></span>
+                                <span class="audio-wave"></span>
+                                <span class="audio-wave"></span>
+                                <span class="audio-wave"></span>
+                                <span class="audio-wave"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <h4 class="font-bold text-base sm:text-lg">Alex</h4>
+                    <p class="text-xs sm:text-sm opacity-75">Warm & Friendly</p>
+                </div>
+
+                <div class="voice-card rounded-2xl p-4 sm:p-6 text-center cursor-pointer bounce-in" data-voice="craig" onclick="playVoice('craig')" style="animation-delay: 0.1s;">
+                    <div class="relative mb-3 sm:mb-4">
+                        <img src="./assets/images/craig-icon.png" alt="Craig" class="w-20 h-20 rounded-full mx-auto shadow-lg">
+                        <div class="absolute inset-0 flex items-center justify-center opacity-0 voice-playing-indicator transition-opacity duration-300">
+                            <div class="audio-visualizer">
+                                <span class="audio-wave"></span>
+                                <span class="audio-wave"></span>
+                                <span class="audio-wave"></span>
+                                <span class="audio-wave"></span>
+                                <span class="audio-wave"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <h4 class="font-bold text-lg">Craig</h4>
+                    <p class="text-sm opacity-75">Deep & Authoritative</p>
+                </div>
+
+                <div class="voice-card rounded-2xl p-4 sm:p-6 text-center cursor-pointer bounce-in" data-voice="edward" onclick="playVoice('edward')" style="animation-delay: 0.2s;">
+                    <div class="relative mb-3 sm:mb-4">
+                        <img src="./assets/images/edward-icon.png" alt="Edward" class="w-20 h-20 rounded-full mx-auto shadow-lg">
+                        <div class="absolute inset-0 flex items-center justify-center opacity-0 voice-playing-indicator transition-opacity duration-300">
+                            <div class="audio-visualizer">
+                                <span class="audio-wave"></span>
+                                <span class="audio-wave"></span>
+                                <span class="audio-wave"></span>
+                                <span class="audio-wave"></span>
+                                <span class="audio-wave"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <h4 class="font-bold text-lg">Edward</h4>
+                    <p class="text-sm opacity-75">Classic & Elegant</p>
+                </div>
+
+                <div class="voice-card rounded-2xl p-4 sm:p-6 text-center cursor-pointer bounce-in" data-voice="hades" onclick="playVoice('hades')" style="animation-delay: 0.3s;">
+                    <div class="relative mb-3 sm:mb-4">
+                        <img src="./assets/images/hades-icon.png" alt="Hades" class="w-20 h-20 rounded-full mx-auto shadow-lg">
+                        <div class="absolute inset-0 flex items-center justify-center opacity-0 voice-playing-indicator transition-opacity duration-300">
+                            <div class="audio-visualizer">
+                                <span class="audio-wave"></span>
+                                <span class="audio-wave"></span>
+                                <span class="audio-wave"></span>
+                                <span class="audio-wave"></span>
+                                <span class="audio-wave"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <h4 class="font-bold text-lg">Hades</h4>
+                    <p class="text-sm opacity-75">Dramatic & Powerful</p>
+                </div>
+
+                <div class="voice-card rounded-2xl p-4 sm:p-6 text-center cursor-pointer bounce-in" data-voice="dominus" onclick="playVoice('dominus')" style="animation-delay: 0.4s;">
+                    <div class="relative mb-3 sm:mb-4">
+                        <img src="./assets/images/dominus-icon.png" alt="Dominus" class="w-20 h-20 rounded-full mx-auto shadow-lg">
+                        <div class="absolute inset-0 flex items-center justify-center opacity-0 voice-playing-indicator transition-opacity duration-300">
+                            <div class="audio-visualizer">
+                                <span class="audio-wave"></span>
+                                <span class="audio-wave"></span>
+                                <span class="audio-wave"></span>
+                                <span class="audio-wave"></span>
+                                <span class="audio-wave"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <h4 class="font-bold text-lg">Dominus</h4>
+                    <p class="text-sm opacity-75">Commanding & Rich</p>
+                </div>
+
+                <!-- Additional Inworld voices using available icons -->
+                <div class="voice-card rounded-2xl p-4 sm:p-6 text-center cursor-pointer bounce-in" data-voice="deborah" onclick="playVoice('deborah')" style="animation-delay: 0.5s;">
+                    <div class="relative mb-3 sm:mb-4">
+                        <img src="./assets/images/alloy-icon.png" alt="Deborah" class="w-20 h-20 rounded-full mx-auto shadow-lg">
+                        <div class="absolute inset-0 flex items-center justify-center opacity-0 voice-playing-indicator transition-opacity duration-300">
+                            <div class="audio-visualizer">
+                                <span class="audio-wave"></span>
+                                <span class="audio-wave"></span>
+                                <span class="audio-wave"></span>
+                                <span class="audio-wave"></span>
+                                <span class="audio-wave"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <h4 class="font-bold text-lg">Deborah</h4>
+                    <p class="text-sm opacity-75">Professional & Clear</p>
+                </div>
+
+                <div class="voice-card rounded-2xl p-4 sm:p-6 text-center cursor-pointer bounce-in" data-voice="olivia" onclick="playVoice('olivia')" style="animation-delay: 0.6s;">
+                    <div class="relative mb-3 sm:mb-4">
+                        <img src="./assets/images/coral-icon.png" alt="Olivia" class="w-20 h-20 rounded-full mx-auto shadow-lg">
+                        <div class="absolute inset-0 flex items-center justify-center opacity-0 voice-playing-indicator transition-opacity duration-300">
+                            <div class="audio-visualizer">
+                                <span class="audio-wave"></span>
+                                <span class="audio-wave"></span>
+                                <span class="audio-wave"></span>
+                                <span class="audio-wave"></span>
+                                <span class="audio-wave"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <h4 class="font-bold text-lg">Olivia</h4>
+                    <p class="text-sm opacity-75">Bright & Engaging</p>
+                </div>
+
+                <div class="voice-card rounded-2xl p-4 sm:p-6 text-center cursor-pointer bounce-in" data-voice="wendy" onclick="playVoice('wendy')" style="animation-delay: 0.7s;">
+                    <div class="relative mb-3 sm:mb-4">
+                        <img src="./assets/images/onyx-icon.png" alt="Wendy" class="w-20 h-20 rounded-full mx-auto shadow-lg">
+                        <div class="absolute inset-0 flex items-center justify-center opacity-0 voice-playing-indicator transition-opacity duration-300">
+                            <div class="audio-visualizer">
+                                <span class="audio-wave"></span>
+                                <span class="audio-wave"></span>
+                                <span class="audio-wave"></span>
+                                <span class="audio-wave"></span>
+                                <span class="audio-wave"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <h4 class="font-bold text-lg">Wendy</h4>
+                    <p class="text-sm opacity-75">Warm & Soothing</p>
+                </div>
+
+                <div class="voice-card rounded-2xl p-4 sm:p-6 text-center cursor-pointer bounce-in" data-voice="pixie" onclick="playVoice('pixie')" style="animation-delay: 0.8s;">
+                    <div class="relative mb-3 sm:mb-4">
+                        <img src="./assets/images/nova-icon.png" alt="Pixie" class="w-20 h-20 rounded-full mx-auto shadow-lg">
+                        <div class="absolute inset-0 flex items-center justify-center opacity-0 voice-playing-indicator transition-opacity duration-300">
+                            <div class="audio-visualizer">
+                                <span class="audio-wave"></span>
+                                <span class="audio-wave"></span>
+                                <span class="audio-wave"></span>
+                                <span class="audio-wave"></span>
+                                <span class="audio-wave"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <h4 class="font-bold text-lg">Pixie</h4>
+                    <p class="text-sm opacity-75">Playful & Energetic</p>
+                </div>
+            </div>
+
+            <div class="text-center scroll-animate">
+                <p class="text-lg mb-8 opacity-90">
+                    Each narrator adapts their tone and pacing to match your book's genre and style
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="py-20 bg-gradient-to-br from-amber-50 to-yellow-50 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 scroll-animate">
+                <h2 class="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
+                    Three Simple Steps
+                </h2>
+                <p class="text-xl text-gray-600">
+                    From physical book to personalized audiobook in minutes
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-12">
+                <!-- Step 1 -->
+                <div class="text-center scroll-animate">
+                    <div class="relative mb-8">
+                        <div class="w-32 h-32 bg-gradient-to-br from-green-500 to-emerald-500 rounded-full flex items-center justify-center mx-auto" style="box-shadow: 0 0 30px rgba(34, 197, 94, 0.4);">
+                            <span class="text-4xl font-bold text-white">1</span>
+                        </div>
+                        <img src="./assets/images/page.png" alt="Book page" class="absolute -top-2 -right-2 w-16 h-16 rounded-lg shadow-lg floating">
+                    </div>
+                    <h3 class="text-3xl font-bold text-gray-900 mb-4">Create Your Book</h3>
+                    <p class="text-gray-600 leading-relaxed text-lg">
+                        Set up your book with a title, author, and cover photo. Choose from our collection of professional AI narrators to match your reading preference.
+                    </p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="text-center scroll-animate" style="animation-delay: 0.2s;">
+                    <div class="relative mb-8">
+                        <div class="w-32 h-32 bg-gradient-to-br from-orange-500 to-amber-500 rounded-full flex items-center justify-center mx-auto" style="box-shadow: 0 0 30px rgba(249, 115, 22, 0.4);">
+                            <span class="text-4xl font-bold text-white">2</span>
+                        </div>
+                        <div class="absolute -top-2 -right-2 w-16 h-16 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center floating">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <h3 class="text-3xl font-bold text-gray-900 mb-4">Scan Pages</h3>
+                    <p class="text-gray-600 leading-relaxed text-lg">
+                        Use your camera to capture each page. Our advanced OCR technology extracts the text with remarkable accuracy, even handling complex layouts and fonts.
+                    </p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="text-center scroll-animate" style="animation-delay: 0.4s;">
+                    <div class="relative mb-8">
+                        <div class="w-32 h-32 bg-gradient-to-br from-yellow-500 to-lime-500 rounded-full flex items-center justify-center mx-auto" style="box-shadow: 0 0 30px rgba(234, 179, 8, 0.4);">
+                            <span class="text-4xl font-bold text-white">3</span>
+                        </div>
+                        <div class="absolute -top-2 -right-2 w-16 h-16 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full flex items-center justify-center floating">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h1m4 0h1m6-4a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <h3 class="text-3xl font-bold text-gray-900 mb-4">Listen & Enjoy</h3>
+                    <p class="text-gray-600 leading-relaxed text-lg">
+                        Your audiobook is generated automatically. Listen immediately with seamless playback, adjustable speed, and the ability to resume anywhere.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- App Showcase Section -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <!-- Left side - Features -->
+                <div class="scroll-animate">
+                    <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-8">
+                        Everything You Need for the <span class="text-gradient">Perfect Audiobook</span>
+                    </h2>
+                    <div class="space-y-6">
+                        <div class="flex items-start space-x-4 fade-in-up">
+                            <div class="w-10 h-10 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-900">PDF Upload Support</h3>
+                                <p class="text-gray-600">Upload entire PDF books for instant processing and conversion</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4 fade-in-up" style="animation-delay: 0.1s;">
+                            <div class="w-10 h-10 bg-gradient-to-br from-orange-500 to-amber-600 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-900">Smart Text Processing</h3>
+                                <p class="text-gray-600">Advanced OCR handles complex layouts, multiple fonts, and various languages</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4 fade-in-up" style="animation-delay: 0.2s;">
+                            <div class="w-10 h-10 bg-gradient-to-br from-yellow-500 to-lime-600 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-900">Background Audio Playback</h3>
+                                <p class="text-gray-600">Listen while the app is closed, with full media controls and resume functionality</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4 fade-in-up" style="animation-delay: 0.3s;">
+                            <div class="w-10 h-10 bg-gradient-to-br from-amber-500 to-orange-600 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-900">Cloud Sync & Storage</h3>
+                                <p class="text-gray-600">Access your audiobooks across all devices with automatic cloud synchronization</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right side - App mockup -->
+                <div class="relative scroll-animate">
+                    <div class="app-mockup rounded-3xl p-8 shadow-2xl">
+                        <div class="bg-white rounded-2xl p-8 h-96 flex flex-col items-center justify-center relative z-10">
+                            <img src="./assets/images/icon.png" alt="Leafcast App" class="w-32 h-32 rounded-3xl mb-6 shadow-2xl floating">
+                            <h3 class="text-2xl font-bold text-gray-900 mb-2">Leafcast App</h3>
+                            <p class="text-gray-600 text-center mb-6">Available on iOS and Android</p>
+                            <div class="flex space-x-4">
+                                <a href="https://apps.apple.com/us/app/leafcast/id6746976062" target="_blank" class="bg-gradient-to-r from-green-600 to-orange-600 text-white px-6 py-3 rounded-xl font-semibold hover:shadow-lg transition-all duration-300 hover:scale-105">
+                                    Download for iOS
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-20 bg-gradient-to-br from-gray-50 to-gray-100 relative overflow-hidden">
+        <!-- Background decorations -->
+        <div class="absolute inset-0 overflow-hidden">
+            <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-green-600/10 to-orange-600/10 transform skew-y-1"></div>
+            <div class="absolute bottom-0 right-0 w-full h-full bg-gradient-to-l from-yellow-600/10 to-amber-600/10 transform -skew-y-1"></div>
+        </div>
+
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16 scroll-animate">
+                <h2 class="text-4xl md:text-6xl font-bold mb-6 text-gray-900">
+                    Simple <span class="text-gradient">Credit Pricing</span>
+                </h2>
+                <p class="text-xl max-w-3xl mx-auto text-gray-600">
+                    Purchase credits to convert your book pages into audiobook chapters. One credit per page, no subscriptions required.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8 mb-12">
+                <!-- Basic Plan -->
+                <div class="bg-white rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 relative scroll-animate">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-gradient-to-r from-green-600 to-green-700 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.196-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Basic</h3>
+                        <div class="mb-6">
+                            <span class="text-5xl font-bold text-gray-900">$4</span>
+                            <span class="text-2xl text-gray-600">.99</span>
+                        </div>
+                        <div class="text-center mb-6">
+                            <div class="text-3xl font-bold text-green-600">75 Credits</div>
+                            <div class="text-gray-600">75 pages of narration</div>
+                        </div>
+                        <div class="text-gray-600 text-left space-y-3 mb-8">
+                            <div class="flex items-center">
+                                <svg class="w-5 h-5 text-green-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                Perfect for short books
+                            </div>
+                            <div class="flex items-center">
+                                <svg class="w-5 h-5 text-green-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                Access to all AI narrators
+                            </div>
+                            <div class="flex items-center">
+                                <svg class="w-5 h-5 text-green-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                Studio-quality audio
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Popular Plan -->
+                <div class="bg-white rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 relative border-4 border-orange-500 scroll-animate" style="animation-delay: 0.1s;">
+                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                        <span class="bg-orange-500 text-white px-6 py-2 rounded-full text-sm font-bold">MOST POPULAR</span>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-gradient-to-r from-orange-600 to-orange-700 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.196-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Popular</h3>
+                        <div class="mb-6">
+                            <span class="text-5xl font-bold text-gray-900">$9</span>
+                            <span class="text-2xl text-gray-600">.99</span>
+                        </div>
+                        <div class="text-center mb-6">
+                            <div class="text-3xl font-bold text-orange-600">200 Credits</div>
+                            <div class="text-gray-600">200 pages of narration</div>
+                        </div>
+                        <div class="text-gray-600 text-left space-y-3 mb-8">
+                            <div class="flex items-center">
+                                <svg class="w-5 h-5 text-green-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                Perfect for most books
+                            </div>
+                            <div class="flex items-center">
+                                <svg class="w-5 h-5 text-green-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                Access to all AI narrators
+                            </div>
+                            <div class="flex items-center">
+                                <svg class="w-5 h-5 text-green-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                Best value per credit
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Premium Plan -->
+                <div class="bg-white rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 relative scroll-animate" style="animation-delay: 0.2s;">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-gradient-to-r from-yellow-600 to-amber-700 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.196-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Premium</h3>
+                        <div class="mb-6">
+                            <span class="text-5xl font-bold text-gray-900">$19</span>
+                            <span class="text-2xl text-gray-600">.99</span>
+                        </div>
+                        <div class="text-center mb-6">
+                            <div class="text-3xl font-bold text-yellow-600">450 Credits</div>
+                            <div class="text-gray-600">450 pages of narration</div>
+                        </div>
+                        <div class="text-gray-600 text-left space-y-3 mb-8">
+                            <div class="flex items-center">
+                                <svg class="w-5 h-5 text-green-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                Perfect for large books
+                            </div>
+                            <div class="flex items-center">
+                                <svg class="w-5 h-5 text-green-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                Access to all AI narrators
+                            </div>
+                            <div class="flex items-center">
+                                <svg class="w-5 h-5 text-green-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                Maximum savings
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center scroll-animate">
+                <p class="text-lg text-gray-600 mb-8">
+                    Credits never expire • One-time purchase • No monthly subscriptions
+                </p>
+                <a href="https://apps.apple.com/us/app/leafcast/id6746976062" target="_blank" class="bg-gradient-to-r from-green-600 to-orange-600 text-white px-10 py-4 rounded-2xl font-semibold text-lg hover:shadow-lg transition-all duration-300 hover:scale-105 ripple-effect">
+                    Download & Start Converting
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="hero-gradient text-white py-20 relative overflow-hidden">
+        <!-- Floating background elements -->
+        <div class="absolute inset-0 overflow-hidden">
+            <div class="absolute top-20 left-10 w-72 h-72 bg-white/10 rounded-full blur-3xl floating"></div>
+            <div class="absolute bottom-20 right-10 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl floating" style="animation-delay: -3s;"></div>
+        </div>
+        
+        <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="scroll-animate">
+                <h2 class="text-4xl md:text-6xl font-bold mb-8">
+                    Ready to Transform Your Reading?
+                </h2>
+                <p class="text-xl mb-10 opacity-90 max-w-3xl mx-auto">
+                    Join thousands of readers who have discovered the joy of personalized audiobooks. 
+                    Download Leafcast today and turn any book into your next great listen.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-6 justify-center items-center mb-8">
+                    <a href="https://apps.apple.com/us/app/leafcast/id6746976062" target="_blank" class="bg-white text-green-700 px-10 py-4 rounded-2xl font-semibold text-lg hover:bg-gray-100 transition-all duration-300 shadow-2xl hover:shadow-green-500/25 hover:scale-105 ripple-effect flex items-center space-x-3">
+                        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+                        </svg>
+                        <span>Download for iOS</span>
+                    </a>
+                    <button class="glass-morphism text-white/70 px-10 py-4 rounded-2xl font-semibold text-lg transition-all duration-300 shadow-2xl cursor-not-allowed opacity-75 flex items-center space-x-3">
+                        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/>
+                        </svg>
+                        <span>Android Coming Soon</span>
+                    </button>
+                </div>
+                <p class="text-sm opacity-75">
+                    Free to download • Premium features available • No subscription required
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-3 mb-6">
+                        <img src="./assets/images/icon.png" alt="Leafcast Logo" class="w-10 h-10 rounded-lg">
+                        <span class="text-2xl font-bold">Leafcast</span>
+                    </div>
+                    <p class="text-gray-300 mb-4 leading-relaxed">
+                        Transform any book into a personalized audiobook with AI-powered narration.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-6 text-lg">Product</h4>
+                    <ul class="space-y-3 text-gray-300">
+                        <li><a href="#features" class="hover:text-white transition-colors duration-300">Features</a></li>
+                        <li><a href="#voices" class="hover:text-white transition-colors duration-300">Voices</a></li>
+                        <li><a href="#pricing" class="hover:text-white transition-colors duration-300">Pricing</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors duration-300">FAQ</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-6 text-lg">Support</h4>
+                    <ul class="space-y-3 text-gray-300">
+                        <li><a href="./support.html" class="hover:text-white transition-colors duration-300">Help Center</a></li>
+                        <li><a href="mailto:support@leafcast.app" class="hover:text-white transition-colors duration-300">Contact Us</a></li>
+                        <li><a href="./privacy.html" class="hover:text-white transition-colors duration-300">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-6 text-lg">Download</h4>
+                    <div class="space-y-4">
+                        <a href="https://apps.apple.com/us/app/leafcast/id6746976062" target="_blank" class="w-full bg-gray-800 hover:bg-gray-700 text-white px-6 py-3 rounded-xl transition-all duration-300 text-left flex items-center space-x-3 hover:scale-105">
+                            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+                            </svg>
+                            <span>iOS App Store</span>
+                        </a>
+                        <button class="w-full bg-gray-600 text-white/70 px-6 py-3 rounded-xl transition-all duration-300 text-left flex items-center space-x-3 cursor-not-allowed opacity-75">
+                            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/>
+                            </svg>
+                            <span>Android Coming Soon</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 Leafcast. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Audio elements for voice previews -->
+    <audio id="voice-alex" preload="none" src="./assets/voice-snippets/inworld-alex.mp3"></audio>
+    <audio id="voice-craig" preload="none" src="./assets/voice-snippets/inworld-craig.mp3"></audio>
+    <audio id="voice-edward" preload="none" src="./assets/voice-snippets/inworld-edward.mp3"></audio>
+    <audio id="voice-hades" preload="none" src="./assets/voice-snippets/inworld-hades.mp3"></audio>
+    <audio id="voice-dominus" preload="none" src="./assets/voice-snippets/inworld-dominus.mp3"></audio>
+    <audio id="voice-deborah" preload="none" src="./assets/voice-snippets/inworld-deborah.mp3"></audio>
+    <audio id="voice-olivia" preload="none" src="./assets/voice-snippets/inworld-olivia.mp3"></audio>
+    <audio id="voice-wendy" preload="none" src="./assets/voice-snippets/inworld-wendy.mp3"></audio>
+    <audio id="voice-pixie" preload="none" src="./assets/voice-snippets/inworld-pixie.mp3"></audio>
+
+    <!-- JavaScript -->
+    <script>
+        // Voice player functionality
+        let currentlyPlaying = null;
+
+        function playVoice(voiceName) {
+            // Stop any currently playing audio
+            if (currentlyPlaying) {
+                currentlyPlaying.pause();
+                currentlyPlaying.currentTime = 0;
+                const currentCard = document.querySelector(`[data-voice="${currentlyPlaying.dataset.voice}"]`);
+                const currentIndicator = currentCard.querySelector('.voice-playing-indicator');
+                currentCard.classList.remove('playing');
+                currentIndicator.style.opacity = '0';
+            }
+
+            const audio = document.getElementById(`voice-${voiceName}`);
+            const card = document.querySelector(`[data-voice="${voiceName}"]`);
+            const indicator = card.querySelector('.voice-playing-indicator');
+
+            if (currentlyPlaying === audio) {
+                // If clicking the same voice, stop it
+                currentlyPlaying = null;
+                return;
+            }
+
+            // Play the new voice
+            audio.dataset.voice = voiceName;
+            
+            // Set up one-time event listener for when audio ends
+            const handleAudioEnd = () => {
+                card.classList.remove('playing');
+                indicator.style.opacity = '0';
+                currentlyPlaying = null;
+                audio.removeEventListener('ended', handleAudioEnd);
+            };
+            
+            audio.addEventListener('ended', handleAudioEnd);
+            
+            // Start playing
+            audio.play().then(() => {
+                // Only add playing state if audio actually starts playing
+                card.classList.add('playing');
+                indicator.style.opacity = '1';
+                currentlyPlaying = audio;
+            }).catch((error) => {
+                console.log('Audio play failed:', error);
+                audio.removeEventListener('ended', handleAudioEnd);
+            });
+        }
+
+        // Scroll-triggered animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all scroll-animate elements
+        document.querySelectorAll('.scroll-animate').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add parallax effect to floating elements and navbar background change
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const navbar = document.getElementById('navbar');
+            const parallax = document.querySelectorAll('.floating');
+            
+            // Change navbar background based on scroll position
+            if (scrolled > window.innerHeight * 0.8) {
+                // Over light sections - add dark background
+                navbar.style.background = 'rgba(0, 0, 0, 0.9)';
+                navbar.style.backdropFilter = 'blur(16px) saturate(180%)';
+            } else {
+                // Over dark hero section - use original glass morphism
+                navbar.style.background = 'rgba(255, 255, 255, 0.1)';
+                navbar.style.backdropFilter = 'blur(16px) saturate(180%)';
+            }
+            
+            parallax.forEach(element => {
+                const speed = 0.5;
+                const yPos = -(scrolled * speed);
+                element.style.transform = `translateY(${yPos}px)`;
+            });
+        });
+
+        // Mobile menu functionality
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        let mobileMenuOpen = false;
+
+        function toggleMobileMenu(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            mobileMenuOpen = !mobileMenuOpen;
+            
+            if (mobileMenuOpen) {
+                // Show menu
+                mobileMenu.style.opacity = '1';
+                mobileMenu.style.visibility = 'visible';
+                mobileMenu.style.transform = 'translateY(0)';
+                
+                // Change burger to X
+                mobileMenuButton.innerHTML = `
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                `;
+                
+                // Add body scroll lock
+                document.body.style.overflow = 'hidden';
+            } else {
+                // Hide menu
+                mobileMenu.style.opacity = '0';
+                mobileMenu.style.visibility = 'invisible';
+                mobileMenu.style.transform = 'translateY(-8px)';
+                
+                // Change X back to burger
+                mobileMenuButton.innerHTML = `
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                `;
+                
+                // Remove body scroll lock
+                document.body.style.overflow = '';
+            }
+        }
+
+        // Toggle mobile menu on button click - use multiple event types for reliability
+        mobileMenuButton.addEventListener('click', toggleMobileMenu);
+        mobileMenuButton.addEventListener('touchend', function(e) {
+            e.preventDefault();
+            toggleMobileMenu(e);
+        });
+
+        // Close mobile menu when clicking on a menu item
+        document.querySelectorAll('.mobile-menu-item').forEach(item => {
+            item.addEventListener('click', (e) => {
+                if (mobileMenuOpen) {
+                    // Don't prevent default - let the link work
+                    // Just close the menu after a short delay
+                    setTimeout(() => {
+                        const fakeEvent = { preventDefault: () => {}, stopPropagation: () => {} };
+                        toggleMobileMenu(fakeEvent);
+                    }, 150); // Slightly longer delay to ensure navigation starts
+                }
+            });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (mobileMenuOpen && !mobileMenu.contains(e.target) && !mobileMenuButton.contains(e.target)) {
+                const fakeEvent = { preventDefault: () => {}, stopPropagation: () => {} };
+                toggleMobileMenu(fakeEvent);
+            }
+        });
+
+        // Close mobile menu on window resize if opened
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 768 && mobileMenuOpen) {
+                const fakeEvent = { preventDefault: () => {}, stopPropagation: () => {} };
+                toggleMobileMenu(fakeEvent);
+            }
+        });
+
+        // Initialize animations on load
+        window.addEventListener('load', () => {
+            // Trigger initial animations
+            setTimeout(() => {
+                document.querySelectorAll('.fade-in-up, .slide-in-left, .slide-in-right, .bounce-in').forEach(el => {
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0) translateX(0) scale(1)';
+                });
+            }, 100);
+        });
+    </script>
+</body>
+</html>

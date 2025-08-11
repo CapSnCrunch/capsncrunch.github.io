@@ -4,418 +4,355 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Privacy Policy - Leafcast</title>
-    <link rel="icon" type="image/png" href="icon.png">
+    <link rel="icon" type="image/png" href="./assets/images/icon.png">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom fonts -->
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        @font-face {
+            font-family: 'SpaceMono';
+            src: url('./assets/fonts/SpaceMono-Regular.ttf') format('truetype');
         }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background-color: #f8f9fa;
+        
+        /* Custom animations and gradients */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
         }
-
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 40px 20px;
+        
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
-
-        .header {
-            text-align: center;
-            margin-bottom: 50px;
+        
+        @keyframes fade-in-up {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
-
-        .app-icon {
-            width: 120px;
-            height: 120px;
-            border-radius: 24px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        
+        .hero-gradient {
+            background: linear-gradient(-45deg, #022c22, #451a03, #1a2e05, #431407, #052e16, #713f12);
+            background-size: 400% 400%;
+            animation: gradient-shift 15s ease infinite;
         }
-
-        .app-title {
-            font-size: 3rem;
-            font-weight: 700;
-            color: #2c3e50;
-            margin-bottom: 10px;
+        
+        .glass-morphism {
+            backdrop-filter: blur(16px) saturate(180%);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.125);
+            transition: background 0.3s ease, backdrop-filter 0.3s ease;
         }
-
-        .app-subtitle {
-            font-size: 1.2rem;
-            color: #7f8c8d;
-            margin-bottom: 20px;
+        
+        .floating {
+            animation: float 6s ease-in-out infinite;
         }
-
-        .last-updated {
-            font-size: 0.9rem;
-            color: #95a5a6;
-            font-style: italic;
+        
+        .fade-in-up {
+            animation: fade-in-up 0.8s ease-out;
         }
-
-        .support-section {
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-            margin-bottom: 30px;
+        
+        .text-gradient {
+            background: linear-gradient(45deg, #16a34a, #d97706);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-
-        .support-section h2 {
-            font-size: 1.5rem;
-            color: #2c3e50;
-            margin-bottom: 20px;
-            border-bottom: 2px solid #3498db;
-            padding-bottom: 10px;
+        
+        .feature-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.9) 100%);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
         }
-
-        .support-section h3 {
-            font-size: 1.2rem;
-            color: #2c3e50;
-            margin-top: 25px;
-            margin-bottom: 15px;
-            font-weight: 600;
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
         }
-
-        .support-section p {
-            margin-bottom: 15px;
-            color: #555;
-        }
-
-        .support-section ul {
-            margin: 15px 0 15px 20px;
-            color: #555;
-        }
-
-        .support-section li {
-            margin: 8px 0;
-        }
-
-        .summary {
-            background: linear-gradient(135deg, #3498db, #2980b9);
-            color: white;
-            padding: 25px;
-            border-radius: 12px;
-            margin-bottom: 30px;
-        }
-
-        .summary p {
-            color: white;
-            font-size: 1.1rem;
-        }
-
-        .toc {
-            background: #ecf0f1;
-            padding: 25px;
-            border-radius: 12px;
-            margin-bottom: 30px;
-        }
-
-        .toc h2 {
-            color: #2c3e50;
-            margin-bottom: 20px;
-            border-bottom: 2px solid #3498db;
-            padding-bottom: 10px;
-        }
-
-        .toc ul {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .toc li {
-            margin: 8px 0;
-        }
-
-        .toc a {
-            color: #3498db;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.2s ease;
-        }
-
-        .toc a:hover {
-            color: #2980b9;
-            text-decoration: underline;
-        }
-
-        a {
-            color: #3498db;
-            text-decoration: none;
-        }
-
-        a:hover {
-            color: #2980b9;
-            text-decoration: underline;
-        }
-
-        strong {
-            color: #2c3e50;
-        }
-
-        em {
-            color: #7f8c8d;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-            background: white;
-            border-radius: 8px;
+        
+        .contact-card {
+            background: linear-gradient(135deg, #16a34a 0%, #d97706 50%, #eab308 100%);
+            position: relative;
             overflow: hidden;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
         }
-
-        th, td {
-            border: 1px solid #ecf0f1;
-            padding: 12px;
-            text-align: left;
+        
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
         }
-
-        th {
-            background: #f8f9fa;
-            font-weight: 600;
-            color: #2c3e50;
+        
+        .summary-card {
+            background: linear-gradient(135deg, #10b981 0%, #f59e0b 100%);
+            position: relative;
+            overflow: hidden;
         }
-
-        .contact-info {
-            background: #3498db;
-            color: white;
-            padding: 25px;
-            border-radius: 12px;
-            text-align: center;
+        
+        .summary-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: rotate 15s linear infinite;
         }
-
-        .contact-info h2 {
-            border-bottom: 2px solid rgba(255, 255, 255, 0.3);
-            color: white;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-        }
-
-        .contact-info p {
-            color: white;
-            margin-bottom: 10px;
-        }
-
-        .contact-info a {
-            color: white;
-            font-weight: 600;
-        }
-
-        .contact-info a:hover {
-            color: #ecf0f1;
-        }
-
-        .contact-email {
-            font-size: 1.1rem;
-            font-weight: 600;
-        }
-
+        
         .highlight-box {
-            background: #e8f6f3;
-            border-left: 4px solid #1abc9c;
-            padding: 20px;
-            margin: 20px 0;
-            border-radius: 0 8px 8px 0;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(245, 158, 11, 0.1) 100%);
+            border-left: 4px solid;
+            border-image: linear-gradient(45deg, #10b981, #f59e0b) 1;
         }
-
-        .highlight-box p {
-            margin-bottom: 10px;
-            color: #2c3e50;
+        
+        .toc-card {
+            background: linear-gradient(135deg, rgba(132, 204, 22, 0.1) 0%, rgba(217, 119, 6, 0.1) 100%);
+            border: 2px solid;
+            border-image: linear-gradient(45deg, #84cc16, #d97706) 1;
         }
-
-        @media (max-width: 600px) {
-            .app-title {
-                font-size: 2.5rem;
-            }
-            
-            .container {
-                padding: 20px 15px;
-            }
-            
-            .support-section {
-                padding: 20px;
-            }
-
-            .summary, .contact-info {
-                padding: 20px;
-            }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Scroll-triggered animations */
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+        
+        .scroll-animate.animate {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
-<body>
-    <div class="container">
-        <div class="header">
-            <img src="icon.png" alt="Leafcast App Icon" class="app-icon">
-            <h1 class="app-title">Privacy Policy</h1>
-            <p class="app-subtitle">Leafcast - Your Personal Audio Library</p>
-            <p class="last-updated">Last updated: August 2, 2025</p>
-        </div>
-
-        <div class="summary">
-            <p>This Privacy Policy describes how Leafcast ("we," "us," or "our") collects, uses, and shares your personal information when you use our mobile application and services. We are committed to protecting your privacy and being transparent about our data practices.</p>
-        </div>
-
-        <div class="support-section">
-            <h2>Summary of Key Points</h2>
-            
-            <div class="highlight-box">
-                <p><strong>What personal information do we process?</strong> We may process personal information depending on how you interact with our services, including email addresses and payment information.</p>
-            </div>
-            
-            <div class="highlight-box">
-                <p><strong>Do we process any sensitive personal information?</strong> We do not process sensitive personal information.</p>
-            </div>
-            
-            <div class="highlight-box">
-                <p><strong>Do we collect any information from third parties?</strong> We do not collect any information from third parties.</p>
-            </div>
-            
-            <div class="highlight-box">
-                <p><strong>How do we process your information?</strong> We process your information to provide, improve, and administer our services, communicate with you, for security and fraud prevention, and to comply with law.</p>
-            </div>
-            
-            <div class="highlight-box">
-                <p><strong>How do we keep your information safe?</strong> We have adequate organizational and technical processes in place to protect your personal information.</p>
-            </div>
-            
-            <div class="highlight-box">
-                <p><strong>What are your rights?</strong> Depending on your location, you may have certain rights regarding your personal information.</p>
+<body class="bg-gradient-to-br from-green-50 to-orange-50 overflow-x-hidden">
+    <!-- Navigation -->
+    <nav class="glass-morphism fixed w-full z-50 border-b border-white/20" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-3">
+                    <img src="./assets/images/icon.png" alt="Leafcast Logo" class="w-8 h-8 rounded-lg">
+                    <span class="text-xl font-bold text-white">Leafcast</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="./leafcast-landing.html" class="text-white hover:text-gray-200 transition-colors duration-300">Home</a>
+                    <a href="./support.html" class="text-white hover:text-gray-200 transition-colors duration-300">Support</a>
+                    <button class="bg-white/20 backdrop-blur-sm text-white px-6 py-2 rounded-lg hover:bg-white/30 transition-all duration-300" style="box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);">
+                        Download App
+                    </button>
+                </div>
             </div>
         </div>
+    </nav>
 
-        <div class="toc">
-            <h2>Table of Contents</h2>
-            <ul>
-                <li><a href="#section1">1. What Information Do We Collect?</a></li>
-                <li><a href="#section2">2. How Do We Process Your Information?</a></li>
-                <li><a href="#section3">3. When and With Whom Do We Share Your Personal Information?</a></li>
-                <li><a href="#section4">4. Do We Offer Artificial Intelligence-Based Products?</a></li>
-                <li><a href="#section5">5. How Long Do We Keep Your Information?</a></li>
-                <li><a href="#section6">6. How Do We Keep Your Information Safe?</a></li>
-                <li><a href="#section7">7. What Are Your Privacy Rights?</a></li>
-                <li><a href="#section8">8. Controls for Do-Not-Track Features</a></li>
-                <li><a href="#section9">9. Do United States Residents Have Specific Privacy Rights?</a></li>
-                <li><a href="#section10">10. Do We Make Updates to This Notice?</a></li>
-                <li><a href="#section11">11. How Can You Contact Us About This Notice?</a></li>
-            </ul>
+    <!-- Hero Section -->
+    <section class="hero-gradient text-white pt-24 pb-16 relative overflow-hidden">
+        <!-- Floating background elements -->
+        <div class="absolute inset-0 overflow-hidden">
+            <div class="absolute top-20 left-10 w-72 h-72 bg-white/10 rounded-full blur-3xl floating"></div>
+            <div class="absolute top-40 right-10 w-96 h-96 bg-green-500/20 rounded-full blur-3xl floating" style="animation-delay: -2s;"></div>
+        </div>
+        
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <img src="./assets/images/icon.png" alt="Leafcast App Icon" class="w-32 h-32 mx-auto rounded-3xl shadow-2xl mb-8 floating">
+            <h1 class="text-5xl md:text-6xl font-bold mb-6">
+                <span class="text-gradient">Privacy Policy</span>
+            </h1>
+            <p class="text-xl md:text-2xl opacity-90 max-w-3xl mx-auto mb-4">
+                Leafcast - Your Personal Audio Library
+            </p>
+            <p class="text-lg opacity-75">Last updated: August 2, 2025</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <!-- Summary Section -->
+        <div class="summary-card rounded-3xl p-8 text-white mb-8 relative z-10 scroll-animate">
+            <p class="text-xl leading-relaxed relative z-10">This Privacy Policy describes how Leafcast ("we," "us," or "our") collects, uses, and shares your personal information when you use our mobile application and services. We are committed to protecting your privacy and being transparent about our data practices.</p>
         </div>
 
-        <section class="support-section" id="section1">
-            <h2>1. What Information Do We Collect?</h2>
+        <!-- Key Points Section -->
+        <div class="feature-card p-8 rounded-3xl mb-8 scroll-animate">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6 border-b-4 border-green-500 pb-3">Summary of Key Points</h2>
             
-            <h3>Personal information you disclose to us</h3>
-            <p><strong>In Short:</strong> <em>We collect personal information that you provide to us.</em></p>
+            <div class="space-y-6">
+                <div class="highlight-box p-6 rounded-xl">
+                    <p class="font-bold text-gray-900 mb-2">What personal information do we process?</p>
+                    <p class="text-gray-700">We may process personal information depending on how you interact with our services, including email addresses and payment information.</p>
+                </div>
+                
+                <div class="highlight-box p-6 rounded-xl">
+                    <p class="font-bold text-gray-900 mb-2">Do we process any sensitive personal information?</p>
+                    <p class="text-gray-700">We do not process sensitive personal information.</p>
+                </div>
+                
+                <div class="highlight-box p-6 rounded-xl">
+                    <p class="font-bold text-gray-900 mb-2">Do we collect any information from third parties?</p>
+                    <p class="text-gray-700">We do not collect any information from third parties.</p>
+                </div>
+                
+                <div class="highlight-box p-6 rounded-xl">
+                    <p class="font-bold text-gray-900 mb-2">How do we process your information?</p>
+                    <p class="text-gray-700">We process your information to provide, improve, and administer our services, communicate with you, for security and fraud prevention, and to comply with law.</p>
+                </div>
+                
+                <div class="highlight-box p-6 rounded-xl">
+                    <p class="font-bold text-gray-900 mb-2">How do we keep your information safe?</p>
+                    <p class="text-gray-700">We have adequate organizational and technical processes in place to protect your personal information.</p>
+                </div>
+                
+                <div class="highlight-box p-6 rounded-xl">
+                    <p class="font-bold text-gray-900 mb-2">What are your rights?</p>
+                    <p class="text-gray-700">Depending on your location, you may have certain rights regarding your personal information.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Table of Contents -->
+        <div class="toc-card p-8 rounded-3xl mb-8 scroll-animate">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6">Table of Contents</h2>
+            <div class="grid md:grid-cols-2 gap-4">
+                <ul class="space-y-3">
+                    <li><a href="#section1" class="text-green-600 hover:text-orange-600 transition-colors font-semibold">1. What Information Do We Collect?</a></li>
+                    <li><a href="#section2" class="text-green-600 hover:text-orange-600 transition-colors font-semibold">2. How Do We Process Your Information?</a></li>
+                    <li><a href="#section3" class="text-green-600 hover:text-orange-600 transition-colors font-semibold">3. When and With Whom Do We Share Your Personal Information?</a></li>
+                    <li><a href="#section4" class="text-green-600 hover:text-orange-600 transition-colors font-semibold">4. Do We Offer Artificial Intelligence-Based Products?</a></li>
+                    <li><a href="#section5" class="text-green-600 hover:text-orange-600 transition-colors font-semibold">5. How Long Do We Keep Your Information?</a></li>
+                    <li><a href="#section6" class="text-green-600 hover:text-orange-600 transition-colors font-semibold">6. How Do We Keep Your Information Safe?</a></li>
+                </ul>
+                <ul class="space-y-3">
+                    <li><a href="#section7" class="text-green-600 hover:text-orange-600 transition-colors font-semibold">7. What Are Your Privacy Rights?</a></li>
+                    <li><a href="#section8" class="text-green-600 hover:text-orange-600 transition-colors font-semibold">8. Controls for Do-Not-Track Features</a></li>
+                    <li><a href="#section9" class="text-green-600 hover:text-orange-600 transition-colors font-semibold">9. Do United States Residents Have Specific Privacy Rights?</a></li>
+                    <li><a href="#section10" class="text-green-600 hover:text-orange-600 transition-colors font-semibold">10. Do We Make Updates to This Notice?</a></li>
+                    <li><a href="#section11" class="text-green-600 hover:text-orange-600 transition-colors font-semibold">11. How Can You Contact Us About This Notice?</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Privacy Policy Sections -->
+        <section class="feature-card p-8 rounded-3xl mb-8 scroll-animate" id="section1">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6 border-b-4 border-orange-500 pb-3">1. What Information Do We Collect?</h2>
             
-            <p>We collect personal information that you voluntarily provide to us when you register on the services, express an interest in obtaining information about us or our products and services, when you participate in activities on the services, or otherwise when you contact us.</p>
+            <h3 class="text-xl font-bold text-gray-900 mb-4">Personal information you disclose to us</h3>
+            <p class="text-lg text-gray-700 mb-4"><strong>In Short:</strong> <em>We collect personal information that you provide to us.</em></p>
             
-            <p><strong>Personal Information Provided by You.</strong> The personal information we collect may include:</p>
-            <ul>
+            <p class="text-gray-700 mb-4 leading-relaxed">We collect personal information that you voluntarily provide to us when you register on the services, express an interest in obtaining information about us or our products and services, when you participate in activities on the services, or otherwise when you contact us.</p>
+            
+            <p class="text-gray-700 mb-4"><strong>Personal Information Provided by You.</strong> The personal information we collect may include:</p>
+            <ul class="list-disc list-inside text-gray-700 mb-4 ml-4">
                 <li>Email addresses</li>
             </ul>
             
-            <p><strong>Sensitive Information.</strong> We do not process sensitive information.</p>
+            <p class="text-gray-700 mb-4"><strong>Sensitive Information.</strong> We do not process sensitive information.</p>
             
-            <p><strong>Payment Data.</strong> We may collect data necessary to process your payment if you choose to make purchases, such as your payment instrument number and security code. All payment data is handled and stored by RevenueCat. You may find their privacy notice at: <a href="https://www.revenuecat.com/privacy/" target="_blank">https://www.revenuecat.com/privacy/</a></p>
+            <p class="text-gray-700 mb-4"><strong>Payment Data.</strong> We may collect data necessary to process your payment if you choose to make purchases, such as your payment instrument number and security code. All payment data is handled and stored by RevenueCat. You may find their privacy notice at: <a href="https://www.revenuecat.com/privacy/" target="_blank" class="text-green-600 hover:text-orange-600 transition-colors font-semibold">https://www.revenuecat.com/privacy/</a></p>
             
-            <p><strong>Application Data.</strong> If you use our application, we may collect the following information if you choose to provide us with access or permission:</p>
-            <ul>
+            <p class="text-gray-700 mb-4"><strong>Application Data.</strong> If you use our application, we may collect the following information if you choose to provide us with access or permission:</p>
+            <ul class="list-disc list-inside text-gray-700 mb-6 ml-4">
                 <li><strong>Mobile Device Access:</strong> We may request access to certain features from your mobile device, including your camera and storage. You can change our access or permissions in your device's settings.</li>
             </ul>
             
-            <h3>Google API</h3>
-            <p>Our use of information received from Google APIs will adhere to <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank">Google API Services User Data Policy</a>, including the <a href="https://developers.google.com/terms/api-services-user-data-policy#limited-use" target="_blank">Limited Use requirements</a>.</p>
+            <h3 class="text-xl font-bold text-gray-900 mb-4">Google API</h3>
+            <p class="text-gray-700">Our use of information received from Google APIs will adhere to <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" class="text-green-600 hover:text-orange-600 transition-colors font-semibold">Google API Services User Data Policy</a>, including the <a href="https://developers.google.com/terms/api-services-user-data-policy#limited-use" target="_blank" class="text-green-600 hover:text-orange-600 transition-colors font-semibold">Limited Use requirements</a>.</p>
         </section>
 
-        <section class="support-section" id="section2">
-            <h2>2. How Do We Process Your Information?</h2>
-            <p><strong>In Short:</strong> <em>We process your information to provide, improve, and administer our services, communicate with you, for security and fraud prevention, and to comply with law.</em></p>
+        <section class="feature-card p-8 rounded-3xl mb-8 scroll-animate" id="section2">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6 border-b-4 border-yellow-500 pb-3">2. How Do We Process Your Information?</h2>
+            <p class="text-lg text-gray-700 mb-4"><strong>In Short:</strong> <em>We process your information to provide, improve, and administer our services, communicate with you, for security and fraud prevention, and to comply with law.</em></p>
             
-            <p><strong>We process your personal information for a variety of reasons, including:</strong></p>
-            <ul>
+            <p class="text-gray-700 mb-4"><strong>We process your personal information for a variety of reasons, including:</strong></p>
+            <ul class="list-disc list-inside text-gray-700 ml-4 space-y-2">
                 <li><strong>To facilitate account creation and authentication:</strong> We may process your information so you can create and log in to your account, as well as keep your account in working order.</li>
                 <li><strong>To respond to user inquiries/offer support:</strong> We may process your information to respond to your inquiries and solve any potential issues you might have with the requested service.</li>
             </ul>
         </section>
 
-        <section class="support-section" id="section3">
-            <h2>3. When and With Whom Do We Share Your Personal Information?</h2>
-            <p><strong>In Short:</strong> <em>We may share information in specific situations described in this section and/or with specific third parties.</em></p>
+        <section class="feature-card p-8 rounded-3xl mb-8 scroll-animate" id="section3">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6 border-b-4 border-emerald-500 pb-3">3. When and With Whom Do We Share Your Personal Information?</h2>
+            <p class="text-lg text-gray-700 mb-4"><strong>In Short:</strong> <em>We may share information in specific situations described in this section and/or with specific third parties.</em></p>
             
-            <p>We may need to share your personal information in the following situations:</p>
-            <ul>
+            <p class="text-gray-700 mb-4">We may need to share your personal information in the following situations:</p>
+            <ul class="list-disc list-inside text-gray-700 ml-4">
                 <li><strong>Business Transfers:</strong> We may share or transfer your information in connection with, or during negotiations of, any merger, sale of company assets, financing, or acquisition of all or a portion of our business to another company.</li>
             </ul>
         </section>
 
-        <section class="support-section" id="section4">
-            <h2>4. Do We Offer Artificial Intelligence-Based Products?</h2>
-            <p><strong>In Short:</strong> <em>We offer products, features, or tools powered by artificial intelligence, machine learning, or similar technologies.</em></p>
+        <section class="feature-card p-8 rounded-3xl mb-8 scroll-animate" id="section4">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6 border-b-4 border-amber-500 pb-3">4. Do We Offer Artificial Intelligence-Based Products?</h2>
+            <p class="text-lg text-gray-700 mb-4"><strong>In Short:</strong> <em>We offer products, features, or tools powered by artificial intelligence, machine learning, or similar technologies.</em></p>
             
-            <p>As part of our services, we offer products, features, or tools powered by artificial intelligence, machine learning, or similar technologies (collectively, "AI Products"). These tools are designed to enhance your experience and provide you with innovative solutions.</p>
+            <p class="text-gray-700 mb-6 leading-relaxed">As part of our services, we offer products, features, or tools powered by artificial intelligence, machine learning, or similar technologies (collectively, "AI Products"). These tools are designed to enhance your experience and provide you with innovative solutions.</p>
             
-            <h3>Use of AI Technologies</h3>
-            <p>We provide the AI Products through third-party service providers ("AI Service Providers"), including Google Cloud AI and OpenAI. Your input, output, and personal information will be shared with and processed by these AI Service Providers to enable your use of our AI Products.</p>
+            <h3 class="text-xl font-bold text-gray-900 mb-4">Use of AI Technologies</h3>
+            <p class="text-gray-700 mb-6 leading-relaxed">We provide the AI Products through third-party service providers ("AI Service Providers"), including Google Cloud AI and OpenAI. Your input, output, and personal information will be shared with and processed by these AI Service Providers to enable your use of our AI Products.</p>
             
-            <h3>Our AI Products</h3>
-            <p>Our AI Products are designed for the following functions:</p>
-            <ul>
+            <h3 class="text-xl font-bold text-gray-900 mb-4">Our AI Products</h3>
+            <p class="text-gray-700 mb-4">Our AI Products are designed for the following functions:</p>
+            <ul class="list-disc list-inside text-gray-700 ml-4 space-y-2">
                 <li>Text analysis</li>
                 <li>Natural language processing</li>
             </ul>
         </section>
 
-        <section class="support-section" id="section5">
-            <h2>5. How Long Do We Keep Your Information?</h2>
-            <p><strong>In Short:</strong> <em>We keep your information for as long as necessary to fulfill the purposes outlined in this Privacy Notice unless otherwise required by law.</em></p>
+        <section class="feature-card p-8 rounded-3xl mb-8 scroll-animate" id="section5">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6 border-b-4 border-lime-500 pb-3">5. How Long Do We Keep Your Information?</h2>
+            <p class="text-lg text-gray-700 mb-4"><strong>In Short:</strong> <em>We keep your information for as long as necessary to fulfill the purposes outlined in this Privacy Notice unless otherwise required by law.</em></p>
             
-            <p>We will only keep your personal information for as long as it is necessary for the purposes set out in this Privacy Notice, unless a longer retention period is required or permitted by law. No purpose in this notice will require us keeping your personal information for longer than the period of time in which users have an account with us.</p>
+            <p class="text-gray-700 mb-4 leading-relaxed">We will only keep your personal information for as long as it is necessary for the purposes set out in this Privacy Notice, unless a longer retention period is required or permitted by law. No purpose in this notice will require us keeping your personal information for longer than the period of time in which users have an account with us.</p>
             
-            <p>When we have no ongoing legitimate business need to process your personal information, we will either delete or anonymize such information, or, if this is not possible, then we will securely store your personal information and isolate it from any further processing until deletion is possible.</p>
+            <p class="text-gray-700 leading-relaxed">When we have no ongoing legitimate business need to process your personal information, we will either delete or anonymize such information, or, if this is not possible, then we will securely store your personal information and isolate it from any further processing until deletion is possible.</p>
         </section>
 
-        <section class="support-section" id="section6">
-            <h2>6. How Do We Keep Your Information Safe?</h2>
-            <p><strong>In Short:</strong> <em>We aim to protect your personal information through a system of organizational and technical security measures.</em></p>
+        <section class="feature-card p-8 rounded-3xl mb-8 scroll-animate" id="section6">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6 border-b-4 border-green-500 pb-3">6. How Do We Keep Your Information Safe?</h2>
+            <p class="text-lg text-gray-700 mb-4"><strong>In Short:</strong> <em>We aim to protect your personal information through a system of organizational and technical security measures.</em></p>
             
-            <p>We have implemented appropriate and reasonable technical and organizational security measures designed to protect the security of any personal information we process. However, despite our safeguards and efforts to secure your information, no electronic transmission over the Internet or information storage technology can be guaranteed to be 100% secure, so we cannot promise or guarantee that hackers, cybercriminals, or other unauthorized third parties will not be able to defeat our security and improperly collect, access, steal, or modify your information.</p>
+            <p class="text-gray-700 leading-relaxed">We have implemented appropriate and reasonable technical and organizational security measures designed to protect the security of any personal information we process. However, despite our safeguards and efforts to secure your information, no electronic transmission over the Internet or information storage technology can be guaranteed to be 100% secure, so we cannot promise or guarantee that hackers, cybercriminals, or other unauthorized third parties will not be able to defeat our security and improperly collect, access, steal, or modify your information.</p>
         </section>
 
-        <section class="support-section" id="section7">
-            <h2>7. What Are Your Privacy Rights?</h2>
-            <p><strong>In Short:</strong> <em>You may review, change, or terminate your account at any time, depending on your country, province, or state of residence.</em></p>
+        <section class="feature-card p-8 rounded-3xl mb-8 scroll-animate" id="section7">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6 border-b-4 border-orange-500 pb-3">7. What Are Your Privacy Rights?</h2>
+            <p class="text-lg text-gray-700 mb-4"><strong>In Short:</strong> <em>You may review, change, or terminate your account at any time, depending on your country, province, or state of residence.</em></p>
             
-            <h3>Withdrawing your consent</h3>
-            <p>If we are relying on your consent to process your personal information, you have the right to withdraw your consent at any time. You can withdraw your consent at any time by contacting us using the contact details provided below.</p>
+            <h3 class="text-xl font-bold text-gray-900 mb-4">Withdrawing your consent</h3>
+            <p class="text-gray-700 mb-6 leading-relaxed">If we are relying on your consent to process your personal information, you have the right to withdraw your consent at any time. You can withdraw your consent at any time by contacting us using the contact details provided below.</p>
             
-            <h3>Account Information</h3>
-            <p>If you would at any time like to review or change the information in your account or terminate your account, you can log in to your account settings and update your user account.</p>
+            <h3 class="text-xl font-bold text-gray-900 mb-4">Account Information</h3>
+            <p class="text-gray-700 mb-4 leading-relaxed">If you would at any time like to review or change the information in your account or terminate your account, you can log in to your account settings and update your user account.</p>
             
-            <p>Upon your request to terminate your account, we will deactivate or delete your account and information from our active databases. However, we may retain some information in our files to prevent fraud, troubleshoot problems, assist with any investigations, enforce our legal terms and/or comply with applicable legal requirements.</p>
+            <p class="text-gray-700 mb-4 leading-relaxed">Upon your request to terminate your account, we will deactivate or delete your account and information from our active databases. However, we may retain some information in our files to prevent fraud, troubleshoot problems, assist with any investigations, enforce our legal terms and/or comply with applicable legal requirements.</p>
             
-            <p>If you have questions or comments about your privacy rights, you may email us at <a href="mailto:support@leafcast.app"><strong>support@leafcast.app</strong></a>.</p>
+            <p class="text-gray-700">If you have questions or comments about your privacy rights, you may email us at <a href="mailto:support@leafcast.app" class="text-green-600 hover:text-orange-600 transition-colors font-bold">support@leafcast.app</a>.</p>
         </section>
 
-        <section class="support-section" id="section8">
-            <h2>8. Controls for Do-Not-Track Features</h2>
-            <p>Most web browsers and some mobile operating systems and mobile applications include a Do-Not-Track ("DNT") feature or setting you can activate to signal your privacy preference not to have data about your online browsing activities monitored and collected. At this stage, no uniform technology standard for recognizing and implementing DNT signals has been finalized. As such, we do not currently respond to DNT browser signals or any other mechanism that automatically communicates your choice not to be tracked online.</p>
+        <section class="feature-card p-8 rounded-3xl mb-8 scroll-animate" id="section8">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6 border-b-4 border-yellow-500 pb-3">8. Controls for Do-Not-Track Features</h2>
+            <p class="text-gray-700 mb-4 leading-relaxed">Most web browsers and some mobile operating systems and mobile applications include a Do-Not-Track ("DNT") feature or setting you can activate to signal your privacy preference not to have data about your online browsing activities monitored and collected. At this stage, no uniform technology standard for recognizing and implementing DNT signals has been finalized. As such, we do not currently respond to DNT browser signals or any other mechanism that automatically communicates your choice not to be tracked online.</p>
             
-            <p>California law requires us to let you know how we respond to web browser DNT signals. Because there currently is not an industry or legal standard for recognizing or honoring DNT signals, we do not respond to them at this time.</p>
+            <p class="text-gray-700 leading-relaxed">California law requires us to let you know how we respond to web browser DNT signals. Because there currently is not an industry or legal standard for recognizing or honoring DNT signals, we do not respond to them at this time.</p>
         </section>
 
-        <section class="support-section" id="section9">
-            <h2>9. Do United States Residents Have Specific Privacy Rights?</h2>
-            <p><strong>In Short:</strong> <em>If you are a resident of California, Colorado, Connecticut, Delaware, Florida, Indiana, Iowa, Kentucky, Maryland, Minnesota, Montana, Nebraska, New Hampshire, New Jersey, Oregon, Rhode Island, Tennessee, Texas, Utah, or Virginia, you may have the right to request access to and receive details about the personal information we maintain about you and how we have processed it, correct inaccuracies, get a copy of, or delete your personal information.</em></p>
+        <section class="feature-card p-8 rounded-3xl mb-8 scroll-animate" id="section9">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6 border-b-4 border-emerald-500 pb-3">9. Do United States Residents Have Specific Privacy Rights?</h2>
+            <p class="text-lg text-gray-700 mb-6"><strong>In Short:</strong> <em>If you are a resident of California, Colorado, Connecticut, Delaware, Florida, Indiana, Iowa, Kentucky, Maryland, Minnesota, Montana, Nebraska, New Hampshire, New Jersey, Oregon, Rhode Island, Tennessee, Texas, Utah, or Virginia, you may have the right to request access to and receive details about the personal information we maintain about you and how we have processed it, correct inaccuracies, get a copy of, or delete your personal information.</em></p>
             
-            <h3>Your Rights</h3>
-            <p>You have rights under certain US state data protection laws. These rights include:</p>
-            <ul>
+            <h3 class="text-xl font-bold text-gray-900 mb-4">Your Rights</h3>
+            <p class="text-gray-700 mb-4">You have rights under certain US state data protection laws. These rights include:</p>
+            <ul class="list-disc list-inside text-gray-700 ml-4 space-y-2 mb-6">
                 <li><strong>Right to know</strong> whether or not we are processing your personal data</li>
                 <li><strong>Right to access</strong> your personal data</li>
                 <li><strong>Right to correct</strong> inaccuracies in your personal data</li>
@@ -425,28 +362,138 @@
                 <li><strong>Right to opt out</strong> of the processing of your personal data if it is used for targeted advertising</li>
             </ul>
             
-            <h3>How to Exercise Your Rights</h3>
-            <p>To exercise these rights, you can contact us by submitting a <a href="https://app.termly.io/notify/b22e99df-b603-4129-85e8-c0c6dac111da" target="_blank">data subject access request</a>, by emailing us at <a href="mailto:support@leafcast.app"><strong>support@leafcast.app</strong></a>, or by referring to the contact details at the bottom of this document.</p>
+            <h3 class="text-xl font-bold text-gray-900 mb-4">How to Exercise Your Rights</h3>
+            <p class="text-gray-700">To exercise these rights, you can contact us by submitting a <a href="https://app.termly.io/notify/b22e99df-b603-4129-85e8-c0c6dac111da" target="_blank" class="text-green-600 hover:text-orange-600 transition-colors font-semibold">data subject access request</a>, by emailing us at <a href="mailto:support@leafcast.app" class="text-green-600 hover:text-orange-600 transition-colors font-bold">support@leafcast.app</a>, or by referring to the contact details at the bottom of this document.</p>
         </section>
 
-        <section class="support-section" id="section10">
-            <h2>10. Do We Make Updates to This Notice?</h2>
-            <p><strong>In Short:</strong> <em>Yes, we will update this notice as necessary to stay compliant with relevant laws.</em></p>
+        <section class="feature-card p-8 rounded-3xl mb-8 scroll-animate" id="section10">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6 border-b-4 border-amber-500 pb-3">10. Do We Make Updates to This Notice?</h2>
+            <p class="text-lg text-gray-700 mb-4"><strong>In Short:</strong> <em>Yes, we will update this notice as necessary to stay compliant with relevant laws.</em></p>
             
-            <p>We may update this Privacy Notice from time to time. The updated version will be indicated by an updated "Revised" date at the top of this Privacy Notice. If we make material changes to this Privacy Notice, we may notify you either by prominently posting a notice of such changes or by directly sending you a notification. We encourage you to review this Privacy Notice frequently to be informed of how we are protecting your information.</p>
+            <p class="text-gray-700 leading-relaxed">We may update this Privacy Notice from time to time. The updated version will be indicated by an updated "Revised" date at the top of this Privacy Notice. If we make material changes to this Privacy Notice, we may notify you either by prominently posting a notice of such changes or by directly sending you a notification. We encourage you to review this Privacy Notice frequently to be informed of how we are protecting your information.</p>
         </section>
 
-        <section class="support-section" id="section11">
-            <h2>11. How Can You Contact Us About This Notice?</h2>
-            <p>If you have questions or comments about this notice, you may email us at the contact information provided below.</p>
+        <section class="feature-card p-8 rounded-3xl mb-8 scroll-animate" id="section11">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6 border-b-4 border-lime-500 pb-3">11. How Can You Contact Us About This Notice?</h2>
+            <p class="text-gray-700 leading-relaxed">If you have questions or comments about this notice, you may email us at the contact information provided below.</p>
         </section>
 
-        <div class="contact-info">
-            <h2>Contact Us</h2>
-            <p>If you have questions or comments about this privacy policy, need support, or want to exercise your privacy rights:</p>
-            <p class="contact-email"><a href="mailto:support@leafcast.app">support@leafcast.app</a></p>
-            <p>We typically respond within 24-48 hours.</p>
+        <!-- Contact Section -->
+        <div class="contact-card rounded-3xl p-8 text-white text-center relative z-10 scroll-animate">
+            <h2 class="text-3xl font-bold mb-4 relative z-10">Contact Us</h2>
+            <p class="text-xl mb-4 opacity-90 relative z-10">If you have questions or comments about this privacy policy, need support, or want to exercise your privacy rights:</p>
+            <a href="mailto:support@leafcast.app" class="text-2xl font-bold mb-4 block relative z-10 hover:text-gray-200 transition-colors">support@leafcast.app</a>
+            <p class="opacity-90 relative z-10">We typically respond within 24-48 hours.</p>
         </div>
     </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-3 mb-6">
+                        <img src="./assets/images/icon.png" alt="Leafcast Logo" class="w-10 h-10 rounded-lg">
+                        <span class="text-2xl font-bold">Leafcast</span>
+                    </div>
+                    <p class="text-gray-300 mb-4 leading-relaxed">
+                        Transform any book into a personalized audiobook with AI-powered narration.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-6 text-lg">Product</h4>
+                    <ul class="space-y-3 text-gray-300">
+                        <li><a href="./leafcast-landing.html#features" class="hover:text-white transition-colors duration-300">Features</a></li>
+                        <li><a href="./leafcast-landing.html#voices" class="hover:text-white transition-colors duration-300">Voices</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors duration-300">Pricing</a></li>
+                        <li><a href="./support.html" class="hover:text-white transition-colors duration-300">FAQ</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-6 text-lg">Support</h4>
+                    <ul class="space-y-3 text-gray-300">
+                        <li><a href="./support.html" class="hover:text-white transition-colors duration-300">Help Center</a></li>
+                        <li><a href="mailto:support@leafcast.app" class="hover:text-white transition-colors duration-300">Contact Us</a></li>
+                        <li><a href="./privacy.html" class="hover:text-white transition-colors duration-300">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors duration-300">Terms of Service</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-6 text-lg">Download</h4>
+                    <div class="space-y-4">
+                        <a href="https://apps.apple.com/us/app/leafcast/id6746976062" target="_blank" class="w-full bg-gray-800 hover:bg-gray-700 text-white px-6 py-3 rounded-xl transition-all duration-300 text-left flex items-center space-x-3 hover:scale-105">
+                            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+                            </svg>
+                            <span>iOS App Store</span>
+                        </a>
+                        <button class="w-full bg-gray-600 text-white/70 px-6 py-3 rounded-xl transition-all duration-300 text-left flex items-center space-x-3 cursor-not-allowed opacity-75">
+                            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/>
+                            </svg>
+                            <span>Android Coming Soon</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 Leafcast. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for scroll animations and navbar -->
+    <script>
+        // Scroll-triggered animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all scroll-animate elements
+        document.querySelectorAll('.scroll-animate').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Navbar background change on scroll
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const navbar = document.getElementById('navbar');
+            
+            if (scrolled > window.innerHeight * 0.5) {
+                navbar.style.background = 'rgba(0, 0, 0, 0.9)';
+                navbar.style.backdropFilter = 'blur(16px) saturate(180%)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.1)';
+                navbar.style.backdropFilter = 'blur(16px) saturate(180%)';
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>

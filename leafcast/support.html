@@ -4,204 +4,372 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Leafcast - Support</title>
-    <link rel="icon" type="image/png" href="icon.png">
+    <link rel="icon" type="image/png" href="./assets/images/icon.png">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom fonts -->
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        @font-face {
+            font-family: 'SpaceMono';
+            src: url('./assets/fonts/SpaceMono-Regular.ttf') format('truetype');
         }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background-color: #f8f9fa;
+        
+        /* Custom animations and gradients */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
         }
-
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 40px 20px;
+        
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
-
-        .header {
-            text-align: center;
-            margin-bottom: 50px;
+        
+        @keyframes fade-in-up {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
-
-        .app-icon {
-            width: 120px;
-            height: 120px;
-            border-radius: 24px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        
+        .hero-gradient {
+            background: linear-gradient(-45deg, #022c22, #451a03, #1a2e05, #431407, #052e16, #713f12);
+            background-size: 400% 400%;
+            animation: gradient-shift 15s ease infinite;
         }
-
-        .app-title {
-            font-size: 3rem;
-            font-weight: 700;
-            color: #2c3e50;
-            margin-bottom: 10px;
+        
+        .glass-morphism {
+            backdrop-filter: blur(16px) saturate(180%);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.125);
+            transition: background 0.3s ease, backdrop-filter 0.3s ease;
         }
-
-        .app-subtitle {
-            font-size: 1.2rem;
-            color: #7f8c8d;
-            margin-bottom: 30px;
+        
+        .floating {
+            animation: float 6s ease-in-out infinite;
         }
-
-        .support-section {
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-            margin-bottom: 30px;
+        
+        .fade-in-up {
+            animation: fade-in-up 0.8s ease-out;
         }
-
-        .support-section h2 {
-            font-size: 1.5rem;
-            color: #2c3e50;
-            margin-bottom: 20px;
-            border-bottom: 2px solid #3498db;
-            padding-bottom: 10px;
+        
+        .text-gradient {
+            background: linear-gradient(45deg, #16a34a, #d97706);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-
-        .support-section p {
-            margin-bottom: 15px;
-            color: #555;
+        
+        .feature-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.9) 100%);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
         }
-
-        .contact-info {
-            background: #3498db;
-            color: white;
-            padding: 25px;
-            border-radius: 12px;
-            text-align: center;
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
         }
-
-        .contact-info h2 {
-            border-bottom: 2px solid rgba(255, 255, 255, 0.3);
-            color: white;
+        
+        .contact-card {
+            background: linear-gradient(135deg, #16a34a 0%, #d97706 50%, #eab308 100%);
+            position: relative;
+            overflow: hidden;
         }
-
-        .contact-email {
-            font-size: 1.1rem;
-            font-weight: 500;
+        
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
         }
-
-        .faq-item {
-            margin-bottom: 20px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid #eee;
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
-
-        .faq-item:last-child {
-            border-bottom: none;
+        
+        /* Scroll-triggered animations */
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
         }
-
-        .faq-question {
-            font-weight: 600;
-            color: #2c3e50;
-            margin-bottom: 8px;
-        }
-
-        .faq-answer {
-            color: #555;
-        }
-
-        @media (max-width: 600px) {
-            .app-title {
-                font-size: 2.5rem;
-            }
-            
-            .container {
-                padding: 20px 15px;
-            }
-            
-            .support-section {
-                padding: 20px;
-            }
+        
+        .scroll-animate.animate {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
-<body>
-    <div class="container">
-        <div class="header">
-            <img src="icon.png" alt="Leafcast App Icon" class="app-icon">
-            <h1 class="app-title">Leafcast</h1>
-            <p class="app-subtitle">Your Personal Audio Library</p></p>
-        </div>
-
-        <div class="support-section">
-            <h2>About Leafcast</h2>
-            <p>Leafcast is for book lovers who want to listen to the books they already own. Turn your physical books into personal audiobooks, whether they're rare, out-of-print, or simply not available on other platforms.</p>
-            
-            <p><strong>We believe your bookshelf deserves a voice.</strong></p>
-            
-            <h3 style="margin-top: 25px; margin-bottom: 15px; color: #2c3e50;">Why Leafcast?</h3>
-            
-            <p><strong>Upload As You Go:</strong> No need to scan an entire book at once — add pages over time! Most books take minutes to upload and give you hours of listening.</p>
-            
-            <p><strong>No Subscriptions:</strong> Pay only for what you use. No monthly fees. No locked shelves.</p>
-            
-            <p><strong>Preserve What Matters:</strong> Keep your favorite paperbacks, journals, or heirloom texts alive in a new format.</p>
-            
-            <p><strong>Free Classic Library:</strong> Explore a curated collection of public domain works — available to listen anytime, for free.</p>
-            
-            <p><strong>Human-Like AI Voices:</strong> Clear, expressive narration designed for long-form listening.</p>
-            
-            <p><strong>Save Time, Keep Ownership:</strong> Revisit personal notes or niche finds on the go — without sacrificing your own collection.</p>
-            
-            <p>Whether you're listening to an obscure nonfiction title or preserving a fragile family memoir, Leafcast helps you take your library with you — without giving it up.</p>
-        </div>
-
-        <div class="support-section">
-            <h2>Frequently Asked Questions</h2>
-            
-            <div class="faq-item">
-                <div class="faq-question">How do I convert my physical books to audiobooks?</div>
-                <div class="faq-answer">Simply photograph or scan pages from your book using the Leafcast app. Our AI will convert the text to high-quality audio narration. You can upload pages individually over time — no need to scan entire books at once.</div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question">What types of books work best with Leafcast?</div>
-                <div class="faq-answer">Leafcast works with any printed text — from rare first editions and out-of-print books to personal journals, academic texts, and family heirlooms. Even handwritten notes can be converted to audio.</div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question">How much does it cost?</div>
-                <div class="faq-answer">There are no subscription fees or monthly charges. You only pay for the pages you convert to audio. We also offer a free library of public domain classics you can listen to anytime.</div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question">How long does it take to process my book pages?</div>
-                <div class="faq-answer">Most individual pages are processed within minutes. The exact time depends on text density and image quality, but you'll typically have your audio ready to listen very quickly.</div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question">What about copyright and my personal content?</div>
-                <div class="faq-answer">Your personal books and the audiobooks you create from them remain entirely yours. We don't share or distribute your content. Leafcast is designed for personal use of books you own.</div>
+<body class="bg-gradient-to-br from-green-50 to-orange-50 overflow-x-hidden">
+    <!-- Navigation -->
+    <nav class="glass-morphism fixed w-full z-50 border-b border-white/20" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-3">
+                    <img src="./assets/images/icon.png" alt="Leafcast Logo" class="w-8 h-8 rounded-lg">
+                    <span class="text-xl font-bold text-white">Leafcast</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="./leafcast-landing.html" class="text-white hover:text-gray-200 transition-colors duration-300">Home</a>
+                    <a href="./privacy.html" class="text-white hover:text-gray-200 transition-colors duration-300">Privacy</a>
+                    <button class="bg-white/20 backdrop-blur-sm text-white px-6 py-2 rounded-lg hover:bg-white/30 transition-all duration-300" style="box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);">
+                        Download App
+                    </button>
+                </div>
             </div>
         </div>
+    </nav>
 
-        <div class="support-section">
-            <h2>Privacy Policy</h2>
-            <p>We respect your privacy and are committed to protecting your personal information. Your books, audio content, and personal data are kept secure and private.</p>
-            <p>For our complete privacy policy, please <a href="privacy.html" style="color: #3498db; text-decoration: none;">read our full privacy policy here</a>.</p>
+    <!-- Hero Section -->
+    <section class="hero-gradient text-white pt-24 pb-16 relative overflow-hidden">
+        <!-- Floating background elements -->
+        <div class="absolute inset-0 overflow-hidden">
+            <div class="absolute top-20 left-10 w-72 h-72 bg-white/10 rounded-full blur-3xl floating"></div>
+            <div class="absolute top-40 right-10 w-96 h-96 bg-green-500/20 rounded-full blur-3xl floating" style="animation-delay: -2s;"></div>
+        </div>
+        
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <img src="./assets/images/icon.png" alt="Leafcast App Icon" class="w-32 h-32 mx-auto rounded-3xl shadow-2xl mb-8 floating">
+            <h1 class="text-5xl md:text-6xl font-bold mb-6">
+                Leafcast <span class="text-gradient">Support</span>
+            </h1>
+            <p class="text-xl md:text-2xl opacity-90 max-w-3xl mx-auto">
+                Your Personal Audio Library - Help & Support
+            </p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <!-- About Section -->
+        <div class="feature-card p-8 rounded-3xl mb-8 scroll-animate">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6 border-b-4 border-green-500 pb-3">About Leafcast</h2>
+            <p class="text-gray-700 mb-4 text-lg leading-relaxed">Leafcast is for book lovers who want to listen to the books they already own. Turn your physical books into personal audiobooks, whether they're rare, out-of-print, or simply not available on other platforms.</p>
+            
+            <p class="text-xl font-bold text-green-700 mb-6">We believe your bookshelf deserves a voice.</p>
+            
+            <h3 class="text-2xl font-bold text-gray-900 mb-4 text-gradient">Why Leafcast?</h3>
+            
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="space-y-4">
+                    <div class="border-l-4 border-green-500 pl-4">
+                        <p class="font-bold text-gray-900">Upload As You Go:</p>
+                        <p class="text-gray-700">No need to scan an entire book at once — add pages over time! Most books take minutes to upload and give you hours of listening.</p>
+                    </div>
+                    
+                    <div class="border-l-4 border-orange-500 pl-4">
+                        <p class="font-bold text-gray-900">No Subscriptions:</p>
+                        <p class="text-gray-700">Pay only for what you use. No monthly fees. No locked shelves.</p>
+                    </div>
+                    
+                    <div class="border-l-4 border-yellow-500 pl-4">
+                        <p class="font-bold text-gray-900">Preserve What Matters:</p>
+                        <p class="text-gray-700">Keep your favorite paperbacks, journals, or heirloom texts alive in a new format.</p>
+                    </div>
+                </div>
+                
+                <div class="space-y-4">
+                    <div class="border-l-4 border-emerald-500 pl-4">
+                        <p class="font-bold text-gray-900">Free Classic Library:</p>
+                        <p class="text-gray-700">Explore a curated collection of public domain works — available to listen anytime, for free.</p>
+                    </div>
+                    
+                    <div class="border-l-4 border-amber-500 pl-4">
+                        <p class="font-bold text-gray-900">Human-Like AI Voices:</p>
+                        <p class="text-gray-700">Clear, expressive narration designed for long-form listening.</p>
+                    </div>
+                    
+                    <div class="border-l-4 border-lime-500 pl-4">
+                        <p class="font-bold text-gray-900">Save Time, Keep Ownership:</p>
+                        <p class="text-gray-700">Revisit personal notes or niche finds on the go — without sacrificing your own collection.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <p class="text-gray-700 mt-6 text-lg leading-relaxed">Whether you're listening to an obscure nonfiction title or preserving a fragile family memoir, Leafcast helps you take your library with you — without giving it up.</p>
         </div>
 
-        <div class="support-section">
-            <h2>Terms of Service</h2>
-            <p>By using Leafcast, you agree to our terms of service. We provide the app "as is" and continuously work to improve your experience. Please use the app responsibly and respect intellectual property rights when converting books you own.</p>
+        <!-- FAQ Section -->
+        <div class="feature-card p-8 rounded-3xl mb-8 scroll-animate">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6 border-b-4 border-orange-500 pb-3">Frequently Asked Questions</h2>
+            
+            <div class="space-y-6">
+                <div class="border-b border-gray-200 pb-6">
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">How do I convert my physical books to audiobooks?</h3>
+                    <p class="text-gray-700 leading-relaxed">Simply photograph or scan pages from your book using the Leafcast app. Our AI will convert the text to high-quality audio narration. You can upload pages individually over time — no need to scan entire books at once.</p>
+                </div>
+
+                <div class="border-b border-gray-200 pb-6">
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">What types of books work best with Leafcast?</h3>
+                    <p class="text-gray-700 leading-relaxed">Leafcast works with any printed text — from rare first editions and out-of-print books to personal journals, academic texts, and family heirlooms. Even handwritten notes can be converted to audio.</p>
+                </div>
+
+                <div class="border-b border-gray-200 pb-6">
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">How much does it cost?</h3>
+                    <p class="text-gray-700 leading-relaxed">There are no subscription fees or monthly charges. You only pay for the pages you convert to audio. We also offer a free library of public domain classics you can listen to anytime.</p>
+                </div>
+
+                <div class="border-b border-gray-200 pb-6">
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">How long does it take to process my book pages?</h3>
+                    <p class="text-gray-700 leading-relaxed">Most individual pages are processed within minutes. The exact time depends on text density and image quality, but you'll typically have your audio ready to listen very quickly.</p>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">What about copyright and my personal content?</h3>
+                    <p class="text-gray-700 leading-relaxed">Your personal books and the audiobooks you create from them remain entirely yours. We don't share or distribute your content. Leafcast is designed for personal use of books you own.</p>
+                </div>
+            </div>
         </div>
 
-        <div class="contact-info">
-            <h2>Contact Support</h2>
-            <p>Need help or have questions? We're here to assist you!</p>
-            <p class="contact-email">support@leafcast.app</p>
-            <p>We typically respond within 24-48 hours.</p>
+        <!-- Privacy & Terms Section -->
+        <div class="grid md:grid-cols-2 gap-8 mb-8">
+            <div class="feature-card p-8 rounded-3xl scroll-animate">
+                <h2 class="text-2xl font-bold text-gray-900 mb-4 border-b-4 border-yellow-500 pb-3">Privacy Policy</h2>
+                <p class="text-gray-700 mb-4">We respect your privacy and are committed to protecting your personal information. Your books, audio content, and personal data are kept secure and private.</p>
+                <a href="./privacy.html" class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-green-600 to-orange-600 text-white rounded-xl font-semibold hover:shadow-lg transition-all duration-300 hover:scale-105">
+                    Read Full Privacy Policy
+                    <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </a>
+            </div>
+
+            <div class="feature-card p-8 rounded-3xl scroll-animate">
+                <h2 class="text-2xl font-bold text-gray-900 mb-4 border-b-4 border-emerald-500 pb-3">Terms of Service</h2>
+                <p class="text-gray-700 mb-4">By using Leafcast, you agree to our terms of service. We provide the app "as is" and continuously work to improve your experience. Please use the app responsibly and respect intellectual property rights when converting books you own.</p>
+                <button class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-emerald-600 to-amber-600 text-white rounded-xl font-semibold hover:shadow-lg transition-all duration-300 hover:scale-105">
+                    View Terms
+                    <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Contact Section -->
+        <div class="contact-card rounded-3xl p-8 text-white text-center relative z-10 scroll-animate">
+            <h2 class="text-3xl font-bold mb-4 relative z-10">Contact Support</h2>
+            <p class="text-xl mb-4 opacity-90 relative z-10">Need help or have questions? We're here to assist you!</p>
+            <a href="mailto:support@leafcast.app" class="text-2xl font-bold mb-4 block relative z-10 hover:text-gray-200 transition-colors">support@leafcast.app</a>
+            <p class="opacity-90 relative z-10">We typically respond within 24-48 hours.</p>
         </div>
     </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-3 mb-6">
+                        <img src="./assets/images/icon.png" alt="Leafcast Logo" class="w-10 h-10 rounded-lg">
+                        <span class="text-2xl font-bold">Leafcast</span>
+                    </div>
+                    <p class="text-gray-300 mb-4 leading-relaxed">
+                        Transform any book into a personalized audiobook with AI-powered narration.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-6 text-lg">Product</h4>
+                    <ul class="space-y-3 text-gray-300">
+                        <li><a href="./leafcast-landing.html#features" class="hover:text-white transition-colors duration-300">Features</a></li>
+                        <li><a href="./leafcast-landing.html#voices" class="hover:text-white transition-colors duration-300">Voices</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors duration-300">Pricing</a></li>
+                        <li><a href="./support.html" class="hover:text-white transition-colors duration-300">FAQ</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-6 text-lg">Support</h4>
+                    <ul class="space-y-3 text-gray-300">
+                        <li><a href="./support.html" class="hover:text-white transition-colors duration-300">Help Center</a></li>
+                        <li><a href="mailto:support@leafcast.app" class="hover:text-white transition-colors duration-300">Contact Us</a></li>
+                        <li><a href="./privacy.html" class="hover:text-white transition-colors duration-300">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors duration-300">Terms of Service</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-6 text-lg">Download</h4>
+                    <div class="space-y-4">
+                        <a href="https://apps.apple.com/us/app/leafcast/id6746976062" target="_blank" class="w-full bg-gray-800 hover:bg-gray-700 text-white px-6 py-3 rounded-xl transition-all duration-300 text-left flex items-center space-x-3 hover:scale-105">
+                            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+                            </svg>
+                            <span>iOS App Store</span>
+                        </a>
+                        <button class="w-full bg-gray-600 text-white/70 px-6 py-3 rounded-xl transition-all duration-300 text-left flex items-center space-x-3 cursor-not-allowed opacity-75">
+                            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/>
+                            </svg>
+                            <span>Android Coming Soon</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 Leafcast. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for scroll animations and navbar -->
+    <script>
+        // Scroll-triggered animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all scroll-animate elements
+        document.querySelectorAll('.scroll-animate').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Navbar background change on scroll
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const navbar = document.getElementById('navbar');
+            
+            if (scrolled > window.innerHeight * 0.5) {
+                navbar.style.background = 'rgba(0, 0, 0, 0.9)';
+                navbar.style.backdropFilter = 'blur(16px) saturate(180%)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.1)';
+                navbar.style.backdropFilter = 'blur(16px) saturate(180%)';
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
