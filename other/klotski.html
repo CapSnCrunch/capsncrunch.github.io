@@ -115,6 +115,17 @@
             background-color: #444;
         }
 
+        .control-button.active {
+            background-color: #4CAF50;
+            border-color: #45a049;
+        }
+
+        .control-slider {
+            width: 100px;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+
         .key {
             background-color: #333;
             color: #fff;
@@ -136,6 +147,33 @@
         #graph {
             width: 100%;
             height: 100%;
+        }
+
+        .histogram-labels {
+            position: absolute;
+            bottom: 125px;
+            left: 0;
+            right: 0;
+            pointer-events: none;
+            z-index: 10;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 100px;
+        }
+
+        .label-left {
+            color: white;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .label-right {
+            color: white;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            opacity: 0.9;
         }
     </style>
 
@@ -160,17 +198,16 @@
                 </div>
                 <div class="control-item">
                     <label for="solutions-toggle">Show Solutions:</label>
-                    <select id="solutions-toggle" class="control-select">
-                        <option value="0">Invisible</option>
-                        <option value="1">Visible</option>
-                    </select>
+                    <button id="solutions-toggle" class="control-button">Invisible</button>
                 </div>
                 <div class="control-item">
                     <label for="path-toggle">Shortest Path:</label>
-                    <select id="path-toggle" class="control-select">
-                        <option value="0">Invisible</option>
-                        <option value="1">Visible</option>
-                    </select>
+                    <button id="path-toggle" class="control-button">Invisible</button>
+                </div>
+                <div class="control-item">
+                    <label for="scale-slider">Scale:</label>
+                    <input type="range" id="scale-slider" class="control-slider" min="0.5" max="3" step="0.1" value="1">
+                    <span id="scale-value">1.0x</span>
                 </div>
                 
                 <div class="controls">
@@ -187,6 +224,10 @@
         
         <div class="graph-container">
             <canvas id="graph"></canvas>
+            <div class="histogram-labels">
+                <div class="label-left">← closer to solution</div>
+                <div class="label-right">farther from solution →</div>
+            </div>
         </div>
     </div>
 
@@ -199,8 +240,14 @@
         function initializeControls() {
             // Initialize controls with current config values
             document.getElementById('color-toggle').value = config.colors.select;
-            document.getElementById('solutions-toggle').value = config.solutions.select;
-            document.getElementById('path-toggle').value = config.path.select;
+            updateToggleButton('solutions-toggle', config.solutions.select);
+            updateToggleButton('path-toggle', config.path.select);
+            
+            // Initialize scale slider
+            const scaleSlider = document.getElementById('scale-slider');
+            const scaleValue = document.getElementById('scale-value');
+            scaleSlider.value = config.scale.value;
+            scaleValue.textContent = config.scale.value.toFixed(1) + 'x';
             
             // Add event listeners for controls
             document.getElementById('color-toggle').addEventListener('change', function() {
@@ -208,15 +255,31 @@
                 render();
             });
             
-            document.getElementById('solutions-toggle').addEventListener('change', function() {
-                config.solutions.select = parseInt(this.value);
+            document.getElementById('solutions-toggle').addEventListener('click', function() {
+                config.solutions.select = config.solutions.select === 0 ? 1 : 0;
+                updateToggleButton('solutions-toggle', config.solutions.select);
                 render();
             });
             
-            document.getElementById('path-toggle').addEventListener('change', function() {
-                config.path.select = parseInt(this.value);
+            document.getElementById('path-toggle').addEventListener('click', function() {
+                config.path.select = config.path.select === 0 ? 1 : 0;
+                updateToggleButton('path-toggle', config.path.select);
                 render();
             });
+            
+            // Add scale slider event listener
+            scaleSlider.addEventListener('input', function() {
+                config.scale.value = parseFloat(this.value);
+                scaleValue.textContent = config.scale.value.toFixed(1) + 'x';
+                render();
+            });
+        }
+
+        function updateToggleButton(buttonId, value) {
+            const button = document.getElementById(buttonId);
+            const isActive = value === 1;
+            button.textContent = isActive ? 'Visible' : 'Invisible';
+            button.classList.toggle('active', isActive);
         }
 
         // Try to initialize immediately, or wait for config to be available

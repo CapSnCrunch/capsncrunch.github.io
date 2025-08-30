@@ -1,5 +1,5 @@
 import { renderBoard } from './renderBoard.js';
-import { renderGraph, setupGraphEventListeners, getHash, setHash } from './graph.js';
+import { renderGraph, setupGraphEventListeners, getHash, setHash, getGraphState } from './graph.js';
 import { setupBoardEventListeners, setBoardString } from './board.js';
 import { loadKlotskiData } from './dataLoader.js';
 import { color_wheel } from './utils.js';
@@ -12,6 +12,8 @@ window.config = {
     colors: {options:["Distance from Start", "Distance from Solution", "Off"], select:0},
     solutions: {options:["Invisible", "Visible"], select:0},
     path: {options:["Invisible", "Visible"], select:0},
+    highlightDistance: {value: -1, enabled: false}, // -1 means no highlighting
+    scale: {value: 1.0}, // Generic scale for both nodes and edges
 };
 
 // Global variables that need to be accessible
@@ -28,6 +30,9 @@ let edgeWidth = 0.5;
 let otherNodeRadius = 2;
 let currentNodeRadius = 12;
 let solutionNodeRadius = 6;
+
+// Add hover position tracking
+let histogramHoverX = -1; // -1 means no hover (changed from Y to X for bottom positioning)
 
 // Initialize the application
 async function init() {
@@ -139,8 +144,46 @@ function setup_board() {
         }
     );
     
+    // Setup histogram mouse interaction
+    setupHistogramInteraction();
+    
     // Initial board update for current hash
     updateBoardForHash(hash);
+}
+
+function setupHistogramInteraction() {
+    graphcanvas.addEventListener('mousemove', (e) => {
+        const rect = graphcanvas.getBoundingClientRect();
+        const scaleX = graphcanvas.width / rect.width;
+        const scaleY = graphcanvas.height / rect.height;
+        const x = (e.clientX - rect.left) * scaleX;
+        const y = (e.clientY - rect.top) * scaleY;
+        
+        // Check if mouse is in histogram area (bottom of canvas)
+        const histogramHeight = 100; // Height of histogram at bottom
+        if (y > h - histogramHeight) { // Histogram is at bottom
+            const l = histogram_solutions.length;
+            const distance = Math.floor((x / w) * l); // Remove the flip: use x instead of (w - x)
+            
+            // Ensure distance is within valid range
+            if (distance >= 0 && distance < l) {
+                config.highlightDistance.value = distance;
+                config.highlightDistance.enabled = true;
+                histogramHoverX = x; // Store the hover X position
+            } else {
+                config.highlightDistance.enabled = false;
+                histogramHoverX = -1;
+            }
+        } else {
+            config.highlightDistance.enabled = false;
+            histogramHoverX = -1;
+        }
+    });
+    
+    graphcanvas.addEventListener('mouseleave', () => {
+        config.highlightDistance.enabled = false;
+        histogramHoverX = -1;
+    });
 }
 
 function render_histogram(){
@@ -152,6 +195,8 @@ function render_histogram(){
         max = Math.max(max, hns+hs);
     }
 
+    const histogramHeight = 100; // Height of histogram at bottom
+    
     graphctx.globalAlpha = 1;
     for(var i = 0; i < l+1; i++){
         var hns= histogram_non_solutions[i];
@@ -159,35 +204,62 @@ function render_histogram(){
         // Add safety check for nodes[hash]
         var dark = (nodes[hash] && i == nodes[hash].dist) ? 0.5 : 1;
         graphctx.fillStyle = color_wheel(i, dark);
-        var bar_width = (hns+hs)*300/max;
-        graphctx.fillRect(w-bar_width, h*i/l, bar_width, h/l+1);
+        var bar_width = (hns+hs)*histogramHeight/max;
+        var bar_x = (w * (l - i)) / l; // Flip horizontally: use (l - i) instead of i
+        graphctx.fillRect(bar_x, h - bar_width, w/l, bar_width);
 
         hs = histogram_solutions[i-1];
         dark = (nodes[hash] && i-1 == nodes[hash].dist) ? 0.25 : 0.5;
         graphctx.fillStyle = color_wheel(i-1, dark);
-        bar_width = hs*300/max;
-        graphctx.fillRect(w-bar_width, h*(i-1)/l, bar_width, h/l+1);
+        bar_width = hs*histogramHeight/max;
+        var prev_bar_x = (w * (l - (i-1))) / l; // Flip horizontally: use (l - (i-1)) instead of (i-1)
+        graphctx.fillRect(prev_bar_x, h - bar_width, w/l, bar_width);
+    }
+    
+    // Draw hover line if hovering over histogram
+    if (histogramHoverX >= 0) {
+        graphctx.strokeStyle = "white";
+        graphctx.lineWidth = 1;
+        graphctx.globalAlpha = 0.8;
+        graphctx.beginPath();
+        graphctx.moveTo(histogramHoverX, h - histogramHeight);
+        graphctx.lineTo(histogramHoverX, h);
+        graphctx.stroke();
+        graphctx.globalAlpha = 1;
     }
 }
 
 function render_graph(){
+    // Scale edges more conservatively than nodes
+    const edgeScale = config.scale.value;
+    const nodeScale = config.scale.value * 1.5; // Nodes scale 1.5x more than edges
+    
+    // Don't apply zoom scaling - let the coordinate system handle it naturally
+    const finalEdgeScale = edgeScale;
+    const finalNodeScale = nodeScale;
+    
     renderGraph(
         graphctx, 
         nodes, 
         config, 
         w, 
         h, 
-        edgeWidth, 
-        solutionNodeRadius, 
-        currentNodeRadius, 
-        otherNodeRadius
+        edgeWidth * finalEdgeScale, 
+        solutionNodeRadius * finalNodeScale, 
+        currentNodeRadius * finalNodeScale, 
+        otherNodeRadius * finalNodeScale
     );
+}
+
+// Add a render function that can be called from HTML controls
+function render(){
+    render_graph();
+    render_histogram();
 }
 
 function animate(){
     requestAnimationFrame(animate);
-    render_graph();
-    render_histogram();
+    render();
 }
 
 // Add this new function to handle window resizing

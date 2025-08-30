@@ -28,6 +28,13 @@ function get_node_coordinates(hash, nodes, alpha, beta, ox, oy, zoom, w, h) {
     nodes[hash].screen_y = (y_rotated - oy) / zoom + h / 2;
 }
 
+// Function to calculate zoom-scaled node radius
+function getScaledRadius(baseRadius, zoom) {
+    // Compensate for the coordinate scaling by multiplying radius by zoom
+    // This will make nodes appear larger when zoomed in
+    return baseRadius * zoom;
+}
+
 /* Render graph within a canvas given the following parameters:
     graphctx: the canvas context to render the graph on
     nodes: the nodes data structure
@@ -77,8 +84,8 @@ function renderGraph(graphctx, nodes, config, w, h, edgeWidth, solutionNodeRadiu
             graphctx.stroke();
         }
         
-        // Render all nodes as circles
-        let nodeRadius = 1; // Default radius for regular nodes
+        // Render all nodes as circles - use the pre-scaled radii passed in
+        let nodeRadius = otherNodeRadius; // Default radius for regular nodes
         
         // Determine node color based on the same logic as edges
         let nodeColor;
@@ -92,6 +99,12 @@ function renderGraph(graphctx, nodes, config, w, h, edgeWidth, solutionNodeRadiu
             nodeColor = "white";
         }
         
+        // Special styling for highlighted distance nodes (from histogram hover)
+        if(config.highlightDistance.enabled && node.solution_dist == config.highlightDistance.value){
+            nodeRadius = solutionNodeRadius;
+            nodeColor = "white";
+        }
+        
         // Special styling for current position
         if(name == hash){
             nodeRadius = currentNodeRadius;
@@ -101,9 +114,12 @@ function renderGraph(graphctx, nodes, config, w, h, edgeWidth, solutionNodeRadiu
             else if(config.colors.select == 1) innerColor = color_wheel(node.solution_dist);
             else innerColor = "gray";
             
+            // Use the scaled inner radius (6 * scale)
+            let innerRadius = 6 * (config.scale ? config.scale.value : 1) * 1.5; // Apply same scaling as nodes
+            
             graphctx.fillStyle = innerColor;
             graphctx.beginPath();
-            graphctx.arc(node.screen_x, node.screen_y, 6, 0, 2*Math.PI);
+            graphctx.arc(node.screen_x, node.screen_y, innerRadius, 0, 2*Math.PI);
             graphctx.fill();
             // Draw outer ring (outline) for current position
             graphctx.strokeStyle = "white";
@@ -115,7 +131,6 @@ function renderGraph(graphctx, nodes, config, w, h, edgeWidth, solutionNodeRadiu
             graphctx.lineWidth = edgeWidth;
         } else {
             // Fill other nodes normally
-            nodeRadius = otherNodeRadius;
             graphctx.fillStyle = nodeColor;
             graphctx.beginPath();
             graphctx.arc(node.screen_x, node.screen_y, nodeRadius, 0, 2*Math.PI);
@@ -126,20 +141,30 @@ function renderGraph(graphctx, nodes, config, w, h, edgeWidth, solutionNodeRadiu
     // Render solution path if enabled
     if(config.path.select == 1){
         var curr_node = nodes[hash];
-        while(curr_node.solution_dist != 0){
-            for(i in curr_node.neighbors){
-                var neighbor = nodes[curr_node.neighbors[i]];
-                if(neighbor.solution_dist < curr_node.solution_dist){
+        // Add safety check to ensure curr_node exists
+        if(curr_node){
+            // Set up white stroke for the path
+            graphctx.strokeStyle = "white";
+            graphctx.lineWidth = 3; // Make the path more visible
+            
+            while(curr_node.solution_dist != 0){
+                for(var i in curr_node.neighbors){
+                    var neighbor = nodes[curr_node.neighbors[i]];
+                    if(neighbor.solution_dist < curr_node.solution_dist){
 
-                    graphctx.beginPath();
-                    graphctx.moveTo(curr_node.screen_x, curr_node.screen_y);
-                    graphctx.lineTo(neighbor.screen_x, neighbor.screen_y);
-                    graphctx.stroke();
+                        graphctx.beginPath();
+                        graphctx.moveTo(curr_node.screen_x, curr_node.screen_y);
+                        graphctx.lineTo(neighbor.screen_x, neighbor.screen_y);
+                        graphctx.stroke();
 
-                    curr_node = neighbor;
-                    break;
+                        curr_node = neighbor;
+                        break;
+                    }
                 }
             }
+            
+            // Reset stroke style to prevent affecting other rendering
+            graphctx.lineWidth = edgeWidth;
         }
     }
 }
