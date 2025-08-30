@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Klotski</title>
+</head>
+<body>
+    <div style="position: relative;">
+        <div style="position: absolute; left: 0; top: 0; z-index: 1; border: 1px solid red;">
+            <canvas id="graph"></canvas>
+        </div>
+        <div style="position: absolute; left: 0; top: 0; z-index: 1;">
+            <canvas style="border: 1px solid blue;" id="board"></canvas>
+        </div>
+    </div>
+    <!-- Loads a global nodes_to_use graph representation -->
+    <script src="./scripts/klotski/data.js"></script>
+
+    <!-- Manages the rendering and interaction with the graph -->
+    <script src="./scripts/klotski/client.js"></script>
+</body>
