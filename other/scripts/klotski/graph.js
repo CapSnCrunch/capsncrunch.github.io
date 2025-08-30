@@ -288,6 +288,49 @@ function setupGraphEventListeners(graphcanvas, nodes, onHashChange) {
         }
     });
 
+    // Add touch end handler for teleporting
+    graphcanvas.addEventListener('touchend', (e) => {
+        e.preventDefault();
+        
+        if (e.touches.length === 0) {
+            // All fingers lifted
+            isPinching = false;
+            isPanning = false;
+            isRotating = false;
+            
+            // Check if this was a tap (no movement)
+            if (!isRotating && !isPinching) {
+                // Handle tap to teleport
+                const touch = e.changedTouches[0];
+                const rect = graphcanvas.getBoundingClientRect();
+                const scaleX = graphcanvas.width / rect.width;
+                const scaleY = graphcanvas.height / rect.height;
+                const x = (touch.clientX - rect.left) * scaleX;
+                const y = (touch.clientY - rect.top) * scaleY;
+                
+                const closestNode = get_closest_node_to({x, y}, nodes);
+                if (closestNode !== hash) {
+                    hash = closestNode;
+                    // Call the callback to notify that hash has changed
+                    if (onHashChange) {
+                        onHashChange();
+                    }
+                }
+            }
+        } else if (e.touches.length === 1) {
+            // One finger left - switch to rotation mode
+            isPinching = false;
+            isPanning = false;
+            isRotating = true;
+            
+            const touch = e.touches[0];
+            lastMouseX = touch.clientX;
+            lastMouseY = touch.clientY;
+            touchStartAlpha = alpha;
+            touchStartBeta = beta;
+        }
+    });
+
     // Touch event listeners for mobile
     graphcanvas.addEventListener('touchstart', (e) => {
         e.preventDefault();
@@ -344,28 +387,6 @@ function setupGraphEventListeners(graphcanvas, nodes, onHashChange) {
             
             // Constrain beta to prevent over-rotation
             beta = Math.max(-Math.PI/2, Math.min(Math.PI/2, beta));
-        }
-    });
-
-    graphcanvas.addEventListener('touchend', (e) => {
-        e.preventDefault();
-        
-        if (e.touches.length === 0) {
-            // All fingers lifted
-            isPinching = false;
-            isPanning = false;
-            isRotating = false;
-        } else if (e.touches.length === 1) {
-            // One finger left - switch to rotation mode
-            isPinching = false;
-            isPanning = false;
-            isRotating = true;
-            
-            const touch = e.touches[0];
-            lastMouseX = touch.clientX;
-            lastMouseY = touch.clientY;
-            touchStartAlpha = alpha;
-            touchStartBeta = beta;
         }
     });
 
