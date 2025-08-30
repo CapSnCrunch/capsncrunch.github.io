@@ -8,8 +8,24 @@ let hash = 0;
 let alpha = 0.8; // Horizontal rotation (around Y-axis)
 let beta = 0.0;  // Vertical rotation (around X-axis)
 let ox = 0;
-let oy = 100;
+let oy = 0; // Start at 0, will be adjusted based on device
 let zoom = 1;
+
+// Function to initialize graph positioning based on device
+function initializeGraphPosition() {
+    // Check if we're on mobile
+    const isMobile = window.innerWidth <= 768;
+    
+    if (isMobile) {
+        // Better centering for mobile - adjust vertical position
+        oy = 50; // Move view up slightly (positive oy moves view down)
+        zoom = 1.5; // Slightly zoomed in for mobile
+    } else {
+        // Desktop positioning
+        oy = 100;
+        zoom = 1;
+    }
+}
 
 // Function to get node coordinates with 3D transformations
 function get_node_coordinates(hash, nodes, alpha, beta, ox, oy, zoom, w, h) {
@@ -23,16 +39,9 @@ function get_node_coordinates(hash, nodes, alpha, beta, ox, oy, zoom, w, h) {
     var y_rotated = node.y * Math.cos(beta) - z_rotated * Math.sin(beta);
     var z_final = node.y * Math.sin(beta) + z_rotated * Math.cos(beta);
     
-    // Project to screen coordinates
-    nodes[hash].screen_x = (x_rotated - ox) / zoom + w / 2;
-    nodes[hash].screen_y = (y_rotated - oy) / zoom + h / 2;
-}
-
-// Function to calculate zoom-scaled node radius
-function getScaledRadius(baseRadius, zoom) {
-    // Compensate for the coordinate scaling by multiplying radius by zoom
-    // This will make nodes appear larger when zoomed in
-    return baseRadius * zoom;
+    // Project to screen coordinates - fix zoom direction
+    nodes[hash].screen_x = (x_rotated - ox) * zoom + w / 2;
+    nodes[hash].screen_y = (y_rotated - oy) * zoom + h / 2;
 }
 
 /* Render graph within a canvas given the following parameters:
@@ -114,8 +123,8 @@ function renderGraph(graphctx, nodes, config, w, h, edgeWidth, solutionNodeRadiu
             else if(config.colors.select == 1) innerColor = color_wheel(node.solution_dist);
             else innerColor = "gray";
             
-            // Use the scaled inner radius (6 * scale)
-            let innerRadius = 6 * (config.scale ? config.scale.value : 1) * 1.5; // Apply same scaling as nodes
+            // Make inner radius smaller to create a proper white ring
+            let innerRadius = nodeRadius * 0.7; // Inner circle is 70% of outer radius
             
             graphctx.fillStyle = innerColor;
             graphctx.beginPath();
@@ -182,6 +191,17 @@ function setupGraphEventListeners(graphcanvas, nodes, onHashChange) {
     let lastMouseY = 0;
     let mouseRotationSpeed = 0.0035; // Adjust for mouse sensitivity
 
+    // Touch controls for mobile
+    let touchStartDistance = 0;
+    let touchStartCenter = { x: 0, y: 0 };
+    let touchStartAlpha = 0;
+    let touchStartBeta = 0;
+    let touchStartOx = 0;
+    let touchStartOy = 0;
+    let isPinching = false;
+    let isPanning = false;
+    let isRotating = false;
+
     // Keyboard panning controls
     let panningSpeed = 15; // Reduced from 50 to 2 for much slower panning
     let keys = {};
@@ -210,6 +230,7 @@ function setupGraphEventListeners(graphcanvas, nodes, onHashChange) {
     }
     panningLoop();
 
+    // Mouse event listeners
     graphcanvas.addEventListener('mousedown', (e) => {
         if (e.button === 1) { // Middle mouse button
             mouseRotation = true;
@@ -240,27 +261,130 @@ function setupGraphEventListeners(graphcanvas, nodes, onHashChange) {
     // Mouse wheel zoom
     graphcanvas.addEventListener('wheel', (e) => {
         e.preventDefault();
-        const zoomFactor = e.deltaY > 0 ? 1.1 : 0.9;
+        const zoomFactor = e.deltaY > 0 ? 0.9 : 1.1; // Inverted zoom factors
         zoom *= zoomFactor;
         zoom = Math.max(0.1, Math.min(10, zoom));
     });
     
     // Click to teleport
     graphcanvas.addEventListener('click', (e) => {
-        const rect = graphcanvas.getBoundingClientRect();
-        const scaleX = graphcanvas.width / rect.width;
-        const scaleY = graphcanvas.height / rect.height;
-        const x = (e.clientX - rect.left) * scaleX;
-        const y = (e.clientY - rect.top) * scaleY;
-        
-        const closestNode = get_closest_node_to({x, y}, nodes);
-        if (closestNode !== hash) {
-            hash = closestNode;
-            // Call the callback to notify that hash has changed
-            if (onHashChange) {
-                onHashChange();
+        // Only handle click if not touching (to avoid conflicts with touch events)
+        if (e.pointerType === 'mouse') {
+            const rect = graphcanvas.getBoundingClientRect();
+            const scaleX = graphcanvas.width / rect.width;
+            const scaleY = graphcanvas.height / rect.height;
+            const x = (e.clientX - rect.left) * scaleX;
+            const y = (e.clientY - rect.top) * scaleY;
+            
+            const closestNode = get_closest_node_to({x, y}, nodes);
+            if (closestNode !== hash) {
+                hash = closestNode;
+                // Call the callback to notify that hash has changed
+                if (onHashChange) {
+                    onHashChange();
+                }
             }
         }
+    });
+
+    // Touch event listeners for mobile
+    graphcanvas.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        
+        if (e.touches.length === 2) {
+            // Two finger gesture - pinch to zoom and pan
+            isPinching = true;
+            isPanning = true;
+            
+            // Calculate initial distance between fingers
+            const touch1 = e.touches[0];
+            const touch2 = e.touches[1];
+            touchStartDistance = Math.hypot(touch2.clientX - touch1.clientX, touch2.clientY - touch1.clientY);
+            
+            // Calculate center point
+            touchStartCenter.x = (touch1.clientX + touch2.clientX) / 2;
+            touchStartCenter.y = (touch1.clientY + touch2.clientY) / 2;
+            
+            // Store initial pan position
+            touchStartOx = ox;
+            touchStartOy = oy;
+            
+        } else if (e.touches.length === 1) {
+            // Single finger - rotation (equivalent to middle mouse button)
+            isRotating = true;
+            const touch = e.touches[0];
+            lastMouseX = touch.clientX;
+            lastMouseY = touch.clientY;
+            touchStartAlpha = alpha;
+            touchStartBeta = beta;
+        }
+    });
+
+    graphcanvas.addEventListener('touchmove', (e) => {
+        e.preventDefault();
+        
+        if (e.touches.length === 2 && isPinching) {
+            // Handle pinch zoom and pan
+            const touch1 = e.touches[0];
+            const touch2 = e.touches[1];
+            
+            // Calculate current distance and center
+            const currentDistance = Math.hypot(touch2.clientX - touch1.clientX, touch2.clientY - touch1.clientY);
+            const currentCenterX = (touch1.clientX + touch2.clientX) / 2;
+            const currentCenterY = (touch1.clientY + touch2.clientY) / 2;
+            
+            // Handle zoom
+            if (touchStartDistance > 0) {
+                const zoomFactor = currentDistance / touchStartDistance;
+                const newZoom = zoom * zoomFactor;
+                zoom = Math.max(0.1, Math.min(10, newZoom));
+            }
+            
+            // Handle pan
+            const deltaX = currentCenterX - touchStartCenter.x;
+            const deltaY = currentCenterY - touchStartCenter.y;
+            ox = touchStartOx - deltaX * zoom;
+            oy = touchStartOy + deltaY * zoom;
+            
+        } else if (e.touches.length === 1 && isRotating) {
+            // Handle single finger rotation
+            const touch = e.touches[0];
+            const deltaX = touch.clientX - lastMouseX;
+            const deltaY = touch.clientY - lastMouseY;
+            
+            alpha = touchStartAlpha + deltaX * mouseRotationSpeed;
+            beta = touchStartBeta - deltaY * mouseRotationSpeed;
+            
+            // Constrain beta to prevent over-rotation
+            beta = Math.max(-Math.PI/2, Math.min(Math.PI/2, beta));
+        }
+    });
+
+    graphcanvas.addEventListener('touchend', (e) => {
+        e.preventDefault();
+        
+        if (e.touches.length === 0) {
+            // All fingers lifted
+            isPinching = false;
+            isPanning = false;
+            isRotating = false;
+        } else if (e.touches.length === 1) {
+            // One finger left - switch to rotation mode
+            isPinching = false;
+            isPanning = false;
+            isRotating = true;
+            
+            const touch = e.touches[0];
+            lastMouseX = touch.clientX;
+            lastMouseY = touch.clientY;
+            touchStartAlpha = alpha;
+            touchStartBeta = beta;
+        }
+    });
+
+    // Prevent context menu on long press
+    graphcanvas.addEventListener('contextmenu', (e) => {
+        e.preventDefault();
     });
 }
 
@@ -317,5 +441,6 @@ export {
     setHash,
     getGraphState,
     setGraphState,
-    get_closest_node_to
+    get_closest_node_to,
+    initializeGraphPosition
 };

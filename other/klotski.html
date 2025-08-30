@@ -63,7 +63,7 @@
         }
 
         .controls {
-            margin-top: 15px;
+            margin-top: 0; /* Remove top margin from controls section */
             padding-top: 15px;
             border-top: 1px solid #333;
         }
@@ -142,11 +142,14 @@
             flex: 1;
             position: relative;
             background-color: #000;
+            padding: 0; /* Remove any padding */
+            margin: 0; /* Remove any margin */
         }
 
         #graph {
             width: 100%;
             height: 100%;
+            display: block; /* Ensure no extra spacing */
         }
 
         .histogram-labels {
@@ -175,6 +178,193 @@
             font-size: 14px;
             opacity: 0.9;
         }
+
+        .config-toggle {
+            font-size: 16px;
+            color: #fff;
+            cursor: pointer;
+            user-select: none;
+            transition: color 0.2s;
+        }
+
+        .config-toggle:hover {
+            color: #ccc;
+        }
+
+        .config-content {
+            max-height: 200px;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            margin-bottom: 0; /* Remove bottom margin */
+        }
+
+        .config-content.collapsed {
+            max-height: 0;
+        }
+
+        .controls-toggle {
+            font-size: 16px;
+            color: #fff;
+            cursor: pointer;
+            user-select: none;
+            transition: color 0.2s;
+        }
+
+        .controls-toggle:hover {
+            color: #ccc;
+        }
+
+        .controls-content {
+            max-height: 300px;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            margin-bottom: 0; /* Remove bottom margin */
+        }
+
+        .controls-content.collapsed {
+            max-height: 0;
+        }
+
+        /* Mobile responsive styles */
+        @media (max-width: 768px) {
+            body {
+                overflow: auto;
+            }
+
+            .container {
+                flex-direction: column;
+                height: auto;
+                min-height: 100vh;
+            }
+
+            .sidebar {
+                width: 100%;
+                border-right: none;
+                border-bottom: 1px solid #333;
+                padding: 15px;
+            }
+
+            .board-container {
+                margin-bottom: 15px;
+                padding: 10px;
+            }
+
+            /* Make board smaller on mobile */
+            .board-container canvas {
+                width: 150px !important;
+                height: 187px !important;
+            }
+
+            .info-panel {
+                padding: 12px;
+                font-size: 13px;
+            }
+
+            .info-panel h3 {
+                font-size: 15px;
+            }
+
+            .control-item {
+                margin: 6px 0;
+            }
+
+            .control-item label {
+                font-size: 13px;
+            }
+
+            .control-select {
+                font-size: 11px;
+                min-width: 100px;
+            }
+
+            .control-button {
+                font-size: 11px;
+                padding: 5px 10px;
+            }
+
+            .control-slider {
+                width: 150px; /* Longer slider on mobile */
+            }
+
+            .graph-container {
+                height: 65vh; /* Increased height when config is collapsed */
+                min-height: 400px;
+            }
+
+            .histogram-labels {
+                bottom: 80px;
+                gap: 60px;
+            }
+
+            .label-left,
+            .label-right {
+                font-size: 12px;
+            }
+        }
+
+        /* Small mobile devices */
+        @media (max-width: 480px) {
+            .sidebar {
+                padding: 10px;
+            }
+
+            .board-container {
+                padding: 8px;
+                margin-bottom: 12px;
+            }
+
+            /* Make board even smaller on small mobile */
+            .board-container canvas {
+                width: 120px !important;
+                height: 150px !important;
+            }
+
+            .info-panel {
+                padding: 10px;
+                font-size: 12px;
+            }
+
+            .info-panel h3 {
+                font-size: 14px;
+            }
+
+            .control-item {
+                margin: 5px 0;
+            }
+
+            .control-item label {
+                font-size: 12px;
+            }
+
+            .control-select {
+                font-size: 10px;
+                min-width: 90px;
+            }
+
+            .control-button {
+                font-size: 10px;
+                padding: 4px 8px;
+            }
+
+            .control-slider {
+                width: 120px; /* Even longer on small mobile */
+            }
+
+            .graph-container {
+                height: 60vh; /* Increased height when config is collapsed */
+                min-height: 300px;
+            }
+
+            .histogram-labels {
+                bottom: 60px;
+                gap: 40px;
+            }
+
+            .label-left,
+            .label-right {
+                font-size: 11px;
+            }
+        }
     </style>
 
     <title>Klotski</title>
@@ -182,42 +372,53 @@
 <body>
     <div class="container">
         <div class="sidebar">
+            <h2 style="margin: 0 0 15px 0; color: #fff; font-size: 18px;">
+                <a href="https://en.wikipedia.org/wiki/Klotski" style="color: #fff;">Klotski</a> State Space
+            </h2>
             <div class="board-container">
                 <canvas id="board" width="200" height="250"></canvas>
             </div>
             
             <div class="info-panel">
-                <h3>Configuration</h3>
-                <div class="control-item">
-                    <label for="color-toggle">Colors:</label>
-                    <select id="color-toggle" class="control-select">
-                        <option value="0">Distance from Start</option>
-                        <option value="1">Distance from Solution</option>
-                        <option value="2">Off</option>
-                    </select>
-                </div>
-                <div class="control-item">
-                    <label for="solutions-toggle">Show Solutions:</label>
-                    <button id="solutions-toggle" class="control-button">Invisible</button>
-                </div>
-                <div class="control-item">
-                    <label for="path-toggle">Shortest Path:</label>
-                    <button id="path-toggle" class="control-button">Invisible</button>
-                </div>
-                <div class="control-item">
-                    <label for="scale-slider">Scale:</label>
-                    <input type="range" id="scale-slider" class="control-slider" min="0.5" max="3" step="0.1" value="1">
-                    <span id="scale-value">1.0x</span>
+                <h3 class="config-toggle" onclick="toggleConfig()">
+                    Configuration ▼
+                </h3>
+                <div class="config-content" id="config-content">
+                    <div class="control-item">
+                        <label for="color-toggle">Colors:</label>
+                        <select id="color-toggle" class="control-select">
+                            <option value="0">Distance from Start</option>
+                            <option value="1">Distance from Solution</option>
+                            <option value="2">Off</option>
+                        </select>
+                    </div>
+                    <div class="control-item">
+                        <label for="solutions-toggle">Show Solutions:</label>
+                        <button id="solutions-toggle" class="control-button">Invisible</button>
+                    </div>
+                    <div class="control-item">
+                        <label for="path-toggle">Shortest Path:</label>
+                        <button id="path-toggle" class="control-button">Invisible</button>
+                    </div>
+                    <div class="control-item">
+                        <label for="scale-slider">Scale:</label>
+                        <input type="range" id="scale-slider" class="control-slider" min="0.125" max="1.5" step="0.025" value="0.5">
+                        <span id="scale-value">1.0x</span>
+                    </div>
                 </div>
                 
                 <div class="controls">
-                    <p>This is the Klotski puzzle.</p>
-                    <p>The right depicts the graph of all positions of the puzzle.</p>
-                    <p>You can navigate the white circle by sliding pieces in the top left.</p>
-                    <p>There are a total of 25,955 unique positions.</p>
-                    <p>Slide pieces to move the large piece to the bottom center.</p>
-                    <p><strong>Controls:</strong> Middle-click and drag to rotate (horizontal and vertical), WASD to pan, arrow keys to pan, mouse wheel to zoom.</p>
-                    <p>Left-click on any position on the graph to 'teleport' to it.</p>
+                    <h3 class="controls-toggle" onclick="toggleControls()">
+                        Controls & Info ▼
+                    </h3>
+                    <div class="controls-content" id="controls-content">
+                        <p>The right depicts the graph of all positions of the puzzle.</p>
+                        <p>You can navigate the white circle by sliding pieces in the top left.</p>
+                        <p>There are a total of 25,955 unique positions.</p>
+                        <p>Slide pieces to move the large piece to the bottom center.</p>
+                        <p><strong>Controls:</strong> Middle-click and drag to rotate (horizontal and vertical), WASD to pan, arrow keys to pan, mouse wheel to zoom.</p>
+                        <p>Left-click on any position on the graph to 'teleport' to it.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -273,6 +474,16 @@
                 scaleValue.textContent = config.scale.value.toFixed(1) + 'x';
                 render();
             });
+
+            // Auto-close dropdowns on mobile
+            if (window.innerWidth <= 768) {
+                const controlsContent = document.getElementById('controls-content');
+                const controlsToggle = document.querySelector('.controls-toggle');
+                
+                // Only close controls dropdown on mobile, keep config open
+                controlsContent.classList.add('collapsed');
+                controlsToggle.innerHTML = 'Controls & Info ▶';
+            }
         }
 
         function updateToggleButton(buttonId, value) {
@@ -280,6 +491,36 @@
             const isActive = value === 1;
             button.textContent = isActive ? 'Visible' : 'Invisible';
             button.classList.toggle('active', isActive);
+        }
+
+        function toggleConfig() {
+            const configContent = document.getElementById('config-content');
+            const configToggle = document.querySelector('.config-toggle');
+            const isExpanded = configContent.style.display === 'block';
+
+            if (isExpanded) {
+                configContent.style.display = 'none';
+                configContent.classList.add('collapsed');
+                configToggle.textContent = 'Configuration ▼';
+            } else {
+                configContent.style.display = 'block';
+                configContent.classList.remove('collapsed');
+                configToggle.textContent = 'Configuration ▲';
+            }
+        }
+
+        function toggleControls() {
+            const controlsContent = document.getElementById('controls-content');
+            const controlsToggle = document.querySelector('.controls-toggle');
+            
+            controlsContent.classList.toggle('collapsed');
+            
+            // Update arrow direction
+            if (controlsContent.classList.contains('collapsed')) {
+                controlsToggle.innerHTML = 'Controls & Info ▶';
+            } else {
+                controlsToggle.innerHTML = 'Controls & Info ▼';
+            }
         }
 
         // Try to initialize immediately, or wait for config to be available

@@ -1,5 +1,5 @@
 import { renderBoard } from './renderBoard.js';
-import { renderGraph, setupGraphEventListeners, getHash, setHash, getGraphState } from './graph.js';
+import { renderGraph, setupGraphEventListeners, getHash, setHash, getGraphState, initializeGraphPosition } from './graph.js';
 import { setupBoardEventListeners, setBoardString } from './board.js';
 import { loadKlotskiData } from './dataLoader.js';
 import { color_wheel } from './utils.js';
@@ -62,13 +62,15 @@ async function init() {
 // Move all the existing initialization code here
 function initializeApp() {
     graphcanvas = document.getElementById(`graph`);
-    w = graphcanvas.width = window.innerWidth;
-    h = graphcanvas.height = window.innerHeight;
+    updateCanvasSize();
     graphctx = graphcanvas.getContext(`2d`);
 
     boardcanvas = document.getElementById(`board`);
     boardctx = boardcanvas.getContext(`2d`);
     save_start_board = board_string;
+
+    // Initialize graph positioning for mobile/desktop
+    initializeGraphPosition();
 
     increment_max();
 
@@ -234,9 +236,12 @@ function render_graph(){
     const edgeScale = config.scale.value;
     const nodeScale = config.scale.value * 1.5; // Nodes scale 1.5x more than edges
     
+    // Apply a global reduction factor to make nodes smaller overall
+    const globalNodeReduction = 0.5; // This will make all nodes half their current size
+    
     // Don't apply zoom scaling - let the coordinate system handle it naturally
     const finalEdgeScale = edgeScale;
-    const finalNodeScale = nodeScale;
+    const finalNodeScale = nodeScale * globalNodeReduction;
     
     renderGraph(
         graphctx, 
@@ -266,20 +271,57 @@ function animate(){
 function setupResizeHandler() {
     let resizeTimeout;
     
+    // Listen for window resize events
     window.addEventListener('resize', () => {
         // Debounce resize events to avoid excessive recalculations
         clearTimeout(resizeTimeout);
         resizeTimeout = setTimeout(() => {
-            // Update canvas dimensions
-            w = graphcanvas.width = window.innerWidth;
-            h = graphcanvas.height = window.innerHeight;
+            // Update canvas dimensions using container size
+            updateCanvasSize();
             
             // Recalculate node positions based on new dimensions
             recalculateNodePositions();
             
+            // Reinitialize graph position for mobile/desktop
+            initializeGraphPosition();
+            
             console.log('Window resized to:', w, 'x', h);
         }, 100); // 100ms debounce
     });
+
+    // Use ResizeObserver to watch for graph container size changes
+    const graphContainer = graphcanvas.parentElement;
+    const resizeObserver = new ResizeObserver((entries) => {
+        for (let entry of entries) {
+            // Debounce container resize events
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                updateCanvasSize();
+                recalculateNodePositions();
+                initializeGraphPosition(); // Reinitialize position when container changes
+                console.log('Graph container resized to:', entry.contentRect.width, 'x', entry.contentRect.height);
+            }, 100);
+        }
+    });
+    
+    // Start observing the graph container
+    resizeObserver.observe(graphContainer);
+}
+
+// New function to update canvas size based on container dimensions
+function updateCanvasSize() {
+    const container = graphcanvas.parentElement;
+    const rect = container.getBoundingClientRect();
+    
+    // Set canvas size to match container size exactly
+    w = graphcanvas.width = rect.width;
+    h = graphcanvas.height = rect.height;
+    
+    // Also set the CSS width and height to ensure proper display
+    graphcanvas.style.width = rect.width + 'px';
+    graphcanvas.style.height = rect.height + 'px';
+    
+    console.log('Canvas size updated to:', w, 'x', h, 'Container size:', rect.width, 'x', rect.height);
 }
 
 // Add this new function to recalculate node positions
@@ -309,3 +351,10 @@ function recalculateNodePositions() {
 
 // Start the application
 init();
+
+// Add a small delay to ensure DOM is fully rendered before initial sizing
+setTimeout(() => {
+    if (typeof updateCanvasSize === 'function') {
+        updateCanvasSize();
+    }
+}, 100);
