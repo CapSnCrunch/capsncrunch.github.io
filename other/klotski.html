@@ -5,20 +5,232 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            display: flex;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        .sidebar {
+            width: 350px;
+            background-color: #1a1a1a;
+            border-right: 1px solid #333;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .board-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+            background-color: #0f0f0f;
+            border: 1px solid #333;
+            border-radius: 5px;
+            padding: 15px;
+        }
+
+        .info-panel {
+            background-color: #0f0f0f;
+            border: 1px solid #333;
+            border-radius: 5px;
+            padding: 15px;
+            font-size: 14px;
+            line-height: 1.4;
+            color: #e0e0e0;
+        }
+
+        .info-panel h3 {
+            margin: 0 0 10px 0;
+            font-size: 16px;
+            color: #fff;
+        }
+
+        .info-panel p {
+            margin: 5px 0;
+            color: #ccc;
+        }
+
+        .controls {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #333;
+        }
+
+        .control-item {
+            margin: 8px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .control-item label {
+            color: #e0e0e0;
+            font-size: 14px;
+            margin-right: 10px;
+        }
+
+        .control-select {
+            background-color: #333;
+            color: #e0e0e0;
+            border: 1px solid #555;
+            border-radius: 3px;
+            padding: 4px 8px;
+            font-size: 12px;
+            min-width: 120px;
+        }
+
+        .control-select:focus {
+            outline: none;
+            border-color: #777;
+        }
+
+        .control-button {
+            background-color: #555;
+            color: #e0e0e0;
+            border: 1px solid #777;
+            border-radius: 3px;
+            padding: 6px 12px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .control-button:hover {
+            background-color: #666;
+        }
+
+        .control-button:active {
+            background-color: #444;
+        }
+
+        .key {
+            background-color: #333;
+            color: #fff;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: monospace;
+            font-size: 12px;
+            margin-right: 8px;
+            min-width: 20px;
+            text-align: center;
+        }
+
+        .graph-container {
+            flex: 1;
+            position: relative;
+            background-color: #000;
+        }
+
+        #graph {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+
     <title>Klotski</title>
 </head>
 <body>
-    <div style="position: relative;">
-        <div style="position: absolute; left: 0; top: 0; z-index: 1; border: 1px solid red;">
+    <div class="container">
+        <div class="sidebar">
+            <div class="board-container">
+                <canvas id="board" width="200" height="250"></canvas>
+            </div>
+            
+            <div class="info-panel">
+                <h3>Configuration</h3>
+                <div class="control-item">
+                    <label for="color-toggle">Colors:</label>
+                    <select id="color-toggle" class="control-select">
+                        <option value="0">Distance from Start</option>
+                        <option value="1">Distance from Solution</option>
+                        <option value="2">Off</option>
+                    </select>
+                </div>
+                <div class="control-item">
+                    <label for="solutions-toggle">Show Solutions:</label>
+                    <select id="solutions-toggle" class="control-select">
+                        <option value="0">Invisible</option>
+                        <option value="1">Visible</option>
+                    </select>
+                </div>
+                <div class="control-item">
+                    <label for="path-toggle">Shortest Path:</label>
+                    <select id="path-toggle" class="control-select">
+                        <option value="0">Invisible</option>
+                        <option value="1">Visible</option>
+                    </select>
+                </div>
+                
+                <div class="controls">
+                    <p>This is the Klotski puzzle.</p>
+                    <p>The right depicts the graph of all positions of the puzzle.</p>
+                    <p>You can navigate the white circle by sliding pieces in the top left.</p>
+                    <p>There are a total of 25,955 unique positions.</p>
+                    <p>Slide pieces to move the large piece to the bottom center.</p>
+                    <p><strong>Controls:</strong> Middle-click and drag to rotate (horizontal and vertical), WASD to pan, arrow keys to pan, mouse wheel to zoom.</p>
+                    <p>Left-click on any position on the graph to 'teleport' to it.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="graph-container">
             <canvas id="graph"></canvas>
         </div>
-        <div style="position: absolute; left: 0; top: 0; z-index: 1;">
-            <canvas style="border: 1px solid blue;" id="board"></canvas>
-        </div>
     </div>
-    <!-- Loads a global nodes_to_use graph representation -->
-    <script src="./scripts/klotski/data.js"></script>
 
-    <!-- Manages the rendering and interaction with the graph -->
-    <script src="./scripts/klotski/client.js"></script>
+    <!-- Loads the board rendering functions and manages the rendering and interaction with the graph -->
+    <script type="module" src="./scripts/klotski/client.js"></script>
+    
+    <!-- Control event handlers -->
+    <script>
+        // Wait for the module to load and config to be available
+        function initializeControls() {
+            // Initialize controls with current config values
+            document.getElementById('color-toggle').value = config.colors.select;
+            document.getElementById('solutions-toggle').value = config.solutions.select;
+            document.getElementById('path-toggle').value = config.path.select;
+            
+            // Add event listeners for controls
+            document.getElementById('color-toggle').addEventListener('change', function() {
+                config.colors.select = parseInt(this.value);
+                render();
+            });
+            
+            document.getElementById('solutions-toggle').addEventListener('change', function() {
+                config.solutions.select = parseInt(this.value);
+                render();
+            });
+            
+            document.getElementById('path-toggle').addEventListener('change', function() {
+                config.path.select = parseInt(this.value);
+                render();
+            });
+        }
+
+        // Try to initialize immediately, or wait for config to be available
+        if (typeof config !== 'undefined') {
+            initializeControls();
+        } else {
+            // Wait for config to be available
+            const checkConfig = setInterval(() => {
+                if (typeof config !== 'undefined') {
+                    initializeControls();
+                    clearInterval(checkConfig);
+                }
+            }, 10);
+        }
+    </script>
 </body>
+</html>
