@@ -198,6 +198,7 @@ function setupGraphEventListeners(graphcanvas, nodes, onHashChange) {
     let touchStartBeta = 0;
     let touchStartOx = 0;
     let touchStartOy = 0;
+    let touchStartZoom = 1; // Add this variable
     let isPinching = false;
     let isPanning = false;
     let isRotating = false;
@@ -292,22 +293,29 @@ function setupGraphEventListeners(graphcanvas, nodes, onHashChange) {
         e.preventDefault();
         
         if (e.touches.length === 2) {
-            // Two finger gesture - pinch to zoom and pan
+            // Two finger gesture - pinch to zoom centered on pinch location
             isPinching = true;
-            isPanning = true;
             
             // Calculate initial distance between fingers
             const touch1 = e.touches[0];
             const touch2 = e.touches[1];
             touchStartDistance = Math.hypot(touch2.clientX - touch1.clientX, touch2.clientY - touch1.clientY);
             
-            // Calculate center point
+            // Calculate center point of pinch
             touchStartCenter.x = (touch1.clientX + touch2.clientX) / 2;
             touchStartCenter.y = (touch1.clientY + touch2.clientY) / 2;
             
-            // Store initial pan position
+            // Store initial zoom and pan position
+            const rect = graphcanvas.getBoundingClientRect();
+            const scaleX = graphcanvas.width / rect.width;
+            const scaleY = graphcanvas.height / rect.height;
+            const centerX = (touchStartCenter.x - rect.left) * scaleX;
+            const centerY = (touchStartCenter.y - rect.top) * scaleY;
+            
+            // Store initial state for zoom centering
             touchStartOx = ox;
             touchStartOy = oy;
+            touchStartZoom = zoom;
             
         } else if (e.touches.length === 1) {
             // Single finger - rotation (equivalent to middle mouse button)
@@ -324,7 +332,7 @@ function setupGraphEventListeners(graphcanvas, nodes, onHashChange) {
         e.preventDefault();
         
         if (e.touches.length === 2 && isPinching) {
-            // Handle pinch zoom and pan
+            // Handle pinch zoom centered on pinch location
             const touch1 = e.touches[0];
             const touch2 = e.touches[1];
             
@@ -333,18 +341,24 @@ function setupGraphEventListeners(graphcanvas, nodes, onHashChange) {
             const currentCenterX = (touch1.clientX + touch2.clientX) / 2;
             const currentCenterY = (touch1.clientY + touch2.clientY) / 2;
             
-            // Handle zoom
+            // Handle zoom with slower speed
             if (touchStartDistance > 0) {
-                const zoomFactor = currentDistance / touchStartDistance;
-                const newZoom = zoom * zoomFactor;
+                const zoomFactor = Math.pow(currentDistance / touchStartDistance, 0.5); // Slower zoom
+                const newZoom = touchStartZoom * zoomFactor;
                 zoom = Math.max(0.1, Math.min(10, newZoom));
+                
+                // Calculate zoom center in canvas coordinates
+                const rect = graphcanvas.getBoundingClientRect();
+                const scaleX = graphcanvas.width / rect.width;
+                const scaleY = graphcanvas.height / rect.height;
+                const centerX = (currentCenterX - rect.left) * scaleX;
+                const centerY = (currentCenterY - rect.top) * scaleY;
+                
+                // Adjust pan to keep zoom centered on pinch location
+                const zoomRatio = zoom / touchStartZoom;
+                ox = centerX - (centerX - touchStartOx) * zoomRatio;
+                oy = centerY - (centerY - touchStartOy) * zoomRatio;
             }
-            
-            // Handle pan
-            const deltaX = currentCenterX - touchStartCenter.x;
-            const deltaY = currentCenterY - touchStartCenter.y;
-            ox = touchStartOx - deltaX * zoom;
-            oy = touchStartOy + deltaY * zoom;
             
         } else if (e.touches.length === 1 && isRotating) {
             // Handle single finger rotation
