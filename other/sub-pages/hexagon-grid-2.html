@@ -1,0 +1,658 @@
+import React, { useState, useEffect } from 'react';
+
+const HexagonalGrid = () => {
+  const [tiles, setTiles] = useState({});
+  const [hoveredTile, setHoveredTile] = useState(null);
+  const [selectedTile, setSelectedTile] = useState(null);
+  const [hoveredOption, setHoveredOption] = useState(null);
+  const [resources, setResources] = useState({ plains: 0, mountain: 0, water: 0, forest: 0 });
+  
+  // Hexagon dimensions
+  const size = 40;
+  const width = size * 2;
+  const height = Math.sqrt(3) * size;
+  
+  // Terrain types
+  const terrainTypes = ['plains', 'mountain', 'water', 'forest'];
+  
+  // Generate hexagonal grid coordinates using cube coordinates
+  const generateHexGrid = (rings) => {
+    const hexes = [];
+    
+    for (let q = -rings; q <= rings; q++) {
+      for (let r = -rings; r <= rings; r++) {
+        const s = -q - r;
+        if (Math.abs(q) <= rings && Math.abs(r) <= rings && Math.abs(s) <= rings) {
+          hexes.push({ q, r, s });
+        }
+      }
+    }
+    
+    return hexes;
+  };
+  
+  // Initialize tiles with random terrain
+  useEffect(() => {
+    const hexes = generateHexGrid(3);
+    const initialTiles = {};
+    
+    hexes.forEach(({ q, r, s }) => {
+      const key = `${q},${r},${s}`;
+      const randomTerrain = terrainTypes[Math.floor(Math.random() * terrainTypes.length)];
+      initialTiles[key] = { terrain: randomTerrain };
+    });
+    
+    setTiles(initialTiles);
+  }, []);
+  
+  // Convert cube coordinates to pixel coordinates
+  const cubeToPixel = (q, r) => {
+    const x = size * (3/2 * q);
+    const y = size * (Math.sqrt(3)/2 * q + Math.sqrt(3) * r);
+    return { x, y };
+  };
+  
+  // Generate hexagon path
+  const getHexagonPath = (cx, cy, inset = 0) => {
+    const points = [];
+    for (let i = 0; i < 6; i++) {
+      const angle = (Math.PI / 3) * i;
+      const x = cx + (size - inset) * Math.cos(angle);
+      const y = cy + (size - inset) * Math.sin(angle);
+      points.push(`${x},${y}`);
+    }
+    return points.join(' ');
+  };
+  
+  // Render terrain based on type
+  const renderTerrain = (terrain, x, y, isHovered) => {
+    const scale = isHovered ? 1 : 1;
+    
+    switch(terrain) {
+      case 'plains':
+        return (
+          <g>
+            {/* Base grass */}
+            <polygon
+              points={getHexagonPath(x, y, 2)}
+              fill="url(#plainsGradient)"
+              stroke="#7c9b4a"
+              strokeWidth="1"
+            />
+            {/* Grass tufts */}
+            <path
+              d={`M ${x - 15} ${y + 5} q 2 -4 4 0 q 2 -4 4 0`}
+              fill="none"
+              stroke="#8fae5c"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+            />
+            <path
+              d={`M ${x + 8} ${y - 8} q 2 -4 4 0 q 2 -4 4 0`}
+              fill="none"
+              stroke="#8fae5c"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+            />
+            <path
+              d={`M ${x - 5} ${y + 15} q 2 -4 4 0 q 2 -4 4 0`}
+              fill="none"
+              stroke="#8fae5c"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+            />
+          </g>
+        );
+        
+      case 'mountain':
+        return (
+          <g>
+            {/* Base */}
+            <polygon
+              points={getHexagonPath(x, y, 2)}
+              fill="#8b7355"
+              stroke="#6b5943"
+              strokeWidth="1"
+            />
+            {/* Mountain peaks extending upward */}
+            <path
+              d={`M ${x - 18} ${y + 12} L ${x - 8} ${y - 25} L ${x + 2} ${y + 8} Z`}
+              fill="#a0826d"
+              stroke="#6b5943"
+              strokeWidth="1.5"
+              strokeLinejoin="round"
+            />
+            <path
+              d={`M ${x - 2} ${y + 5} L ${x + 10} ${y - 30} L ${x + 22} ${y + 10} Z`}
+              fill="#c9b5a0"
+              stroke="#6b5943"
+              strokeWidth="1.5"
+              strokeLinejoin="round"
+            />
+            {/* Snow caps */}
+            <path
+              d={`M ${x - 8} ${y - 25} L ${x - 5} ${y - 18} L ${x - 11} ${y - 18} Z`}
+              fill="#f0f0f0"
+            />
+            <path
+              d={`M ${x + 10} ${y - 30} L ${x + 14} ${y - 22} L ${x + 6} ${y - 22} Z`}
+              fill="#ffffff"
+            />
+            {/* Shadows */}
+            <path
+              d={`M ${x + 2} ${y + 8} L ${x + 10} ${y - 30} L ${x + 10} ${y - 20} L ${x + 2} ${y + 5} Z`}
+              fill="#8b7355"
+              opacity="0.3"
+            />
+          </g>
+        );
+        
+      case 'water':
+        return (
+          <g>
+            {/* Base water */}
+            <polygon
+              points={getHexagonPath(x, y, 2)}
+              fill="url(#waterGradient)"
+              stroke="#3d7ea6"
+              strokeWidth="1"
+            />
+            {/* Water waves */}
+            <path
+              d={`M ${x - 20} ${y - 5} q 5 -3 10 0 q 5 3 10 0`}
+              fill="none"
+              stroke="#6ba5ca"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              opacity="0.6"
+            />
+            <path
+              d={`M ${x - 15} ${y + 8} q 5 -3 10 0 q 5 3 10 0`}
+              fill="none"
+              stroke="#6ba5ca"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              opacity="0.6"
+            />
+            {/* Shimmer highlights */}
+            <circle cx={x - 10} cy={y - 10} r="2" fill="#b8d9f0" opacity="0.8" />
+            <circle cx={x + 12} cy={y + 5} r="1.5" fill="#b8d9f0" opacity="0.8" />
+            <circle cx={x + 5} cy={y - 15} r="1" fill="#ffffff" opacity="0.9" />
+          </g>
+        );
+        
+      case 'forest':
+        return (
+          <g>
+            {/* Base ground */}
+            <polygon
+              points={getHexagonPath(x, y, 2)}
+              fill="#6b8e4e"
+              stroke="#5a7a42"
+              strokeWidth="1"
+            />
+            {/* Trees extending upward */}
+            {/* Tree 1 - back left */}
+            <g>
+              <rect x={x - 18} y={y - 5} width="3" height="12" fill="#5d4e37" />
+              <path
+                d={`M ${x - 24} ${y - 5} L ${x - 16.5} ${y - 20} L ${x - 9} ${y - 5} Z`}
+                fill="#2d5016"
+                stroke="#1a3d0f"
+                strokeWidth="1"
+              />
+              <path
+                d={`M ${x - 22} ${y - 10} L ${x - 16.5} ${y - 23} L ${x - 11} ${y - 10} Z`}
+                fill="#3d6b23"
+                stroke="#1a3d0f"
+                strokeWidth="1"
+              />
+            </g>
+            {/* Tree 2 - center */}
+            <g>
+              <rect x={x + 8} y={y - 8} width="3.5" height="15" fill="#6b5943" />
+              <path
+                d={`M ${x + 1} ${y - 8} L ${x + 9.75} ${y - 28} L ${x + 18} ${y - 8} Z`}
+                fill="#3d6b23"
+                stroke="#1a3d0f"
+                strokeWidth="1"
+              />
+              <path
+                d={`M ${x + 3} ${y - 14} L ${x + 9.75} ${y - 32} L ${x + 16} ${y - 14} Z`}
+                fill="#4a7f2e"
+                stroke="#1a3d0f"
+                strokeWidth="1"
+              />
+              <path
+                d={`M ${x + 5} ${y - 20} L ${x + 9.75} ${y - 35} L ${x + 14} ${y - 20} Z`}
+                fill="#5a9738"
+                stroke="#1a3d0f"
+                strokeWidth="1"
+              />
+            </g>
+            {/* Tree 3 - front right */}
+            <g>
+              <rect x={x - 3} y={y + 8} width="3" height="10" fill="#5d4e37" />
+              <path
+                d={`M ${x - 9} ${y + 8} L ${x - 1.5} ${y - 5} L ${x + 6} ${y + 8} Z`}
+                fill="#2d5016"
+                stroke="#1a3d0f"
+                strokeWidth="1"
+              />
+              <path
+                d={`M ${x - 7} ${y + 3} L ${x - 1.5} ${y - 8} L ${x + 4} ${y + 3} Z`}
+                fill="#3d6b23"
+                stroke="#1a3d0f"
+                strokeWidth="1"
+              />
+            </g>
+          </g>
+        );
+        
+      default:
+        return null;
+    }
+  };
+  
+  const hexes = generateHexGrid(3);
+  
+  // Calculate SVG viewBox bounds
+  const padding = size * 3;
+  const minX = -width * 2.5 - padding;
+  const minY = -height * 2.5 - padding;
+  const viewBoxWidth = width * 5 + padding * 2;
+  const viewBoxHeight = height * 5 + padding * 2;
+
+  const handleHexClick = (q, r, s, e) => {
+    e.stopPropagation();
+    const key = `${q},${r},${s}`;
+    if (selectedTile === key) {
+      setSelectedTile(null);
+    } else {
+      setSelectedTile(key);
+    }
+  };
+  
+  const handleOptionClick = (optionType, e) => {
+    e.stopPropagation();
+    
+    if (optionType === 'cancel') {
+      setSelectedTile(null);
+      return;
+    }
+    
+    const tile = tiles[selectedTile];
+    if (optionType === 'harvest') {
+      // Add resource based on terrain type
+      setResources(prev => ({
+        ...prev,
+        [tile.terrain]: prev[tile.terrain] + 1
+      }));
+      console.log(`Harvested 1 ${tile.terrain} resource!`);
+    } else if (optionType === 'build') {
+      // Add a structure to the tile
+      setTiles(prev => ({
+        ...prev,
+        [selectedTile]: { ...tile, hasStructure: true }
+      }));
+      console.log(`Built structure on ${tile.terrain} tile!`);
+    }
+    
+    setSelectedTile(null);
+  };
+  
+  // Action options
+  const actionOptions = [
+    { type: 'harvest', label: 'Harvest' },
+    { type: 'build', label: 'Build' },
+    { type: 'cancel', label: 'Cancel' }
+  ];
+  
+  // Render option symbol
+  const renderOptionSymbol = (type, cx, cy, isHovered) => {
+    const iconSize = 12;
+    const scale = isHovered ? 1.15 : 1;
+    const color = isHovered ? '#1e293b' : '#475569';
+    
+    switch(type) {
+      case 'harvest':
+        // Scythe/sickle icon
+        return (
+          <g>
+            <path
+              d={`M ${cx - iconSize * scale * 0.6} ${cy + iconSize * scale * 0.4} 
+                   Q ${cx - iconSize * scale * 0.8} ${cy - iconSize * scale * 0.2} 
+                   ${cx - iconSize * scale * 0.2} ${cy - iconSize * scale * 0.6}
+                   Q ${cx + iconSize * scale * 0.2} ${cy - iconSize * scale * 0.8}
+                   ${cx + iconSize * scale * 0.6} ${cy - iconSize * scale * 0.4}`}
+              fill="none"
+              stroke={color}
+              strokeWidth="2.5"
+              strokeLinecap="round"
+            />
+            <line
+              x1={cx + iconSize * scale * 0.3}
+              y1={cy - iconSize * scale * 0.1}
+              x2={cx + iconSize * scale * 0.7}
+              y2={cy + iconSize * scale * 0.7}
+              stroke={color}
+              strokeWidth="2"
+              strokeLinecap="round"
+            />
+          </g>
+        );
+      case 'build':
+        // Hammer icon
+        return (
+          <g>
+            <rect
+              x={cx - iconSize * scale * 0.7}
+              y={cy - iconSize * scale * 0.4}
+              width={iconSize * scale * 0.4}
+              height={iconSize * scale * 0.8}
+              fill={color}
+              rx="2"
+            />
+            <line
+              x1={cx - iconSize * scale * 0.3}
+              y1={cy}
+              x2={cx + iconSize * scale * 0.7}
+              y2={cy}
+              stroke={color}
+              strokeWidth="3"
+              strokeLinecap="round"
+            />
+            <rect
+              x={cx + iconSize * scale * 0.5}
+              y={cy - iconSize * scale * 0.2}
+              width={iconSize * scale * 0.3}
+              height={iconSize * scale * 0.4}
+              fill={color}
+              rx="2"
+            />
+          </g>
+        );
+      case 'cancel':
+        // X icon
+        return (
+          <g>
+            <line
+              x1={cx - iconSize * scale * 0.6}
+              y1={cy - iconSize * scale * 0.6}
+              x2={cx + iconSize * scale * 0.6}
+              y2={cy + iconSize * scale * 0.6}
+              stroke={color}
+              strokeWidth="2.5"
+              strokeLinecap="round"
+            />
+            <line
+              x1={cx - iconSize * scale * 0.6}
+              y1={cy + iconSize * scale * 0.6}
+              x2={cx + iconSize * scale * 0.6}
+              y2={cy - iconSize * scale * 0.6}
+              stroke={color}
+              strokeWidth="2.5"
+              strokeLinecap="round"
+            />
+          </g>
+        );
+      default:
+        return null;
+    }
+  };
+  
+  // Render action ring menu
+  const renderActionRing = (x, y) => {
+    const ringRadius = size * 2.2;
+    const arcSize = (Math.PI * 2) / actionOptions.length;
+    
+    return (
+      <g>
+        {actionOptions.map((option, index) => {
+          const startAngle = index * arcSize - Math.PI / 2;
+          const endAngle = (index + 1) * arcSize - Math.PI / 2;
+          const midAngle = (startAngle + endAngle) / 2;
+          
+          const innerRadius = size * 1.5;
+          const outerRadius = ringRadius;
+          
+          // Calculate arc path
+          const x1 = x + innerRadius * Math.cos(startAngle);
+          const y1 = y + innerRadius * Math.sin(startAngle);
+          const x2 = x + outerRadius * Math.cos(startAngle);
+          const y2 = y + outerRadius * Math.sin(startAngle);
+          const x3 = x + outerRadius * Math.cos(endAngle);
+          const y3 = y + outerRadius * Math.sin(endAngle);
+          const x4 = x + innerRadius * Math.cos(endAngle);
+          const y4 = y + innerRadius * Math.sin(endAngle);
+          
+          const arcPath = `
+            M ${x1} ${y1}
+            L ${x2} ${y2}
+            A ${outerRadius} ${outerRadius} 0 0 1 ${x3} ${y3}
+            L ${x4} ${y4}
+            A ${innerRadius} ${innerRadius} 0 0 0 ${x1} ${y1}
+            Z
+          `;
+          
+          // Icon position
+          const iconRadius = (innerRadius + outerRadius) / 2;
+          const iconX = x + iconRadius * Math.cos(midAngle);
+          const iconY = y + iconRadius * Math.sin(midAngle);
+          
+          const isHovered = hoveredOption === option.type;
+          
+          return (
+            <g 
+              key={option.type}
+              onMouseEnter={() => setHoveredOption(option.type)}
+              onMouseLeave={() => setHoveredOption(null)}
+              onClick={(e) => handleOptionClick(option.type, e)}
+              style={{ cursor: 'pointer' }}
+            >
+              <path
+                d={arcPath}
+                fill={isHovered ? '#e0e7ef' : '#f1f5f9'}
+                stroke="#cbd5e1"
+                strokeWidth="3"
+                style={{
+                  transition: 'fill 0.2s ease-out',
+                  filter: isHovered 
+                    ? 'drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2))' 
+                    : 'drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1))'
+                }}
+              />
+              {renderOptionSymbol(option.type, iconX, iconY, isHovered)}
+            </g>
+          );
+        })}
+      </g>
+    );
+  };
+  
+  return (
+    <div className="flex items-center justify-center min-h-screen bg-gray-50 p-8">
+      {/* Resource Counter */}
+      <div className="absolute top-8 left-8 bg-white rounded-lg shadow-lg p-4 min-w-48">
+        <h3 className="text-lg font-semibold text-gray-800 mb-3">Resources</h3>
+        <div className="space-y-2">
+          <div className="flex justify-between items-center">
+            <span className="text-green-700 font-medium">🌾 Plains:</span>
+            <span className="bg-green-100 text-green-800 px-2 py-1 rounded text-sm font-semibold">
+              {resources.plains}
+            </span>
+          </div>
+          <div className="flex justify-between items-center">
+            <span className="text-stone-700 font-medium">⛰️ Mountain:</span>
+            <span className="bg-stone-100 text-stone-800 px-2 py-1 rounded text-sm font-semibold">
+              {resources.mountain}
+            </span>
+          </div>
+          <div className="flex justify-between items-center">
+            <span className="text-blue-700 font-medium">💧 Water:</span>
+            <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-sm font-semibold">
+              {resources.water}
+            </span>
+          </div>
+          <div className="flex justify-between items-center">
+            <span className="text-green-700 font-medium">🌲 Forest:</span>
+            <span className="bg-green-100 text-green-800 px-2 py-1 rounded text-sm font-semibold">
+              {resources.forest}
+            </span>
+          </div>
+        </div>
+      </div>
+      
+      <svg 
+        viewBox={`${minX} ${minY} ${viewBoxWidth} ${viewBoxHeight}`}
+        className="w-full max-w-3xl"
+      >
+        <defs>
+          {/* Gradients */}
+          <linearGradient id="plainsGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stopColor="#9fbe6e" />
+            <stop offset="100%" stopColor="#7c9b4a" />
+          </linearGradient>
+          <linearGradient id="waterGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stopColor="#6ba5ca" />
+            <stop offset="100%" stopColor="#4a89b0" />
+          </linearGradient>
+        </defs>
+        
+        {/* Render non-hovered/non-selected tiles first */}
+        {hexes.filter(({ q, r, s }) => {
+          const key = `${q},${r},${s}`;
+          return key !== hoveredTile && key !== selectedTile;
+        }).map(({ q, r, s }) => {
+          const { x, y } = cubeToPixel(q, r);
+          const key = `${q},${r},${s}`;
+          const tile = tiles[key];
+          
+          return (
+            <g 
+              key={key}
+              style={{
+                transformOrigin: `${x}px ${y}px`,
+                cursor: 'pointer'
+              }}
+              onMouseEnter={() => setHoveredTile(key)}
+              onMouseLeave={() => setHoveredTile(null)}
+              onClick={(e) => handleHexClick(q, r, s, e)}
+            >
+              {/* Base hexagon for border */}
+              <polygon
+                points={getHexagonPath(x, y)}
+                fill="#f8fafc"
+                stroke="#cbd5e1"
+                strokeWidth="2"
+                style={{
+                  filter: 'drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1))'
+                }}
+              />
+              {tile?.terrain && renderTerrain(tile.terrain, x, y, false)}
+              {tile?.hasStructure && (
+                <g>
+                  {/* Simple building structure */}
+                  <rect
+                    x={x - 8}
+                    y={y - 12}
+                    width="16"
+                    height="12"
+                    fill="#8b7355"
+                    stroke="#6b5943"
+                    strokeWidth="1"
+                    rx="2"
+                  />
+                  <path
+                    d={`M ${x - 10} ${y - 12} L ${x} ${y - 18} L ${x + 10} ${y - 12} Z`}
+                    fill="#a0826d"
+                    stroke="#6b5943"
+                    strokeWidth="1"
+                  />
+                  <rect
+                    x={x - 3}
+                    y={y - 8}
+                    width="2"
+                    height="4"
+                    fill="#5d4e37"
+                  />
+                </g>
+              )}
+            </g>
+          );
+        })}
+        
+        {/* Render hovered tile */}
+        {hoveredTile && hoveredTile !== selectedTile && hexes.filter(({ q, r, s }) => `${q},${r},${s}` === hoveredTile).map(({ q, r, s }) => {
+          const { x, y } = cubeToPixel(q, r);
+          const key = `${q},${r},${s}`;
+          const tile = tiles[key];
+          
+          return (
+            <g 
+              key={`hovered-${key}`}
+              style={{
+                transformOrigin: `${x}px ${y}px`,
+                transform: 'scale(1.1) translateY(-3px)',
+                transition: 'transform 0.2s ease-out',
+                cursor: 'pointer'
+              }}
+              onMouseEnter={() => setHoveredTile(key)}
+              onMouseLeave={() => setHoveredTile(null)}
+              onClick={(e) => handleHexClick(q, r, s, e)}
+            >
+              {/* Base hexagon for border */}
+              <polygon
+                points={getHexagonPath(x, y)}
+                fill="#f8fafc"
+                stroke="#cbd5e1"
+                strokeWidth="2"
+                style={{
+                  filter: 'drop-shadow(0 6px 12px rgba(0, 0, 0, 0.3))'
+                }}
+              />
+              {tile?.terrain && renderTerrain(tile.terrain, x, y, true)}
+            </g>
+          );
+        })}
+        
+        {/* Render selected tile and action ring on top */}
+        {selectedTile && (() => {
+          const [q, r, s] = selectedTile.split(',').map(Number);
+          const { x, y } = cubeToPixel(q, r);
+          const tile = tiles[selectedTile];
+          
+          return (
+            <g key={`selected-${selectedTile}`}>
+              {/* Action ring menu */}
+              {renderActionRing(x, y)}
+              
+              {/* Selected tile */}
+              <g 
+                style={{
+                  transformOrigin: `${x}px ${y}px`,
+                  transform: 'scale(1.15) translateY(-4px)',
+                  cursor: 'pointer'
+                }}
+                onClick={(e) => handleHexClick(q, r, s, e)}
+              >
+                <polygon
+                  points={getHexagonPath(x, y)}
+                  fill="#f8fafc"
+                  stroke="#ffffff"
+                  strokeWidth="3"
+                  style={{
+                    filter: 'drop-shadow(0 6px 16px rgba(255, 255, 255, 0.8))'
+                  }}
+                />
+                {tile?.terrain && renderTerrain(tile.terrain, x, y, false)}
+              </g>
+            </g>
+          );
+        })()}
+      </svg>
+    </div>
+  );
+};
+
+export default HexagonalGrid;

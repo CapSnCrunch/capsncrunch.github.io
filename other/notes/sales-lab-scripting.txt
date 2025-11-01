@@ -1,0 +1,54 @@
+Sales Lab Scripting
+- High velocity sales (3 months or less)
+- Gatekeeper < Decision Maker
+- SDRs
+- Team 19 of 2010
+- “Script” has bad connotations because of misconceptions, don’t know the “art of scripting”
+- Some try to copy high performers which do well based on what the customer is saying in the moment, so the pitches are not replicable
+- Even high performers don’t understand at a deep level why what they’re doing works, it’s just intuition
+- Even managers don’t give good advice, may even be contradictory, because they can’t listen to all calls so just give generic advice
+- Good scripts themselves inspire the confidence that’s is sought via motivation
+- Where can I get lead data to practice these types of scripts on?
+- Have they experimented at the intonation level for scripts? To what degree are things planned?
+    - Definitely tonality, the feeling you give the prospect
+    - More than half conversation is nonverbal, which can only be conveyed over the phone with tonality (article to back this up)
+    - Think of yourself as an actor for applicant within that industry
+- Just tries to creatively get back on path
+- Well crafted script is like a GPS
+- Gives many on / off ramps (why do I want off ramps?)
+- MUST be effective (should turn “nos” to “yeses” at a high rate, persuasive)
+- MUST be efficient (should be as short as possible while maintaining effectiveness, high close rate)
+- MUST be repeatable (everyone should understand it, be universal)
+- Setup pitch to make a sale within 2 calls (other scenarios may come up, but this is the target)
+- Call 1: set a demo and provide value propositions, collect personalized information for the demo, should be very brief, getting them excited about the demo is the goal
+    - Different scripts for warm vs cold
+    - Managing Gatekeepers (do you know the decision maker or not? “Hi, yes {first name} please.”, power of “just”, “thanks”, if you don’t know they’re name ask for help “who handles XYZ”)
+    - Assume you’ve reached the decision maker
+    - “This is” vs “my name is” with full name and company name at a confident speed
+    - “Are you familiar with {company name}?”
+    - Timestamping to let them know this will be quick
+    - CBS (confidence building statement)
+    - Don’t pitch features, pitch benefits
+    - After pitch, don’t pause, ask for demo, and give explicit options
+    - “Best number for a text reminder”
+    - “If you love the product, is there anyone else in that decision process?”
+    - Expecting Objections
+    - “Send me an email”
+    - “Not Interested”
+- Call 2: longer detailed product demonstration, longer call, wont be prepared to craft objections if they can’t personalize as well in call 1
+    - Accumulating 
+    - Getting to know you, getting to 
+    - know us, pricing and logistics
+    - Time based incentive
+    - Door closing questions
+    - Double down on CBSs
+    - No time checks
+    - Clear timeline to build mental image of next steps
+- Categorizing customer personalities
+    - A: already sold, easy going, rare (1%)
+    - B: in the middle, allow a pitch, might have some objections, reasonable (80-90%)
+    - F: predisposed against selling and/or your product in general, near impossible, not worth it (10-20%)
+- Proactive objection elimination (8 mile approach)
+- Isolating the objection
+- Making invisible revenue visible
+- Building intel so we can proactively pitch (to build credibility)

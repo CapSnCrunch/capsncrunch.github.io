@@ -1,0 +1,160 @@
+import React, { useState, useEffect } from 'react';
+
+const HexagonalGrid = () => {
+  const [tiles, setTiles] = useState({});
+  const [hoveredTile, setHoveredTile] = useState(null);
+  const [animatingTile, setAnimatingTile] = useState(null);
+  
+  // Hexagon dimensions
+  const size = 40;
+  const width = size * 2;
+  const height = Math.sqrt(3) * size;
+  
+  // Generate hexagonal grid coordinates using cube coordinates
+  const generateHexGrid = (rings) => {
+    const hexes = [];
+    
+    for (let q = -rings; q <= rings; q++) {
+      for (let r = -rings; r <= rings; r++) {
+        const s = -q - r;
+        if (Math.abs(q) <= rings && Math.abs(r) <= rings && Math.abs(s) <= rings) {
+          hexes.push({ q, r, s });
+        }
+      }
+    }
+    
+    return hexes;
+  };
+  
+  // Convert cube coordinates to pixel coordinates
+  const cubeToPixel = (q, r) => {
+    const x = size * (3/2 * q);
+    const y = size * (Math.sqrt(3)/2 * q + Math.sqrt(3) * r);
+    return { x, y };
+  };
+  
+  // Generate hexagon path
+  const getHexagonPath = (cx, cy, inset = 0) => {
+    const points = [];
+    for (let i = 0; i < 6; i++) {
+      const angle = (Math.PI / 3) * i;
+      const x = cx + (size - inset) * Math.cos(angle);
+      const y = cy + (size - inset) * Math.sin(angle);
+      points.push(`${x},${y}`);
+    }
+    return points.join(' ');
+  };
+  
+  const hexes = generateHexGrid(3);
+  
+  // Calculate SVG viewBox bounds
+  const padding = size * 3;
+  const minX = -width * 2.5 - padding;
+  const minY = -height * 2.5 - padding;
+  const viewBoxWidth = width * 5 + padding * 2;
+  const viewBoxHeight = height * 5 + padding * 2;
+  
+  useEffect(() => {
+    if (hoveredTile) {
+      setAnimatingTile(hoveredTile);
+    } else if (animatingTile) {
+      const timer = setTimeout(() => {
+        setAnimatingTile(null);
+      }, 200); // Match the transition duration
+      return () => clearTimeout(timer);
+    }
+  }, [hoveredTile, animatingTile]);
+
+  const handleHexClick = (q, r, s) => {
+    const key = `${q},${r},${s}`;
+    setTiles(prev => ({
+      ...prev,
+      [key]: prev[key] ? null : { color: '#93c5fd' }
+    }));
+  };
+  
+  return (
+    <div className="flex items-center justify-center min-h-screen bg-gray-50">
+      <svg 
+        viewBox={`${minX} ${minY} ${viewBoxWidth} ${viewBoxHeight}`}
+        className="w-full max-w-xl drop-shadow-md"
+        style={{ filter: 'drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1))' }}
+      >
+        {hexes.map(({ q, r, s }) => {
+          const { x, y } = cubeToPixel(q, r);
+          const key = `${q},${r},${s}`;
+          const tile = tiles[key];
+          
+          const isHovered = hoveredTile === key;
+          
+          return (
+            <g 
+              key={key}
+              style={{
+                transformOrigin: `${x}px ${y}px`,
+                transform: isHovered ? 'scale(1.15)' : 'scale(1)',
+                transition: 'transform 0.2s ease-out, filter 0.2s ease-out',
+                filter: isHovered ? 'drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2))' : 'none',
+                pointerEvents: isHovered ? 'auto' : 'auto'
+              }}
+              onMouseEnter={() => setHoveredTile(key)}
+              onMouseLeave={() => setHoveredTile(null)}
+              onClick={() => handleHexClick(q, r, s)}
+            >
+              <polygon
+                points={getHexagonPath(x, y)}
+                fill="#ffffff"
+                stroke="#d1d5db"
+                strokeWidth="1.5"
+                className="cursor-pointer"
+                style={{ pointerEvents: 'all' }}
+              />
+              {tile?.color && (
+                <polygon
+                  points={getHexagonPath(x, y, 4)}
+                  fill={tile.color}
+                  className="transition-colors pointer-events-none"
+                />
+              )}
+            </g>
+          );
+        })}
+        {animatingTile && hexes.filter(({ q, r, s }) => `${q},${r},${s}` === animatingTile).map(({ q, r, s }) => {
+          const { x, y } = cubeToPixel(q, r);
+          const key = `${q},${r},${s}`;
+          const tile = tiles[key];
+          const isHovered = hoveredTile === key;
+          
+          return (
+            <g 
+              key={`hover-${key}`}
+              style={{
+                transformOrigin: `${x}px ${y}px`,
+                transform: isHovered ? 'scale(1.15)' : 'scale(1)',
+                transition: 'transform 0.2s ease-out, filter 0.2s ease-out',
+                filter: isHovered ? 'drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2))' : 'none',
+                pointerEvents: 'none'
+              }}
+            >
+              <polygon
+                points={getHexagonPath(x, y)}
+                fill="#ffffff"
+                stroke="#d1d5db"
+                strokeWidth="1.5"
+              />
+              {tile?.color && (
+                <polygon
+                  points={getHexagonPath(x, y, 4)}
+                  fill={tile.color}
+                  className="pointer-events-none"
+                />
+              )}
+            </g>
+          );
+        })}
+      </svg>
+    </div>
+  );
+};
+
+export default HexagonalGrid;
