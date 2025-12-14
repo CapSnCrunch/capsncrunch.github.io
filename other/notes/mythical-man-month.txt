@@ -1,0 +1,213 @@
+The Mythical Man Month
+
+    - Program can be extended in two ways:
+        - To a programming product (generalized, tested, documented, maintained)
+        - To a programming system (component within a system of large tasks, precisely defined interfaces, explicit budget, E2E testing across interactions)
+    - A programming systems product is the desired product
+    - The joys of the craft (sheer joy of making things, things useful to other people, fashioning complex puzzle like object within systems, joy of always learning, working with tractable medium)
+    - The woes of the craft (one must perform perfectly, other people set objectives, dependence upon others, grand concepts are fun but little bugs is just work, appears obsolete upon completion)
+    
+    Projects often fail for lack of calendar time
+    - Techniques for estimating are poorly developed
+    - Techniques confuse effor with progress
+    - We are uncertain of our estimates
+    - Schedule progress is poorly monitored
+    - Respones to schedule slippage is to add man power
+
+    Incompleteness and inconsistencies are only apparent during implementation
+
+    Programmers build from pure concepts but because medium is tractable, we are optimistic
+
+    "Man-month" unit of effort are dangerous to use
+
+    Partitionable, non-partitionable, and partitionable with communication tasks
+    (with complex interrelationships, communication effort can cause tasks to take longer with more people)
+
+    1/3 planning, 1/6 coding, 1/4 component test, 1/4 system test
+
+    Regenerative Schedule Disaster
+    - "Take no small slips"
+    - Brook's Law (Adding manpower to a late software project makes it later)
+
+Surgical Team
+
+    The Problem
+    - Measured magnitudes between good / bad programers is 10x
+    - Small sharp team of no more than 10 is desired, but this is not enough for massive projects (too slow)
+
+    Mills's Proposal
+    - Each segment of a project be tackled by a team organized as a surgical team rather than hog-butchering
+    (one doing the cutting and others give support that enhances effectiveness)
+    - The surgeon (cheif programmer) - personally defines specs, writes, tests
+    - The copilot (alter ego of surgeon) - able to do any part of job but less experienced, share in design as
+    a thinker, discussant, evaluator (surgeon tries ideas but not bound by his advice)
+    - The administrator - legal, contractual, reporting, financial requiremet management
+    - The editor - criticizes, reworks, enhances output of the surgeon
+    - Two secretaries - admin and edtior each need secretary to handle project correspondence and non-product files
+    - The program clerk - maintain technical records in programming-product library
+    - The toolsmith - unquestionably satisfactory reliability of tooling and its upgrades
+    - The tester - bank of suitable test cases
+    - The language lawyer - neat, efficient uses of language for doing difficult, obscure, or tricky things
+
+    Scaling up to many teams requires new communication toolsmith
+
+Aristocracy, Democracy, and System design
+
+    Conceptual Integrity of design
+    - How to achieve?
+    - Does this imply elite architects and horde of plebian implenters?
+    - How to keep architects from drifting off with unimplementable or costly specs?
+    - How to ensure every detail is communicated?
+
+    When a small architecture team will write all external specs, the implementers raise:
+    - The specs will be too rich in function and not reflect practical costs
+    - The architects get all the creative fun and shut out inventiveness of implementers
+    - The many implementers must sit idly until specs come through narrow funnel
+
+    The first is a real danger, the other are illusions:
+    - Opportunity to be creative is not diminished given external specs
+    - Implementer has plenty to do defining general components and setting up tools
+
+
+The Second-System Effect
+
+    What discipline bounds to architect's inventive enthusiasm?
+    - Thoroughgoing, careful, and sympathetic communication between architect and builder
+
+    When architect confronted with high cost estimate they can:
+    - Cut the design
+    - Challenge the estimate suggesting cheaper implementations
+        - Must be suggestive, not dictated
+        - Always be prepared to suggest a way of implementing anything he specifies and prepared to accept any other way that meets the objective well
+        - Deal quietly and privately in such suggestions
+        - Be ready to forego credit for suggested improvements
+
+    Second system is the most dangerous a man ever designs (general tendency to over-design, use all the ideas and frills, forms a "big pile")
+
+Passing the Word
+
+    The manual or written spec is necessary but not sufficient (only an external spec of product)
+    - Should describe everythign the user sees but refrain from describing what they do not see
+    - Attractive to use formal notation instead of English to acheive precision (though they can require prose explanations to learn and teach)
+    - "Never go to the sea with two chronomoters. Take one or three"
+
+    Meetings are necessary, found two to be useful:
+    - Weekly half-day conference of all architectus and official representatives of implementers and market planners (propose challenges, emphasis on creativity rather than merely decision)
+    - Larger "fall festivals" every 6 months to 1 year to resolve backlogged issues
+
+    Telephone log kept by architect recording every question and answer
+
+Why Did the Tower of Babel Fail?
+
+    Poor communication and organization
+
+    The Project Workbook
+    - What (all documents of the project)
+    - Why (control of distribution of information, tree-structure)
+    - Mechanics
+
+    Microfiche?
+
+Calling the Shot
+
+    Many non-coding, testing, designing etc. tasks are not considered (communication, documents, bugs, etc.)
+
+Ten Pounds in a Five-Pound Stack
+
+    Representation is the essence of programming
+    - "Beyond craftsmanship lies inventionship, and it is here that lean, spare, fast programs are born"
+    - Almost always these are the result of strategic breakthrouhg rather than tactical cleverness (planned refactors and representation rather than fancy new algorithm)
+    - "Show me your flowcharts and conceal your tables and I shall continue to be mystified. Show me your tables and I won't usually need your flowcharts; they'll be obvious."
+
+The Documentary Hypothesis
+
+    Documents for a Computer Product:
+    - Objectives
+    - Specifications
+    - Schedule
+    - Budget
+    - Organization Chart
+    - Space Allocations
+    - Estimate, forecast, prices
+
+    These are similar to those defined by university departments
+
+Plan to Throw One Away
+
+    Chemical engineers learned the need for a "pilot plant"
+    First system is often barely usuable (too slow, too bug, too awkward to use)
+        - Must restart with a redesigned version either in one lump or piece-by-piece
+        - Management question is not whether to build a pilot system but whether to plan in advance to build one or promise to deliver the throwaway to customers
+        (doing so buys time but at the cost of agont for the user, distraction for the builders, and bad reputation for the product)
+
+    Plan the system for change
+    Plan the organization for change
+    - "By documenting a design, the designer exposes himself to the criticisms of everyone, and he must be able to defend everything he writes. If the organizational
+    structure is threatening in any way, nothing is going to be documented until it is completely defensible."
+    - Each person must be assigned to jobs that broaden them
+    - Large projects require keeping the top two or three people as technical calvary that can be moved around
+
+    To avoid perception of seniors as "too valuable" for actual programming, abolish job titles and just use "Member of Technical Staff" (as Bell Labs did)
+
+    Horizontal movement between "managerial" and "technical" latters should be "reassignments" and not "promotions"
+
+Sharp Tools
+
+    "A good workman is known by his tools"
+
+    Individualized tools hamper rather than aid communication, but general-purpose tools are also not enough
+
+    One tool-maker per team that decides:
+    - A computer facility
+    - An operating system
+    - A language / language policy
+    - Utilities, debugging aids, test-case generators, and text-processing system for documentation
+
+The Whole and the Parts
+
+    "I can write programs that control air traffic, intercept ballistic missles, reconcile bank accounts, and control prduction lines."
+    "So can I, and so can any man, but do they work when you do write them?"
+
+    "The most pernicious and subtle bugs are system bugs arising from mismatched assumptions made by the authors of various system components."
+
+    Build a specification before code is written and test it
+
+    Top-down design refining individual modules at a time
+
+    Djikstra suggested building programs only from loops and conditional portions and that the alternative, unrestrained use of branching via GO TO
+    produces structures that lend themselves to logical errors.
+
+    Build plenty of scaffolding in the form of programs / data for debugging that are not intended to be in the final product.
+    - Dummy components with mocked data
+    - Miniature file
+
+Hatching a Catastrophe
+
+    "None love the bearer of bad news."
+    "How does a project get to be a year late? ...One day at a time."
+
+    Milestonse or Millstones?
+    - First step is to have a schedule with a list of milestones (crucially dependent on experience)
+    - "Debugging is 90% finished half of the coding time, debugging is 99% complete most of the time, and 'planning complete' can be proclaimed almost at will."
+    - Concrete milestoens shuold be 100% complete events (sharp milestones are a service to the team)
+
+    "Hustle" as an essential gift of great players; it provides the cushion, reservem and capacity that allows for a team to cope with routine mishaps
+
+    PERT (critical-path scheduling in which one estimates three times for each event corresponding to different probabilities of meeting the estimated dates)
+
+    Under the rug (first-line managers are not inclined to report minor slippage)
+    - Bosses need to see exceptions to the plan that require action and status picture for education. They can use two rug-lifting techniques:
+        - Reducing the role conflict (don't act on problems managers can solve and never on problems where he is explicitly only reviewing status. distinguish status-review from problem-action)
+        - Yanking the rug off (PERT chart with frequent sharp milestones can be the basis to see actual completions)
+
+The Other Face
+    - ...
+
+No Silver Bullet - Essence and Accident in Software Engineering
+
+"No Silver Bullet" Refined
+
+Propositions of The Mythical Man-Month: True or False?
+
+The Mythical Man-Month after 20 years
+
