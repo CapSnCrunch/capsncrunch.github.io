@@ -23,6 +23,7 @@
     <div id='topbar'>
       <a href='../index.html'>Home</a>
       <a href='../articles.html'>Articles</a>
+      <a href='../projects.html'>Projects</a>
       <a href='../other.html'><strong>Other</strong></a>
       <a href='../contact.html'>Contact</a>
     </div>
@@ -32,9 +33,9 @@
         <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
           <h2 style="text-align: center;"> My Reading Log </h2>
           <div style="display: flex; align-items: center; text-align: center; width: 100%; max-width: 320px;">
-            <h3 style="flex: 1;"><strong><a href='json2yaml.html'>< Previous </a></strong></h3>
+            <h3 style="flex: 1;"><strong></strong></h3>
             <h3 style="flex: 1; margin: 0 15px;"><strong> 6 / 15 / 22  </strong></h3>
-            <h3 style="flex: 1;"><strong><a href='layolay.html'>Next ></a></strong></h3>
+            <h3 style="flex: 1;"><strong><a href='certifications.html'>Next ></a></strong></h3>
           </div>
         </div>
 
@@ -145,9 +146,10 @@
           ]
         },
         {
-          year: "2025",
+          year: "2026",
+          note: "Yikes, didn't do much reading this year. But I promise I wasn't just brainrotting! I worked on a lot of projects instead.",
           list: [
-            { "title": "Words in the Mind", "author": "Jean Aitchison", "link": "", "startDate": "12 / 31 / 25", "endDate": "" },
+            { "title": "Erewhon", "author": "Samuel Butler", "link": "https://www.gutenberg.org/ebooks/1906", "startDate": "5 / 26 / 26", "endDate": "6 / 6 / 26" },
             // { "title": "", "author": "", "link": "", "startDate": "", "endDate": "" },
           ]
         },
@@ -201,6 +203,9 @@
                 <h3 style="display: flex; align-items: center; justify-content: center; margin: 10px 0;">${book.notes ? `<a href="${book.notes}">Notes</a>` : ''}</h3>
               </div>`;
           });
+          if (data.note) {
+            html += `<h3 style="font-size: 14px; margin-top: 15px;">${data.note}</h3>`;
+          }
         });
 
         booksDiv.innerHTML = html;

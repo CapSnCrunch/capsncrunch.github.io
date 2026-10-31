@@ -90,30 +90,32 @@ li {
 
 #topbar {
     margin: auto;
-    width: 50%;
+    width: 100%;
     padding: 5px 0;
     display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
 }
 
-@media only screen and (max-width: 600px) {
-    #topbar {
-        flex-direction: column;
-    }
-
-    #topbar a {
-        margin: 5px 10px;
-    }
+/* Some pages wrap the links in an extra div; flatten it so every page lays out the same. */
+#topbar > div {
+    display: contents !important;
 }
 
-@media only screen and (min-width: 601px) {
-    #topbar {
-        flex-direction: row;
-    }
+#topbar a {
+    margin: 0 20px;
+}
 
+/* Phones: Home, Articles, Projects on the first line; Other, Contact centered on the second. */
+@media only screen and (max-width: 600px) {
     #topbar a {
-        margin: 0 20px;
+        flex: 0 0 33.333%;
+        box-sizing: border-box;
+        margin: 5px 0;
+        padding: 5px 0;
+        text-align: center;
     }
 }
 

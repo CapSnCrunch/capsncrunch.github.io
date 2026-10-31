@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang = 'en'>
+  <head>
+    <meta charset = 'utf-8'>
+    <title>Samuel Perales | Applesauce</title>
+    <link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+    <link rel = 'stylesheet' href = '../styles.css'>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.js"></script>
+    <script id = 'MathJax-script' async src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-K4LP8WXGLP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-K4LP8WXGLP');
+    </script>
+  </head>
+  <body>
+    <div id = 'header'>
+      <h1 style = 'text-align: center; margin-bottom: 10px;'><a class='name' href='../index.html'>Samuel Perales</a></h1>
+      <h2 style = 'text-align: center; margin-top: 0;'> Personal Blog </h2>
+    </div>
+    <div id = 'topbar'>
+      <a href = '../index.html'>Home</a>
+      <a href = '../articles.html'>Articles</a>
+      <a href = '../projects.html'><strong>Projects</strong></a>
+      <a href = '../other.html'>Other</a>
+      <a href = '../contact.html'>Contact</a>
+    </div>
+    <div class = 'content'>
+      <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+        <h2 style="text-align: center;"> Applesauce </h2>
+        <div style="display: flex; align-items: center; text-align: center; width: 100%; max-width: 320px;">
+          <h3 style="flex: 1;"><strong><a href='book-binding-gallery.html'>< Previous </a></strong></h3>
+          <h3 style="flex: 1; margin: 0 15px;"><strong> 3 / 25 / 26  </strong></h3>
+          <h3 style="flex: 1;"><strong><a href='stained-glass-gallery.html'>Next ></a></strong></h3>
+        </div>
+      </div>
+
+      <div style="display: flex; align-items: center; justify-content: center; margin-top: 20px; margin-bottom: 40px;">
+        <a href="https://applesauce.market/" target="_blank" rel="noopener" class="applesauce-logo" aria-label="The Applesauce Company">
+          <img src="../other/resources/applesauce/company-logo.png" alt="The Applesauce Company logo: a red rounded square with a cream spiral beside the words The applesauce Company in brown lettering" draggable="false" />
+        </a>
+      </div>
+
+      <h3>
+        Shortly after our wedding on Pi Day, Linda told me she wanted to try starting an art business. She had already
+        been working on a few designs and had some ideas of what she wanted to work on next. Over the course of a few
+        months, she made tons of coolest looking stickers and even an entire
+        <a href="https://applesauce.market/designs/insect-zine">Insect Zine</a> for all ages! With my software
+        engineering background, I was able to build her a fully functioning ecommerce site.
+      </h3>
+      <h3>
+        Since the brand focuses on the concepts of 'wonder' and 'playfulness', I spent a lot of time making all the nice
+        little micro-interactions, UX, and general design of the site.
+      </h3>
+      <h3>
+        Take a look and order while we still have these items in stock! I'm sure you'll find something you like. Join
+        <a href="https://applesauce.market/newsletter">The Applesauce newsletter</a> if you want to keep an eye out for
+        new designs.
+      </h3>
+
+      <div class="applesauce-shots">
+        <div class="applesauce-row">
+          <img src="../other/resources/applesauce/site-home.jpg" style="flex-grow: 0.915;" alt="Applesauce shop homepage with the headline Curiosity by design, a scatter of blob-shaped photos at the top right, and a grid of sticker and zine cards below, including an ocean sticker set, nebula and black hole stickers, and the Insect Zine.">
+          <img src="../other/resources/applesauce/site-product.jpg" style="flex-grow: 1.213;" alt="Applesauce product page for the Open Ocean Sticker Set, a $10 bundle showing a porcupine fish, whale shark, moon jellyfish, Spanish shawl nudibranch and green sea turtle stickers, with Add to Basket and Buy Now buttons.">
+        </div>
+        <div class="applesauce-row">
+          <img src="../other/resources/applesauce/insect-zine.jpg" style="flex-grow: 1.4545;" alt="Smiling person with round glasses and headphones around their neck on a couch, holding open a printed Insect Zine spread titled How Honey Gets Made, with a shipping box of more zines in front of them.">
+          <img src="../other/resources/applesauce/sticker-pack.jpg" style="flex-grow: 0.984;" alt="Person with round glasses and headphones around their neck, mouth wide open in excitement, holding up a clear bag of holographic stickers in one hand and a sticker care instruction sheet in the other.">
+        </div>
+      </div>
+    </div>
+    <div id = 'footer'></div>
+
+    <style>
+      .applesauce-logo {
+        display: inline-block;
+        transition: transform 200ms cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+      .applesauce-logo img {
+        display: block;
+        width: 460px;
+        max-width: 90vw;
+        height: auto;
+      }
+      @media (hover: hover) and (pointer: fine) {
+        .applesauce-logo:hover { transform: scale(1.04); }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .applesauce-logo { transition: none; }
+      }
+      /* Screenshots and photos break out of the 900px text column. Within a row,
+         flex-grow matches each image's aspect ratio so both come out the same height. */
+      .applesauce-shots {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: min(1200px, 96vw);
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+        margin-top: 50px;
+        margin-bottom: 60px;
+      }
+      .applesauce-row {
+        display: flex;
+        gap: 10px;
+      }
+      .applesauce-row img {
+        flex-basis: 0;
+        min-width: 0;
+        height: auto;
+        border-radius: 5px;
+        align-self: flex-start;
+      }
+      @media only screen and (max-width: 700px) {
+        .applesauce-row { flex-direction: column; }
+        .applesauce-row img { width: 100%; flex-grow: 0 !important; }
+      }
+    </style>
+  </body>
+</html>
