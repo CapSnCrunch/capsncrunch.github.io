@@ -27,27 +27,26 @@
     <div id = 'topbar'>
       <a href = '../index.html'>Home</a>
       <a href = '../articles.html'>Articles</a>
-      <a href = '../other.html'><strong>Other</strong></a>
+      <a href = '../projects.html'><strong>Projects</strong></a>
+      <a href = '../other.html'>Other</a>
       <a href = '../contact.html'>Contact</a>
     </div>
     <div class = 'content'>
       <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
         <h2 style="text-align: center;"> Leafcast </h2>
         <div style="display: flex; align-items: center; text-align: center; width: 100%; max-width: 320px;">
-          <h3 style="flex: 1;"><strong><a href='stained-glass-gallery.html'>< Previous </a></strong></h3>
+          <h3 style="flex: 1;"><strong><a href='pareidolic-painting.html'>< Previous </a></strong></h3>
           <h3 style="flex: 1; margin: 0 15px;"><strong> 9 / 5 / 25  </strong></h3>
-          <h3 style="flex: 1;"><strong><a href='website-list.html'>Next ></a></strong></h3>
+          <h3 style="flex: 1;"><strong><a href='dandan-online.html'>Next ></a></strong></h3>
         </div>
       </div>
 
-        <div class = 'center'>
-            <br/>
-            <a href="http://leafcast.app">
-                <img src = '../other/resources/leafcast.png' width = 650px style = 'border-radius: 5px;'>
-            </a>
-            <br/>
-            <br/>
-        </div>
+      <div style="display: flex; align-items: center; justify-content: center; margin-top: 20px; margin-bottom: 30px;">
+        <a href="http://leafcast.app" class="leafcast-icon" aria-label="Leafcast">
+          <img src = '../other/resources/leafcast-icon.png' alt = 'Leafcast app icon: a green leaf on the cover of a brown-spined book in cream tones' draggable = 'false'>
+        </a>
+      </div>
+
         <div style = 'text-align: left;'>
             <h3>
                 I like to listen to audiobooks while I'm doing other things like walking, cleaning, or working on a project. I have a 
@@ -64,8 +63,46 @@
                 voices from <a href="http://inworld.ai/tts">Inworld</a>, easily manage and organize your books and library, and even listen to some freely available
                 audiobook classics.
             </h3>
+            <h3>
+                Building this was a fun experience that gave me some great exposure to the mobile development lifecycle. I particularly
+                liked using <a href="https://expo.dev/">Expo</a> to build the project as a first time mobile dev. I encourage you to
+                check it out. If you <a href="../contact.html">contact me</a>, I'd be happy to give you some more free credits than the
+                accounts start with. If I happen to have not renewed my Apple Developer License, here's a screenshot to prove I actually
+                got this up and going lol:
+            </h3>
         </div>
+        <div class = 'center' style = 'margin-top: 30px;'>
+            <img src = '../other/resources/leafcast-app-store.jpg' width = 650px style = 'max-width: 100%; border-radius: 5px;' alt = 'Leafcast listing on the Mac App Store: a green leaf on an open book icon, a 4.3 rating from 3 ratings, free with in-app purchases, and five phone screenshots of the library, create book, page scan, audio player and settings screens.'>
+        </div>
+        <br/>
+        <br/>
     </div>
     <div id = 'footer'></div>
+
+    <style>
+      /* Icon floats gently and bobs open on hover; clicking opens leafcast.app. */
+      .leafcast-icon {
+        display: inline-block;
+        animation: leafcast-float 4s ease-in-out infinite;
+        transition: transform 200ms cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+      .leafcast-icon img {
+        display: block;
+        width: 140px;
+        height: auto;
+        filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.18));
+        -webkit-user-drag: none;
+      }
+      @keyframes leafcast-float {
+        0%, 100% { transform: translateY(0) rotate(-3deg); }
+        50% { transform: translateY(-10px) rotate(3deg); }
+      }
+      @media (hover: hover) and (pointer: fine) {
+        .leafcast-icon:hover { animation-play-state: paused; transform: scale(1.12) rotate(0deg); }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .leafcast-icon { animation: none; }
+      }
+    </style>
   </body>
 </html>

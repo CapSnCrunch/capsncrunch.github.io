@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Samuel Perales | Projects</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.js"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-K4LP8WXGLP"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+
+      gtag('config', 'G-K4LP8WXGLP');
+    </script>
+  </head>
+  <body>
+    <div id="header">
+      <h1 style="text-align: center; margin-bottom: 10px">
+        <a class="name" href="index.html">Samuel Perales</a>
+      </h1>
+      <h2 style="text-align: center; margin-top: 0">Personal Blog</h2>
+    </div>
+    <div id="topbar">
+      <div style="display: flex">
+        <a href="index.html">Home</a>
+        <a href="articles.html">Articles</a>
+        <a href="projects.html"><strong>Projects</strong></a>
+        <a href="other.html">Other</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+    <div class="content" style="margin-bottom: 40px; margin-top: 20px;">
+      <div style="text-align: center; margin: 20px">
+        <h3>
+          Web applications, artwork, and other things I've built or made and was too lazy to write a full
+          <a href="articles.html">article</a> on.
+        </h3>
+      </div>
+      <div id="projects" style="margin: 0 10px"></div>
+    </div>
+
+    <script>
+      const projects = [
+        {"title": "Stained Glass", "description": "A gallery of some of my stained glass art projects.", "date": "9 / 23 / 24 – 9 / 8 / 26", "link": "other/stained-glass-gallery.html", "image": "other/resources/projects/stained-glass.jpg", "alt": "Backlit mid-century stained glass lightbox in a walnut frame, leaning on the floor against bar stools, with a grid of red and orange trapezoid panels"},
+        {"title": "Applesauce", "description": "Ecommerce website I built for my wife's art and design business.", "date": "3 / 25 / 26", "link": "other/applesauce.html", "image": "other/resources/projects/applesauce.jpg", "alt": "The Applesauce Company logo: a red rounded square with a cream spiral beside the words The applesauce Company"},
+        {"title": "Book Binding", "description": "A gallery of some of my book binding projects.", "date": "9 / 14 / 25 – 1 / 4 / 26", "link": "other/book-binding-gallery.html", "image": "other/resources/projects/book-binding.jpg", "alt": "Hand-bound book in brown linen cloth with a gold foil pattern of cell and microbe illustrations"},
+        {"title": "Dandân Online", "description": "Online client and game engine for shared-deck Magic the Gathering format", "date": "12 / 20 / 25", "link": "other/dandan-online.html", "image": "other/resources/projects/dandan-online.jpg", "alt": "Dandân Online logo: the words Dandân Online in blue lettering flanked by two koi fish on a dark background"},
+        {"title": "Leafcast", "description": "iOS app for scanning and generating high-quality audiobooks from books you own.", "date": "9 / 5 / 25", "link": "other/leafcast.html", "image": "other/resources/projects/leafcast.jpg", "alt": "Leafcast app icon, a green leaf on a book cover, inside a white rounded app-icon square"},
+        {"title": "Pareidolic Painting", "description": "A fun form of mix media artwork I like to mess around with.", "date": "2 / 19 / 22 – 4 / 3 / 25", "link": "other/pareidolic-painting.html", "image": "other/resources/projects/pareidolic-painting.jpg", "alt": "Colorful painting of overlapping creatures and faces in blue, green, red and tan"},
+        {"title": "Learn Anything", "description": "A generative AI hackathon submission for generating web courses on any topic.", "date": "6 / 6 / 24", "link": "other/learn-anything.html", "image": "other/resources/projects/learn-anything.jpg", "alt": "Learn Anything homepage with an illustration of a laptop and a Get Started button"},
+        {"title": "Layolay", "description": "3D printing e-commerce platform.", "date": "2 / 24 / 23", "link": "other/layolay.html", "image": "other/resources/projects/layolay.jpg", "alt": "Layolay logo in yellow script lettering on a pink to purple gradient"},
+        {"title": "json2yaml", "description": "Tool for converting between the JSON and YAML data formats.", "date": "5 / 30 / 22", "link": "other/json2yaml.html", "image": "other/resources/projects/json2yaml.jpg", "alt": "Dark-themed json2yaml tool with JSON on the left and the converted YAML on the right"},
+        {"title": "SL(2,R) Action Viewer", "description": "Visualization tool for actions of special linear matrices on real projective space.", "date": "5 / 5 / 22", "link": "other/sl2r-action-viewer.html", "image": "other/resources/projects/sl2r-action-viewer.jpg", "alt": "Two rainbow-colored circles with an arrow between them: the left shows the full color wheel and the right shows the same circle after a matrix acts on it, mostly green with the colors squeezed into a small arc"},
+        {"title": "Ping Pong Patches", "description": "Examples of 'computational proofs' found by an algorithm I wrote for a research group.", "date": "4 / 26 / 22", "link": "other/ping-pong-patches.html", "image": "other/resources/projects/ping-pong-patches.jpg", "alt": "Circle of eleven small colored nodes joined by thin gray arcs, with two pink arcs highlighted and arrowheads between a filled pink node and nodes labeled a and b"},
+        {"title": "Robo Rosewater", "description": "Online database I made for AI generated Magic the Gathering cards.", "date": "12 / 26 / 21", "link": "other/robo-rosewater.html", "image": "other/resources/projects/robo-rosewater.jpg", "alt": "Grid of AI generated Magic the Gathering cards on the Robo Rosewater website"},
+        {"title": "Hitomezashi Stitches", "description": "Japanese stitching technique and an online tool I made for pattern making.", "date": "12 / 9 / 21", "link": "other/hitomezashi-stitching.html", "image": "other/resources/projects/hitomezashi.jpg", "alt": "Light blue linen pillow on a gray couch, embroidered with white hitomezashi stitching in a pattern of crosses and diamonds"}
+      ];
+
+      const projectsDiv = document.getElementById("projects");
+
+      projects.forEach((project) => {
+        const card = document.createElement("a");
+        card.className = "project-card";
+        card.href = project.link;
+
+        const image = document.createElement("img");
+        image.src = project.image;
+        image.alt = project.alt;
+        image.loading = "lazy";
+        card.appendChild(image);
+
+        const text = document.createElement("div");
+
+        const titleHeading = document.createElement("h3");
+        titleHeading.innerHTML = `<strong>${project.title}</strong>`;
+        text.appendChild(titleHeading);
+
+        const descriptionHeading = document.createElement("h4");
+        descriptionHeading.textContent = project.description;
+        text.appendChild(descriptionHeading);
+
+        const dateHeading = document.createElement("h4");
+        dateHeading.innerHTML = `<strong>${project.date.replace(" – ", ' <span class="date-dash">–</span> ')}</strong>`;
+        text.appendChild(dateHeading);
+
+        card.appendChild(text);
+        projectsDiv.appendChild(card);
+      });
+    </script>
+  </body>
+</html>
+
+<style>
+  .project-card {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 20px;
+    padding: 15px;
+    text-align: left;
+    text-decoration: none;
+    color: #1C1C1C;
+    outline: 1px dashed #15795B;
+  }
+
+  .project-card:hover {
+    background-color: #C6E59E;
+    cursor: pointer;
+  }
+
+  .project-card img {
+    flex: 0 0 240px;
+    width: 240px;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+
+  .project-card h3 {
+    margin: 0 0 12px;
+    font-size: 22px;
+  }
+
+  .project-card h4 {
+    margin: 0 0 12px;
+    font-size: 14px;
+  }
+
+  .date-dash {
+    margin: 0 6px;
+  }
+
+  .project-card h4:last-child {
+    margin-bottom: 0;
+  }
+
+  @media only screen and (max-width: 600px) {
+    .project-card {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 15px;
+    }
+
+    .project-card img {
+      flex-basis: auto;
+      width: 100%;
+    }
+  }
+</style>
