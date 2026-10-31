@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang = 'en'>
+  <head>
+    <meta charset = 'utf-8'>
+    <title>Samuel Perales | Dandân Online</title>
+    <link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel = 'stylesheet' href = '../styles.css'>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.js"></script>
+    <script id = 'MathJax-script' async src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-K4LP8WXGLP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-K4LP8WXGLP');
+    </script>
+  </head>
+  <body>
+    <div id = 'header'>
+      <h1 style = 'text-align: center; margin-bottom: 10px;'><a class='name' href='../index.html'>Samuel Perales</a></h1>
+      <h2 style = 'text-align: center; margin-top: 0;'> Personal Blog </h2>
+    </div>
+    <div id = 'topbar'>
+      <a href = '../index.html'>Home</a>
+      <a href = '../articles.html'>Articles</a>
+      <a href = '../other.html'><strong>Other</strong></a>
+      <a href = '../contact.html'>Contact</a>
+    </div>
+    <div class = 'content'>
+      <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+        <h2 style="text-align: center;"> Dandân Online </h2>
+        <div style="display: flex; align-items: center; text-align: center; width: 100%; max-width: 320px;">
+          <h3 style="flex: 1;"><strong><a href='applesauce.html'>< Previous </a></strong></h3>
+          <h3 style="flex: 1; margin: 0 15px;"><strong> 7 / 24 / 26  </strong></h3>
+          <h3 style="flex: 1;"><strong></strong></h3>
+        </div>
+      </div>
+
+      <div style="display: flex; align-items: center; justify-content: center; margin-top: 45px; margin-bottom: 20px;">
+        <!-- Ported from the Dandân Online navbar wordmark (Dashboard.jsx):
+             koi-fish logos flanking the gradient "Dandân / Online" lockup.
+             Clicking opens the live site. -->
+        <a
+          href="https://dandan-online.web.app"
+          target="_blank"
+          rel="noopener"
+          class="dandan-wordmark"
+          aria-label="Dandân Online"
+        >
+          <img src="resources/dandan/logo-left.png" alt="" class="dandan-fish" draggable="false" />
+          <span class="dandan-lockup">
+            <span class="dandan-title">Dand&acirc;n</span>
+            <span class="dandan-sub">Online</span>
+          </span>
+          <img src="resources/dandan/logo-right.png" alt="" class="dandan-fish" draggable="false" />
+        </a>
+      </div>
+    </div>
+    <div id = 'footer'></div>
+
+    <style>
+      /* Ported from the Dandân Online navbar (Dashboard.jsx / index.css):
+         EB Garamond display font, blue gradient text, and the koi-fish glow. */
+      .dandan-wordmark {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        text-decoration: none;
+        -webkit-user-select: none;
+        user-select: none;
+        transition: transform 200ms cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+      .dandan-fish {
+        height: 88px;
+        width: auto;
+        filter: drop-shadow(0 0 6px rgba(100, 200, 255, 0.4));
+        pointer-events: none;
+        -webkit-user-drag: none;
+      }
+      .dandan-lockup {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        line-height: 1;
+        margin: 0 -6px;
+        font-family: "EB Garamond", Georgia, serif;
+        font-weight: 600;
+        letter-spacing: 0.03em;
+      }
+      .dandan-title {
+        font-size: 54px;
+        background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 50%, #818cf8 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .dandan-sub {
+        font-size: 34px;
+        background: linear-gradient(135deg, #87CEEB 0%, #64C8FF 50%, #4AB8FF 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      @media (hover: hover) and (pointer: fine) {
+        .dandan-wordmark:hover { transform: scale(1.06); }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .dandan-wordmark { transition: none; }
+      }
+      @media only screen and (max-width: 600px) {
+        .dandan-fish { height: 58px; }
+        .dandan-title { font-size: 36px; }
+        .dandan-sub { font-size: 23px; }
+      }
+    </style>
+  </body>
+</html>

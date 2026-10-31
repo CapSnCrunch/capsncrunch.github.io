@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang = 'en'>
+  <head>
+    <meta charset = 'utf-8'>
+    <title>Samuel Perales | applesauce</title>
+    <link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+    <link rel = 'stylesheet' href = '../styles.css'>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.js"></script>
+    <script id = 'MathJax-script' async src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-K4LP8WXGLP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-K4LP8WXGLP');
+    </script>
+  </head>
+  <body>
+    <div id = 'header'>
+      <h1 style = 'text-align: center; margin-bottom: 10px;'><a class='name' href='../index.html'>Samuel Perales</a></h1>
+      <h2 style = 'text-align: center; margin-top: 0;'> Personal Blog </h2>
+    </div>
+    <div id = 'topbar'>
+      <a href = '../index.html'>Home</a>
+      <a href = '../articles.html'>Articles</a>
+      <a href = '../other.html'><strong>Other</strong></a>
+      <a href = '../contact.html'>Contact</a>
+    </div>
+    <div class = 'content'>
+      <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+        <h2 style="text-align: center;"> applesauce </h2>
+        <div style="display: flex; align-items: center; text-align: center; width: 100%; max-width: 320px;">
+          <h3 style="flex: 1;"><strong><a href='book-binding-gallery.html'>< Previous </a></strong></h3>
+          <h3 style="flex: 1; margin: 0 15px;"><strong> 7 / 24 / 26  </strong></h3>
+          <h3 style="flex: 1;"><strong><a href='dandan-online.html'>Next ></a></strong></h3>
+        </div>
+      </div>
+
+      <div style="display: flex; align-items: center; justify-content: center; margin-top: 45px; margin-bottom: 20px;">
+        <a
+          href="https://applesauce.market"
+          target="_blank"
+          rel="noopener"
+          class="wordmark-flashlight"
+          aria-label="applesauce"
+        ></a>
+      </div>
+    </div>
+    <div id = 'footer'></div>
+
+    <script>
+      // Ported from the applesauce.market navbar wordmark (WordmarkLogo.jsx):
+      // per-letter PNGs, rainbow colors, and a cursor-proximity "flashlight"
+      // glow. Clicking the wordmark opens applesauce.market.
+      const LETTERS = 'applesauce';
+      const LETTER_COLORS = [
+        '#ec1f25', // a — rust
+        '#ec853c', // p — burnt-orange
+        '#ffe00e', // p — mustard
+        '#8dab1d', // l — avocado
+        '#81c0be', // e — teal
+        '#ba5785', // s — magenta
+        '#ec1f25', // a — rust
+        '#ec853c', // u — burnt-orange
+        '#ffe00e', // c — mustard
+        '#8dab1d', // e — avocado
+      ];
+      const LETTER_IMAGES = [
+        'resources/applesauce/logo-a-1.png', // a
+        'resources/applesauce/logo-p-1.png', // p
+        'resources/applesauce/logo-p-2.png', // p
+        'resources/applesauce/logo-l.png',   // l
+        'resources/applesauce/logo-e-1.png', // e
+        'resources/applesauce/logo-s.png',   // s
+        'resources/applesauce/logo-a-2.png', // a
+        'resources/applesauce/logo-u.png',   // u
+        'resources/applesauce/logo-c.png',   // c
+        'resources/applesauce/logo-e-2.png', // e
+      ];
+      // Glyph render heights (multiples of the x-height unit --wm-x) and the
+      // descender drop, matching the source crops.
+      const LETTER_METRICS = {
+        a: { h: 1, drop: 0 },
+        e: { h: 1, drop: 0 },
+        s: { h: 1, drop: 0 },
+        u: { h: 1, drop: 0 },
+        c: { h: 1, drop: 0 },
+        l: { h: 1.45, drop: 0 },    // ascender
+        p: { h: 1.42, drop: 0.42 }, // descender hangs below baseline
+      };
+      const LETTER_SCALE = { 6: 1.06 }; // second 'a' drawn a touch larger
+
+      const FALLOFF_PX = 110;
+
+      const root = document.querySelector('.wordmark-flashlight');
+      const letterEls = [];
+      LETTERS.split('').forEach((ch, i) => {
+        const metric = LETTER_METRICS[ch] || { h: 1, drop: 0 };
+        const h = metric.h * (LETTER_SCALE[i] || 1);
+        const span = document.createElement('span');
+        span.className = 'wordmark-flashlight__letter';
+        span.style.setProperty('--letter-color', LETTER_COLORS[i]);
+        span.style.setProperty('--h', h);
+        span.style.setProperty('--drop', metric.drop);
+        span.setAttribute('aria-hidden', 'true');
+        const img = document.createElement('img');
+        img.src = LETTER_IMAGES[i];
+        img.alt = '';
+        img.draggable = false;
+        img.className = 'wordmark-flashlight__img';
+        span.appendChild(img);
+        root.appendChild(span);
+        letterEls.push(span);
+      });
+
+      // Desktop only: cursor proximity drives the per-letter highlight.
+      if (!window.matchMedia || !window.matchMedia('(pointer: coarse)').matches) {
+        let frameId = 0;
+        let mx = -Infinity;
+        let my = -Infinity;
+
+        const tick = () => {
+          frameId = 0;
+          for (let i = 0; i < letterEls.length; i++) {
+            const el = letterEls[i];
+            const r = el.getBoundingClientRect();
+            const cx = r.left + r.width / 2;
+            const cy = r.top + r.height / 2;
+            const d = Math.hypot(mx - cx, my - cy);
+            const t = Math.max(0, Math.min(1, 1 - d / FALLOFF_PX));
+            el.style.setProperty('--t', t.toFixed(3));
+          }
+        };
+        const schedule = () => {
+          if (!frameId) frameId = requestAnimationFrame(tick);
+        };
+        window.addEventListener('mousemove', (e) => {
+          mx = e.clientX;
+          my = e.clientY;
+          schedule();
+        }, { passive: true });
+        document.addEventListener('mouseleave', () => {
+          mx = -Infinity;
+          my = -Infinity;
+          schedule();
+        });
+      }
+    </script>
+
+    <style>
+      /* Per-letter flashlight glow on the "applesauce" wordmark, ported from
+         the applesauce.market navbar. Each letter stores its color in
+         --letter-color; JS sets --t (0..1) per frame based on cursor
+         proximity. */
+      .wordmark-flashlight {
+        /* x-height unit the per-letter image heights scale from, and the
+           overall wordmark size. */
+        --wm-x: 0.58em;
+        --wm-gap: -0.02em;
+        font-size: 80px;
+        display: inline-flex;
+        align-items: flex-end; /* share a baseline; descenders hang via --drop */
+        text-decoration: none;
+        -webkit-user-select: none;
+        user-select: none;
+      }
+      .wordmark-flashlight__letter {
+        --t: 0;
+        display: inline-block;
+        transform-origin: 50% 65%;
+        cursor: pointer;
+        filter:
+          drop-shadow(
+            0 0 calc(var(--t) * 3px)
+              color-mix(in oklab, transparent, var(--letter-color) calc(var(--t) * 95%))
+          )
+          drop-shadow(
+            0 0 calc(var(--t) * 8px)
+              color-mix(in oklab, transparent, var(--letter-color) calc(var(--t) * 62%))
+          );
+        transition:
+          transform 150ms cubic-bezier(0.34, 1.56, 0.64, 1),
+          filter 90ms ease-out;
+        will-change: transform, filter;
+      }
+      .wordmark-flashlight__letter + .wordmark-flashlight__letter {
+        margin-left: var(--wm-gap, 0);
+      }
+      .wordmark-flashlight__letter:nth-child(4),
+      .wordmark-flashlight__letter:nth-child(5) {
+        margin-left: calc(var(--wm-gap) + 1px);
+      }
+      .wordmark-flashlight__letter:nth-child(6) { margin-left: 0; }
+      .wordmark-flashlight__letter:nth-child(7) { margin-left: 0.04em; }
+      .wordmark-flashlight__img {
+        display: block;
+        height: calc(var(--wm-x) * var(--h, 1));
+        width: auto;
+        transform: translateY(calc(var(--wm-x) * var(--drop, 0)));
+        pointer-events: none; /* clicks/hover resolve to the letter span */
+        -webkit-user-drag: none;
+      }
+      @media (hover: hover) and (pointer: fine) {
+        .wordmark-flashlight__letter:hover {
+          transform: scale(1.15) translateY(-3px);
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .wordmark-flashlight__letter { transition: none; }
+      }
+      @media only screen and (max-width: 600px) {
+        .wordmark-flashlight { font-size: 52px; }
+      }
+    </style>
+  </body>
+</html>
